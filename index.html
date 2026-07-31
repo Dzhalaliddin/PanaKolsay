@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="description" content="PANA KOLSAY - отель на берегу озера Кольсай. Бронирование номеров с видом на горы и озеро." />
     <meta name="keywords" content="Кольсай, отель, озера Кольсай, Алматы, бронирование, отдых, горы, Казахстан, PANA KOLSAY" />
     <meta property="og:title" content="PANA KOLSAY - Отель на озере Кольсай" />
@@ -10,38 +10,8 @@
     <meta property="og:image" content="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200" />
     <meta name="theme-color" content="#1a2a27" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel="manifest" href="data:application/json,{%22name%22:%22PANA%20KOLSAY%22,%22short_name%22:%22PANA%22,%22start_url%22:%22.%22,%22display%22:%22standalone%22,%22background_color%22:%22%231a2a27%22,%22theme_color%22:%22%231a2a27%22,%22icons%22:[{%22src%22:%22data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20192%20192%22%3E%3Crect%20fill=%22%231a2a27%22%20width=%22192%22%20height=%22192%22/%3E%3Ctext%20x=%2250%25%22%20y=%2250%25%22%20text-anchor=%22middle%22%20dy=%22.35em%22%20font-size=%22120%22%20fill=%22%23f5c542%22%3E🏔%3C/text%3E%3C/svg%3E%22,%22sizes%22:%22192x192%22,%22type%22:%22image/svg+xml%22}]}" />
     <title>PANA KOLSAY | Отель на озере Кольсай</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    
-    <!-- SEO Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Hotel",
-        "name": "PANA KOLSAY",
-        "description": "Отель на озере Кольсай с видом на горы. Бронирование номеров, завтрак включен.",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Кольсай",
-            "addressCountry": "KZ"
-        },
-        "telephone": "+77008368964",
-        "priceRange": "₸54,900 - ₸279,900",
-        "image": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200",
-        "starRating": {
-            "@type": "Rating",
-            "ratingValue": "4.8",
-            "bestRating": "5"
-        },
-        "amenityFeature": [
-            { "@type": "LocationFeatureSpecification", "name": "Вид на озеро" },
-            { "@type": "LocationFeatureSpecification", "name": "Бесплатный Wi-Fi" },
-            { "@type": "LocationFeatureSpecification", "name": "Бесплатная парковка" },
-            { "@type": "LocationFeatureSpecification", "name": "Завтрак включен" }
-        ]
-    }
-    </script>
 
     <style>
         :root {
@@ -64,7 +34,6 @@
             --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* ===== КОНТРАСТНАЯ ВЕРСИЯ ===== */
         body.high-contrast {
             --dark: #000000;
             --dark-light: #0a0a0a;
@@ -135,6 +104,7 @@
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
             transition: background 0.3s, color 0.3s;
+            overflow-x: hidden;
         }
         .bg-fixed {
             position: fixed;
@@ -197,12 +167,6 @@
         .logo-title span {
             font-weight: 700;
             color: var(--gold);
-        }
-        .hotel-stars {
-            display: flex;
-            gap: 2px;
-            color: var(--gold);
-            font-size: 0.9rem;
         }
         .header-right {
             display: flex;
@@ -427,12 +391,16 @@
             height: 200px;
             overflow: hidden;
             cursor: pointer;
+            touch-action: none;
         }
         .room-photos img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
         }
         .room-card:hover .room-photos img {
             transform: scale(1.05);
@@ -447,6 +415,7 @@
             border-radius: 20px;
             font-size: 0.75rem;
             backdrop-filter: blur(5px);
+            pointer-events: none;
         }
         .room-info {
             padding: 16px;
@@ -563,6 +532,7 @@
             align-items: flex-start;
             padding: 40px 20px;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .modal-overlay.active {
             display: flex;
@@ -592,6 +562,7 @@
             font-size: 1.5rem;
             cursor: pointer;
             transition: var(--transition);
+            z-index: 10;
         }
         .modal-close:hover {
             color: var(--gold);
@@ -1023,86 +994,6 @@
             color: var(--gold);
         }
 
-        /* ===== GALLERY ===== */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-        }
-        .gallery-grid img {
-            width: 100%;
-            aspect-ratio: 1;
-            object-fit: cover;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.3s, opacity 0.3s;
-            border: 1px solid var(--border-glass);
-        }
-        .gallery-grid img:hover {
-            transform: scale(1.05);
-            opacity: 0.9;
-        }
-
-        /* ===== WEATHER ===== */
-        .weather-widget {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 16px;
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 10px;
-            border: 1px solid var(--border-glass);
-            font-size: 0.9rem;
-        }
-        .weather-widget i {
-            color: var(--gold);
-            font-size: 1.3rem;
-        }
-        .weather-widget .weather-temp {
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        /* ===== LOADER ===== */
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--dark);
-            z-index: 99999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            transition: opacity 0.5s;
-        }
-        #loader.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        .loader-spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid var(--gold);
-            border-top-color: transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        .loader-text {
-            color: var(--gold);
-            margin-top: 20px;
-            font-weight: 300;
-            letter-spacing: 2px;
-        }
-
-        /* ===== TOAST ===== */
         .toast {
             position: fixed;
             bottom: 100px;
@@ -1140,6 +1031,125 @@
             }
         }
 
+        .voucher-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--gold);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-top: 16px;
+        }
+        .voucher-box h3 {
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+        .voucher-box .voucher-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+        }
+        .voucher-box .voucher-row:last-child {
+            border-bottom: none;
+        }
+        .voucher-box .voucher-label {
+            color: var(--text-muted);
+        }
+        .voucher-box .voucher-value {
+            color: #fff;
+            font-weight: 500;
+        }
+        .btn-download-voucher {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 24px;
+            background: var(--gold);
+            color: var(--dark);
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .btn-download-voucher:hover {
+            background: var(--gold-light);
+            transform: translateY(-1px);
+        }
+
+        /* Фото-модалка для мобильных */
+        #photoModal .modal-close {
+            position: fixed;
+            top: 16px;
+            right: 20px;
+            font-size: 2.5rem;
+            z-index: 10001;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+        #photoModal .modal-close:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        .photo-nav-btn {
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            padding: 16px 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            touch-action: none;
+            min-width: 54px;
+            min-height: 54px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .photo-nav-btn:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        .photo-nav-btn:active {
+            transform: scale(0.9);
+        }
+        #photoModal .photo-container {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            touch-action: none;
+            position: relative;
+            width: 100%;
+            justify-content: center;
+        }
+        #photoModal .photo-container img {
+            max-width: 70vw;
+            max-height: 70vh;
+            border-radius: 8px;
+            object-fit: contain;
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+        }
+        #photoCounter {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 0.85rem;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 6px 16px;
+            border-radius: 15px;
+            z-index: 10001;
+        }
+
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
@@ -1150,24 +1160,14 @@
             }
             .chat-box {
                 width: 290px;
+                right: -10px;
             }
             .form-row {
                 grid-template-columns: 1fr;
             }
             .modal-content.wide {
                 max-width: 95%;
-            }
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            }
-        }
-        @media (max-width: 480px) {
-            .logo-title {
-                font-size: 1.5rem;
-            }
-            .contact-btn {
-                padding: 10px 16px;
-                font-size: 0.8rem;
+                padding: 20px 16px;
             }
             .quick-facts {
                 gap: 8px;
@@ -1176,16 +1176,61 @@
                 padding: 8px 12px;
                 min-width: 70px;
             }
+            .contact-btn {
+                padding: 10px 16px;
+                font-size: 0.8rem;
+            }
+            .logo-title {
+                font-size: 1.5rem;
+            }
+            #photoModal .photo-container img {
+                max-width: 85vw;
+                max-height: 60vh;
+            }
+            .photo-nav-btn {
+                font-size: 1.5rem;
+                padding: 12px 14px;
+                min-width: 44px;
+                min-height: 44px;
+            }
+            #photoModal .photo-container {
+                gap: 8px;
+            }
+            #photoModal .modal-close {
+                width: 44px;
+                height: 44px;
+                font-size: 1.8rem;
+                top: 12px;
+                right: 12px;
+            }
+        }
+        @media (max-width: 480px) {
+            .logo-title {
+                font-size: 1.3rem;
+            }
+            .fact-item {
+                padding: 6px 10px;
+                min-width: 60px;
+            }
+            .fact-item i {
+                font-size: 1rem;
+            }
+            .fact-value {
+                font-size: 0.9rem;
+            }
+            .fact-label {
+                font-size: 0.6rem;
+            }
+            .content-block {
+                padding: 16px 12px;
+            }
+            .modal-content {
+                padding: 16px 12px;
+            }
         }
     </style>
 </head>
 <body>
-
-    <!-- LOADER -->
-    <div id="loader">
-        <div class="loader-spinner"></div>
-        <div class="loader-text">🏔 PANA KOLSAY</div>
-    </div>
 
     <div class="bg-fixed"></div>
 
@@ -1206,8 +1251,8 @@
             </div>
 
             <!-- Погода -->
-            <div class="weather-widget" id="weatherWidget">
-                <i class="fas fa-cloud-sun"></i>
+            <div class="weather-widget" style="display:flex;align-items:center;gap:12px;padding:10px 16px;background:rgba(255,255,255,0.04);border-radius:10px;border:1px solid var(--border-glass);font-size:0.9rem;margin:12px 0;">
+                <i class="fas fa-cloud-sun" style="color:var(--gold);font-size:1.3rem;"></i>
                 <span id="weatherText">Загрузка погоды...</span>
             </div>
 
@@ -1267,6 +1312,12 @@
                         <option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
                     </select>
                 </div>
+                <div class="form-group" style="min-width:120px;">
+                    <label id="lblNights">🌙 Ночей</label>
+                    <select id="quickNights" onchange="updateQuickAvail()">
+                        <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
+                    </select>
+                </div>
                 <button class="btn-submit" style="width:auto; padding:10px 24px;" onclick="updateQuickAvail()" id="btnCheckAvail">🔍 Проверить</button>
             </div>
             <div class="avail-list-box" id="quickAvailResult" style="display:none; margin-top:16px;"></div>
@@ -1292,12 +1343,6 @@
             <div class="video-container">
                 <iframe src="https://www.youtube.com/embed/HocYEEFwN3c?start=129" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-        </div>
-
-        <!-- ГАЛЕРЕЯ (п.15) -->
-        <div class="content-block" id="galleryBlock">
-            <h2 style="font-weight:300; margin-bottom:16px; font-size:1.4rem;">📸 Фотогалерея</h2>
-            <div class="gallery-grid" id="galleryGrid"></div>
         </div>
 
         <!-- ПРАВИЛА И FAQ -->
@@ -1346,10 +1391,14 @@
         <div class="content-block" id="reviewsBlock">
             <h2 style="font-weight:300; margin-bottom:16px; font-size:1.4rem;" id="reviewsTitle">💬 Отзывы гостей</h2>
             <div class="reviews-scroll">
-                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text" id="rev1Text">"Потрясающий вид на озеро! Просыпаться с таким видом — бесценно. Отличный сервис и вкусные завтраки!"</div><div class="review-author">— Анна М., Алматы</div></div>
-                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text" id="rev2Text">"Идеальное место для отдыха от городской суеты. Чистый воздух, красивая природа. Обязательно вернемся!"</div><div class="review-author">— Алексей К., Астана</div></div>
-                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐</div><div class="review-text" id="rev3Text">"Очень уютные номера, приветливый персонал. Дорога дальняя, но оно того стоит!"</div><div class="review-author">— Елена С., Караганда</div></div>
-                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text" id="rev4Text">"Глэмпинг — это нечто! Жили прямо у озера, невероятные впечатления!"</div><div class="review-author">— Дамир Т., Шымкент</div></div>
+                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Потрясающий вид на озеро! Просыпаться с таким видом — бесценно. Отличный сервис и вкусные завтраки!"</div><div class="review-author">— Анна М., Алматы</div></div>
+                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Идеальное место для отдыха от городской суеты. Чистый воздух, красивая природа. Обязательно вернемся!"</div><div class="review-author">— Алексей К., Астана</div></div>
+                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Көлдің керемет көрінісі! Табиғаттың ортасында тамаша демалу. Барлығына ұсынамын!"</div><div class="review-author">— Айжан С., Алматы</div></div>
+                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Қызметкерлер өте мейірімді, бөлмелер таза және жайлы. Қайта міндетті түрде келеміз!"</div><div class="review-author">— Ерлан Т., Шымкент</div></div>
+                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Балалармен демалдық, оларға қатты ұнады. Таңғы ас дәмді, табиғат әдемі!"</div><div class="review-author">— Гүлназ Р., Қарағанды</div></div>
+                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Amazing place! The lake view is breathtaking. Highly recommend for nature lovers."</div><div class="review-author">— John D., UK</div></div>
+                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Perfect getaway from the city. Clean rooms, friendly staff, and great breakfast."</div><div class="review-author">— Sarah P., USA</div></div>
+                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐</div><div class="review-text">"Beautiful location, peaceful atmosphere. Would definitely come back again."</div><div class="review-author">— Michael B., Germany</div></div>
             </div>
         </div>
 
@@ -1373,18 +1422,18 @@
         </div>
     </div>
 
-    <!-- МОДАЛКА ФОТО -->
+    <!-- МОДАЛКА ФОТО (исправленная для мобильных) -->
     <div class="modal-overlay" id="photoModal">
-        <button class="modal-close" onclick="closeModal('photoModal')" style="font-size:2rem; top:10px; right:20px;">&times;</button>
-        <div style="display:flex; align-items:center; gap:16px; touch-action:none;">
-            <button onclick="navigatePhoto(-1)" style="background:rgba(255,255,255,0.1); border:none; color:#fff; font-size:1.8rem; padding:14px 20px; border-radius:50%; cursor:pointer;">❮</button>
-            <img id="modalPhoto" src="" alt="" style="max-width:75vw; max-height:75vh; border-radius:8px; object-fit:contain;">
-            <button onclick="navigatePhoto(1)" style="background:rgba(255,255,255,0.1); border:none; color:#fff; font-size:1.8rem; padding:14px 20px; border-radius:50%; cursor:pointer;">❯</button>
+        <button class="modal-close" onclick="closeModal('photoModal')">&times;</button>
+        <div class="photo-container">
+            <button class="photo-nav-btn" onclick="navigatePhoto(-1)" id="photoPrev">❮</button>
+            <img id="modalPhoto" src="" alt="" draggable="false">
+            <button class="photo-nav-btn" onclick="navigatePhoto(1)" id="photoNext">❯</button>
         </div>
-        <div style="position:fixed; bottom:20px; left:50%; transform:translateX(-50%); color:#fff; font-size:0.85rem; background:rgba(0,0,0,0.6); padding:6px 16px; border-radius:15px;" id="photoCounter"></div>
+        <div id="photoCounter"></div>
     </div>
 
-    <!-- ЧАТ -->
+    <!-- ЧАТ (Jivo не отображается автоматически) -->
     <div class="chat-widget">
         <button class="chat-toggle" onclick="toggleChat()"><i class="fas fa-comments"></i></button>
         <div class="chat-box" id="chatBox">
@@ -1403,15 +1452,12 @@
         </div>
     </div>
 
-    <script src="//code.jivo.ru/widget/sfanjIPwr0" async></script>
-
     <script>
         // ============ НАСТРОЙКИ ============
         const BIN_ID = '6a6c8c0eda38895dfea84fad';
         const API_KEY = '$2a$10$AxIfA8p7dq6td0BYtWWuhecnyqCJbsTGoo.oWIds3H01C43GvLGuu';
         const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
-        // ============ ДАННЫЕ НОМЕРОВ ============
         const ROOMS = [
             { id: 'standard', nameRu: '🏨 Standard Room', nameEn: '🏨 Standard Room', nameKz: '🏨 Standard Room',
                 price: 54900, cap: 2, extra: 1, cat: 'standard', total: 4,
@@ -1636,7 +1682,7 @@
             }
         ];
 
-        // ============ ПОЛНЫЕ ПЕРЕВОДЫ ============
+        // ============ ПЕРЕВОДЫ ============
         const L = {
             ru: {
                 langName: 'RU', a11yBtn: '♿ Версия для слабовидящих', factLake: 'до озера', factHeight: 'высота',
@@ -1645,6 +1691,7 @@
                 roomsTitle: '🛏️ Наши номера', filtAll: 'Все номера', filtStd: 'Стандарт', filtMnt: 'Вид на горы',
                 filtLake: 'Вид на озеро', filtTrp: 'Трипл', filtDlx: 'Deluxe', filtLux: 'Люкс', filtGlp: 'Глэмпинг',
                 bookingFormTitle: '📅 Проверить доступность', lblCheckIn: '📅 Дата заезда', lblGuests: '👥 Гости',
+                lblNights: '🌙 Ночей',
                 btnCheckAvail: '🔍 Проверить', btnOpenBookForm: '📝 Забронировать подходящий номер',
                 mapTitle: '📍 Как добраться', mapInfo: 'Озеро Кольсай Нижнее | Из Алматы: ~4 часа (300 км)',
                 btnRoute: '🗺️ Построить маршрут',
@@ -1672,28 +1719,37 @@
                 faq6Q: '💳 Какие способы оплаты?',
                 faq6A: 'Мы принимаем оплату по ссылке (Kaspi, карты). 100% предоплата для гарантии бронирования.',
                 reviewsTitle: '💬 Отзывы гостей',
-                rev1Text: '"Потрясающий вид на озеро! Просыпаться с таким видом — бесценно. Отличный сервис и вкусные завтраки!"',
-                rev2Text: '"Идеальное место для отдыха от городской суеты. Чистый воздух, красивая природа. Обязательно вернемся!"',
-                rev3Text: '"Очень уютные номера, приветливый персонал. Дорога дальняя, но оно того стоит!"',
-                rev4Text: '"Глэмпинг — это нечто! Жили прямо у озера, невероятные впечатления!"',
                 footerAdmin: '🔧 Админ-панель', footerA11y: '♿ Версия для слабовидящих',
                 exitAdmin: '← Выйти на сайт', tabAvail: '📊 Доступность по датам',
                 tabBookings: '📋 Бронирования гостей', btnSaveCloud: '💾 Сохранить все данные в облако',
                 bookModTitle: '📅 Забронировать номер', bookSelRoom: '🏨 Выберите номер',
                 bookDate: '📅 Дата заезда', bookGuests: '👥 Количество гостей',
+                bookNights: '🌙 Количество ночей',
                 bookName: '👤 Ф.И.О.', bookPhone: '📞 Телефон', bookComment: '📝 Комментарий (необязательно)',
                 bookSubmit: '✅ Подтвердить бронирование',
                 free: 'Свободно', busy: 'Занято', noFree: 'Нет мест', selectDate: 'Выберите дату', perNight: '/ ночь',
                 guest1: 'гость', guest2: 'гостя', guest5: 'гостей',
                 extraBed: 'доп. место', extraBeds: 'доп. места',
-                perfect: '✅ Отлично подходит! Без доплат.',
                 needExtra: '⚠️ Требуются доп. места',
                 tooMany: '❌ Слишком много гостей',
-                totalLabel: 'Итого',
+                totalLabel: 'Итого за',
                 bookedOk: '✅ Бронирование подтверждено!',
                 noRooms: 'Нет свободных номеров на выбранную дату',
                 fillNamePhone: 'Пожалуйста, заполните Ф.И.О. и телефон',
-                maxCap: 'Максимальная вместимость'
+                maxCap: 'Максимальная вместимость',
+                voucherTitle: '🎫 Ваучер на бронирование',
+                voucherRoom: 'Номер',
+                voucherDate: 'Дата заезда',
+                voucherNights: 'Ночей',
+                voucherGuests: 'Гостей',
+                voucherTotal: 'Итого к оплате',
+                voucherRules: 'Условия отмены',
+                voucherRulesText: 'При отмене менее чем за 7 дней — удерживается 1 ночь. При отмене за 7+ дней — полный возврат.',
+                voucherTransfer: '🚐 Трансфер с парковки бесплатный',
+                voucherBreakfast: '🍳 Завтрак включен',
+                voucherCheckIn: '🕐 Заезд с 15:00, выезд до 12:00',
+                downloadVoucher: '📄 Скачать ваучер',
+                weather: '🌤️ Кольсай'
             },
             en: {
                 langName: 'EN', a11yBtn: '♿ Accessibility', factLake: 'to lake', factHeight: 'altitude',
@@ -1702,6 +1758,7 @@
                 roomsTitle: '🛏️ Our Rooms', filtAll: 'All rooms', filtStd: 'Standard', filtMnt: 'Mountain',
                 filtLake: 'Lake', filtTrp: 'Triple', filtDlx: 'Deluxe', filtLux: 'Luxury', filtGlp: 'Glamping',
                 bookingFormTitle: '📅 Check Availability', lblCheckIn: '📅 Check-in', lblGuests: '👥 Guests',
+                lblNights: '🌙 Nights',
                 btnCheckAvail: '🔍 Check', btnOpenBookForm: '📝 Book suitable room',
                 mapTitle: '📍 How to get', mapInfo: 'Lower Kolsay Lake | From Almaty: ~4 hours (300 km)',
                 btnRoute: '🗺️ Build route',
@@ -1720,29 +1777,38 @@
                 faq5Q: '🐕 Are pets allowed?', faq5A: 'Unfortunately, pets are not allowed.',
                 faq6Q: '💳 Payment methods?', faq6A: 'Payment via link (Kaspi, cards). 100% prepayment.',
                 reviewsTitle: '💬 Guest Reviews',
-                rev1Text: '"Amazing lake view! Waking up to this view is priceless. Great service!"',
-                rev2Text: '"Perfect escape from the city. Clean air, beautiful nature. We\'ll be back!"',
-                rev3Text: '"Cozy rooms, friendly staff. The road is long but totally worth it!"',
-                rev4Text: '"Glamping is incredible! Right by the lake, unforgettable experience!"',
                 footerAdmin: '🔧 Admin Panel', footerA11y: '♿ Accessibility',
                 exitAdmin: '← Exit Admin', tabAvail: '📊 Date Availability', tabBookings: '📋 Guest Bookings',
                 btnSaveCloud: '💾 Save All to Cloud',
                 bookModTitle: '📅 Book a Room', bookSelRoom: '🏨 Select Room', bookDate: '📅 Check-in Date',
                 bookGuests: '👥 Number of Guests',
+                bookNights: '🌙 Number of Nights',
                 bookName: '👤 Full Name', bookPhone: '📞 Phone', bookComment: '📝 Comment (optional)',
                 bookSubmit: '✅ Confirm Booking',
                 free: 'Free', busy: 'Busy', noFree: 'No availability', selectDate: 'Select date',
                 perNight: '/ night',
                 guest1: 'guest', guest2: 'guests', guest5: 'guests',
                 extraBed: 'extra bed', extraBeds: 'extra beds',
-                perfect: '✅ Perfect fit! No extra charges.',
                 needExtra: '⚠️ Extra beds needed',
                 tooMany: '❌ Too many guests',
-                totalLabel: 'Total',
+                totalLabel: 'Total for',
                 bookedOk: '✅ Booking confirmed!',
                 noRooms: 'No rooms available for selected date',
                 fillNamePhone: 'Please fill in name and phone',
-                maxCap: 'Maximum capacity'
+                maxCap: 'Maximum capacity',
+                voucherTitle: '🎫 Booking Voucher',
+                voucherRoom: 'Room',
+                voucherDate: 'Check-in date',
+                voucherNights: 'Nights',
+                voucherGuests: 'Guests',
+                voucherTotal: 'Total amount',
+                voucherRules: 'Cancellation policy',
+                voucherRulesText: 'Less than 7 days — 1 night charged. 7+ days — full refund.',
+                voucherTransfer: '🚐 Free transfer from parking',
+                voucherBreakfast: '🍳 Breakfast included',
+                voucherCheckIn: '🕐 Check-in 15:00, Check-out 12:00',
+                downloadVoucher: '📄 Download voucher',
+                weather: '🌤️ Kolsay'
             },
             kz: {
                 langName: 'KZ', a11yBtn: '♿ Нашар көретіндерге', factLake: 'көлге дейін', factHeight: 'биіктік',
@@ -1751,6 +1817,7 @@
                 roomsTitle: '🛏️ Біздің нөмірлер', filtAll: 'Барлығы', filtStd: 'Стандарт', filtMnt: 'Тау',
                 filtLake: 'Көл', filtTrp: 'Трипл', filtDlx: 'Deluxe', filtLux: 'Люкс', filtGlp: 'Глэмпинг',
                 bookingFormTitle: '📅 Қолжетімділікті тексеру', lblCheckIn: '📅 Келу күні', lblGuests: '👥 Қонақтар',
+                lblNights: '🌙 Түндер',
                 btnCheckAvail: '🔍 Тексеру', btnOpenBookForm: '📝 Қолайлы нөмірді брондау',
                 mapTitle: '📍 Қалай жетуге болады',
                 mapInfo: 'Көлсай көлі (Төменгі) | Алматыдан: ~4 сағат (300 км)', btnRoute: '🗺️ Маршрут құру',
@@ -1772,28 +1839,37 @@
                 faq5Q: '🐕 Жануарлармен бола ма?', faq5A: 'Өкінішке орай, жануарлармен болуға болмайды.',
                 faq6Q: '💳 Төлем әдістері?', faq6A: 'Сілтеме арқылы төлем (Kaspi, карталар). 100% алдын ала төлем.',
                 reviewsTitle: '💬 Қонақтардың пікірлері',
-                rev1Text: '"Көлдің керемет көрінісі! Осындай көрініспен ояну — баға жетпес. Керемет қызмет!"',
-                rev2Text: '"Қаладан демалу үшін тамаша орын. Таза ауа, әдемі табиғат. Қайта келеміз!"',
-                rev3Text: '"Жайлы нөмірлер, мейірімді қызметкерлер. Жол ұзақ, бірақ оған тұрарлық!"',
-                rev4Text: '"Глэмпинг — керемет! Көлдің жанында, ұмытылмас әсер!"',
                 footerAdmin: '🔧 Әкімші панелі', footerA11y: '♿ Нашар көретіндерге',
                 exitAdmin: '← Сайтқа шығу', tabAvail: '📊 Күндер бойынша', tabBookings: '📋 Брондаулар',
                 btnSaveCloud: '💾 Бұлтқа сақтау',
                 bookModTitle: '📅 Нөмірді брондау', bookSelRoom: '🏨 Нөмірді таңдау', bookDate: '📅 Келу күні',
                 bookGuests: '👥 Қонақтар саны',
+                bookNights: '🌙 Түндер саны',
                 bookName: '👤 Аты-жөні', bookPhone: '📞 Телефон', bookComment: '📝 Түсініктеме (міндетті емес)',
                 bookSubmit: '✅ Брондауды растау',
                 free: 'Бос', busy: 'Бос емес', noFree: 'Орын жоқ', selectDate: 'Күнді таңдаңыз', perNight: '/ түн',
                 guest1: 'қонақ', guest2: 'қонақ', guest5: 'қонақ',
                 extraBed: 'қосымша орын', extraBeds: 'қосымша орын',
-                perfect: '✅ Тамаша! Қосымша төлемсіз.',
                 needExtra: '⚠️ Қосымша орын қажет',
                 tooMany: '❌ Тым көп қонақ',
                 totalLabel: 'Барлығы',
                 bookedOk: '✅ Брондау расталды!',
                 noRooms: 'Таңдалған күнге бос нөмір жоқ',
                 fillNamePhone: 'Аты-жөні мен телефонды толтырыңыз',
-                maxCap: 'Максималды сыйымдылық'
+                maxCap: 'Максималды сыйымдылық',
+                voucherTitle: '🎫 Брондау ваучері',
+                voucherRoom: 'Нөмір',
+                voucherDate: 'Келу күні',
+                voucherNights: 'Түндер',
+                voucherGuests: 'Қонақтар',
+                voucherTotal: 'Төленетін сома',
+                voucherRules: 'Бас тарту шарттары',
+                voucherRulesText: '7 күннен кем — 1 түн ұсталады. 7+ күн — толық қайтару.',
+                voucherTransfer: '🚐 Тұрақтан трансфер тегін',
+                voucherBreakfast: '🍳 Таңғы ас қосылған',
+                voucherCheckIn: '🕐 Келу 15:00, кету 12:00',
+                downloadVoucher: '📄 Ваучерді жүктеу',
+                weather: '🌤️ Көлсай'
             }
         };
 
@@ -1806,8 +1882,8 @@
         let photoSet = [],
             photoIdx = 0;
         let isHighContrast = false;
+        let currentBookingData = null;
 
-        // ============ ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ============
         function t(key) { return L[curLang][key] || key; }
 
         function rName(room) { return room['name' + (curLang === 'ru' ? 'Ru' : curLang === 'en' ? 'En' : 'Kz')]; }
@@ -1820,7 +1896,6 @@
 
         function extraWord(n) { return n === 1 ? t('extraBed') : t('extraBeds'); }
 
-        // ===== TOAST =====
         function showToast(message, type = 'success') {
             const existing = document.querySelector('.toast');
             if (existing) existing.remove();
@@ -1835,19 +1910,20 @@
             }, 3000);
         }
 
-        // ===== КОНТРАСТНАЯ ВЕРСИЯ (п.9) =====
         function toggleAccessibility() {
             isHighContrast = !isHighContrast;
             document.body.classList.toggle('high-contrast', isHighContrast);
             const btn = document.getElementById('btnA11y');
             btn.classList.toggle('active-high-contrast', isHighContrast);
             btn.textContent = isHighContrast ? '🌙 Обычная версия' : t('a11yBtn');
-            // Сохраняем настройку
             localStorage.setItem('pana_high_contrast', isHighContrast ? '1' : '0');
             showToast(isHighContrast ? '🔆 Включена контрастная версия' : '🌙 Обычная версия', 'info');
         }
 
-        // ===== ПОГОДА (п.14) =====
+        // ===== ПОГОДА =====
+        let weatherData = { temp: 0, wind: 0, code: 0 };
+        let weatherLoaded = false;
+
         async function fetchWeather() {
             try {
                 const r = await fetch(
@@ -1856,26 +1932,24 @@
                 if (!r.ok) throw new Error();
                 const d = await r.json();
                 const w = d.current_weather;
-                const emoji = w.weathercode <= 3 ? '☀️' : w.weathercode <= 20 ? '⛅' : '🌧️';
-                document.getElementById('weatherText').innerHTML =
-                    `${emoji} <span class="weather-temp">${Math.round(w.temperature)}°C</span> · Ветер ${Math.round(w.windspeed)} км/ч · ${new Date().toLocaleDateString('ru', {day:'numeric', month:'long'})}`;
+                weatherData = { temp: Math.round(w.temperature), wind: Math.round(w.windspeed), code: w.weathercode };
+                weatherLoaded = true;
+                updateWeatherDisplay();
             } catch (e) {
-                document.getElementById('weatherText').textContent = '🌤️ Кольсай, +18°C';
+                weatherData = { temp: 18, wind: 10, code: 0 };
+                weatherLoaded = true;
+                updateWeatherDisplay();
             }
         }
 
-        // ===== ГАЛЕРЕЯ (п.15) =====
-        function renderGallery() {
-            const grid = document.getElementById('galleryGrid');
-            const allPhotos = [];
-            ROOMS.forEach(r => {
-                r.photos.forEach(p => allPhotos.push({ src: p, room: rName(r) }));
-            });
-            // Берем первые 12 уникальных
-            const unique = allPhotos.filter((p, i) => allPhotos.findIndex(x => x.src === p.src) === i).slice(0, 12);
-            grid.innerHTML = unique.map(p =>
-                `<img src="${p.src}" alt="${p.room}" onclick="window.open('${p.src}','_blank')" loading="lazy">`
-            ).join('');
+        function updateWeatherDisplay() {
+            const emoji = weatherData.code <= 3 ? '☀️' : weatherData.code <= 20 ? '⛅' : '🌧️';
+            const lang = curLang;
+            const city = t('weather');
+            const dateStr = new Date().toLocaleDateString(lang === 'ru' ? 'ru' : lang === 'en' ? 'en' : 'kk', { day: 'numeric',
+                month: 'long' });
+            document.getElementById('weatherText').innerHTML =
+                `${emoji} ${city}, <span style="font-weight:700;">${weatherData.temp}°C</span> · Ветер ${weatherData.wind} км/ч · ${dateStr}`;
         }
 
         // ============ ОБЛАКО ============
@@ -1886,6 +1960,7 @@
                         'X-Master-Key': API_KEY }, body: JSON.stringify(d) });
             } catch (e) { localStorage.setItem('pkb_backup', JSON.stringify(d)); }
         }
+
         async function loadFromCloud() {
             try {
                 const r = await fetch(`${BIN_URL}/latest`, { headers: { 'X-Master-Key': API_KEY } });
@@ -1899,10 +1974,10 @@
                     bookings = j.bookings || []; }
             }
         }
+
         async function saveAllData() { await saveToCloud();
             showToast('✅ ' + (curLang === 'ru' ? 'Сохранено!' : curLang === 'en' ? 'Saved!' : 'Сақталды!'), 'success'); }
 
-        // ============ ДОСТУПНОСТЬ ============
         function getAvail(rid, date) {
             if (avails[rid] && avails[rid][date] !== undefined) return avails[rid][date];
             return ROOMS.find(r => r.id === rid).total;
@@ -1921,7 +1996,6 @@
             return Math.max(0, getAvail(rid, date) - bookedCount(rid, date));
         }
 
-        // ============ РЕНДЕР НОМЕРОВ ============
         function renderRooms() {
             const grid = document.getElementById('roomsGrid');
             grid.innerHTML = ROOMS.map(room => {
@@ -1933,17 +2007,17 @@
                     at = `${t('free')}: ${now}/${room.total}`; }
                 const hid = curFilter !== 'all' && room.cat !== curFilter ? 'hidden' : '';
                 return `<div class="room-card ${hid}" data-cat="${room.cat}" data-room-id="${room.id}">
-                    <div class="room-photos" onclick="openPhotoModal('${room.id}',0)"><img src="${room.photos[0]}" alt="${rName(room)}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a2a27%22/%3E%3Ctext fill=%22%23f5c542%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3E📷%3C/text%3E%3C/svg%3E'"><span class="photo-count">📷 ${room.photos.length}</span></div>
+                    <div class="room-photos" onclick="openPhotoModal('${room.id}',0)"><img src="${room.photos[0]}" alt="${rName(room)}" loading="lazy" draggable="false" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a2a27%22/%3E%3Ctext fill=%22%23f5c542%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3E📷%3C/text%3E%3C/svg%3E'"><span class="photo-count">📷 ${room.photos.length}</span></div>
                     <div class="room-info"><div class="room-name">${rName(room)}</div><div class="room-price">${room.price.toLocaleString()} ₸</div><div class="room-desc">${rDesc(room)}</div><span class="room-availability ${ac}">${at}</span><ul class="room-features">${rFeat(room).map(f => `<li>${f}</li>`).join('')}</ul>${room.link && room.link !== '#' ? `<a href="${room.link}" target="_blank" class="room-link">🔍 Подробнее</a>` : ''}</div>
                     <button class="btn-book-room" onclick="openBookingModal('${room.id}')">${t('btnBook')}</button>
                 </div>`;
             }).join('');
         }
 
-        // ============ БЫСТРАЯ ПРОВЕРКА ДОСТУПНОСТИ ============
         function updateQuickAvail() {
             const date = document.getElementById('quickCheckIn').value;
             const guests = parseInt(document.getElementById('quickGuests').value) || 2;
+            const nights = parseInt(document.getElementById('quickNights').value) || 1;
             const resDiv = document.getElementById('quickAvailResult');
             const suggDiv = document.getElementById('quickSuggestion');
             const btnDiv = document.getElementById('btnOpenBookForm');
@@ -1969,12 +2043,12 @@
             }).sort((a, b) => a.price - b.price);
 
             if (suitable.length > 0) {
-                let sh = `<strong>✅ ${t('perfect')}</strong><br>`;
+                let sh = `<strong>✅ ${t('totalLabel')} ${nights} ${t('perNight')}:</strong><br>`;
                 suitable.forEach(r => {
                     const ex = Math.max(0, guests - r.cap);
-                    const total = r.price + ex * 15000;
+                    const total = (r.price + ex * 15000) * nights;
                     sh +=
-                        `<div class="avail-list-item"><span>${rName(r)}</span> <span style="color:#2ed573;">${total.toLocaleString()} ₸ ${t('perNight')}${ex > 0 ? ' (+' + ex + ' ' + extraWord(ex) + ')' : ''}</span></div>`;
+                        `<div class="avail-list-item"><span>${rName(r)}</span> <span style="color:#2ed573;">${total.toLocaleString()} ₸</span></div>`;
                 });
                 suggDiv.innerHTML = sh;
                 suggDiv.style.display = 'block';
@@ -1986,7 +2060,6 @@
             }
         }
 
-        // ============ МОДАЛКА БРОНИРОВАНИЯ ============
         function openBookingModal(rid = null) {
             const today = new Date().toISOString().split('T')[0];
             const modal = document.getElementById('bookingModal');
@@ -1995,7 +2068,13 @@
                 `<option value="${r.id}" ${r.id === rid ? 'selected' : ''}>${rName(r)} — ${r.price.toLocaleString()} ₸ (до ${r.cap + r.extra} чел.)</option>`
             ).join('');
             content.innerHTML = `
-                <div class="form-row"><div class="form-group"><label>${t('bookDate')}</label><input type="date" id="bDate" value="${today}" min="${today}" onchange="updateBookingForm()"></div><div class="form-group"><label>${t('bookGuests')}</label><select id="bGuests" onchange="updateBookingForm()">${[1,2,3,4,5,6].map(n => `<option value="${n}" ${n===2?'selected':''}>${n} ${guestWord(n)}</option>`).join('')}</select></div></div>
+                <div class="form-row">
+                    <div class="form-group"><label>${t('bookDate')}</label><input type="date" id="bDate" value="${today}" min="${today}" onchange="updateBookingForm()"></div>
+                    <div class="form-group"><label>${t('bookGuests')}</label><select id="bGuests" onchange="updateBookingForm()">${[1,2,3,4,5,6].map(n => `<option value="${n}" ${n===2?'selected':''}>${n} ${guestWord(n)}</option>`).join('')}</select></div>
+                </div>
+                <div class="form-group"><label>${t('bookNights')}</label>
+                    <select id="bNights" onchange="updateBookingForm()">${[1,2,3,4,5,6,7].map(n => `<option value="${n}" ${n===1?'selected':''}>${n}</option>`).join('')}</select>
+                </div>
                 <div class="form-group"><label>${t('bookSelRoom')}</label><select id="bRoom" onchange="updateBookingForm()">${opts}</select></div>
                 <div id="bAvailInfo" class="avail-list-box" style="max-height:180px; margin-bottom:12px;"></div>
                 <div id="bSugg" class="suggestion-box" style="display:none;"></div>
@@ -2005,7 +2084,6 @@
                 <button class="btn-submit" onclick="submitBooking()">${t('bookSubmit')}</button>`;
             modal.classList.add('active');
 
-            // Автозаполнение телефона (п.12)
             setTimeout(() => {
                 const phoneInput = document.getElementById('bPhone');
                 if (phoneInput && navigator.clipboard) {
@@ -2015,7 +2093,6 @@
                         }
                     }).catch(() => {});
                 }
-                // Фокус на имя
                 document.getElementById('bName')?.focus();
             }, 300);
 
@@ -2025,6 +2102,7 @@
         function updateBookingForm() {
             const date = document.getElementById('bDate')?.value || '';
             const guests = parseInt(document.getElementById('bGuests')?.value || 2);
+            const nights = parseInt(document.getElementById('bNights')?.value || 1);
             const rid = document.getElementById('bRoom')?.value;
             const infoDiv = document.getElementById('bAvailInfo');
             const suggDiv = document.getElementById('bSugg');
@@ -2052,21 +2130,24 @@
             if (!date) { html = `<span style="color:#ffa502;">${t('selectDate')}</span>`; } else if (avail <=
                 0) { html = `<strong style="color:#ff4757;">❌ ${t('noFree')} ${date}</strong>`; } else if (guests <= room
                 .cap) { can = true;
-                total = room.price;
-                html = `<strong style="color:#2ed573;">${t('perfect')}</strong>`; } else if (guests <= max && room.extra >
-                0) { can = true;
+                total = room.price * nights;
+                html = `<strong style="color:#2ed573;">✅ ${t('totalLabel')} ${nights} ${t('perNight')}</strong>`; } else if (
+                guests <= max && room.extra > 0) { can = true;
                 const ex = guests - room.cap;
-                total = room.price + ex * 15000;
-                html = `<strong style="color:#ffa502;">${t('needExtra')}: ${ex} ${extraWord(ex)} × 15 000 ₸</strong>`; } else { html =
+                total = (room.price + ex * 15000) * nights;
+                html =
+                `<strong style="color:#ffa502;">${t('needExtra')}: ${ex} ${extraWord(ex)} × 15 000 ₸</strong>`; } else { html =
                     `<strong style="color:#ff4757;">${t('tooMany')}. ${t('maxCap')}: ${max}</strong>`; }
             suggDiv.innerHTML = html;
-            totDiv.textContent = can ? `${t('totalLabel')}: ${total.toLocaleString()} ₸ ${t('perNight')}` : '';
+            totDiv.textContent = can ? `${t('totalLabel')} ${nights} ${t('perNight')}: ${total.toLocaleString()} ₸` : '';
+            currentBookingData = { rid, date, guests, nights, total: can ? total : 0, room: room };
         }
 
         async function submitBooking() {
             const rid = document.getElementById('bRoom').value;
             const date = document.getElementById('bDate').value;
             const guests = parseInt(document.getElementById('bGuests').value);
+            const nights = parseInt(document.getElementById('bNights').value) || 1;
             const name = document.getElementById('bName').value.trim();
             const phone = document.getElementById('bPhone').value.trim();
             const comm = document.getElementById('bComm').value.trim();
@@ -2076,22 +2157,89 @@
             const max = room.cap + room.extra;
             if (guests > max) { showToast(t('maxCap') + ': ' + max, 'error'); return; }
             const ex = Math.max(0, guests - room.cap);
-            const total = room.price + ex * 15000;
-            bookings.push({ id: 'BK' + Date.now().toString(36).toUpperCase(), rid, rname: rName(room), date,
-                gname: name,
-                phone, guests, extra: ex, total, comm, st: 'ok', at: new Date().toISOString() });
+            const total = (room.price + ex * 15000) * nights;
+            const bookingId = 'BK' + Date.now().toString(36).toUpperCase();
+            bookings.push({ id: bookingId, rid, rname: rName(room), date, gname: name,
+                phone, guests, extra: ex, nights, total, comm, st: 'ok', at: new Date().toISOString() });
             setAvail(rid, date, getAvail(rid, date) - 1);
             await saveToCloud();
             closeModal('bookingModal');
             renderRooms();
             if (isAdmin) renderAdmin();
-            showToast(`${t('bookedOk')}\n${rName(room)}\n${date}\n${t('bookGuests')}: ${guests}\n${t('totalLabel')}: ${total.toLocaleString()} ₸`,
-                'success');
+            showVoucher(bookingId);
+        }
+
+        function showVoucher(bookingId) {
+            const b = bookings.find(x => x.id === bookingId);
+            if (!b) return;
+            const room = ROOMS.find(r => r.id === b.rid);
+
+            const modal = document.getElementById('bookingModal');
+            const content = document.getElementById('bookingModalContent');
+            modal.classList.add('active');
+
+            content.innerHTML = `
+                <div class="voucher-box">
+                    <h3>🎫 ${t('voucherTitle')}</h3>
+                    <div class="voucher-row"><span class="voucher-label">ID:</span><span class="voucher-value">${b.id}</span></div>
+                    <div class="voucher-row"><span class="voucher-label">${t('voucherRoom')}:</span><span class="voucher-value">${b.rname}</span></div>
+                    <div class="voucher-row"><span class="voucher-label">${t('voucherDate')}:</span><span class="voucher-value">${b.date}</span></div>
+                    <div class="voucher-row"><span class="voucher-label">${t('voucherNights')}:</span><span class="voucher-value">${b.nights}</span></div>
+                    <div class="voucher-row"><span class="voucher-label">${t('voucherGuests')}:</span><span class="voucher-value">${b.guests} (${b.gname})</span></div>
+                    <div class="voucher-row"><span class="voucher-label">📞 ${t('bookPhone')}:</span><span class="voucher-value">${b.phone}</span></div>
+                    <div class="voucher-row"><span class="voucher-label">${t('voucherTotal')}:</span><span class="voucher-value" style="color:var(--gold);font-weight:700;font-size:1.1rem;">${b.total.toLocaleString()} ₸</span></div>
+                    <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border-glass);">
+                        <strong>📋 ${t('voucherRules')}:</strong>
+                        <p style="color:var(--text-muted);font-size:0.8rem;margin-top:4px;">${t('voucherRulesText')}</p>
+                        <p style="color:var(--text-muted);font-size:0.8rem;">${t('voucherTransfer')}</p>
+                        <p style="color:var(--text-muted);font-size:0.8rem;">${t('voucherBreakfast')}</p>
+                        <p style="color:var(--text-muted);font-size:0.8rem;">${t('voucherCheckIn')}</p>
+                    </div>
+                    <button class="btn-download-voucher" onclick="downloadVoucher('${b.id}')">${t('downloadVoucher')}</button>
+                    <button class="btn-submit" style="margin-top:8px;background:#25D366;" onclick="closeModal('bookingModal');showToast('${t('bookedOk')}','success');">✅ Закрыть</button>
+                </div>
+            `;
+        }
+
+        function downloadVoucher(bookingId) {
+            const b = bookings.find(x => x.id === bookingId);
+            if (!b) return;
+            const text = `
+        🎫 ${t('voucherTitle')}
+        =================================
+        ID: ${b.id}
+        ${t('voucherRoom')}: ${b.rname}
+        ${t('voucherDate')}: ${b.date}
+        ${t('voucherNights')}: ${b.nights}
+        ${t('voucherGuests')}: ${b.guests} (${b.gname})
+        📞 ${t('bookPhone')}: ${b.phone}
+        ${t('voucherTotal')}: ${b.total.toLocaleString()} ₸
+
+        📋 ${t('voucherRules')}:
+        ${t('voucherRulesText')}
+        ${t('voucherTransfer')}
+        ${t('voucherBreakfast')}
+        ${t('voucherCheckIn')}
+
+        © 2026 PANA KOLSAY
+        +7 700 836 8964
+        `;
+
+            const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `PANA_KOLSAY_${b.id}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast('✅ Ваучер скачан!', 'success');
         }
 
         function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 
-        // ============ ФОТО ============
+        // ============ ФОТО (свайп на мобильных) ============
         function openPhotoModal(rid, idx) {
             const r = ROOMS.find(r => r.id === rid);
             if (!r) return;
@@ -2100,6 +2248,7 @@
             document.getElementById('modalPhoto').src = photoSet[idx];
             document.getElementById('photoCounter').textContent = `${idx+1}/${photoSet.length}`;
             document.getElementById('photoModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         function navigatePhoto(d) {
@@ -2108,27 +2257,60 @@
             document.getElementById('photoCounter').textContent = `${photoIdx+1}/${photoSet.length}`;
         }
 
-        // ===== SWIPE для фото (п.13) =====
-        let touchStartX = 0;
-        document.addEventListener('touchstart', e => {
+        // Свайп для мобильных
+        let touchStartX = 0,
+            touchStartY = 0,
+            isSwiping = false;
+
+        document.addEventListener('touchstart', function(e) {
             if (document.getElementById('photoModal').classList.contains('active')) {
-                touchStartX = e.changedTouches[0].screenX;
+                const touch = e.changedTouches[0];
+                touchStartX = touch.screenX;
+                touchStartY = touch.screenY;
+                isSwiping = true;
             }
-        });
-        document.addEventListener('touchend', e => {
+        }, { passive: true });
+
+        document.addEventListener('touchmove', function(e) {
+            if (document.getElementById('photoModal').classList.contains('active') && isSwiping) {
+                const touch = e.changedTouches[0];
+                const diffX = touchStartX - touch.screenX;
+                const diffY = touchStartY - touch.screenY;
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 20) {
+                    e.preventDefault();
+                }
+            }
+        }, { passive: false });
+
+        document.addEventListener('touchend', function(e) {
+            if (document.getElementById('photoModal').classList.contains('active') && isSwiping) {
+                const touch = e.changedTouches[0];
+                const diffX = touchStartX - touch.screenX;
+                const diffY = touchStartY - touch.screenY;
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                    navigatePhoto(diffX > 0 ? 1 : -1);
+                }
+                isSwiping = false;
+            }
+        }, { passive: true });
+
+        // Клавиши на десктопе
+        document.addEventListener('keydown', function(e) {
             if (document.getElementById('photoModal').classList.contains('active')) {
-                const diff = touchStartX - e.changedTouches[0].screenX;
-                if (Math.abs(diff) > 50) {
-                    navigatePhoto(diff > 0 ? 1 : -1);
+                if (e.key === 'ArrowRight') navigatePhoto(1);
+                if (e.key === 'ArrowLeft') navigatePhoto(-1);
+                if (e.key === 'Escape') {
+                    closeModal('photoModal');
+                    document.body.style.overflow = '';
                 }
             }
         });
 
-        document.addEventListener('keydown', e => {
-            if (document.getElementById('photoModal').classList.contains('active')) {
-                if (e.key === 'ArrowRight') navigatePhoto(1);
-                if (e.key === 'ArrowLeft') navigatePhoto(-1);
-                if (e.key === 'Escape') closeModal('photoModal');
+        // Закрытие по клику на фон
+        document.getElementById('photoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal('photoModal');
+                document.body.style.overflow = '';
             }
         });
 
@@ -2172,13 +2354,14 @@
                 if (!bookings.length) { c.innerHTML =
                         '<p style="color:var(--text-muted);text-align:center;padding:20px;">Нет броней</p>'; return; }
                 let h =
-                    '<table class="admin-table"><thead><tr><th>ID</th><th>Номер</th><th>Дата</th><th>Гость</th><th>Тел</th><th>Гостей</th><th>Сумма</th><th></th></tr></thead><tbody>';
+                    '<table class="admin-table"><thead><tr><th>ID</th><th>Номер</th><th>Дата</th><th>Гость</th><th>Тел</th><th>Гостей</th><th>Ночей</th><th>Сумма</th><th></th></tr></thead><tbody>';
                 bookings.sort((a, b) => new Date(b.at) - new Date(a.at)).forEach(b => { h +=
-                        `<tr><td>${b.id}</td><td>${b.rname}</td><td>${b.date}</td><td>${b.gname}</td><td>${b.phone}</td><td>${b.guests}</td><td>${b.total.toLocaleString()} ₸</td><td>${b.st==='ok'?`<button class="btn-cancel-booking" onclick="cancelBooking('${b.id}')">Отм.</button>`:'Отменен'}</td></tr>`; });
+                        `<tr><td>${b.id}</td><td>${b.rname}</td><td>${b.date}</td><td>${b.gname}</td><td>${b.phone}</td><td>${b.guests}</td><td>${b.nights||1}</td><td>${b.total.toLocaleString()} ₸</td><td>${b.st==='ok'?`<button class="btn-cancel-booking" onclick="cancelBooking('${b.id}')">Отм.</button>`:'Отменен'}</td></tr>`; });
                 h += '</tbody></table>';
                 c.innerHTML = h;
             }
         }
+
         async function cancelBooking(bid) { if (!confirm('Отменить?')) return;
             const b = bookings.find(x => x.id === bid); if (b) { b.st = 'cancelled';
                 setAvail(b.rid, b.date, Math.min(getAvail(b.rid, b.date) + 1, ROOMS.find(r => r.id === b.rid).total));
@@ -2203,7 +2386,6 @@
             document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
             document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
 
-            // Обновляем все тексты
             document.getElementById('btnA11y').textContent = isHighContrast ? '🌙 Обычная версия' : t('a11yBtn');
             document.getElementById('factLake').textContent = t('factLake');
             document.getElementById('factHeight').textContent = t('factHeight');
@@ -2218,6 +2400,7 @@
             document.getElementById('bookingFormTitle').textContent = t('bookingFormTitle');
             document.getElementById('lblCheckIn').textContent = t('lblCheckIn');
             document.getElementById('lblGuests').textContent = t('lblGuests');
+            document.getElementById('lblNights').textContent = t('lblNights');
             document.getElementById('btnCheckAvail').textContent = t('btnCheckAvail');
             document.getElementById('btnOpenBookForm').textContent = t('btnOpenBookForm');
             document.getElementById('mapTitle').textContent = t('mapTitle');
@@ -2253,12 +2436,6 @@
             document.getElementById('faq6Q').innerHTML = t('faq6Q') + ' <i class="fas fa-chevron-down"></i>';
             document.getElementById('faq6A').textContent = t('faq6A');
             document.getElementById('reviewsTitle').textContent = t('reviewsTitle');
-            document.getElementById('rev1Text').textContent = t('rev1Text');
-            document.getElementById('rev2Text').textContent = t('rev2Text');
-            document.getElementById('rev3Text').textContent = t('rev3Text');
-            document.getElementById('rev4Text').textContent = t('rev4Text');
-            document.getElementById('footerAdmin').textContent = t('footerAdmin');
-            document.getElementById('footerA11y').textContent = t('footerA11y');
 
             document.getElementById('filtAll').textContent = t('filtAll');
             document.getElementById('filtStd').textContent = t('filtStd');
@@ -2276,6 +2453,11 @@
 
             document.querySelectorAll('.lang-btn').forEach(b => { b.textContent = L[b.dataset.lang].langName; });
 
+            // Обновляем погоду при смене языка
+            if (weatherLoaded) {
+                updateWeatherDisplay();
+            }
+
             renderRooms();
             if (isAdmin) renderAdmin();
             updateQuickAvail();
@@ -2292,6 +2474,8 @@
         });
 
         // ============ ЧАТ ============
+        let jivoLoaded = false;
+
         function toggleChat() { document.getElementById('chatBox').classList.toggle('active'); }
 
         function sendChatMessage() { const inp = document.getElementById('chatInput'),
@@ -2312,19 +2496,47 @@
                 ms.scrollTop = ms.scrollHeight; }, 500);
             ms.scrollTop = ms.scrollHeight; }
 
-        function connectOperator() { const ms = document.getElementById('chatMessages');
+        function connectOperator() {
+            const ms = document.getElementById('chatMessages');
             ms.innerHTML +=
                 `<div class="chat-message bot">Подключаю... 📞 <a href="tel:+77008368964" style="color:#f5c542;">+7 700 836 8964</a></div>`;
-            if (typeof jivo_api !== 'undefined') jivo_api.open();
-            else setTimeout(() => window.open('https://wa.me/77018615121', '_blank'), 1000); }
 
-        document.addEventListener('click', e => { const chat = document.querySelector('.chat-widget'); if (chat && !chat
-                .contains(e.target) && document.getElementById('chatBox').classList.contains('active')) { document
-                    .getElementById('chatBox').classList.remove('active'); } });
+            // Загружаем Jivo только при нажатии на "Оператор"
+            if (!jivoLoaded) {
+                const script = document.createElement('script');
+                script.src = '//code.jivo.ru/widget/sfanjIPwr0';
+                script.async = true;
+                script.onload = function() {
+                    jivoLoaded = true;
+                    if (typeof jivo_api !== 'undefined') {
+                        jivo_api.open();
+                    }
+                };
+                document.head.appendChild(script);
+                // Fallback через 3 секунды
+                setTimeout(() => {
+                    if (!jivoLoaded) {
+                        window.open('https://wa.me/77018615121', '_blank');
+                    }
+                }, 3000);
+            } else {
+                if (typeof jivo_api !== 'undefined') {
+                    jivo_api.open();
+                } else {
+                    window.open('https://wa.me/77018615121', '_blank');
+                }
+            }
+        }
+
+        document.addEventListener('click', function(e) {
+            const chat = document.querySelector('.chat-widget');
+            if (chat && !chat.contains(e.target) && document.getElementById('chatBox').classList.contains('active')) {
+                document.getElementById('chatBox').classList.remove('active');
+            }
+        });
 
         // ============ ИНИЦИАЛИЗАЦИЯ ============
         (async function() {
-            // Восстанавливаем контрастную версию
             if (localStorage.getItem('pana_high_contrast') === '1') {
                 isHighContrast = true;
                 document.body.classList.add('high-contrast');
@@ -2336,17 +2548,14 @@
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('quickCheckIn').value = today;
             document.getElementById('quickCheckIn').setAttribute('min', today);
-            switchLanguage('ru');
-            renderGallery();
-            fetchWeather();
 
-            // Скрываем лоадер
-            setTimeout(() => {
-                document.getElementById('loader').classList.add('hidden');
-            }, 500);
+            // Загружаем погоду
+            await fetchWeather();
+
+            switchLanguage('ru');
 
             setInterval(saveToCloud, 300000);
-            setInterval(fetchWeather, 600000); // обновляем погоду раз в 10 минут
+            setInterval(fetchWeather, 600000);
             window.addEventListener('beforeunload', () => saveToCloud());
         })();
     </script>
