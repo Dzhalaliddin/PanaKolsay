@@ -69,9 +69,6 @@
             background: var(--gold);
             color: #000000;
         }
-        body.high-contrast .admin-panel {
-            background: rgba(0, 0, 0, 0.85);
-        }
         body.high-contrast .chat-box {
             background: rgba(0, 0, 0, 0.95);
         }
@@ -86,23 +83,6 @@
         }
         body.high-contrast .faq-item .faq-question {
             border-bottom-color: rgba(255, 255, 255, 0.2);
-        }
-        body.high-contrast .admin-table th {
-            color: var(--gold);
-        }
-        body.high-contrast .admin-table td {
-            color: #ffffff;
-        }
-        body.high-contrast .admin-nav-btn {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-        body.high-contrast .admin-nav-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        body.high-contrast .admin-month-label {
-            color: #fff;
         }
 
         * {
@@ -152,15 +132,15 @@
             z-index: 1;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 16px;
         }
         .content-block {
             background: var(--glass);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-radius: var(--radius-lg);
-            padding: 28px 24px;
-            margin-bottom: 20px;
+            padding: 20px 16px;
+            margin-bottom: 16px;
             border: 1px solid var(--border-glass);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             transition: background 0.3s, border-color 0.3s;
@@ -170,10 +150,10 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: 12px;
         }
         .logo-title {
-            font-size: 2rem;
+            font-size: 1.6rem;
             font-weight: 300;
             letter-spacing: 2px;
             display: flex;
@@ -188,7 +168,7 @@
         .header-right {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             flex-wrap: wrap;
         }
         .lang-switch {
@@ -203,9 +183,9 @@
             background: transparent;
             border: none;
             color: var(--text-muted);
-            padding: 8px 16px;
+            padding: 6px 12px;
             border-radius: 30px;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
@@ -220,13 +200,13 @@
             color: var(--dark);
         }
         .btn-accessibility {
-            padding: 8px 16px;
+            padding: 6px 12px;
             border-radius: 30px;
             border: 1px solid var(--border-glass);
             background: rgba(255, 255, 255, 0.05);
             color: var(--text-muted);
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.7rem;
             font-weight: 500;
             transition: var(--transition);
             white-space: nowrap;
@@ -240,63 +220,70 @@
             color: var(--dark);
             border-color: var(--gold);
         }
+
         .quick-facts {
             display: flex;
             justify-content: center;
-            gap: 16px;
+            gap: 10px;
             flex-wrap: wrap;
-            margin: 20px 0;
+            margin: 16px 0;
         }
         .fact-item {
             text-align: center;
-            padding: 12px 20px;
+            padding: 8px 14px;
             background: rgba(255, 255, 255, 0.04);
             border-radius: 10px;
             border: 1px solid var(--border-glass);
-            min-width: 90px;
+            min-width: 70px;
             backdrop-filter: blur(5px);
             transition: background 0.3s, border-color 0.3s;
+            flex: 1;
+            max-width: 120px;
         }
         .fact-item i {
-            font-size: 1.3rem;
+            font-size: 1rem;
             color: var(--gold);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             display: block;
         }
         .fact-value {
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             color: #fff;
         }
         .fact-label {
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
+
         .contact-bar {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 12px;
-            margin: 20px 0;
+            gap: 8px;
+            margin: 16px 0;
         }
         .contact-btn {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
+            gap: 6px;
+            padding: 10px 16px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             transition: var(--transition);
             border: none;
             cursor: pointer;
             white-space: nowrap;
+            flex: 1;
+            justify-content: center;
+            min-width: 80px;
         }
         .contact-btn i {
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
         .btn-whatsapp {
             background: #25D366;
@@ -348,21 +335,48 @@
             box-shadow: 0 6px 30px rgba(245, 197, 66, 0.5);
             animation: none;
         }
+
+        .weather-mini {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 10px;
+            border: 1px solid var(--border-glass);
+            font-size: 0.8rem;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+        .weather-mini i {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+        .weather-mini .weather-temp {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #fff;
+        }
+        .weather-mini .weather-detail {
+            color: var(--text-muted);
+            font-size: 0.7rem;
+        }
+
         .filter-bar {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 24px;
+            gap: 6px;
+            margin-bottom: 16px;
         }
         .filter-btn {
-            padding: 8px 18px;
+            padding: 6px 14px;
             border-radius: 30px;
             border: 1px solid var(--border-glass);
             background: rgba(255, 255, 255, 0.04);
             color: var(--text-muted);
             cursor: pointer;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: 500;
             transition: var(--transition);
             backdrop-filter: blur(5px);
@@ -377,10 +391,11 @@
             border-color: var(--gold);
             font-weight: 700;
         }
+
         .rooms-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 16px;
         }
         .room-card {
             background: var(--glass-card);
@@ -409,6 +424,8 @@
             overflow: hidden;
             cursor: pointer;
             touch-action: none;
+            background: var(--dark);
+            flex-shrink: 0;
         }
         .room-photos img {
             width: 100%;
@@ -418,6 +435,7 @@
             user-select: none;
             -webkit-user-select: none;
             -webkit-touch-callout: none;
+            display: block;
         }
         .room-card:hover .room-photos img {
             transform: scale(1.05);
@@ -430,41 +448,42 @@
             color: #fff;
             padding: 4px 10px;
             border-radius: 20px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             backdrop-filter: blur(5px);
             pointer-events: none;
         }
         .room-info {
-            padding: 16px;
+            padding: 14px;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
         .room-name {
-            font-size: 1.15rem;
+            font-size: 1rem;
             font-weight: 600;
             margin-bottom: 4px;
             color: #fff;
         }
         .room-price {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--gold);
             margin: 4px 0;
             text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
         }
         .room-desc {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             line-height: 1.4;
         }
         .room-availability {
-            font-size: 0.75rem;
-            margin-bottom: 8px;
+            font-size: 0.7rem;
+            margin-bottom: 6px;
             padding: 4px 10px;
             border-radius: 10px;
             display: inline-block;
+            align-self: flex-start;
         }
         .availability-ok {
             background: rgba(46, 213, 115, 0.2);
@@ -478,17 +497,21 @@
             background: rgba(255, 71, 87, 0.2);
             color: #ff4757;
         }
+        .availability-past {
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.3);
+        }
         .room-features {
             list-style: none;
-            margin: 6px 0;
+            margin: 4px 0;
             padding: 0;
-            font-size: 0.8rem;
-            line-height: 1.7;
+            font-size: 0.75rem;
+            line-height: 1.6;
             color: var(--text-secondary);
             flex: 1;
         }
         .room-features li {
-            padding: 3px 0;
+            padding: 2px 0;
             border-bottom: 1px dashed rgba(255, 255, 255, 0.04);
             display: flex;
             align-items: baseline;
@@ -500,14 +523,14 @@
             content: "•";
             color: var(--gold);
             font-weight: 700;
-            margin-right: 10px;
+            margin-right: 8px;
         }
         .room-link {
             display: inline-block;
-            margin-top: 6px;
+            margin-top: 4px;
             color: var(--gold);
             font-weight: 500;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             text-decoration: none;
             border-bottom: 2px solid rgba(245, 197, 66, 0.15);
             transition: var(--transition);
@@ -520,15 +543,15 @@
         .btn-book-room {
             display: block;
             width: 100%;
-            padding: 12px;
-            margin-top: 10px;
+            padding: 10px;
+            margin-top: 8px;
             background: var(--gold);
             color: var(--dark);
             border: none;
             border-radius: 25px;
             font-weight: 700;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: var(--transition);
             text-align: center;
         }
@@ -536,6 +559,33 @@
             background: var(--gold-light);
             transform: translateY(-1px);
         }
+        .btn-book-room.disabled {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.3);
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .quick-check-form {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+        .quick-check-form .form-group {
+            flex: 1;
+            min-width: 120px;
+            margin-bottom: 0;
+        }
+        .quick-check-form .form-group label {
+            font-size: 0.75rem;
+        }
+        .quick-check-form .form-group input,
+        .quick-check-form .form-group select {
+            padding: 8px 12px;
+            font-size: 0.85rem;
+        }
+
         .modal-overlay {
             display: none;
             position: fixed;
@@ -547,7 +597,7 @@
             z-index: 10000;
             justify-content: center;
             align-items: flex-start;
-            padding: 40px 20px;
+            padding: 40px 16px;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
         }
@@ -557,8 +607,8 @@
         .modal-content {
             background: #1a2a27;
             border-radius: var(--radius-lg);
-            padding: 28px 24px;
-            max-width: 550px;
+            padding: 20px 16px;
+            max-width: 500px;
             width: 100%;
             margin: auto;
             border: 1px solid var(--border-glass);
@@ -567,7 +617,7 @@
             transition: background 0.3s, border-color 0.3s;
         }
         .modal-content.wide {
-            max-width: 700px;
+            max-width: 600px;
         }
         .modal-close {
             position: absolute;
@@ -580,36 +630,119 @@
             cursor: pointer;
             transition: var(--transition);
             z-index: 10;
+            line-height: 1;
         }
         .modal-close:hover {
             color: var(--gold);
             transform: scale(1.1);
         }
         .modal-title {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             padding-right: 30px;
         }
+
+        #photoModal {
+            padding: 10px;
+            align-items: center;
+        }
+        #photoModal .modal-close {
+            position: fixed;
+            top: 12px;
+            right: 16px;
+            font-size: 2rem;
+            z-index: 10001;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        #photoModal .modal-close:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .photo-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            touch-action: none;
+            position: relative;
+            width: 100%;
+            justify-content: center;
+            padding: 0 4px;
+        }
+        .photo-container img {
+            max-width: 85vw;
+            max-height: 70vh;
+            border-radius: 8px;
+            object-fit: contain;
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+            background: #000;
+        }
+        .photo-nav-btn {
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            padding: 10px 14px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            touch-action: none;
+            min-width: 40px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .photo-nav-btn:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        .photo-nav-btn:active {
+            transform: scale(0.9);
+        }
+        #photoCounter {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 0.8rem;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 4px 14px;
+            border-radius: 15px;
+            z-index: 10001;
+        }
+
         .form-group {
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
         .form-group label {
             display: block;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             font-weight: 500;
         }
         .form-group input,
         .form-group select {
             width: 100%;
-            padding: 10px 14px;
+            padding: 8px 12px;
             border-radius: 10px;
             border: 1px solid var(--border-glass);
             background: rgba(255, 255, 255, 0.06);
             color: #fff;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             outline: none;
             transition: var(--transition);
         }
@@ -625,49 +758,41 @@
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 10px;
         }
         .btn-submit {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             background: var(--gold);
             color: var(--dark);
             border: none;
             border-radius: 25px;
             font-weight: 700;
             cursor: pointer;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: var(--transition);
-            margin-top: 8px;
+            margin-top: 6px;
         }
         .btn-submit:hover {
             background: var(--gold-light);
             transform: translateY(-1px);
         }
-        .suggestion-box {
-            background: rgba(245, 197, 66, 0.1);
-            border: 1px solid rgba(245, 197, 66, 0.3);
-            border-radius: var(--radius-sm);
-            padding: 14px;
-            margin-top: 12px;
-            font-size: 0.85rem;
-            line-height: 1.5;
-        }
+
         .avail-list-box {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border-glass);
             border-radius: var(--radius-sm);
-            padding: 14px;
+            padding: 12px;
             margin-top: 8px;
-            max-height: 220px;
+            max-height: 200px;
             overflow-y: auto;
         }
         .avail-list-item {
             display: flex;
             justify-content: space-between;
-            padding: 6px 0;
+            padding: 4px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
         }
         .avail-list-item:last-child {
             border-bottom: none;
@@ -680,10 +805,20 @@
             color: #ff4757;
             font-weight: 600;
         }
+        .avail-past {
+            color: rgba(255, 255, 255, 0.25);
+        }
+
         .map-container {
             border-radius: var(--radius);
             overflow: hidden;
             border: 1px solid var(--border-glass);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 250px;
+            border: 0;
+            border-radius: 12px;
         }
         .video-container {
             position: relative;
@@ -701,10 +836,11 @@
             height: 100%;
             border: 0;
         }
+
         .rules-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 16px;
         }
         @media (max-width: 768px) {
             .rules-grid {
@@ -712,23 +848,24 @@
             }
         }
         .rule-item {
-            margin-bottom: 12px;
-            padding-left: 10px;
+            margin-bottom: 10px;
+            padding-left: 8px;
             border-left: 2px solid var(--gold);
         }
         .rule-item strong {
             color: var(--gold-light);
             display: block;
-            margin-bottom: 4px;
-            font-size: 0.9rem;
+            margin-bottom: 2px;
+            font-size: 0.85rem;
         }
         .rule-item p {
             color: var(--text-secondary);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             line-height: 1.5;
         }
+
         .faq-item {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             cursor: pointer;
         }
         .faq-question {
@@ -737,15 +874,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
+            padding: 8px 0;
             border-bottom: 1px solid var(--border-glass);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: border-color 0.3s;
         }
         .faq-answer {
             color: var(--text-secondary);
-            font-size: 0.8rem;
-            padding: 10px 0;
+            font-size: 0.75rem;
+            padding: 8px 0;
             display: none;
             line-height: 1.5;
         }
@@ -755,18 +892,19 @@
         .faq-item.active .faq-question {
             color: var(--gold);
         }
+
         .reviews-scroll {
             display: flex;
-            gap: 16px;
+            gap: 12px;
             overflow-x: auto;
-            padding: 10px 0;
+            padding: 8px 0;
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
         }
         .review-card {
-            min-width: 280px;
+            min-width: 250px;
             background: rgba(255, 255, 255, 0.03);
-            padding: 20px;
+            padding: 16px;
             border-radius: var(--radius-sm);
             border: 1px solid var(--border-glass);
             scroll-snap-align: start;
@@ -775,292 +913,26 @@
         }
         .review-stars {
             color: var(--gold);
-            margin-bottom: 10px;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
         }
         .review-text {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
             line-height: 1.5;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
         }
         .review-author {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: var(--text-muted);
-        }
-
-        /* ===== АДМИН-ПАНЕЛЬ (обновленная) ===== */
-        .admin-panel {
-            background: rgba(26, 42, 39, 0.85);
-            backdrop-filter: blur(15px);
-            border-radius: var(--radius);
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 2px solid var(--gold);
-            transition: background 0.3s, border-color 0.3s;
-        }
-        .admin-panel .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border-glass);
-        }
-        .admin-panel .admin-header h3 {
-            color: var(--gold);
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        .admin-panel .admin-header .admin-badge {
-            background: var(--gold);
-            color: var(--dark);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-        .admin-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-        }
-        .admin-tab {
-            padding: 8px 16px;
-            border-radius: 20px;
-            border: 1px solid var(--border-glass);
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: var(--transition);
-        }
-        .admin-tab.active {
-            background: var(--gold);
-            color: var(--dark);
-            border-color: var(--gold);
-        }
-        .admin-tab:hover {
-            background: rgba(255, 255, 255, 0.08);
-        }
-        .btn-exit-admin {
-            padding: 8px 16px;
-            background: rgba(255, 71, 87, 0.2);
-            color: #ff4757;
-            border: 1px solid rgba(255, 71, 87, 0.3);
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: var(--transition);
-        }
-        .btn-exit-admin:hover {
-            background: rgba(255, 71, 87, 0.3);
-        }
-
-        /* Навигация по датам */
-        .admin-date-nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 10px 16px;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border-glass);
-        }
-        .admin-date-nav .nav-group {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .admin-date-nav .admin-month-label {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--gold);
-            min-width: 140px;
-            text-align: center;
-        }
-        .admin-nav-btn {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid var(--border-glass);
-            color: var(--text-secondary);
-            padding: 8px 14px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .admin-nav-btn:hover {
-            background: rgba(255, 255, 255, 0.12);
-            color: #fff;
-        }
-        .admin-nav-btn.primary {
-            background: var(--gold);
-            color: var(--dark);
-            border-color: var(--gold);
-        }
-        .admin-nav-btn.primary:hover {
-            background: var(--gold-light);
-        }
-        .admin-nav-btn.today-btn {
-            background: rgba(46, 213, 115, 0.15);
-            border-color: rgba(46, 213, 115, 0.3);
-            color: #2ed573;
-        }
-        .admin-nav-btn.today-btn:hover {
-            background: rgba(46, 213, 115, 0.25);
-        }
-
-        .admin-table-wrap {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            margin-top: 8px;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border-glass);
-        }
-        .admin-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.75rem;
-            min-width: 600px;
-        }
-        .admin-table th {
-            text-align: center;
-            padding: 8px 6px;
-            border-bottom: 2px solid var(--border-glass);
-            color: var(--gold);
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            background: rgba(255, 255, 255, 0.03);
-            position: sticky;
-            top: 0;
-            z-index: 2;
-        }
-        .admin-table th .day-num {
-            display: block;
-            font-size: 1rem;
-            font-weight: 700;
-            color: #fff;
-            text-transform: none;
-        }
-        .admin-table th .day-week {
-            font-weight: 400;
-            opacity: 0.6;
-        }
-        .admin-table th.weekend {
-            color: #ffa502;
-        }
-        .admin-table th.weekend .day-num {
-            color: #ffa502;
-        }
-        .admin-table td {
-            padding: 6px 4px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            color: var(--text-secondary);
-            text-align: center;
-            vertical-align: middle;
-        }
-        .admin-table td .room-label {
-            font-weight: 600;
-            color: #fff;
-            font-size: 0.7rem;
-            display: block;
-        }
-        .admin-table td .room-cap {
-            font-size: 0.6rem;
-            opacity: 0.5;
-            display: block;
-        }
-        .admin-table td input[type="number"] {
-            width: 40px;
-            padding: 4px;
-            border-radius: 6px;
-            border: 1px solid var(--border-glass);
-            background: rgba(255, 255, 255, 0.06);
-            color: #fff;
-            font-size: 0.7rem;
-            text-align: center;
-            transition: var(--transition);
-        }
-        .admin-table td input[type="number"]:focus {
-            border-color: var(--gold);
-            background: rgba(255, 255, 255, 0.12);
-        }
-        .admin-table td input[type="number"]:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-        .admin-table td .avail-indicator {
-            font-size: 0.6rem;
-            display: block;
-            margin-top: 2px;
-        }
-        .admin-table td .avail-indicator.free {
-            color: #2ed573;
-        }
-        .admin-table td .avail-indicator.busy {
-            color: #ff4757;
-        }
-        .admin-table td .avail-indicator.low {
-            color: #ffa502;
-        }
-        .admin-table .room-row td:first-child {
-            text-align: left;
-            padding-left: 8px;
-            min-width: 90px;
-        }
-        .admin-table .room-row:hover td {
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        .admin-table .date-col {
-            min-width: 50px;
-        }
-        .admin-table .date-col.today {
-            background: rgba(245, 197, 66, 0.08);
-            border-left: 2px solid var(--gold);
-            border-right: 2px solid var(--gold);
-        }
-        .admin-table .date-col.today input {
-            border-color: var(--gold);
-        }
-
-        /* Стили для скролла таблицы */
-        .admin-table-wrap::-webkit-scrollbar {
-            height: 6px;
-        }
-        .admin-table-wrap::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 3px;
-        }
-        .admin-table-wrap::-webkit-scrollbar-thumb {
-            background: var(--gold);
-            border-radius: 3px;
-        }
-
-        .admin-actions {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid var(--border-glass);
         }
 
         .toast {
             position: fixed;
-            bottom: 100px;
+            bottom: 80px;
             left: 50%;
             transform: translateX(-50%);
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 12px;
             font-weight: 600;
             z-index: 99999;
@@ -1068,6 +940,7 @@
             animation: slideUp 0.3s ease;
             max-width: 90%;
             text-align: center;
+            font-size: 0.85rem;
         }
         .toast-success {
             background: var(--gold);
@@ -1096,19 +969,20 @@
             background: rgba(255, 255, 255, 0.05);
             border: 2px solid var(--gold);
             border-radius: var(--radius);
-            padding: 20px;
-            margin-top: 16px;
+            padding: 16px;
+            margin-top: 12px;
         }
         .voucher-box h3 {
             color: var(--gold);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
+            font-size: 1rem;
         }
         .voucher-box .voucher-row {
             display: flex;
             justify-content: space-between;
-            padding: 6px 0;
+            padding: 4px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
         .voucher-box .voucher-row:last-child {
             border-bottom: none;
@@ -1122,15 +996,15 @@
         }
         .btn-download-voucher {
             display: inline-block;
-            margin-top: 12px;
-            padding: 10px 24px;
+            margin-top: 10px;
+            padding: 8px 20px;
             background: var(--gold);
             color: var(--dark);
             border: none;
             border-radius: 25px;
             font-weight: 700;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: var(--transition);
         }
         .btn-download-voucher:hover {
@@ -1138,332 +1012,310 @@
             transform: translateY(-1px);
         }
 
-        .photo-nav-btn {
-            background: rgba(0, 0, 0, 0.5);
-            border: none;
-            color: #fff;
-            font-size: 2rem;
-            padding: 16px 20px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: var(--transition);
-            touch-action: none;
-            min-width: 54px;
-            min-height: 54px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .photo-nav-btn:hover {
-            background: rgba(0, 0, 0, 0.7);
-        }
-        .photo-nav-btn:active {
-            transform: scale(0.9);
-        }
-        #photoModal .photo-container {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            touch-action: none;
-            position: relative;
-            width: 100%;
-            justify-content: center;
-        }
-        #photoModal .photo-container img {
-            max-width: 70vw;
-            max-height: 70vh;
-            border-radius: 8px;
-            object-fit: contain;
-            touch-action: none;
-            user-select: none;
-            -webkit-user-select: none;
-            -webkit-touch-callout: none;
-        }
-        #photoCounter {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #fff;
-            font-size: 0.85rem;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 6px 16px;
-            border-radius: 15px;
-            z-index: 10001;
-        }
-        #photoModal .modal-close {
-            position: fixed;
-            top: 16px;
-            right: 20px;
-            font-size: 2.5rem;
-            z-index: 10001;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-        }
-        #photoModal .modal-close:hover {
-            background: rgba(0, 0, 0, 0.7);
-        }
-
-        .chat-widget {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 9999;
-        }
-        .chat-toggle {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: var(--gold);
-            color: var(--dark);
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(245, 197, 66, 0.4);
-            transition: var(--transition);
-        }
-        .chat-toggle:hover {
-            transform: scale(1.1);
-        }
-        .chat-box {
-            position: absolute;
-            bottom: 70px;
-            right: 0;
-            width: 340px;
-            background: rgba(26, 42, 39, 0.98);
-            backdrop-filter: blur(20px);
-            border-radius: var(--radius);
-            overflow: hidden;
-            border: 1px solid var(--border-glass);
-            display: none;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            transition: background 0.3s, border-color 0.3s;
-        }
-        .chat-box.active {
-            display: block;
-        }
-        .chat-header {
-            padding: 14px 16px;
-            background: var(--gold);
-            color: var(--dark);
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-        .chat-messages {
-            padding: 16px;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        .chat-message {
-            margin-bottom: 10px;
-            padding: 10px 14px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            max-width: 85%;
-        }
-        .chat-message.bot {
-            background: rgba(255, 255, 255, 0.08);
-            color: #fff;
-        }
-        .chat-message.user {
-            background: var(--gold);
-            color: var(--dark);
-            margin-left: auto;
-        }
-        .chat-actions {
-            padding: 10px 16px;
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        .chat-action-btn {
-            padding: 6px 14px;
-            border-radius: 20px;
-            border: 1px solid var(--border-glass);
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: var(--transition);
-        }
-        .chat-action-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--gold);
-        }
-        .chat-input-area {
-            display: flex;
-            padding: 10px 16px;
-            gap: 8px;
-            border-top: 1px solid var(--border-glass);
-        }
-        .chat-input-area input {
-            flex: 1;
-            padding: 8px 12px;
-            border-radius: 20px;
-            border: 1px solid var(--border-glass);
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            outline: none;
-            font-size: 0.85rem;
-        }
-        .chat-input-area button {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--gold);
-            border: none;
-            color: var(--dark);
-            cursor: pointer;
-            font-weight: 700;
-            transition: var(--transition);
-        }
-        .chat-input-area button:hover {
-            transform: scale(1.1);
-        }
-
         .footer {
             text-align: center;
-            padding: 20px;
+            padding: 16px;
             color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             border-top: 1px solid var(--border-glass);
         }
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-bottom: 10px;
+            gap: 16px;
+            margin-bottom: 8px;
             flex-wrap: wrap;
         }
         .footer-links a {
             color: var(--text-muted);
             text-decoration: none;
             transition: var(--transition);
+            font-size: 0.75rem;
+            cursor: pointer;
         }
         .footer-links a:hover {
             color: var(--gold);
         }
 
         @media (max-width: 768px) {
+            .main-container {
+                padding: 10px;
+            }
+            .content-block {
+                padding: 16px 12px;
+                border-radius: 14px;
+            }
             .header {
                 flex-direction: column;
                 text-align: center;
-            }
-            .rooms-grid {
-                grid-template-columns: 1fr;
-            }
-            .chat-box {
-                width: 290px;
-                right: -10px;
-            }
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            .modal-content.wide {
-                max-width: 95%;
-                padding: 20px 16px;
-            }
-            .quick-facts {
                 gap: 8px;
-            }
-            .fact-item {
-                padding: 8px 12px;
-                min-width: 70px;
-            }
-            .contact-btn {
-                padding: 10px 16px;
-                font-size: 0.8rem;
             }
             .logo-title {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
-            #photoModal .photo-container img {
-                max-width: 85vw;
-                max-height: 60vh;
-            }
-            .photo-nav-btn {
-                font-size: 1.5rem;
-                padding: 12px 14px;
-                min-width: 44px;
-                min-height: 44px;
-            }
-            #photoModal .photo-container {
-                gap: 8px;
-            }
-            #photoModal .modal-close {
-                width: 44px;
-                height: 44px;
-                font-size: 1.8rem;
-                top: 12px;
-                right: 12px;
-            }
-            .admin-date-nav {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 8px;
-            }
-            .admin-date-nav .nav-group {
+            .header-right {
                 justify-content: center;
             }
-            .admin-table {
+            .lang-btn {
+                padding: 4px 10px;
                 font-size: 0.65rem;
             }
-            .admin-table td input[type="number"] {
-                width: 32px;
-                padding: 2px;
-                font-size: 0.6rem;
+            .btn-accessibility {
+                padding: 4px 10px;
+                font-size: 0.65rem;
             }
-            .admin-table th .day-num {
-                font-size: 0.8rem;
-            }
-            .admin-table td .room-label {
-                font-size: 0.6rem;
-            }
-            .admin-table .room-row td:first-child {
-                min-width: 60px;
-                padding-left: 4px;
-            }
-            .admin-panel {
-                padding: 12px;
-            }
-        }
-        @media (max-width: 480px) {
-            .logo-title {
-                font-size: 1.3rem;
+            .quick-facts {
+                gap: 6px;
             }
             .fact-item {
                 padding: 6px 10px;
                 min-width: 60px;
+                max-width: 100px;
             }
             .fact-item i {
-                font-size: 1rem;
+                font-size: 0.85rem;
             }
             .fact-value {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
             }
             .fact-label {
-                font-size: 0.6rem;
+                font-size: 0.5rem;
             }
-            .content-block {
-                padding: 16px 12px;
+            .contact-bar {
+                gap: 6px;
+            }
+            .contact-btn {
+                padding: 8px 12px;
+                font-size: 0.7rem;
+                min-width: 60px;
+                flex: 1 0 auto;
+                max-width: 48%;
+            }
+            .contact-btn i {
+                font-size: 0.85rem;
+            }
+            .rooms-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .room-photos {
+                height: 180px;
+            }
+            .room-name {
+                font-size: 0.95rem;
+            }
+            .room-price {
+                font-size: 1.1rem;
+            }
+            .quick-check-form {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .quick-check-form .form-group {
+                min-width: 100%;
+                width: 100%;
+            }
+            .weather-mini {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            .weather-mini i {
+                font-size: 1rem;
+            }
+            .weather-mini .weather-temp {
+                font-size: 0.9rem;
+            }
+            .filter-bar {
+                gap: 4px;
+            }
+            .filter-btn {
+                padding: 4px 10px;
+                font-size: 0.6rem;
             }
             .modal-content {
                 padding: 16px 12px;
+                max-width: 100%;
+                margin: 10px;
             }
-            .admin-table {
-                font-size: 0.55rem;
-                min-width: 400px;
+            .modal-content.wide {
+                max-width: 100%;
             }
-            .admin-table td input[type="number"] {
-                width: 28px;
-                padding: 2px;
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            .modal-title {
+                font-size: 1rem;
+            }
+            .photo-container img {
+                max-width: 90vw;
+                max-height: 60vh;
+            }
+            .photo-nav-btn {
+                font-size: 1.2rem;
+                padding: 8px 12px;
+                min-width: 36px;
+                min-height: 36px;
+            }
+            #photoModal .modal-close {
+                width: 40px;
+                height: 40px;
+                font-size: 1.6rem;
+                top: 10px;
+                right: 10px;
+            }
+            #photoCounter {
+                font-size: 0.7rem;
+                padding: 3px 12px;
+                bottom: 16px;
+            }
+            .map-container iframe {
+                height: 200px;
+            }
+            .reviews-scroll {
+                gap: 10px;
+            }
+            .review-card {
+                min-width: 200px;
+                padding: 12px;
+            }
+            .review-text {
+                font-size: 0.75rem;
+            }
+            .footer-links {
+                gap: 10px;
+            }
+            .footer-links a {
+                font-size: 0.65rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-container {
+                padding: 6px;
+            }
+            .content-block {
+                padding: 12px 10px;
+                border-radius: 12px;
+                margin-bottom: 10px;
+            }
+            .logo-title {
+                font-size: 1.2rem;
+            }
+            .fact-item {
+                padding: 4px 8px;
+                min-width: 50px;
+                max-width: 80px;
+            }
+            .fact-item i {
+                font-size: 0.75rem;
+            }
+            .fact-value {
+                font-size: 0.7rem;
+            }
+            .fact-label {
+                font-size: 0.45rem;
+            }
+            .contact-btn {
+                padding: 6px 10px;
+                font-size: 0.6rem;
+                min-width: 50px;
+                max-width: 48%;
+            }
+            .contact-btn i {
+                font-size: 0.75rem;
+            }
+            .room-photos {
+                height: 150px;
+            }
+            .room-name {
+                font-size: 0.85rem;
+            }
+            .room-price {
+                font-size: 1rem;
+            }
+            .room-desc {
+                font-size: 0.7rem;
+            }
+            .room-features {
+                font-size: 0.65rem;
+            }
+            .btn-book-room {
+                font-size: 0.75rem;
+                padding: 8px;
+            }
+            .filter-btn {
+                padding: 3px 8px;
                 font-size: 0.55rem;
+            }
+            .form-group input,
+            .form-group select {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+            .avail-list-item {
+                font-size: 0.65rem;
+                padding: 3px 0;
+            }
+            .modal-content {
+                padding: 12px 10px;
+            }
+            .modal-title {
+                font-size: 0.9rem;
+            }
+            .btn-submit {
+                font-size: 0.8rem;
+                padding: 8px;
+            }
+            .map-container iframe {
+                height: 160px;
+            }
+            .review-card {
+                min-width: 160px;
+                padding: 10px;
+            }
+            .review-text {
+                font-size: 0.65rem;
+            }
+            .review-stars {
+                font-size: 0.7rem;
+            }
+            .footer-links a {
+                font-size: 0.6rem;
+            }
+            .footer p {
+                font-size: 0.6rem;
+            }
+            .weather-mini {
+                font-size: 0.65rem;
+                padding: 4px 10px;
+                gap: 6px;
+            }
+            .weather-mini i {
+                font-size: 0.85rem;
+            }
+            .weather-mini .weather-temp {
+                font-size: 0.8rem;
+            }
+            .weather-mini .weather-detail {
+                font-size: 0.6rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .fact-item {
+                min-width: 40px;
+                max-width: 65px;
+                padding: 3px 6px;
+            }
+            .contact-btn {
+                font-size: 0.55rem;
+                padding: 5px 8px;
+                min-width: 40px;
+            }
+            .room-photos {
+                height: 130px;
             }
         }
     </style>
@@ -1488,11 +1340,6 @@
                 </div>
             </div>
 
-            <div style="display:flex;align-items:center;gap:12px;padding:10px 16px;background:rgba(255,255,255,0.04);border-radius:10px;border:1px solid var(--border-glass);font-size:0.9rem;margin:12px 0;">
-                <i class="fas fa-cloud-sun" style="color:var(--gold);font-size:1.3rem;"></i>
-                <span id="weatherText">Загрузка погоды...</span>
-            </div>
-
             <div class="quick-facts">
                 <div class="fact-item"><i class="fas fa-water"></i><div class="fact-value">700 м</div><div class="fact-label" id="factLake">до озера</div></div>
                 <div class="fact-item"><i class="fas fa-mountain"></i><div class="fact-value">1800 м</div><div class="fact-label" id="factHeight">высота</div></div>
@@ -1508,37 +1355,14 @@
             </div>
         </div>
 
-        <!-- АДМИН-ПАНЕЛЬ (обновленная) -->
-        <div class="admin-panel" id="adminPanel" style="display:none;">
-            <div class="admin-header">
-                <h3>🔧 Управление доступностью</h3>
-                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-                    <span class="admin-badge">Админ</span>
-                    <button class="btn-exit-admin" onclick="exitAdmin()" id="btnExitAdmin">← Выйти</button>
-                </div>
-            </div>
-
-            <div class="admin-tabs">
-                <button class="admin-tab active" onclick="switchAdminTab('availability')" id="tabAvail">📊 Доступность по датам</button>
-                <button class="admin-tab" onclick="switchAdminTab('bookings')" id="tabBookings">📋 Бронирования</button>
-            </div>
-
-            <div id="adminTabContent"></div>
-
-            <div class="admin-actions">
-                <button class="admin-nav-btn primary" onclick="saveAllData()" id="btnSaveCloud">💾 Сохранить</button>
-                <span style="color:var(--text-muted);font-size:0.7rem;display:flex;align-items:center;">* Изменения сохраняются в облако</span>
-            </div>
-        </div>
-
-        <!-- НОМЕРА (скрыты в админке) -->
+        <!-- НОМЕРА -->
         <div class="content-block" id="roomsBlock">
-            <h2 style="font-weight:300; margin-bottom:16px; font-size:1.4rem;" id="roomsTitle">🛏️ Наши номера</h2>
+            <h2 style="font-weight:300; margin-bottom:12px; font-size:1.2rem;" id="roomsTitle">🛏️ Наши номера</h2>
             <div class="filter-bar" id="filterBar">
-                <button class="filter-btn active" data-filter="all" id="filtAll">Все номера</button>
+                <button class="filter-btn active" data-filter="all" id="filtAll">Все</button>
                 <button class="filter-btn" data-filter="standard" id="filtStd">Стандарт</button>
-                <button class="filter-btn" data-filter="mountain" id="filtMnt">Вид на горы</button>
-                <button class="filter-btn" data-filter="lake" id="filtLake">Вид на озеро</button>
+                <button class="filter-btn" data-filter="mountain" id="filtMnt">Горы</button>
+                <button class="filter-btn" data-filter="lake" id="filtLake">Озеро</button>
                 <button class="filter-btn" data-filter="triple" id="filtTrp">Трипл</button>
                 <button class="filter-btn" data-filter="deluxe" id="filtDlx">Deluxe</button>
                 <button class="filter-btn" data-filter="luxury" id="filtLux">Люкс</button>
@@ -1547,48 +1371,47 @@
             <div class="rooms-grid" id="roomsGrid"></div>
         </div>
 
-        <!-- ФОРМА БРОНИРОВАНИЯ -->
+        <!-- ФОРМА БРОНИРОВАНИЯ + ПОГОДА -->
         <div class="content-block" id="bookingFormBlock">
-            <h2 style="font-weight:300; margin-bottom:16px; font-size:1.4rem;" id="bookingFormTitle">📅 Проверить доступность</h2>
-            <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:flex-end;" id="quickCheckForm">
-                <div class="form-group" style="min-width:150px;">
+            <h2 style="font-weight:300; margin-bottom:12px; font-size:1.2rem;" id="bookingFormTitle">📅 Проверить доступность</h2>
+
+            <div class="weather-mini" id="weatherMini">
+                <i class="fas fa-cloud-sun"></i>
+                <span id="weatherMiniText">Загрузка погоды...</span>
+            </div>
+
+            <div class="quick-check-form" id="quickCheckForm">
+                <div class="form-group">
                     <label id="lblCheckIn">📅 Дата заезда</label>
                     <input type="date" id="quickCheckIn" onchange="updateQuickAvail()">
                 </div>
-                <div class="form-group" style="min-width:120px;">
+                <div class="form-group">
                     <label id="lblGuests">👥 Гости</label>
                     <select id="quickGuests" onchange="updateQuickAvail()">
                         <option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
                     </select>
                 </div>
-                <div class="form-group" style="min-width:120px;">
-                    <label id="lblNights">🌙 Ночей</label>
-                    <select id="quickNights" onchange="updateQuickAvail()">
-                        <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
-                    </select>
-                </div>
-                <button class="btn-submit" style="width:auto; padding:10px 24px;" onclick="updateQuickAvail()" id="btnCheckAvail">🔍 Проверить</button>
             </div>
-            <div class="avail-list-box" id="quickAvailResult" style="display:none; margin-top:16px;"></div>
-            <div id="quickSuggestion" class="suggestion-box" style="display:none; margin-top:12px;"></div>
-            <button class="btn-submit" id="btnOpenBookForm" style="display:none; margin-top:12px;" onclick="openBookingModal()">📝 Забронировать подходящий номер</button>
+
+            <div class="avail-list-box" id="quickAvailResult" style="display:none; margin-top:12px;"></div>
+            <button class="btn-submit" id="btnOpenBookForm" style="display:none; margin-top:10px;" onclick="openBookingModal()">📝 Забронировать подходящий номер</button>
         </div>
 
         <!-- КАРТА -->
         <div class="content-block" id="mapBlock">
-            <h2 style="font-weight:300; margin-bottom:16px; font-size:1.4rem;" id="mapTitle">📍 Как добраться</h2>
+            <h2 style="font-weight:300; margin-bottom:12px; font-size:1.2rem;" id="mapTitle">📍 Как добраться</h2>
             <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2908.5!2d78.346125!3d42.935452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDU2JzA3LjYiTiA3OMKwMjAnNDYuMSJF!5e0!3m2!1sru!2skz!4v1" width="100%" height="350" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2908.5!2d78.346125!3d42.935452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDU2JzA3LjYiTiA3OMKwMjAnNDYuMSJF!5e0!3m2!1sru!2skz!4v1" width="100%" height="250" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy"></iframe>
             </div>
-            <div style="margin-top:16px; display:flex; gap:16px; flex-wrap:wrap; align-items:center;">
-                <p style="color:var(--text-secondary); font-size:0.9rem;" id="mapInfo"><i class="fas fa-map-marker-alt"></i> Озеро Кольсай Нижнее &nbsp;|&nbsp; <i class="fas fa-car"></i> Из Алматы: ~4 часа (300 км)</p>
-                <a href="https://2gis.kz/almaty/directions/points/%D0%90%D0%BB%D0%BC%D0%B0%D1%82%D1%8B%7C78.346125%2C42.935452%7B%D0%9A%D0%BE%D0%BB%D1%8C%D1%81%D0%B0%D0%B9%7D" target="_blank" class="contact-btn btn-book" style="animation:none;" id="btnRoute">🗺️ Построить маршрут</a>
+            <div style="margin-top:12px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+                <p style="color:var(--text-secondary); font-size:0.8rem;" id="mapInfo"><i class="fas fa-map-marker-alt"></i> Озеро Кольсай Нижнее &nbsp;|&nbsp; <i class="fas fa-car"></i> Из Алматы: ~4 часа (300 км)</p>
+                <a href="https://2gis.kz/almaty/directions/points/%D0%90%D0%BB%D0%BC%D0%B0%D1%82%D1%8B%7C78.346125%2C42.935452%7B%D0%9A%D0%BE%D0%BB%D1%8C%D1%81%D0%B0%D0%B9%7D" target="_blank" class="contact-btn btn-book" style="animation:none; flex:0 0 auto; padding:8px 16px; font-size:0.75rem;" id="btnRoute">🗺️ Маршрут</a>
             </div>
         </div>
 
         <!-- ВИДЕО -->
         <div class="content-block" id="videoBlock">
-            <h2 style="font-weight:300; margin-bottom:16px; font-size:1.4rem;" id="videoTitle">🎥 Видеообзор</h2>
+            <h2 style="font-weight:300; margin-bottom:12px; font-size:1.2rem;" id="videoTitle">🎥 Видеообзор</h2>
             <div class="video-container">
                 <iframe src="https://www.youtube.com/embed/HocYEEFwN3c?start=129" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
@@ -1596,41 +1419,41 @@
 
         <!-- ПРАВИЛА И FAQ -->
         <div class="content-block" id="rulesBlock">
-            <h2 style="font-weight:300; margin-bottom:16px; font-size:1.4rem;" id="rulesTitle">📋 Важная информация</h2>
+            <h2 style="font-weight:300; margin-bottom:12px; font-size:1.2rem;" id="rulesTitle">📋 Важная информация</h2>
             <div class="rules-grid">
                 <div>
-                    <h3 style="color:var(--gold); font-size:1.1rem; margin-bottom:14px;" id="rulesSubTitle"><i class="fas fa-file-contract"></i> Условия бронирования</h3>
-                    <div class="rule-item"><strong id="rule1Title">1. Предоплата</strong><p id="rule1Text">Для гарантии брони требуется 100% предоплата. Мы сформируем ссылку для оплаты.</p></div>
-                    <div class="rule-item"><strong id="rule2Title">2. Отмена</strong><p id="rule2Text">• При отмене меньше чем за 7 дней до заезда — удерживается стоимость 1 суток.<br>• Если бронь сделана меньше чем за 7 дней до заезда — при отмене также удерживается 1 сутки.<br>• При отмене раньше чем за 7 дней — предоплата возвращается полностью.</p></div>
-                    <div class="rule-item"><strong id="rule3Title">3. Неявка</strong><p id="rule3Text">Если гость не приехал и не сообщил — удерживаются 1 сутки, остальные ночи аннулируются.</p></div>
-                    <div class="rule-item"><strong id="rule4Title">4. Изменение дат</strong><p id="rule4Text">Возможны при наличии свободных мест и согласовании не менее чем за 7 дней до заезда.</p></div>
-                    <div class="rule-item"><strong id="rule5Title">📝 Для бронирования</strong><p id="rule5Text">Просим написать ФИО одного гостя. Мы сформируем ссылку для оплаты.</p></div>
+                    <h3 style="color:var(--gold); font-size:1rem; margin-bottom:10px;" id="rulesSubTitle"><i class="fas fa-file-contract"></i> Условия</h3>
+                    <div class="rule-item"><strong id="rule1Title">1. Предоплата</strong><p id="rule1Text">Для гарантии брони требуется 100% предоплата.</p></div>
+                    <div class="rule-item"><strong id="rule2Title">2. Отмена</strong><p id="rule2Text">• Менее 7 дней — 1 сутки<br>• Более 7 дней — полный возврат</p></div>
+                    <div class="rule-item"><strong id="rule3Title">3. Неявка</strong><p id="rule3Text">Удерживаются 1 сутки, остальные ночи аннулируются.</p></div>
+                    <div class="rule-item"><strong id="rule4Title">4. Изменение дат</strong><p id="rule4Text">При наличии мест и согласовании за 7+ дней.</p></div>
+                    <div class="rule-item"><strong id="rule5Title">📝 Для брони</strong><p id="rule5Text">Напишите ФИО гостя. Мы пришлём ссылку на оплату.</p></div>
                 </div>
                 <div>
-                    <h3 style="color:var(--gold); font-size:1.1rem; margin-bottom:14px;" id="faqTitle"><i class="fas fa-question-circle"></i> Частые вопросы</h3>
+                    <h3 style="color:var(--gold); font-size:1rem; margin-bottom:10px;" id="faqTitle"><i class="fas fa-question-circle"></i> Вопросы</h3>
                     <div class="faq-item" onclick="this.classList.toggle('active')">
-                        <div class="faq-question" id="faq1Q">🕐 Во сколько заезд и выезд? <i class="fas fa-chevron-down"></i></div>
-                        <div class="faq-answer" id="faq1A">Заезд с 15:00, выезд до 12:00. Ранний заезд или поздний выезд возможны по согласованию при наличии свободных номеров.</div>
+                        <div class="faq-question" id="faq1Q">🕐 Заезд и выезд? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer" id="faq1A">Заезд с 15:00, выезд до 12:00.</div>
                     </div>
                     <div class="faq-item" onclick="this.classList.toggle('active')">
-                        <div class="faq-question" id="faq2Q">🍳 Включено ли питание? <i class="fas fa-chevron-down"></i></div>
-                        <div class="faq-answer" id="faq2A">Да, завтрак включен в стоимость всех номеров. Рядом находится этно-кафе Tary для обеда и ужина.</div>
+                        <div class="faq-question" id="faq2Q">🍳 Питание? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer" id="faq2A">Завтрак включен. Рядом этно-кафе Tary.</div>
                     </div>
                     <div class="faq-item" onclick="this.classList.toggle('active')">
-                        <div class="faq-question" id="faq3Q">🚗 Есть ли парковка? <i class="fas fa-chevron-down"></i></div>
-                        <div class="faq-answer" id="faq3A">Да, бесплатная парковка. Также предоставляем бесплатный трансфер с парковки до отеля.</div>
+                        <div class="faq-question" id="faq3Q">🚗 Парковка? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer" id="faq3A">Бесплатная парковка и трансфер до отеля.</div>
                     </div>
                     <div class="faq-item" onclick="this.classList.toggle('active')">
-                        <div class="faq-question" id="faq4Q">👶 Можно ли с детьми? <i class="fas fa-chevron-down"></i></div>
-                        <div class="faq-answer" id="faq4A">Дети до 7 лет проживают бесплатно. Для детей постарше — доп. место 15 000 ₸ с завтраком.</div>
+                        <div class="faq-question" id="faq4Q">👶 С детьми? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer" id="faq4A">До 7 лет бесплатно. Доп. место 15 000 ₸.</div>
                     </div>
                     <div class="faq-item" onclick="this.classList.toggle('active')">
-                        <div class="faq-question" id="faq5Q">🐕 Можно ли с животными? <i class="fas fa-chevron-down"></i></div>
-                        <div class="faq-answer" id="faq5A">К сожалению, проживание с животными не предусмотрено.</div>
+                        <div class="faq-question" id="faq5Q">🐕 Животные? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer" id="faq5A">К сожалению, нет.</div>
                     </div>
                     <div class="faq-item" onclick="this.classList.toggle('active')">
-                        <div class="faq-question" id="faq6Q">💳 Какие способы оплаты? <i class="fas fa-chevron-down"></i></div>
-                        <div class="faq-answer" id="faq6A">Мы принимаем оплату по ссылке (Kaspi, карты). 100% предоплата для гарантии бронирования.</div>
+                        <div class="faq-question" id="faq6Q">💳 Оплата? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer" id="faq6A">По ссылке (Kaspi, карты). 100% предоплата.</div>
                     </div>
                 </div>
             </div>
@@ -1638,25 +1461,24 @@
 
         <!-- ОТЗЫВЫ -->
         <div class="content-block" id="reviewsBlock">
-            <h2 style="font-weight:300; margin-bottom:16px; font-size:1.4rem;" id="reviewsTitle">💬 Отзывы гостей</h2>
+            <h2 style="font-weight:300; margin-bottom:12px; font-size:1.2rem;" id="reviewsTitle">💬 Отзывы гостей</h2>
             <div class="reviews-scroll">
-                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Потрясающий вид на озеро! Просыпаться с таким видом — бесценно. Отличный сервис и вкусные завтраки!"</div><div class="review-author">— Анна М., Алматы</div></div>
-                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Идеальное место для отдыха от городской суеты. Чистый воздух, красивая природа. Обязательно вернемся!"</div><div class="review-author">— Алексей К., Астана</div></div>
-                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Көлдің керемет көрінісі! Табиғаттың ортасында тамаша демалу. Барлығына ұсынамын!"</div><div class="review-author">— Айжан С., Алматы</div></div>
-                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Қызметкерлер өте мейірімді, бөлмелер таза және жайлы. Қайта міндетті түрде келеміз!"</div><div class="review-author">— Ерлан Т., Шымкент</div></div>
-                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Балалармен демалдық, оларға қатты ұнады. Таңғы ас дәмді, табиғат әдемі!"</div><div class="review-author">— Гүлназ Р., Қарағанды</div></div>
-                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Amazing place! The lake view is breathtaking. Highly recommend for nature lovers."</div><div class="review-author">— John D., UK</div></div>
-                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Perfect getaway from the city. Clean rooms, friendly staff, and great breakfast."</div><div class="review-author">— Sarah P., USA</div></div>
-                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐</div><div class="review-text">"Beautiful location, peaceful atmosphere. Would definitely come back again."</div><div class="review-author">— Michael B., Germany</div></div>
+                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Потрясающий вид на озеро! Отличный сервис и вкусные завтраки!"</div><div class="review-author">— Анна М., Алматы</div></div>
+                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Идеальное место для отдыха. Чистый воздух, красивая природа!"</div><div class="review-author">— Алексей К., Астана</div></div>
+                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Көлдің керемет көрінісі! Табиғаттың ортасында тамаша демалу."</div><div class="review-author">— Айжан С., Алматы</div></div>
+                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Қызметкерлер өте мейірімді, бөлмелер таза және жайлы."</div><div class="review-author">— Ерлан Т., Шымкент</div></div>
+                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Amazing place! The lake view is breathtaking."</div><div class="review-author">— John D., UK</div></div>
+                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Perfect getaway. Clean rooms, friendly staff."</div><div class="review-author">— Sarah P., USA</div></div>
             </div>
         </div>
 
         <!-- ФУТЕР -->
         <div class="footer">
             <div class="footer-links">
-                <a href="#" onclick="showAdminLogin()" id="footerAdmin">🔧 Админ-панель</a>
+                <a href="admin.html" target="_blank" id="footerAdmin">🔧 Админ-панель</a>
                 <a href="#" onclick="toggleAccessibility()" id="footerA11y">♿ Версия для слабовидящих</a>
                 <a href="tel:+77008368964">📞 +7 700 836 8964</a>
+                <a href="#" onclick="connectOperator()" id="operatorLink">👩‍💼 Оператор</a>
             </div>
             <p>© 2026 PANA KOLSAY · Озеро Кольсай, Казахстан</p>
         </div>
@@ -1673,7 +1495,7 @@
 
     <!-- МОДАЛКА ФОТО -->
     <div class="modal-overlay" id="photoModal">
-        <button class="modal-close" onclick="closeModal('photoModal')">&times;</button>
+        <button class="modal-close" onclick="closePhotoModal()">&times;</button>
         <div class="photo-container">
             <button class="photo-nav-btn" onclick="navigatePhoto(-1)" id="photoPrev">❮</button>
             <img id="modalPhoto" src="" alt="" draggable="false">
@@ -1682,24 +1504,7 @@
         <div id="photoCounter"></div>
     </div>
 
-    <!-- ЧАТ -->
-    <div class="chat-widget">
-        <button class="chat-toggle" onclick="toggleChat()"><i class="fas fa-comments"></i></button>
-        <div class="chat-box" id="chatBox">
-            <div class="chat-header">💬 PANA KOLSAY · Онлайн</div>
-            <div class="chat-messages" id="chatMessages"><div class="chat-message bot">Здравствуйте! 👋 Я могу помочь с выбором номера или отвечу на ваши вопросы.</div></div>
-            <div class="chat-actions">
-                <button class="chat-action-btn" onclick="sendQuickChat('Какие номера свободны?')">🛏️ Номера</button>
-                <button class="chat-action-btn" onclick="sendQuickChat('Цены на номера')">💰 Цены</button>
-                <button class="chat-action-btn" onclick="sendQuickChat('Как добраться?')">🗺️ Маршрут</button>
-                <button class="chat-action-btn" onclick="connectOperator()">👩‍💼 Оператор</button>
-            </div>
-            <div class="chat-input-area">
-                <input type="text" id="chatInput" placeholder="Напишите сообщение..." onkeypress="if(event.key==='Enter')sendChatMessage()">
-                <button onclick="sendChatMessage()">➤</button>
-            </div>
-        </div>
-    </div>
+    <script src="//code.jivo.ru/widget/sfanjIPwr0" async></script>
 
     <script>
         // ============ НАСТРОЙКИ ============
@@ -1707,6 +1512,7 @@
         const API_KEY = '$2a$10$AxIfA8p7dq6td0BYtWWuhecnyqCJbsTGoo.oWIds3H01C43GvLGuu';
         const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
+        // Базовые данные номеров
         const ROOMS = [
             { id: 'standard', nameRu: '🏨 Standard Room', nameEn: '🏨 Standard Room', nameKz: '🏨 Standard Room',
                 price: 54900, cap: 2, extra: 1, cat: 'standard', total: 4,
@@ -1716,16 +1522,13 @@
                 descRu: 'Стандартный номер без вида', descEn: 'Standard room without view',
                 descKz: 'Көрініссіз стандартты бөлме',
                 featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 2 взрослых', '➕ Доп. место: 15 000 ₸',
-                    '🍳 Бесплатный завтрак', '🚐 Трансфер с парковки', '👶 Дети до 7 лет — бесплатно',
-                    '🍽️ Рядом этно-кафе Tary'
+                    '🍳 Бесплатный завтрак', '🚐 Трансфер с парковки', '👶 Дети до 7 лет — бесплатно'
                 ],
                 featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 2 adults', '➕ Extra bed: 15,000 ₸',
-                    '🍳 Free breakfast', '🚐 Free transfer', '👶 Child under 7 — free',
-                    '🍽️ Ethnic cafe Tary nearby'
+                    '🍳 Free breakfast', '🚐 Free transfer', '👶 Child under 7 — free'
                 ],
                 featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 2 ересек', '➕ Қосымша орын: 15 000 ₸',
-                    '🍳 Тегін таңғы ас', '🚐 Тегін трансфер', '👶 7 жасқа дейін — тегін',
-                    '🍽️ Tary этно-кафе'
+                    '🍳 Тегін таңғы ас', '🚐 Тегін трансфер', '👶 7 жасқа дейін — тегін'
                 ],
                 link: 'https://drive.google.com/file/d/1pEewgVeg3V_29HTFnOVYeNvZUxa5rAl8/view'
             },
@@ -1734,8 +1537,8 @@
                 photos: ['https://via.placeholder.com/600x400/1a2a27/f5c542?text=Mountain+1',
                     'https://via.placeholder.com/600x400/1a2a27/f5c542?text=Mountain+2'
                 ],
-                descRu: 'С видом на горы (1 Twin + 1 Double)', descEn: 'Mountain view (1 Twin + 1 Double)',
-                descKz: 'Тау көрінісі (1 Twin + 1 Double)',
+                descRu: 'С видом на горы', descEn: 'Mountain view',
+                descKz: 'Тау көрінісі',
                 featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 2 взрослых', '🛏️ Twin или Double',
                     '🍳 Бесплатный завтрак', '🚐 Трансфер с парковки'
                 ],
@@ -1752,8 +1555,8 @@
                 photos: ['https://via.placeholder.com/600x400/1a2a27/f5c542?text=Lake+Double+1',
                     'https://via.placeholder.com/600x400/1a2a27/f5c542?text=Lake+Double+2'
                 ],
-                descRu: 'С видом на озеро, Double (1 номер)', descEn: 'Lake view, Double (1 room)',
-                descKz: 'Көл көрінісі, Double (1 бөлме)',
+                descRu: 'Вид на озеро, Double', descEn: 'Lake view, Double',
+                descKz: 'Көл көрінісі, Double',
                 featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 2 взрослых', '🛏️ Double (неделимый)',
                     '🍳 Бесплатный завтрак', '🚐 Трансфер с парковки'
                 ],
@@ -1766,12 +1569,12 @@
                 link: '#'
             },
             { id: 'lake-twin', nameRu: '🌅 Lake View Twin', nameEn: '🌅 Lake View Twin', nameKz: '🌅 Lake View Twin',
-                price: 64900, cap: 2, extra: 1, cat: 'lake', total: 6,
+                price: 64900, cap: 2, extra: 1, cat: 'lake', total: 7,
                 photos: ['https://via.placeholder.com/600x400/1a2a27/f5c542?text=Lake+Twin+1',
                     'https://via.placeholder.com/600x400/1a2a27/f5c542?text=Lake+Twin+2'
                 ],
-                descRu: 'С видом на озеро, Twin (6 номеров)', descEn: 'Lake view, Twin (6 rooms)',
-                descKz: 'Көл көрінісі, Twin (6 бөлме)',
+                descRu: 'Вид на озеро, Twin', descEn: 'Lake view, Twin',
+                descKz: 'Көл көрінісі, Twin',
                 featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 2 взрослых', '🛏️ Twin (можно разделить)',
                     '🍳 Бесплатный завтрак', '🚐 Трансфер с парковки'
                 ],
@@ -1788,7 +1591,7 @@
                 photos: ['https://via.placeholder.com/600x400/1a2a27/f5c542?text=Triple+1',
                     'https://via.placeholder.com/600x400/1a2a27/f5c542?text=Triple+2'
                 ],
-                descRu: 'С видом на озеро, 2 кровати + кровать-чердак', descEn: 'Lake view, 2 beds + loft bed',
+                descRu: 'Вид на озеро, 2 кровати + кровать-чердак', descEn: 'Lake view, 2 beds + loft bed',
                 descKz: 'Көл көрінісі, 2 кереует + шатырлы кереует',
                 featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 3 гостя', '🛏️ 2 кровати + кровать на возвышении',
                     '🍳 Бесплатный завтрак', '🚐 Трансфер с парковки'
@@ -1806,8 +1609,8 @@
                 photos: ['https://via.placeholder.com/600x400/1a2a27/f5c542?text=Deluxe+1',
                     'https://via.placeholder.com/600x400/1a2a27/f5c542?text=Deluxe+2'
                 ],
-                descRu: '2 комнаты: двухъярусная + Double (1 номер)', descEn: '2 rooms: bunk bed + Double (1 room)',
-                descKz: '2 бөлме: екіқабатты + Double (1 бөлме)',
+                descRu: '2 комнаты: двухъярусная + Double', descEn: '2 rooms: bunk bed + Double',
+                descKz: '2 бөлме: екіқабатты + Double',
                 featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👨‍👩‍👧‍👦 2 взрослых + 2 детей', '🛏️ Двухъярусная + Double',
                     '🍳 Завтрак на 4-х', '🚐 Трансфер с парковки'
                 ],
@@ -1824,8 +1627,8 @@
                 photos: ['https://via.placeholder.com/600x400/1a2a27/f5c542?text=Deluxe+Plus+1',
                     'https://via.placeholder.com/600x400/1a2a27/f5c542?text=Deluxe+Plus+2'
                 ],
-                descRu: '2 комнаты: топчан + Double (2 номера)', descEn: '2 rooms: daybed + Double (2 rooms)',
-                descKz: '2 бөлме: топчан + Double (2 бөлме)',
+                descRu: '2 комнаты: топчан + Double', descEn: '2 rooms: daybed + Double',
+                descKz: '2 бөлме: топчан + Double',
                 featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 4 взрослых', '🛏️ Топчан + Double (неделимый)',
                     '🍳 Бесплатный завтрак', '🚐 Трансфер с парковки'
                 ],
@@ -1910,14 +1713,14 @@
                 link: 'https://www.instagram.com/reel/DKjjbJjNWve/'
             },
             { id: 'glamping', nameRu: '🏕️ Glamping', nameEn: '🏕️ Glamping', nameKz: '🏕️ Glamping', price: 119900,
-                cap: 4, extra: 0, cat: 'glamping', total: 2,
+                cap: 4, extra: 0, cat: 'glamping', total: 4,
                 photos: ['https://via.placeholder.com/600x400/1a2a27/f5c542?text=Glamping+1',
                     'https://via.placeholder.com/600x400/1a2a27/f5c542?text=Glamping+2',
                     'https://via.placeholder.com/600x400/1a2a27/f5c542?text=Glamping+3'
                 ],
-                descRu: 'Двухуровневый: кровать + топчан наверху (2 шт.)',
-                descEn: 'Two-level: bed + loft daybed (2 units)',
-                descKz: 'Екі деңгейлі: кереует + жоғарыда топчан (2 дана)',
+                descRu: 'Двухуровневый: кровать + топчан наверху',
+                descEn: 'Two-level: bed + loft daybed',
+                descKz: 'Екі деңгейлі: кереует + жоғарыда топчан',
                 featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 4 взрослых', '🛏️ Кровать + топчан на 2-м уровне',
                     '🍳 Завтрак на 4-х', '🚐 Трансфер с парковки'
                 ],
@@ -1937,51 +1740,37 @@
                 langName: 'RU', a11yBtn: '♿ Версия для слабовидящих', factLake: 'до озера', factHeight: 'высота',
                 factDrive: 'от Алматы', factWifi: 'бесплатно',
                 btnWa: 'WhatsApp', btnIg: 'Instagram', btnPh: 'Позвонить', btnBook: 'Забронировать',
-                roomsTitle: '🛏️ Наши номера', filtAll: 'Все номера', filtStd: 'Стандарт', filtMnt: 'Вид на горы',
-                filtLake: 'Вид на озеро', filtTrp: 'Трипл', filtDlx: 'Deluxe', filtLux: 'Люкс', filtGlp: 'Глэмпинг',
+                roomsTitle: '🛏️ Наши номера', filtAll: 'Все', filtStd: 'Стандарт', filtMnt: 'Горы',
+                filtLake: 'Озеро', filtTrp: 'Трипл', filtDlx: 'Deluxe', filtLux: 'Люкс', filtGlp: 'Глэмпинг',
                 bookingFormTitle: '📅 Проверить доступность', lblCheckIn: '📅 Дата заезда', lblGuests: '👥 Гости',
-                lblNights: '🌙 Ночей',
-                btnCheckAvail: '🔍 Проверить', btnOpenBookForm: '📝 Забронировать подходящий номер',
                 mapTitle: '📍 Как добраться', mapInfo: 'Озеро Кольсай Нижнее | Из Алматы: ~4 часа (300 км)',
-                btnRoute: '🗺️ Построить маршрут',
+                btnRoute: '🗺️ Маршрут',
                 videoTitle: '🎥 Видеообзор',
-                rulesTitle: '📋 Важная информация', rulesSubTitle: 'Условия бронирования',
-                rule1Title: '1. Предоплата', rule1Text: 'Для гарантии брони требуется 100% предоплата. Мы сформируем ссылку для оплаты.',
-                rule2Title: '2. Отмена',
-                rule2Text: '• При отмене меньше чем за 7 дней до заезда — удерживается стоимость 1 суток.<br>• Если бронь сделана меньше чем за 7 дней до заезда — при отмене также удерживается 1 сутки.<br>• При отмене раньше чем за 7 дней — предоплата возвращается полностью.',
-                rule3Title: '3. Неявка',
-                rule3Text: 'Если гость не приехал и не сообщил — удерживаются 1 сутки, остальные ночи аннулируются.',
-                rule4Title: '4. Изменение дат',
-                rule4Text: 'Возможны при наличии свободных мест и согласовании не менее чем за 7 дней до заезда.',
-                rule5Title: '📝 Для бронирования',
-                rule5Text: 'Просим написать ФИО одного гостя. Мы сформируем ссылку для оплаты.',
-                faqTitle: 'Частые вопросы',
-                faq1Q: '🕐 Во сколько заезд и выезд?',
-                faq1A: 'Заезд с 15:00, выезд до 12:00. Ранний заезд или поздний выезд возможны по согласованию при наличии свободных номеров.',
-                faq2Q: '🍳 Включено ли питание?',
-                faq2A: 'Да, завтрак включен в стоимость всех номеров. Рядом находится этно-кафе Tary для обеда и ужина.',
-                faq3Q: '🚗 Есть ли парковка?',
-                faq3A: 'Да, бесплатная парковка. Также предоставляем бесплатный трансфер с парковки до отеля.',
-                faq4Q: '👶 Можно ли с детьми?',
-                faq4A: 'Дети до 7 лет проживают бесплатно. Для детей постарше — доп. место 15 000 ₸ с завтраком.',
-                faq5Q: '🐕 Можно ли с животными?', faq5A: 'К сожалению, проживание с животными не предусмотрено.',
-                faq6Q: '💳 Какие способы оплаты?',
-                faq6A: 'Мы принимаем оплату по ссылке (Kaspi, карты). 100% предоплата для гарантии бронирования.',
+                rulesTitle: '📋 Важная информация', rulesSubTitle: 'Условия',
+                rule1Title: '1. Предоплата', rule1Text: 'Для гарантии брони требуется 100% предоплата.',
+                rule2Title: '2. Отмена', rule2Text: '• Менее 7 дней — 1 сутки<br>• Более 7 дней — полный возврат',
+                rule3Title: '3. Неявка', rule3Text: 'Удерживаются 1 сутки, остальные ночи аннулируются.',
+                rule4Title: '4. Изменение дат', rule4Text: 'При наличии мест и согласовании за 7+ дней.',
+                rule5Title: '📝 Для брони', rule5Text: 'Напишите ФИО гостя. Мы пришлём ссылку на оплату.',
+                faqTitle: 'Вопросы',
+                faq1Q: '🕐 Заезд и выезд?', faq1A: 'Заезд с 15:00, выезд до 12:00.',
+                faq2Q: '🍳 Питание?', faq2A: 'Завтрак включен. Рядом этно-кафе Tary.',
+                faq3Q: '🚗 Парковка?', faq3A: 'Бесплатная парковка и трансфер до отеля.',
+                faq4Q: '👶 С детьми?', faq4A: 'До 7 лет бесплатно. Доп. место 15 000 ₸.',
+                faq5Q: '🐕 Животные?', faq5A: 'К сожалению, нет.',
+                faq6Q: '💳 Оплата?', faq6A: 'По ссылке (Kaspi, карты). 100% предоплата.',
                 reviewsTitle: '💬 Отзывы гостей',
                 footerAdmin: '🔧 Админ-панель', footerA11y: '♿ Версия для слабовидящих',
-                exitAdmin: '← Выйти', tabAvail: '📊 Доступность по датам',
-                tabBookings: '📋 Бронирования', btnSaveCloud: '💾 Сохранить',
                 bookModTitle: '📅 Забронировать номер', bookSelRoom: '🏨 Выберите номер',
                 bookDate: '📅 Дата заезда', bookGuests: '👥 Количество гостей',
-                bookNights: '🌙 Количество ночей',
-                bookName: '👤 Ф.И.О.', bookPhone: '📞 Телефон', bookComment: '📝 Комментарий (необязательно)',
+                bookName: '👤 Ф.И.О.', bookPhone: '📞 Телефон', bookComment: '📝 Комментарий',
                 bookSubmit: '✅ Подтвердить бронирование',
                 free: 'Свободно', busy: 'Занято', noFree: 'Нет мест', selectDate: 'Выберите дату', perNight: '/ ночь',
                 guest1: 'гость', guest2: 'гостя', guest5: 'гостей',
                 extraBed: 'доп. место', extraBeds: 'доп. места',
                 needExtra: '⚠️ Требуются доп. места',
                 tooMany: '❌ Слишком много гостей',
-                totalLabel: 'Итого за',
+                totalLabel: 'Итого',
                 bookedOk: '✅ Бронирование подтверждено!',
                 noRooms: 'Нет свободных номеров на выбранную дату',
                 fillNamePhone: 'Пожалуйста, заполните Ф.И.О. и телефон',
@@ -1989,7 +1778,6 @@
                 voucherTitle: '🎫 Ваучер на бронирование',
                 voucherRoom: 'Номер',
                 voucherDate: 'Дата заезда',
-                voucherNights: 'Ночей',
                 voucherGuests: 'Гостей',
                 voucherTotal: 'Итого к оплате',
                 voucherRules: 'Условия отмены',
@@ -1998,58 +1786,47 @@
                 voucherBreakfast: '🍳 Завтрак включен',
                 voucherCheckIn: '🕐 Заезд с 15:00, выезд до 12:00',
                 downloadVoucher: '📄 Скачать ваучер',
-                weather: '🌤️ Кольсай',
-                adminTitle: 'Управление доступностью',
-                adminBadge: 'Админ',
-                today: 'Сегодня',
-                prevMonth: '◀',
-                nextMonth: '▶',
-                monthNames: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
-                weekDays: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
-                totalRooms: 'Всего',
-                freeRooms: 'Свободно'
+                weather: 'Погода',
+                weatherTemp: '°C',
+                weatherWind: 'Ветер',
+                weatherSpeed: 'км/ч',
+                past: 'Прошедшая дата'
             },
             en: {
                 langName: 'EN', a11yBtn: '♿ Accessibility', factLake: 'to lake', factHeight: 'altitude',
                 factDrive: 'from Almaty', factWifi: 'free',
                 btnWa: 'WhatsApp', btnIg: 'Instagram', btnPh: 'Call us', btnBook: 'Book now',
-                roomsTitle: '🛏️ Our Rooms', filtAll: 'All rooms', filtStd: 'Standard', filtMnt: 'Mountain',
+                roomsTitle: '🛏️ Our Rooms', filtAll: 'All', filtStd: 'Standard', filtMnt: 'Mountain',
                 filtLake: 'Lake', filtTrp: 'Triple', filtDlx: 'Deluxe', filtLux: 'Luxury', filtGlp: 'Glamping',
                 bookingFormTitle: '📅 Check Availability', lblCheckIn: '📅 Check-in', lblGuests: '👥 Guests',
-                lblNights: '🌙 Nights',
-                btnCheckAvail: '🔍 Check', btnOpenBookForm: '📝 Book suitable room',
                 mapTitle: '📍 How to get', mapInfo: 'Lower Kolsay Lake | From Almaty: ~4 hours (300 km)',
-                btnRoute: '🗺️ Build route',
+                btnRoute: '🗺️ Route',
                 videoTitle: '🎥 Video Tour',
-                rulesTitle: '📋 Important Info', rulesSubTitle: 'Booking Terms',
-                rule1Title: '1. Prepayment', rule1Text: '100% prepayment required. We will send a payment link.',
-                rule2Title: '2. Cancellation', rule2Text: '• Less than 7 days before check-in — 1 night charged.<br>• More than 7 days — full refund.',
+                rulesTitle: '📋 Important Info', rulesSubTitle: 'Terms',
+                rule1Title: '1. Prepayment', rule1Text: '100% prepayment required.',
+                rule2Title: '2. Cancellation', rule2Text: '• Less than 7 days — 1 night<br>• More than 7 days — full refund',
                 rule3Title: '3. No-show', rule3Text: '1 night charged, remaining nights cancelled.',
-                rule4Title: '4. Date change', rule4Text: 'Possible with availability, at least 7 days before check-in.',
-                rule5Title: '📝 To book', rule5Text: 'Please provide full name of one guest. We will send a payment link.',
+                rule4Title: '4. Date change', rule4Text: 'Possible with availability, 7+ days before.',
+                rule5Title: '📝 To book', rule5Text: 'Provide guest full name. We will send payment link.',
                 faqTitle: 'FAQ',
-                faq1Q: '🕐 Check-in / Check-out?', faq1A: 'Check-in from 15:00, check-out until 12:00.',
-                faq2Q: '🍳 Is food included?', faq2A: 'Yes, breakfast is included. Tary ethnic cafe is nearby.',
-                faq3Q: '🚗 Is there parking?', faq3A: 'Yes, free parking and shuttle to the hotel.',
-                faq4Q: '👶 Can I bring children?', faq4A: 'Children under 7 stay free. Extra bed: 15,000 ₸.',
-                faq5Q: '🐕 Are pets allowed?', faq5A: 'Unfortunately, pets are not allowed.',
-                faq6Q: '💳 Payment methods?', faq6A: 'Payment via link (Kaspi, cards). 100% prepayment.',
+                faq1Q: '🕐 Check-in / Check-out?', faq1A: 'Check-in 15:00, check-out 12:00.',
+                faq2Q: '🍳 Food?', faq2A: 'Breakfast included. Tary ethnic cafe nearby.',
+                faq3Q: '🚗 Parking?', faq3A: 'Free parking and transfer to hotel.',
+                faq4Q: '👶 Children?', faq4A: 'Under 7 free. Extra bed: 15,000 ₸.',
+                faq5Q: '🐕 Pets?', faq5A: 'Unfortunately, not allowed.',
+                faq6Q: '💳 Payment?', faq6A: 'Link (Kaspi, cards). 100% prepayment.',
                 reviewsTitle: '💬 Guest Reviews',
                 footerAdmin: '🔧 Admin Panel', footerA11y: '♿ Accessibility',
-                exitAdmin: '← Exit', tabAvail: '📊 Availability', tabBookings: '📋 Bookings',
-                btnSaveCloud: '💾 Save',
                 bookModTitle: '📅 Book a Room', bookSelRoom: '🏨 Select Room', bookDate: '📅 Check-in Date',
                 bookGuests: '👥 Number of Guests',
-                bookNights: '🌙 Number of Nights',
-                bookName: '👤 Full Name', bookPhone: '📞 Phone', bookComment: '📝 Comment (optional)',
+                bookName: '👤 Full Name', bookPhone: '📞 Phone', bookComment: '📝 Comment',
                 bookSubmit: '✅ Confirm Booking',
-                free: 'Free', busy: 'Busy', noFree: 'No availability', selectDate: 'Select date',
-                perNight: '/ night',
+                free: 'Free', busy: 'Busy', noFree: 'No availability', selectDate: 'Select date', perNight: '/ night',
                 guest1: 'guest', guest2: 'guests', guest5: 'guests',
                 extraBed: 'extra bed', extraBeds: 'extra beds',
                 needExtra: '⚠️ Extra beds needed',
                 tooMany: '❌ Too many guests',
-                totalLabel: 'Total for',
+                totalLabel: 'Total',
                 bookedOk: '✅ Booking confirmed!',
                 noRooms: 'No rooms available for selected date',
                 fillNamePhone: 'Please fill in name and phone',
@@ -2057,7 +1834,6 @@
                 voucherTitle: '🎫 Booking Voucher',
                 voucherRoom: 'Room',
                 voucherDate: 'Check-in date',
-                voucherNights: 'Nights',
                 voucherGuests: 'Guests',
                 voucherTotal: 'Total amount',
                 voucherRules: 'Cancellation policy',
@@ -2066,16 +1842,11 @@
                 voucherBreakfast: '🍳 Breakfast included',
                 voucherCheckIn: '🕐 Check-in 15:00, Check-out 12:00',
                 downloadVoucher: '📄 Download voucher',
-                weather: '🌤️ Kolsay',
-                adminTitle: 'Availability Management',
-                adminBadge: 'Admin',
-                today: 'Today',
-                prevMonth: '◀',
-                nextMonth: '▶',
-                monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                weekDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                totalRooms: 'Total',
-                freeRooms: 'Free'
+                weather: 'Weather',
+                weatherTemp: '°C',
+                weatherWind: 'Wind',
+                weatherSpeed: 'km/h',
+                past: 'Past date'
             },
             kz: {
                 langName: 'KZ', a11yBtn: '♿ Нашар көретіндерге', factLake: 'көлге дейін', factHeight: 'биіктік',
@@ -2084,35 +1855,28 @@
                 roomsTitle: '🛏️ Біздің нөмірлер', filtAll: 'Барлығы', filtStd: 'Стандарт', filtMnt: 'Тау',
                 filtLake: 'Көл', filtTrp: 'Трипл', filtDlx: 'Deluxe', filtLux: 'Люкс', filtGlp: 'Глэмпинг',
                 bookingFormTitle: '📅 Қолжетімділікті тексеру', lblCheckIn: '📅 Келу күні', lblGuests: '👥 Қонақтар',
-                lblNights: '🌙 Түндер',
-                btnCheckAvail: '🔍 Тексеру', btnOpenBookForm: '📝 Қолайлы нөмірді брондау',
                 mapTitle: '📍 Қалай жетуге болады',
-                mapInfo: 'Көлсай көлі (Төменгі) | Алматыдан: ~4 сағат (300 км)', btnRoute: '🗺️ Маршрут құру',
+                mapInfo: 'Көлсай көлі (Төменгі) | Алматыдан: ~4 сағат (300 км)', btnRoute: '🗺️ Маршрут',
                 videoTitle: '🎥 Бейне шолу',
-                rulesTitle: '📋 Маңызды ақпарат', rulesSubTitle: 'Брондау шарттары',
-                rule1Title: '1. Алдын ала төлем', rule1Text: '100% алдын ала төлем қажет. Төлем сілтемесін жібереміз.',
-                rule2Title: '2. Бас тарту',
-                rule2Text: '• Келуден 7 күн бұрын бас тартса — 1 түн ұсталады.<br>• 7 күннен ерте — толық қайтару.',
+                rulesTitle: '📋 Маңызды ақпарат', rulesSubTitle: 'Шарттар',
+                rule1Title: '1. Алдын ала төлем', rule1Text: '100% алдын ала төлем қажет.',
+                rule2Title: '2. Бас тарту', rule2Text: '• 7 күннен кем — 1 түн<br>• 7+ күн — толық қайтару',
                 rule3Title: '3. Келмеу', rule3Text: '1 түн ұсталады, қалған түндер жойылады.',
-                rule4Title: '4. Күнді өзгерту',
-                rule4Text: 'Бос орын болса, келуден 7 күн бұрын өзгертуге болады.',
+                rule4Title: '4. Күнді өзгерту', rule4Text: 'Бос орын болса, келуден 7+ күн бұрын.',
                 rule5Title: '📝 Брондау үшін',
                 rule5Text: 'Бір қонақтың аты-жөнін жазыңыз. Төлем сілтемесін жібереміз.',
-                faqTitle: 'Жиі қойылатын сұрақтар',
-                faq1Q: '🕐 Келу және кету уақыты?', faq1A: 'Келу 15:00-ден, кету 12:00-ге дейін.',
-                faq2Q: '🍳 Тамақ қосылған ба?', faq2A: 'Иә, таңғы ас кіреді. Жанында Tary этно-кафесі бар.',
-                faq3Q: '🚗 Тұрақ бар ма?', faq3A: 'Иә, тегін тұрақ және қонақ үйге дейін трансфер.',
-                faq4Q: '👶 Балалармен бола ма?', faq4A: '7 жасқа дейін тегін. Қосымша орын: 15 000 ₸.',
-                faq5Q: '🐕 Жануарлармен бола ма?', faq5A: 'Өкінішке орай, жануарлармен болуға болмайды.',
-                faq6Q: '💳 Төлем әдістері?', faq6A: 'Сілтеме арқылы төлем (Kaspi, карталар). 100% алдын ала төлем.',
+                faqTitle: 'Сұрақтар',
+                faq1Q: '🕐 Келу және кету?', faq1A: 'Келу 15:00-ден, кету 12:00-ге дейін.',
+                faq2Q: '🍳 Тамақ?', faq2A: 'Таңғы ас кіреді. Tary этно-кафе жанында.',
+                faq3Q: '🚗 Тұрақ?', faq3A: 'Тегін тұрақ және трансфер.',
+                faq4Q: '👶 Балалар?', faq4A: '7 жасқа дейін тегін. Қосымша орын: 15 000 ₸.',
+                faq5Q: '🐕 Жануарлар?', faq5A: 'Өкінішке орай, жоқ.',
+                faq6Q: '💳 Төлем?', faq6A: 'Сілтеме арқылы (Kaspi, карталар). 100% алдын ала.',
                 reviewsTitle: '💬 Қонақтардың пікірлері',
                 footerAdmin: '🔧 Әкімші панелі', footerA11y: '♿ Нашар көретіндерге',
-                exitAdmin: '← Шығу', tabAvail: '📊 Қолжетімділік', tabBookings: '📋 Брондаулар',
-                btnSaveCloud: '💾 Сақтау',
                 bookModTitle: '📅 Нөмірді брондау', bookSelRoom: '🏨 Нөмірді таңдау', bookDate: '📅 Келу күні',
                 bookGuests: '👥 Қонақтар саны',
-                bookNights: '🌙 Түндер саны',
-                bookName: '👤 Аты-жөні', bookPhone: '📞 Телефон', bookComment: '📝 Түсініктеме (міндетті емес)',
+                bookName: '👤 Аты-жөні', bookPhone: '📞 Телефон', bookComment: '📝 Түсініктеме',
                 bookSubmit: '✅ Брондауды растау',
                 free: 'Бос', busy: 'Бос емес', noFree: 'Орын жоқ', selectDate: 'Күнді таңдаңыз', perNight: '/ түн',
                 guest1: 'қонақ', guest2: 'қонақ', guest5: 'қонақ',
@@ -2127,7 +1891,6 @@
                 voucherTitle: '🎫 Брондау ваучері',
                 voucherRoom: 'Нөмір',
                 voucherDate: 'Келу күні',
-                voucherNights: 'Түндер',
                 voucherGuests: 'Қонақтар',
                 voucherTotal: 'Төленетін сома',
                 voucherRules: 'Бас тарту шарттары',
@@ -2136,30 +1899,25 @@
                 voucherBreakfast: '🍳 Таңғы ас қосылған',
                 voucherCheckIn: '🕐 Келу 15:00, кету 12:00',
                 downloadVoucher: '📄 Ваучерді жүктеу',
-                weather: '🌤️ Көлсай',
-                adminTitle: 'Қолжетімділікті басқару',
-                adminBadge: 'Админ',
-                today: 'Бүгін',
-                prevMonth: '◀',
-                nextMonth: '▶',
-                monthNames: ['Қаң', 'Ақп', 'Нау', 'Сәу', 'Мау', 'Мау', 'Шіл', 'Там', 'Қыр', 'Қаз', 'Қар', 'Жел'],
-                weekDays: ['Дс', 'Сс', 'Ср', 'Бс', 'Жм', 'Сб', 'Жс'],
-                totalRooms: 'Барлығы',
-                freeRooms: 'Бос'
+                weather: 'Ауа райы',
+                weatherTemp: '°C',
+                weatherWind: 'Жел',
+                weatherSpeed: 'км/сағ',
+                past: 'Өткен күн'
             }
         };
 
         let curLang = 'ru';
         let avails = {};
         let bookings = [];
-        let isAdmin = false;
-        let curAdminTab = 'availability';
         let curFilter = 'all';
         let photoSet = [],
             photoIdx = 0;
         let isHighContrast = false;
-        let currentBookingData = null;
-        let adminDateOffset = 0;
+        let isPhotoModalOpen = false;
+        let jivoLoaded = false;
+        let weatherData = { temp: 0, wind: 0, code: 0, date: '' };
+        let weatherLoaded = false;
 
         function t(key) { return L[curLang][key] || key; }
 
@@ -2173,80 +1931,132 @@
 
         function extraWord(n) { return n === 1 ? t('extraBed') : t('extraBeds'); }
 
-        function showToast(message, type = 'success') {
-            const existing = document.querySelector('.toast');
+        function showToast(message, type) {
+            type = type || 'success';
+            var existing = document.querySelector('.toast');
             if (existing) existing.remove();
-            const toast = document.createElement('div');
-            toast.className = `toast toast-${type}`;
+            var toast = document.createElement('div');
+            toast.className = 'toast toast-' + type;
             toast.textContent = message;
             document.body.appendChild(toast);
-            setTimeout(() => {
+            setTimeout(function() {
                 toast.style.opacity = '0';
                 toast.style.transition = 'opacity 0.3s';
-                setTimeout(() => toast.remove(), 300);
+                setTimeout(function() { toast.remove(); }, 300);
             }, 3000);
         }
 
         function toggleAccessibility() {
             isHighContrast = !isHighContrast;
             document.body.classList.toggle('high-contrast', isHighContrast);
-            const btn = document.getElementById('btnA11y');
+            var btn = document.getElementById('btnA11y');
             btn.classList.toggle('active-high-contrast', isHighContrast);
             btn.textContent = isHighContrast ? '🌙 Обычная версия' : t('a11yBtn');
             localStorage.setItem('pana_high_contrast', isHighContrast ? '1' : '0');
             showToast(isHighContrast ? '🔆 Включена контрастная версия' : '🌙 Обычная версия', 'info');
         }
 
-        let weatherData = { temp: 0, wind: 0, code: 0 };
-        let weatherLoaded = false;
-
+        // ===== ПОГОДА =====
         async function fetchWeather() {
             try {
-                const r = await fetch(
+                var r = await fetch(
                     'https://api.open-meteo.com/v1/forecast?latitude=42.935&longitude=78.346&current_weather=true&timezone=Asia/Almaty'
                 );
                 if (!r.ok) throw new Error();
-                const d = await r.json();
-                const w = d.current_weather;
-                weatherData = { temp: Math.round(w.temperature), wind: Math.round(w.windspeed), code: w.weathercode };
+                var d = await r.json();
+                var w = d.current_weather;
+                weatherData = {
+                    temp: Math.round(w.temperature),
+                    wind: Math.round(w.windspeed),
+                    code: w.weathercode,
+                    date: new Date().toISOString().split('T')[0]
+                };
                 weatherLoaded = true;
                 updateWeatherDisplay();
             } catch (e) {
-                weatherData = { temp: 18, wind: 10, code: 0 };
+                weatherData = { temp: 18, wind: 10, code: 0, date: new Date().toISOString().split('T')[0] };
                 weatherLoaded = true;
                 updateWeatherDisplay();
             }
         }
 
-        function updateWeatherDisplay() {
-            const emoji = weatherData.code <= 3 ? '☀️' : weatherData.code <= 20 ? '⛅' : '🌧️';
-            const lang = curLang;
-            const city = t('weather');
-            const dateStr = new Date().toLocaleDateString(lang === 'ru' ? 'ru' : lang === 'en' ? 'en' : 'kk', { day: 'numeric',
-                month: 'long' });
-            document.getElementById('weatherText').innerHTML =
-                `${emoji} ${city}, <span style="font-weight:700;">${weatherData.temp}°C</span> · Ветер ${weatherData.wind} км/ч · ${dateStr}`;
+        async function fetchWeatherForDate(date) {
+            try {
+                var r = await fetch(
+                    'https://api.open-meteo.com/v1/forecast?latitude=42.935&longitude=78.346&start_date=' + date + '&end_date=' +
+                    date + '&daily=temperature_2m_max,temperature_2m_min,weathercode,windspeed_10m_max&timezone=Asia/Almaty'
+                );
+                if (!r.ok) throw new Error();
+                var d = await r.json();
+                if (d.daily) {
+                    var w = d.daily;
+                    return {
+                        temp: Math.round((w.temperature_2m_max[0] + w.temperature_2m_min[0]) / 2),
+                        wind: Math.round(w.windspeed_10m_max[0]),
+                        code: w.weathercode[0]
+                    };
+                }
+                return null;
+            } catch (e) {
+                return null;
+            }
         }
 
+        function getWeatherEmoji(code) {
+            if (code === undefined || code === null) return '🌤️';
+            if (code <= 1) return '☀️';
+            if (code <= 3) return '⛅';
+            if (code <= 20) return '🌧️';
+            if (code <= 30) return '❄️';
+            return '🌤️';
+        }
+
+        function updateWeatherDisplay() {
+            var emoji = getWeatherEmoji(weatherData.code);
+            var temp = weatherData.temp;
+            var wind = weatherData.wind;
+            var lang = curLang;
+            var dateStr = new Date().toLocaleDateString(lang === 'ru' ? 'ru' : lang === 'en' ? 'en' : 'kk', { day: 'numeric',
+                month: 'long' });
+
+            document.getElementById('weatherMiniText').innerHTML =
+                emoji + ' ' + t('weather') + ' на ' + dateStr + ': <span style="font-weight:700;">' + temp + t(
+                    'weatherTemp') + '</span> · ' + t('weatherWind') + ' ' + wind + ' ' + t('weatherSpeed');
+        }
+
+        async function updateWeatherForDate(date) {
+            var data = await fetchWeatherForDate(date);
+            if (data) {
+                var emoji = getWeatherEmoji(data.code);
+                var lang = curLang;
+                var dateStr = new Date(date + 'T00:00:00').toLocaleDateString(lang === 'ru' ? 'ru' : lang === 'en' ? 'en' :
+                    'kk', { day: 'numeric', month: 'long' });
+                document.getElementById('weatherMiniText').innerHTML =
+                    emoji + ' ' + t('weather') + ' на ' + dateStr + ': <span style="font-weight:700;">' + data.temp + t(
+                        'weatherTemp') + '</span> · ' + t('weatherWind') + ' ' + data.wind + ' ' + t('weatherSpeed');
+            } else {
+                updateWeatherDisplay();
+            }
+        }
+
+        // ===== ОБЛАКО =====
         async function saveToCloud() {
-            const d = { avails, bookings, ts: new Date().toISOString() };
+            var d = { avails: avails, bookings: bookings, ts: new Date().toISOString() };
             try {
                 await fetch(BIN_URL, { method: 'PUT', headers: { 'Content-Type': 'application/json',
                         'X-Master-Key': API_KEY }, body: JSON.stringify(d) });
-                showToast('✅ Сохранено!', 'success');
-            } catch (e) { localStorage.setItem('pkb_backup', JSON.stringify(d));
-                showToast('⚠️ Сохранено локально', 'info'); }
+            } catch (e) { localStorage.setItem('pkb_backup', JSON.stringify(d)); }
         }
 
         async function loadFromCloud() {
             try {
-                const r = await fetch(`${BIN_URL}/latest`, { headers: { 'X-Master-Key': API_KEY } });
-                if (r.ok) { const j = await r.json();
+                var r = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
+                if (r.ok) { var j = await r.json();
                     avails = j.record.avails || {};
                     bookings = j.record.bookings || []; }
             } catch (e) {
-                const s = localStorage.getItem('pkb_backup');
-                if (s) { const j = JSON.parse(s);
+                var s = localStorage.getItem('pkb_backup');
+                if (s) { var j = JSON.parse(s);
                     avails = j.avails || {};
                     bookings = j.bookings || []; }
             }
@@ -2254,254 +2064,340 @@
 
         function getAvail(rid, date) {
             if (avails[rid] && avails[rid][date] !== undefined) return avails[rid][date];
-            return ROOMS.find(r => r.id === rid).total;
+            var room = ROOMS.find(function(r) { return r.id === rid; });
+            return room ? room.total : 0;
         }
 
         function setAvail(rid, date, n) {
             if (!avails[rid]) avails[rid] = {};
-            avails[rid][date] = Math.max(0, Math.min(n, ROOMS.find(r => r.id === rid).total));
+            var room = ROOMS.find(function(r) { return r.id === rid; });
+            var max = room ? room.total : 0;
+            avails[rid][date] = Math.max(0, Math.min(n, max));
         }
 
         function bookedCount(rid, date) {
-            return bookings.filter(b => b.rid === rid && b.date === date && b.st === 'ok').length;
+            var count = 0;
+            bookings.forEach(function(b) {
+                if (b.rid === rid && b.date === date && b.st === 'ok') count++;
+            });
+            return count;
         }
 
         function realAvail(rid, date) {
             return Math.max(0, getAvail(rid, date) - bookedCount(rid, date));
         }
 
+        function isPastDate(date) {
+            var today = new Date();
+            today.setHours(0, 0, 0, 0);
+            var checkDate = new Date(date);
+            return checkDate < today;
+        }
+
+        // ===== НОМЕРА =====
         function renderRooms() {
-            const grid = document.getElementById('roomsGrid');
-            grid.innerHTML = ROOMS.map(room => {
-                const now = room.total - bookings.filter(b => b.rid === room.id && b.st === 'ok').length;
-                let ac = 'availability-ok',
-                    at = `${t('free')}: ${now}/${room.total}`;
-                if (now === 0) { ac = 'availability-none';
-                    at = t('noFree'); } else if (now <= 2) { ac = 'availability-low';
-                    at = `${t('free')}: ${now}/${room.total}`; }
-                const hid = curFilter !== 'all' && room.cat !== curFilter ? 'hidden' : '';
-                return `<div class="room-card ${hid}" data-cat="${room.cat}" data-room-id="${room.id}">
-                    <div class="room-photos" onclick="openPhotoModal('${room.id}',0)"><img src="${room.photos[0]}" alt="${rName(room)}" loading="lazy" draggable="false" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a2a27%22/%3E%3Ctext fill=%22%23f5c542%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3E📷%3C/text%3E%3C/svg%3E'"><span class="photo-count">📷 ${room.photos.length}</span></div>
-                    <div class="room-info"><div class="room-name">${rName(room)}</div><div class="room-price">${room.price.toLocaleString()} ₸</div><div class="room-desc">${rDesc(room)}</div><span class="room-availability ${ac}">${at}</span><ul class="room-features">${rFeat(room).map(f => `<li>${f}</li>`).join('')}</ul>${room.link && room.link !== '#' ? `<a href="${room.link}" target="_blank" class="room-link">🔍 Подробнее</a>` : ''}</div>
-                    <button class="btn-book-room" onclick="openBookingModal('${room.id}')">${t('btnBook')}</button>
-                </div>`;
+            var grid = document.getElementById('roomsGrid');
+            grid.innerHTML = ROOMS.map(function(room) {
+                var total = room.total;
+                var hid = curFilter !== 'all' && room.cat !== curFilter ? 'hidden' : '';
+
+                // Определяем доступность для сегодняшней даты (для отображения в карточке)
+                var today = new Date().toISOString().split('T')[0];
+                var now = realAvail(room.id, today);
+                var isPast = isPastDate(today);
+
+                var ac, at, btnDisabled = '';
+
+                if (isPast) {
+                    ac = 'availability-past';
+                    at = '🔒 ' + t('past');
+                    btnDisabled = 'disabled';
+                } else if (now === 0) {
+                    ac = 'availability-none';
+                    at = t('noFree');
+                } else if (now <= 2) {
+                    ac = 'availability-low';
+                    at = t('free') + ': ' + now + '/' + total;
+                } else {
+                    ac = 'availability-ok';
+                    at = t('free') + ': ' + now + '/' + total;
+                }
+
+                return '<div class="room-card ' + hid + '" data-cat="' + room.cat + '" data-room-id="' + room.id + '">' +
+                    '<div class="room-photos" onclick="openPhotoModal(\'' + room.id + '\',0)"><img src="' + room.photos[0] +
+                    '" alt="' + rName(room) + '" loading="lazy" draggable="false" onerror="this.src=\'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a2a27%22/%3E%3Ctext fill=%22%23f5c542%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3E📷%3C/text%3E%3C/svg%3E\'"><span class="photo-count">📷 ' +
+                    room.photos.length + '</span></div>' +
+                    '<div class="room-info"><div class="room-name">' + rName(room) + '</div><div class="room-price">' +
+                    room.price.toLocaleString() + ' ₸</div><div class="room-desc">' + rDesc(room) +
+                    '</div><span class="room-availability ' + ac + '">' + at + '</span><ul class="room-features">' +
+                    rFeat(room).map(function(f) { return '<li>' + f + '</li>'; }).join('') +
+                    '</ul>' + (room.link && room.link !== '#' ? '<a href="' + room.link +
+                    '" target="_blank" class="room-link">🔍 Подробнее</a>' : '') + '</div>' +
+                    '<button class="btn-book-room ' + btnDisabled + '" onclick="openBookingModal(\'' + room.id +
+                    '\')">' + t('btnBook') + '</button>' +
+                    '</div>';
             }).join('');
         }
 
+        // ===== БЫСТРАЯ ПРОВЕРКА =====
         function updateQuickAvail() {
-            const date = document.getElementById('quickCheckIn').value;
-            const guests = parseInt(document.getElementById('quickGuests').value) || 2;
-            const nights = parseInt(document.getElementById('quickNights').value) || 1;
-            const resDiv = document.getElementById('quickAvailResult');
-            const suggDiv = document.getElementById('quickSuggestion');
-            const btnDiv = document.getElementById('btnOpenBookForm');
+            var date = document.getElementById('quickCheckIn').value;
+            var guests = parseInt(document.getElementById('quickGuests').value) || 2;
+            var resDiv = document.getElementById('quickAvailResult');
+            var btnDiv = document.getElementById('btnOpenBookForm');
 
-            if (!date) { resDiv.style.display = 'none';
-                suggDiv.style.display = 'none';
-                btnDiv.style.display = 'none'; return; }
+            if (date) {
+                updateWeatherForDate(date);
+            }
 
-            let html = `<strong>📊 ${t('free')} ${date}:</strong><br>`;
-            let anyAvail = false;
-            ROOMS.forEach(room => {
-                const a = realAvail(room.id, date);
+            if (!date || isPastDate(date)) {
+                if (date && isPastDate(date)) {
+                    resDiv.innerHTML = '<div style="text-align:center;color:rgba(255,255,255,0.3);padding:10px;">🔒 ' + t(
+                        'past') + '</div>';
+                    resDiv.style.display = 'block';
+                    btnDiv.style.display = 'none';
+                } else {
+                    resDiv.style.display = 'none';
+                    btnDiv.style.display = 'none';
+                }
+                return;
+            }
+
+            var html = '<strong>📊 ' + t('free') + ' ' + date + ':</strong><br>';
+            var anyAvail = false;
+            ROOMS.forEach(function(room) {
+                var a = realAvail(room.id, date);
                 if (a > 0) anyAvail = true;
                 html +=
-                    `<div class="avail-list-item"><span>${rName(room)} (до ${room.cap + room.extra} чел.)</span> <span class="${a > 0 ? 'avail-free' : 'avail-busy'}">${a > 0 ? a + ' ' + t('free').toLowerCase() : t('busy')}</span></div>`;
+                    '<div class="avail-list-item"><span>' + rName(room) + ' (до ' + (room.cap + room.extra) +
+                    ' чел.)</span> <span class="' + (a > 0 ? 'avail-free' : 'avail-busy') + '">' + (a > 0 ? a +
+                        ' ' + t('free').toLowerCase() : t('busy')) + '</span></div>';
             });
             resDiv.innerHTML = html;
             resDiv.style.display = 'block';
 
-            const suitable = ROOMS.filter(r => {
-                const a = realAvail(r.id, date);
-                return a > 0 && guests <= r.cap + r.extra;
-            }).sort((a, b) => a.price - b.price);
-
-            if (suitable.length > 0) {
-                let sh = `<strong>✅ ${t('totalLabel')} ${nights} ${t('perNight')}:</strong><br>`;
-                suitable.forEach(r => {
-                    const ex = Math.max(0, guests - r.cap);
-                    const total = (r.price + ex * 15000) * nights;
-                    sh +=
-                        `<div class="avail-list-item"><span>${rName(r)}</span> <span style="color:#2ed573;">${total.toLocaleString()} ₸</span></div>`;
-                });
-                suggDiv.innerHTML = sh;
-                suggDiv.style.display = 'block';
+            if (anyAvail) {
                 btnDiv.style.display = 'block';
             } else {
-                suggDiv.innerHTML = `<strong style="color:#ff4757;">❌ ${t('noRooms')}</strong>`;
-                suggDiv.style.display = 'block';
                 btnDiv.style.display = 'none';
             }
         }
 
-        function openBookingModal(rid = null) {
-            const today = new Date().toISOString().split('T')[0];
-            const modal = document.getElementById('bookingModal');
-            const content = document.getElementById('bookingModalContent');
-            const opts = ROOMS.map(r =>
-                `<option value="${r.id}" ${r.id === rid ? 'selected' : ''}>${rName(r)} — ${r.price.toLocaleString()} ₸ (до ${r.cap + r.extra} чел.)</option>`
-            ).join('');
-            content.innerHTML = `
-                <div class="form-row">
-                    <div class="form-group"><label>${t('bookDate')}</label><input type="date" id="bDate" value="${today}" min="${today}" onchange="updateBookingForm()"></div>
-                    <div class="form-group"><label>${t('bookGuests')}</label><select id="bGuests" onchange="updateBookingForm()">${[1,2,3,4,5,6].map(n => `<option value="${n}" ${n===2?'selected':''}>${n} ${guestWord(n)}</option>`).join('')}</select></div>
-                </div>
-                <div class="form-group"><label>${t('bookNights')}</label>
-                    <select id="bNights" onchange="updateBookingForm()">${[1,2,3,4,5,6,7].map(n => `<option value="${n}" ${n===1?'selected':''}>${n}</option>`).join('')}</select>
-                </div>
-                <div class="form-group"><label>${t('bookSelRoom')}</label><select id="bRoom" onchange="updateBookingForm()">${opts}</select></div>
-                <div id="bAvailInfo" class="avail-list-box" style="max-height:180px; margin-bottom:12px;"></div>
-                <div id="bSugg" class="suggestion-box" style="display:none;"></div>
-                <div class="form-row"><div class="form-group"><label>${t('bookName')}</label><input type="text" id="bName" placeholder="Иванов Иван"></div><div class="form-group"><label>${t('bookPhone')}</label><input type="tel" id="bPhone" placeholder="+7 700 123 4567"></div></div>
-                <div class="form-group"><label>${t('bookComment')}</label><input type="text" id="bComm" placeholder="..."></div>
-                <div id="bTotal" style="text-align:center; font-size:1.2rem; font-weight:700; color:var(--gold); margin:10px 0;"></div>
-                <button class="btn-submit" onclick="submitBooking()">${t('bookSubmit')}</button>`;
-            modal.classList.add('active');
+        // ===== МОДАЛКА БРОНИРОВАНИЯ =====
+        function openBookingModal(rid) {
+            rid = rid || null;
+            var today = new Date().toISOString().split('T')[0];
+            var modal = document.getElementById('bookingModal');
+            var content = document.getElementById('bookingModalContent');
+            var opts = ROOMS.map(function(r) {
+                return '<option value="' + r.id + '" ' + (r.id === rid ? 'selected' : '') + '>' + rName(r) + ' — ' + r
+                    .price.toLocaleString() + ' ₸ (до ' + (r.cap + r.extra) + ' чел.)</option>';
+            }).join('');
 
-            setTimeout(() => {
-                const phoneInput = document.getElementById('bPhone');
+            content.innerHTML = '' +
+                '<div class="form-row">' +
+                '<div class="form-group"><label>' + t('bookDate') +
+                '</label><input type="date" id="bDate" value="' + today + '" min="' + today +
+                '" onchange="updateBookingForm()"></div>' +
+                '<div class="form-group"><label>' + t('bookGuests') +
+                '</label><select id="bGuests" onchange="updateBookingForm()">' + [1, 2, 3, 4, 5, 6].map(function(n) {
+                    return '<option value="' + n + '" ' + (n === 2 ? 'selected' : '') + '>' + n + ' ' + guestWord(
+                        n) + '</option>';
+                }).join('') + '</select></div>' +
+                '</div>' +
+                '<div class="form-group"><label>' + t('bookSelRoom') +
+                '</label><select id="bRoom" onchange="updateBookingForm()">' + opts + '</select></div>' +
+                '<div id="bAvailInfo" class="avail-list-box" style="max-height:160px; margin-bottom:10px;"></div>' +
+                '<div id="bSugg" class="suggestion-box" style="display:none;"></div>' +
+                '<div class="form-row"><div class="form-group"><label>' + t('bookName') +
+                '</label><input type="text" id="bName" placeholder="Иванов Иван"></div>' +
+                '<div class="form-group"><label>' + t('bookPhone') +
+                '</label><input type="tel" id="bPhone" placeholder="+7 700 123 4567"></div></div>' +
+                '<div class="form-group"><label>' + t('bookComment') +
+                '</label><input type="text" id="bComm" placeholder="..."></div>' +
+                '<div id="bTotal" style="text-align:center; font-size:1.1rem; font-weight:700; color:var(--gold); margin:8px 0;"></div>' +
+                '<button class="btn-submit" onclick="submitBooking()">' + t('bookSubmit') + '</button>';
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            setTimeout(function() {
+                var phoneInput = document.getElementById('bPhone');
                 if (phoneInput && navigator.clipboard) {
-                    navigator.clipboard.readText().then(text => {
+                    navigator.clipboard.readText().then(function(text) {
                         if (text && text.replace(/\D/g, '').length >= 10) {
                             phoneInput.value = text;
                         }
-                    }).catch(() => {});
+                    }).catch(function() {});
                 }
-                document.getElementById('bName')?.focus();
+                var nameInput = document.getElementById('bName');
+                if (nameInput) nameInput.focus();
             }, 300);
 
             updateBookingForm();
         }
 
         function updateBookingForm() {
-            const date = document.getElementById('bDate')?.value || '';
-            const guests = parseInt(document.getElementById('bGuests')?.value || 2);
-            const nights = parseInt(document.getElementById('bNights')?.value || 1);
-            const rid = document.getElementById('bRoom')?.value;
-            const infoDiv = document.getElementById('bAvailInfo');
-            const suggDiv = document.getElementById('bSugg');
-            const totDiv = document.getElementById('bTotal');
+            var date = document.getElementById('bDate')?.value || '';
+            var guests = parseInt(document.getElementById('bGuests')?.value || 2);
+            var rid = document.getElementById('bRoom')?.value;
+            var infoDiv = document.getElementById('bAvailInfo');
+            var suggDiv = document.getElementById('bSugg');
+            var totDiv = document.getElementById('bTotal');
 
             if (date && infoDiv) {
-                let html = `<strong>📊 ${t('free')} ${date}:</strong><br>`;
-                ROOMS.forEach(r => {
-                    const a = realAvail(r.id, date);
+                var isPast = isPastDate(date);
+                var html = '<strong>📊 ' + t('free') + ' ' + date + ':</strong><br>';
+                if (isPast) {
+                    html += '<div style="text-align:center;color:rgba(255,255,255,0.3);padding:10px;">🔒 ' + t(
+                        'past') + '</div>';
+                    infoDiv.innerHTML = html;
+                    suggDiv.style.display = 'none';
+                    totDiv.textContent = '';
+                    return;
+                }
+                ROOMS.forEach(function(r) {
+                    var a = realAvail(r.id, date);
                     html +=
-                        `<div class="avail-list-item"><span>${rName(r)}</span> <span class="${a > 0 ? 'avail-free' : 'avail-busy'}">${a > 0 ? a : t('busy')}</span></div>`;
+                        '<div class="avail-list-item"><span>' + rName(r) + '</span> <span class="' + (a > 0 ?
+                            'avail-free' : 'avail-busy') + '">' + (a > 0 ? a : t('busy')) + '</span></div>';
                 });
                 infoDiv.innerHTML = html;
             }
 
             if (!rid || !suggDiv || !totDiv) return;
-            const room = ROOMS.find(r => r.id === rid);
+            var room = ROOMS.find(function(r) { return r.id === rid; });
             if (!room) return;
-            const avail = realAvail(rid, date);
-            const max = room.cap + room.extra;
-            let can = false,
+            var avail = realAvail(rid, date);
+            var max = room.cap + room.extra;
+            var can = false,
                 total = 0,
                 html = '';
             suggDiv.style.display = 'block';
-            if (!date) { html = `<span style="color:#ffa502;">${t('selectDate')}</span>`; } else if (avail <=
-                0) { html = `<strong style="color:#ff4757;">❌ ${t('noFree')} ${date}</strong>`; } else if (guests <= room
-                .cap) { can = true;
-                total = room.price * nights;
-                html = `<strong style="color:#2ed573;">✅ ${t('totalLabel')} ${nights} ${t('perNight')}</strong>`; } else if (
-                guests <= max && room.extra > 0) { can = true;
-                const ex = guests - room.cap;
-                total = (room.price + ex * 15000) * nights;
-                html =
-                `<strong style="color:#ffa502;">${t('needExtra')}: ${ex} ${extraWord(ex)} × 15 000 ₸</strong>`; } else { html =
-                    `<strong style="color:#ff4757;">${t('tooMany')}. ${t('maxCap')}: ${max}</strong>`; }
+            if (!date) {
+                html = '<span style="color:#ffa502;">' + t('selectDate') + '</span>';
+            } else if (isPastDate(date)) {
+                html = '<strong style="color:rgba(255,255,255,0.3);">🔒 ' + t('past') + '</strong>';
+                can = false;
+            } else if (avail <= 0) {
+                html = '<strong style="color:#ff4757;">❌ ' + t('noFree') + ' ' + date + '</strong>';
+            } else if (guests <= room.cap) {
+                can = true;
+                total = room.price;
+                html = '<strong style="color:#2ed573;">✅ ' + t('totalLabel') + '</strong>';
+            } else if (guests <= max && room.extra > 0) {
+                can = true;
+                var ex = guests - room.cap;
+                total = room.price + ex * 15000;
+                html = '<strong style="color:#ffa502;">' + t('needExtra') + ': ' + ex + ' ' + extraWord(ex) +
+                    ' × 15 000 ₸</strong>';
+            } else {
+                html = '<strong style="color:#ff4757;">' + t('tooMany') + '. ' + t('maxCap') + ': ' + max +
+                    '</strong>';
+            }
             suggDiv.innerHTML = html;
-            totDiv.textContent = can ? `${t('totalLabel')} ${nights} ${t('perNight')}: ${total.toLocaleString()} ₸` : '';
-            currentBookingData = { rid, date, guests, nights, total: can ? total : 0, room: room };
+            totDiv.textContent = can ? t('totalLabel') + ': ' + total.toLocaleString() + ' ₸ ' + t('perNight') :
+            '';
+            currentBookingData = { rid: rid, date: date, guests: guests, total: can ? total : 0, room: room };
         }
 
+        var currentBookingData = null;
+
         async function submitBooking() {
-            const rid = document.getElementById('bRoom').value;
-            const date = document.getElementById('bDate').value;
-            const guests = parseInt(document.getElementById('bGuests').value);
-            const nights = parseInt(document.getElementById('bNights').value) || 1;
-            const name = document.getElementById('bName').value.trim();
-            const phone = document.getElementById('bPhone').value.trim();
-            const comm = document.getElementById('bComm').value.trim();
+            var rid = document.getElementById('bRoom').value;
+            var date = document.getElementById('bDate').value;
+            var guests = parseInt(document.getElementById('bGuests').value);
+            var name = document.getElementById('bName').value.trim();
+            var phone = document.getElementById('bPhone').value.trim();
+            var comm = document.getElementById('bComm').value.trim();
+
+            if (isPastDate(date)) {
+                showToast('🔒 ' + t('past'), 'error');
+                return;
+            }
+
             if (!name || !phone) { showToast(t('fillNamePhone'), 'error'); return; }
-            const room = ROOMS.find(r => r.id === rid);
+            var room = ROOMS.find(function(r) { return r.id === rid; });
             if (realAvail(rid, date) <= 0) { showToast(t('noRooms'), 'error'); return; }
-            const max = room.cap + room.extra;
+            var max = room.cap + room.extra;
             if (guests > max) { showToast(t('maxCap') + ': ' + max, 'error'); return; }
-            const ex = Math.max(0, guests - room.cap);
-            const total = (room.price + ex * 15000) * nights;
-            const bookingId = 'BK' + Date.now().toString(36).toUpperCase();
-            bookings.push({ id: bookingId, rid, rname: rName(room), date, gname: name,
-                phone, guests, extra: ex, nights, total, comm, st: 'ok', at: new Date().toISOString() });
+            var ex = Math.max(0, guests - room.cap);
+            var total = room.price + ex * 15000;
+            var bookingId = 'BK' + Date.now().toString(36).toUpperCase();
+            bookings.push({ id: bookingId, rid: rid, rname: rName(room), date: date, gname: name,
+                phone: phone, guests: guests, extra: ex, nights: 1, total: total, comm: comm, st: 'ok',
+                at: new Date().toISOString() });
             setAvail(rid, date, getAvail(rid, date) - 1);
             await saveToCloud();
             closeModal('bookingModal');
             renderRooms();
-            if (isAdmin) renderAdmin();
             showVoucher(bookingId);
         }
 
         function showVoucher(bookingId) {
-            const b = bookings.find(x => x.id === bookingId);
+            var b = bookings.find(function(x) { return x.id === bookingId; });
             if (!b) return;
-            const modal = document.getElementById('bookingModal');
-            const content = document.getElementById('bookingModalContent');
+            var modal = document.getElementById('bookingModal');
+            var content = document.getElementById('bookingModalContent');
             modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
 
-            content.innerHTML = `
-                <div class="voucher-box">
-                    <h3>🎫 ${t('voucherTitle')}</h3>
-                    <div class="voucher-row"><span class="voucher-label">ID:</span><span class="voucher-value">${b.id}</span></div>
-                    <div class="voucher-row"><span class="voucher-label">${t('voucherRoom')}:</span><span class="voucher-value">${b.rname}</span></div>
-                    <div class="voucher-row"><span class="voucher-label">${t('voucherDate')}:</span><span class="voucher-value">${b.date}</span></div>
-                    <div class="voucher-row"><span class="voucher-label">${t('voucherNights')}:</span><span class="voucher-value">${b.nights}</span></div>
-                    <div class="voucher-row"><span class="voucher-label">${t('voucherGuests')}:</span><span class="voucher-value">${b.guests} (${b.gname})</span></div>
-                    <div class="voucher-row"><span class="voucher-label">📞 ${t('bookPhone')}:</span><span class="voucher-value">${b.phone}</span></div>
-                    <div class="voucher-row"><span class="voucher-label">${t('voucherTotal')}:</span><span class="voucher-value" style="color:var(--gold);font-weight:700;font-size:1.1rem;">${b.total.toLocaleString()} ₸</span></div>
-                    <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border-glass);">
-                        <strong>📋 ${t('voucherRules')}:</strong>
-                        <p style="color:var(--text-muted);font-size:0.8rem;margin-top:4px;">${t('voucherRulesText')}</p>
-                        <p style="color:var(--text-muted);font-size:0.8rem;">${t('voucherTransfer')}</p>
-                        <p style="color:var(--text-muted);font-size:0.8rem;">${t('voucherBreakfast')}</p>
-                        <p style="color:var(--text-muted);font-size:0.8rem;">${t('voucherCheckIn')}</p>
-                    </div>
-                    <button class="btn-download-voucher" onclick="downloadVoucher('${b.id}')">${t('downloadVoucher')}</button>
-                    <button class="btn-submit" style="margin-top:8px;background:#25D366;" onclick="closeModal('bookingModal');showToast('${t('bookedOk')}','success');">✅ Закрыть</button>
-                </div>
-            `;
+            content.innerHTML = '' +
+                '<div class="voucher-box">' +
+                '<h3>🎫 ' + t('voucherTitle') + '</h3>' +
+                '<div class="voucher-row"><span class="voucher-label">ID:</span><span class="voucher-value">' + b
+                .id + '</span></div>' +
+                '<div class="voucher-row"><span class="voucher-label">' + t('voucherRoom') +
+                ':</span><span class="voucher-value">' + b.rname + '</span></div>' +
+                '<div class="voucher-row"><span class="voucher-label">' + t('voucherDate') +
+                ':</span><span class="voucher-value">' + b.date + '</span></div>' +
+                '<div class="voucher-row"><span class="voucher-label">' + t('voucherGuests') +
+                ':</span><span class="voucher-value">' + b.guests + ' (' + b.gname + ')</span></div>' +
+                '<div class="voucher-row"><span class="voucher-label">📞 ' + t('bookPhone') +
+                ':</span><span class="voucher-value">' + b.phone + '</span></div>' +
+                '<div class="voucher-row"><span class="voucher-label">' + t('voucherTotal') +
+                ':</span><span class="voucher-value" style="color:var(--gold);font-weight:700;font-size:1.1rem;">' +
+                b.total.toLocaleString() + ' ₸</span></div>' +
+                '<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border-glass);">' +
+                '<strong>📋 ' + t('voucherRules') + ':</strong>' +
+                '<p style="color:var(--text-muted);font-size:0.75rem;margin-top:4px;">' + t('voucherRulesText') +
+                '</p>' +
+                '<p style="color:var(--text-muted);font-size:0.75rem;">' + t('voucherTransfer') + '</p>' +
+                '<p style="color:var(--text-muted);font-size:0.75rem;">' + t('voucherBreakfast') + '</p>' +
+                '<p style="color:var(--text-muted);font-size:0.75rem;">' + t('voucherCheckIn') + '</p>' +
+                '</div>' +
+                '<button class="btn-download-voucher" onclick="downloadVoucher(\'' + b.id +
+                '\')">' + t('downloadVoucher') + '</button>' +
+                '<button class="btn-submit" style="margin-top:8px;background:#25D366;" onclick="closeModal(\'bookingModal\');showToast(\'' +
+                t('bookedOk') + '\',\'success\');">✅ Закрыть</button>' +
+                '</div>';
         }
 
         function downloadVoucher(bookingId) {
-            const b = bookings.find(x => x.id === bookingId);
+            var b = bookings.find(function(x) { return x.id === bookingId; });
             if (!b) return;
-            const text = `
-        🎫 ${t('voucherTitle')}
-        =================================
-        ID: ${b.id}
-        ${t('voucherRoom')}: ${b.rname}
-        ${t('voucherDate')}: ${b.date}
-        ${t('voucherNights')}: ${b.nights}
-        ${t('voucherGuests')}: ${b.guests} (${b.gname})
-        📞 ${t('bookPhone')}: ${b.phone}
-        ${t('voucherTotal')}: ${b.total.toLocaleString()} ₸
+            var text = '' +
+                '🎫 ' + t('voucherTitle') + '\n' +
+                '=================================\n' +
+                'ID: ' + b.id + '\n' +
+                t('voucherRoom') + ': ' + b.rname + '\n' +
+                t('voucherDate') + ': ' + b.date + '\n' +
+                t('voucherGuests') + ': ' + b.guests + ' (' + b.gname + ')\n' +
+                '📞 ' + t('bookPhone') + ': ' + b.phone + '\n' +
+                t('voucherTotal') + ': ' + b.total.toLocaleString() + ' ₸\n\n' +
+                '📋 ' + t('voucherRules') + ':\n' +
+                t('voucherRulesText') + '\n' +
+                t('voucherTransfer') + '\n' +
+                t('voucherBreakfast') + '\n' +
+                t('voucherCheckIn') + '\n\n' +
+                '© 2026 PANA KOLSAY\n' +
+                '+7 700 836 8964';
 
-        📋 ${t('voucherRules')}:
-        ${t('voucherRulesText')}
-        ${t('voucherTransfer')}
-        ${t('voucherBreakfast')}
-        ${t('voucherCheckIn')}
-
-        © 2026 PANA KOLSAY
-        +7 700 836 8964
-        `;
-
-            const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
+            var blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
             a.href = url;
-            a.download = `PANA_KOLSAY_${b.id}.txt`;
+            a.download = 'PANA_KOLSAY_' + b.id + '.txt';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -2509,33 +2405,46 @@
             showToast('✅ Ваучер скачан!', 'success');
         }
 
-        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+            document.body.style.overflow = '';
+            if (id === 'photoModal') {
+                isPhotoModalOpen = false;
+            }
+        }
 
-        // ============ ФОТО ============
+        // ===== ФОТО =====
         function openPhotoModal(rid, idx) {
-            const r = ROOMS.find(r => r.id === rid);
+            var r = ROOMS.find(function(room) { return room.id === rid; });
             if (!r) return;
             photoSet = r.photos;
             photoIdx = idx;
             document.getElementById('modalPhoto').src = photoSet[idx];
-            document.getElementById('photoCounter').textContent = `${idx+1}/${photoSet.length}`;
+            document.getElementById('photoCounter').textContent = (idx + 1) + '/' + photoSet.length;
             document.getElementById('photoModal').classList.add('active');
             document.body.style.overflow = 'hidden';
+            isPhotoModalOpen = true;
+        }
+
+        function closePhotoModal() {
+            closeModal('photoModal');
+            document.body.style.overflow = '';
+            isPhotoModalOpen = false;
         }
 
         function navigatePhoto(d) {
             photoIdx = (photoIdx + d + photoSet.length) % photoSet.length;
             document.getElementById('modalPhoto').src = photoSet[photoIdx];
-            document.getElementById('photoCounter').textContent = `${photoIdx+1}/${photoSet.length}`;
+            document.getElementById('photoCounter').textContent = (photoIdx + 1) + '/' + photoSet.length;
         }
 
-        let touchStartX = 0,
+        var touchStartX = 0,
             touchStartY = 0,
             isSwiping = false;
 
         document.addEventListener('touchstart', function(e) {
-            if (document.getElementById('photoModal').classList.contains('active')) {
-                const touch = e.changedTouches[0];
+            if (isPhotoModalOpen) {
+                var touch = e.changedTouches[0];
                 touchStartX = touch.screenX;
                 touchStartY = touch.screenY;
                 isSwiping = true;
@@ -2543,10 +2452,10 @@
         }, { passive: true });
 
         document.addEventListener('touchmove', function(e) {
-            if (document.getElementById('photoModal').classList.contains('active') && isSwiping) {
-                const touch = e.changedTouches[0];
-                const diffX = touchStartX - touch.screenX;
-                const diffY = touchStartY - touch.screenY;
+            if (isPhotoModalOpen && isSwiping) {
+                var touch = e.changedTouches[0];
+                var diffX = touchStartX - touch.screenX;
+                var diffY = touchStartY - touch.screenY;
                 if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 20) {
                     e.preventDefault();
                 }
@@ -2554,10 +2463,10 @@
         }, { passive: false });
 
         document.addEventListener('touchend', function(e) {
-            if (document.getElementById('photoModal').classList.contains('active') && isSwiping) {
-                const touch = e.changedTouches[0];
-                const diffX = touchStartX - touch.screenX;
-                const diffY = touchStartY - touch.screenY;
+            if (isPhotoModalOpen && isSwiping) {
+                var touch = e.changedTouches[0];
+                var diffX = touchStartX - touch.screenX;
+                var diffY = touchStartY - touch.screenY;
                 if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
                     navigatePhoto(diffX > 0 ? 1 : -1);
                 }
@@ -2566,179 +2475,36 @@
         }, { passive: true });
 
         document.addEventListener('keydown', function(e) {
-            if (document.getElementById('photoModal').classList.contains('active')) {
+            if (isPhotoModalOpen) {
                 if (e.key === 'ArrowRight') navigatePhoto(1);
                 if (e.key === 'ArrowLeft') navigatePhoto(-1);
                 if (e.key === 'Escape') {
-                    closeModal('photoModal');
-                    document.body.style.overflow = '';
+                    closePhotoModal();
                 }
             }
         });
 
         document.getElementById('photoModal').addEventListener('click', function(e) {
             if (e.target === this) {
-                closeModal('photoModal');
-                document.body.style.overflow = '';
+                closePhotoModal();
             }
         });
 
-        // ============ АДМИН-ПАНЕЛЬ (обновленная) ============
-        function showAdminLogin() { const pw = prompt('Пароль:'); if (pw === 'pana2026') { isAdmin = true;
-                document.getElementById('adminPanel').style.display = 'block';
-                renderAdmin(); } else if (pw) showToast('Неверно', 'error'); }
-
-        function exitAdmin() { isAdmin = false;
-            document.getElementById('adminPanel').style.display = 'none'; }
-
-        function switchAdminTab(tab) { curAdminTab = tab;
-            document.querySelectorAll('.admin-tab').forEach(b => b.classList.remove('active'));
-            document.querySelector(`.admin-tab[onclick*="${tab}"]`).classList.add('active');
-            renderAdmin(); }
-
-        function changeAdminMonth(delta) {
-            adminDateOffset += delta;
-            renderAdmin();
-        }
-
-        function goToTodayAdmin() {
-            adminDateOffset = 0;
-            renderAdmin();
-        }
-
-        function renderAdmin() {
-            const c = document.getElementById('adminTabContent');
-
-            // Получаем даты для отображения
-            const now = new Date();
-            const baseDate = new Date(now);
-            baseDate.setDate(baseDate.getDate() + adminDateOffset * 30);
-
-            // Начало месяца
-            const startOfMonth = new Date(baseDate.getFullYear(), baseDate.getMonth(), 1);
-            const endOfMonth = new Date(baseDate.getFullYear(), baseDate.getMonth() + 1, 0);
-
-            // Получаем дни месяца
-            const days = [];
-            for (let d = new Date(startOfMonth); d <= endOfMonth; d.setDate(d.getDate() + 1)) {
-                days.push(new Date(d));
-            }
-
-            const monthNames = t('monthNames');
-            const weekDays = t('weekDays');
-            const monthName = monthNames[baseDate.getMonth()];
-            const year = baseDate.getFullYear();
-
-            if (curAdminTab === 'availability') {
-                let navHtml = `
-                    <div class="admin-date-nav">
-                        <div class="nav-group">
-                            <button class="admin-nav-btn" onclick="changeAdminMonth(-1)">${t('prevMonth')}</button>
-                            <span class="admin-month-label">${monthName} ${year}</span>
-                            <button class="admin-nav-btn" onclick="changeAdminMonth(1)">${t('nextMonth')}</button>
-                        </div>
-                        <div class="nav-group">
-                            <button class="admin-nav-btn today-btn" onclick="goToTodayAdmin()">📅 ${t('today')}</button>
-                            <span style="color:var(--text-muted);font-size:0.7rem;">${days.length} дней</span>
-                        </div>
-                    </div>
-                `;
-
-                let tableHtml =
-                    `<div class="admin-table-wrap"><table class="admin-table"><thead><tr><th style="min-width:90px;text-align:left;">Номер</th>`;
-
-                days.forEach(d => {
-                    const dayNum = d.getDate();
-                    const dayWeek = weekDays[d.getDay() === 0 ? 6 : d.getDay() - 1];
-                    const isWeekend = d.getDay() === 0 || d.getDay() === 6;
-                    const isToday = d.toDateString() === new Date().toDateString();
-                    const dateStr = d.toISOString().split('T')[0];
-                    tableHtml +=
-                        `<th class="date-col ${isToday ? 'today' : ''} ${isWeekend ? 'weekend' : ''}"><span class="day-week">${dayWeek}</span><span class="day-num">${dayNum}</span></th>`;
-                });
-
-                tableHtml += `</tr></thead><tbody>`;
-
-                ROOMS.forEach(room => {
-                    tableHtml +=
-                        `<tr class="room-row"><td><span class="room-label">${rName(room)}</span><span class="room-cap">${t('totalRooms')}: ${room.total}</span></td>`;
-                    days.forEach(d => {
-                        const dateStr = d.toISOString().split('T')[0];
-                        const total = room.total;
-                        const booked = bookedCount(room.id, dateStr);
-                        const available = getAvail(room.id, dateStr);
-                        const realFree = realAvail(room.id, dateStr);
-                        let statusClass = 'free';
-                        let statusText = realFree;
-                        if (realFree <= 0) { statusClass = 'busy';
-                            statusText = '0'; } else if (realFree <= 2) { statusClass = 'low'; }
-                        tableHtml +=
-                            `<td class="date-col ${d.toDateString() === new Date().toDateString() ? 'today' : ''}">
-                                <input type="number" value="${available}" min="0" max="${total}" 
-                                    onchange="setAvail('${room.id}','${dateStr}',+this.value)" 
-                                    onblur="renderAdmin()">
-                                <span class="avail-indicator ${statusClass}">${realFree}/${total}</span>
-                            </td>`;
-                    });
-                    tableHtml += `</tr>`;
-                });
-
-                tableHtml += `</tbody></table></div>`;
-
-                // Добавляем легенду
-                let legendHtml = `
-                    <div style="display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;font-size:0.7rem;color:var(--text-muted);">
-                        <span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#2ed573;vertical-align:middle;margin-right:4px;"></span> Свободно (≥3)</span>
-                        <span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#ffa502;vertical-align:middle;margin-right:4px;"></span> Мало (1-2)</span>
-                        <span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#ff4757;vertical-align:middle;margin-right:4px;"></span> Занято (0)</span>
-                        <span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:rgba(245,197,66,0.2);border:1px solid var(--gold);vertical-align:middle;margin-right:4px;"></span> Сегодня</span>
-                    </div>
-                `;
-
-                c.innerHTML = navHtml + tableHtml + legendHtml;
-
-            } else {
-                // Вкладка "Бронирования"
-                if (!bookings.length) {
-                    c.innerHTML =
-                        '<p style="color:var(--text-muted);text-align:center;padding:20px;">📭 Нет броней</p>';
-                    return;
-                }
-                let h =
-                    '<div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>ID</th><th>Номер</th><th>Дата</th><th>Гость</th><th>Тел</th><th>Гостей</th><th>Ночей</th><th>Сумма</th><th></th></tr></thead><tbody>';
-                bookings.sort((a, b) => new Date(b.at) - new Date(a.at)).forEach(b => { h +=
-                        `<tr><td>${b.id}</td><td>${b.rname}</td><td>${b.date}</td><td>${b.gname}</td><td>${b.phone}</td><td>${b.guests}</td><td>${b.nights||1}</td><td>${b.total.toLocaleString()} ₸</td><td>${b.st==='ok'?`<button class="btn-cancel-booking" onclick="cancelBooking('${b.id}')">Отм.</button>`:'Отменен'}</td></tr>`; });
-                h += '</tbody></table></div>';
-                c.innerHTML = h;
-            }
-        }
-
-        async function cancelBooking(bid) { if (!confirm('Отменить бронь?')) return;
-            const b = bookings.find(x => x.id === bid); if (b) { b.st = 'cancelled';
-                setAvail(b.rid, b.date, Math.min(getAvail(b.rid, b.date) + 1, ROOMS.find(r => r.id === b.rid).total));
-                await saveToCloud();
-                renderRooms();
-                renderAdmin();
-                showToast('Бронь отменена', 'info'); } }
-
-        async function saveAllData() { await saveToCloud();
-            showToast('✅ Сохранено!', 'success'); }
-
-        // ============ ФИЛЬТРЫ ============
+        // ===== ФИЛЬТРЫ =====
         document.getElementById('filterBar').addEventListener('click', function(e) {
             if (e.target.classList.contains('filter-btn')) {
-                this.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
                 e.target.classList.add('active');
                 curFilter = e.target.dataset.filter;
                 renderRooms();
             }
         });
 
-        // ============ ЯЗЫКИ ============
+        // ===== ЯЗЫКИ =====
         function switchLanguage(lang) {
             curLang = lang;
-            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-            document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
+            document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+            document.querySelector('.lang-btn[data-lang="' + lang + '"]').classList.add('active');
 
             document.getElementById('btnA11y').textContent = isHighContrast ? '🌙 Обычная версия' : t('a11yBtn');
             document.getElementById('factLake').textContent = t('factLake');
@@ -2754,17 +2520,15 @@
             document.getElementById('bookingFormTitle').textContent = t('bookingFormTitle');
             document.getElementById('lblCheckIn').textContent = t('lblCheckIn');
             document.getElementById('lblGuests').textContent = t('lblGuests');
-            document.getElementById('lblNights').textContent = t('lblNights');
-            document.getElementById('btnCheckAvail').textContent = t('btnCheckAvail');
-            document.getElementById('btnOpenBookForm').textContent = t('btnOpenBookForm');
             document.getElementById('mapTitle').textContent = t('mapTitle');
             document.getElementById('mapInfo').innerHTML =
-                `<i class="fas fa-map-marker-alt"></i> ${t('mapInfo').split('|')[0]} &nbsp;|&nbsp; <i class="fas fa-car"></i> ${t('mapInfo').split('|')[1]}`;
+                '<i class="fas fa-map-marker-alt"></i> ' + t('mapInfo').split('|')[0] +
+                ' &nbsp;|&nbsp; <i class="fas fa-car"></i> ' + t('mapInfo').split('|')[1];
             document.getElementById('btnRoute').textContent = t('btnRoute');
             document.getElementById('videoTitle').textContent = t('videoTitle');
             document.getElementById('rulesTitle').textContent = t('rulesTitle');
             document.getElementById('rulesSubTitle').innerHTML =
-                `<i class="fas fa-file-contract"></i> ${t('rulesSubTitle')}`;
+                '<i class="fas fa-file-contract"></i> ' + t('rulesSubTitle');
             document.getElementById('rule1Title').textContent = t('rule1Title');
             document.getElementById('rule1Text').textContent = t('rule1Text');
             document.getElementById('rule2Title').textContent = t('rule2Title');
@@ -2776,7 +2540,7 @@
             document.getElementById('rule5Title').textContent = t('rule5Title');
             document.getElementById('rule5Text').textContent = t('rule5Text');
             document.getElementById('faqTitle').innerHTML =
-                `<i class="fas fa-question-circle"></i> ${t('faqTitle')}`;
+                '<i class="fas fa-question-circle"></i> ' + t('faqTitle');
             document.getElementById('faq1Q').innerHTML = t('faq1Q') + ' <i class="fas fa-chevron-down"></i>';
             document.getElementById('faq1A').textContent = t('faq1A');
             document.getElementById('faq2Q').innerHTML = t('faq2Q') + ' <i class="fas fa-chevron-down"></i>';
@@ -2790,6 +2554,8 @@
             document.getElementById('faq6Q').innerHTML = t('faq6Q') + ' <i class="fas fa-chevron-down"></i>';
             document.getElementById('faq6A').textContent = t('faq6A');
             document.getElementById('reviewsTitle').textContent = t('reviewsTitle');
+            document.getElementById('footerAdmin').textContent = t('footerAdmin');
+            document.getElementById('footerA11y').textContent = t('footerA11y');
 
             document.getElementById('filtAll').textContent = t('filtAll');
             document.getElementById('filtStd').textContent = t('filtStd');
@@ -2800,22 +2566,16 @@
             document.getElementById('filtLux').textContent = t('filtLux');
             document.getElementById('filtGlp').textContent = t('filtGlp');
 
-            document.getElementById('btnExitAdmin').textContent = t('exitAdmin');
-            document.getElementById('tabAvail').textContent = t('tabAvail');
-            document.getElementById('tabBookings').textContent = t('tabBookings');
-            document.getElementById('btnSaveCloud').textContent = t('btnSaveCloud');
-
-            document.querySelectorAll('.lang-btn').forEach(b => { b.textContent = L[b.dataset.lang].langName; });
+            document.querySelectorAll('.lang-btn').forEach(function(b) { b.textContent = L[b.dataset.lang].langName; });
 
             if (weatherLoaded) {
                 updateWeatherDisplay();
             }
 
             renderRooms();
-            if (isAdmin) renderAdmin();
             updateQuickAvail();
             if (document.getElementById('bookingModal').classList.contains('active')) {
-                const selRoom = document.getElementById('bRoom')?.value;
+                var selRoom = document.getElementById('bRoom')?.value;
                 openBookingModal(selRoom);
             }
         }
@@ -2826,36 +2586,10 @@
             }
         });
 
-        // ============ ЧАТ ============
-        let jivoLoaded = false;
-
-        function toggleChat() { document.getElementById('chatBox').classList.toggle('active'); }
-
-        function sendChatMessage() { const inp = document.getElementById('chatInput'),
-                msg = inp.value.trim(); if (!msg) return;
-            const ms = document.getElementById('chatMessages');
-            ms.innerHTML += `<div class="chat-message user">${msg}</div>`;
-            setTimeout(() => { ms.innerHTML +=
-                    `<div class="chat-message bot">Спасибо! 📞 <a href="tel:+77008368964" style="color:#f5c542;">+7 700 836 8964</a></div>`;
-                ms.scrollTop = ms.scrollHeight; }, 500);
-            inp.value = '';
-            ms.scrollTop = ms.scrollHeight; }
-
-        function sendQuickChat(q) { const ms = document.getElementById('chatMessages');
-            ms.innerHTML += `<div class="chat-message user">${q}</div>`;
-            setTimeout(() => { let a = q.includes('Номера') || q.includes('Rooms') ? 'Цены от 54 900 ₸.' :
-                    'От 54 900 до 279 900 ₸.';
-                ms.innerHTML += `<div class="chat-message bot">${a}</div>`;
-                ms.scrollTop = ms.scrollHeight; }, 500);
-            ms.scrollTop = ms.scrollHeight; }
-
+        // ===== ОПЕРАТОР (Jivo) =====
         function connectOperator() {
-            const ms = document.getElementById('chatMessages');
-            ms.innerHTML +=
-                `<div class="chat-message bot">Подключаю... 📞 <a href="tel:+77008368964" style="color:#f5c542;">+7 700 836 8964</a></div>`;
-
             if (!jivoLoaded) {
-                const script = document.createElement('script');
+                var script = document.createElement('script');
                 script.src = '//code.jivo.ru/widget/sfanjIPwr0';
                 script.async = true;
                 script.onload = function() {
@@ -2865,7 +2599,7 @@
                     }
                 };
                 document.head.appendChild(script);
-                setTimeout(() => {
+                setTimeout(function() {
                     if (!jivoLoaded) {
                         window.open('https://wa.me/77018615121', '_blank');
                     }
@@ -2877,16 +2611,10 @@
                     window.open('https://wa.me/77018615121', '_blank');
                 }
             }
+            showToast('👩‍💼 Подключаем оператора...', 'info');
         }
 
-        document.addEventListener('click', function(e) {
-            const chat = document.querySelector('.chat-widget');
-            if (chat && !chat.contains(e.target) && document.getElementById('chatBox').classList.contains('active')) {
-                document.getElementById('chatBox').classList.remove('active');
-            }
-        });
-
-        // ============ ИНИЦИАЛИЗАЦИЯ ============
+        // ===== ИНИЦИАЛИЗАЦИЯ =====
         (async function() {
             if (localStorage.getItem('pana_high_contrast') === '1') {
                 isHighContrast = true;
@@ -2896,17 +2624,19 @@
             }
 
             await loadFromCloud();
-            const today = new Date().toISOString().split('T')[0];
+            var today = new Date().toISOString().split('T')[0];
             document.getElementById('quickCheckIn').value = today;
             document.getElementById('quickCheckIn').setAttribute('min', today);
 
             await fetchWeather();
             switchLanguage('ru');
+            updateQuickAvail();
 
             setInterval(saveToCloud, 300000);
             setInterval(fetchWeather, 600000);
-            window.addEventListener('beforeunload', () => saveToCloud());
+            window.addEventListener('beforeunload', function() { saveToCloud(); });
         })();
     </script>
+
 </body>
 </html>
