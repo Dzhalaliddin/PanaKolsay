@@ -87,6 +87,23 @@
         body.high-contrast .faq-item .faq-question {
             border-bottom-color: rgba(255, 255, 255, 0.2);
         }
+        body.high-contrast .admin-table th {
+            color: var(--gold);
+        }
+        body.high-contrast .admin-table td {
+            color: #ffffff;
+        }
+        body.high-contrast .admin-nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        body.high-contrast .admin-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        body.high-contrast .admin-month-label {
+            color: #fff;
+        }
 
         * {
             margin: 0;
@@ -770,14 +787,40 @@
             font-size: 0.8rem;
             color: var(--text-muted);
         }
+
+        /* ===== АДМИН-ПАНЕЛЬ (обновленная) ===== */
         .admin-panel {
-            background: rgba(26, 42, 39, 0.7);
+            background: rgba(26, 42, 39, 0.85);
             backdrop-filter: blur(15px);
             border-radius: var(--radius);
             padding: 20px;
             margin-bottom: 20px;
-            border: 1px solid var(--border-glass);
+            border: 2px solid var(--gold);
             transition: background 0.3s, border-color 0.3s;
+        }
+        .admin-panel .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-glass);
+        }
+        .admin-panel .admin-header h3 {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .admin-panel .admin-header .admin-badge {
+            background: var(--gold);
+            color: var(--dark);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
         }
         .admin-tabs {
             display: flex;
@@ -800,6 +843,9 @@
             color: var(--dark);
             border-color: var(--gold);
         }
+        .admin-tab:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
         .btn-exit-admin {
             padding: 8px 16px;
             background: rgba(255, 71, 87, 0.2);
@@ -809,52 +855,361 @@
             cursor: pointer;
             font-size: 0.8rem;
             transition: var(--transition);
-            margin-bottom: 16px;
         }
         .btn-exit-admin:hover {
             background: rgba(255, 71, 87, 0.3);
         }
+
+        /* Навигация по датам */
+        .admin-date-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 10px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-glass);
+        }
+        .admin-date-nav .nav-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .admin-date-nav .admin-month-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gold);
+            min-width: 140px;
+            text-align: center;
+        }
+        .admin-nav-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-glass);
+            color: var(--text-secondary);
+            padding: 8px 14px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .admin-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+        }
+        .admin-nav-btn.primary {
+            background: var(--gold);
+            color: var(--dark);
+            border-color: var(--gold);
+        }
+        .admin-nav-btn.primary:hover {
+            background: var(--gold-light);
+        }
+        .admin-nav-btn.today-btn {
+            background: rgba(46, 213, 115, 0.15);
+            border-color: rgba(46, 213, 115, 0.3);
+            color: #2ed573;
+        }
+        .admin-nav-btn.today-btn:hover {
+            background: rgba(46, 213, 115, 0.25);
+        }
+
+        .admin-table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-top: 8px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-glass);
+        }
         .admin-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
+            min-width: 600px;
         }
         .admin-table th {
-            text-align: left;
-            padding: 8px 12px;
+            text-align: center;
+            padding: 8px 6px;
             border-bottom: 2px solid var(--border-glass);
             color: var(--gold);
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(255, 255, 255, 0.03);
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+        .admin-table th .day-num {
+            display: block;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            text-transform: none;
+        }
+        .admin-table th .day-week {
+            font-weight: 400;
+            opacity: 0.6;
+        }
+        .admin-table th.weekend {
+            color: #ffa502;
+        }
+        .admin-table th.weekend .day-num {
+            color: #ffa502;
         }
         .admin-table td {
-            padding: 8px 12px;
-            border-bottom: 1px solid var(--border-glass);
+            padding: 6px 4px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             color: var(--text-secondary);
+            text-align: center;
+            vertical-align: middle;
         }
-        .admin-table input[type="number"] {
-            width: 55px;
-            padding: 5px;
+        .admin-table td .room-label {
+            font-weight: 600;
+            color: #fff;
+            font-size: 0.7rem;
+            display: block;
+        }
+        .admin-table td .room-cap {
+            font-size: 0.6rem;
+            opacity: 0.5;
+            display: block;
+        }
+        .admin-table td input[type="number"] {
+            width: 40px;
+            padding: 4px;
             border-radius: 6px;
             border: 1px solid var(--border-glass);
             background: rgba(255, 255, 255, 0.06);
             color: #fff;
-            font-size: 0.75rem;
-            text-align: center;
-        }
-        .btn-cancel-booking {
-            padding: 5px 10px;
-            border-radius: 10px;
-            border: 1px solid #ff4757;
-            background: rgba(255, 71, 87, 0.1);
-            color: #ff4757;
-            cursor: pointer;
             font-size: 0.7rem;
+            text-align: center;
             transition: var(--transition);
         }
-        .btn-cancel-booking:hover {
-            background: rgba(255, 71, 87, 0.3);
+        .admin-table td input[type="number"]:focus {
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.12);
         }
+        .admin-table td input[type="number"]:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .admin-table td .avail-indicator {
+            font-size: 0.6rem;
+            display: block;
+            margin-top: 2px;
+        }
+        .admin-table td .avail-indicator.free {
+            color: #2ed573;
+        }
+        .admin-table td .avail-indicator.busy {
+            color: #ff4757;
+        }
+        .admin-table td .avail-indicator.low {
+            color: #ffa502;
+        }
+        .admin-table .room-row td:first-child {
+            text-align: left;
+            padding-left: 8px;
+            min-width: 90px;
+        }
+        .admin-table .room-row:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .admin-table .date-col {
+            min-width: 50px;
+        }
+        .admin-table .date-col.today {
+            background: rgba(245, 197, 66, 0.08);
+            border-left: 2px solid var(--gold);
+            border-right: 2px solid var(--gold);
+        }
+        .admin-table .date-col.today input {
+            border-color: var(--gold);
+        }
+
+        /* Стили для скролла таблицы */
+        .admin-table-wrap::-webkit-scrollbar {
+            height: 6px;
+        }
+        .admin-table-wrap::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+        .admin-table-wrap::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 3px;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-glass);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            z-index: 99999;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s ease;
+            max-width: 90%;
+            text-align: center;
+        }
+        .toast-success {
+            background: var(--gold);
+            color: var(--dark);
+        }
+        .toast-error {
+            background: #ff4757;
+            color: #fff;
+        }
+        .toast-info {
+            background: #1a73e8;
+            color: #fff;
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        .voucher-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--gold);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-top: 16px;
+        }
+        .voucher-box h3 {
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+        .voucher-box .voucher-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+        }
+        .voucher-box .voucher-row:last-child {
+            border-bottom: none;
+        }
+        .voucher-box .voucher-label {
+            color: var(--text-muted);
+        }
+        .voucher-box .voucher-value {
+            color: #fff;
+            font-weight: 500;
+        }
+        .btn-download-voucher {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 24px;
+            background: var(--gold);
+            color: var(--dark);
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .btn-download-voucher:hover {
+            background: var(--gold-light);
+            transform: translateY(-1px);
+        }
+
+        .photo-nav-btn {
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            padding: 16px 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            touch-action: none;
+            min-width: 54px;
+            min-height: 54px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .photo-nav-btn:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        .photo-nav-btn:active {
+            transform: scale(0.9);
+        }
+        #photoModal .photo-container {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            touch-action: none;
+            position: relative;
+            width: 100%;
+            justify-content: center;
+        }
+        #photoModal .photo-container img {
+            max-width: 70vw;
+            max-height: 70vh;
+            border-radius: 8px;
+            object-fit: contain;
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+        }
+        #photoCounter {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 0.85rem;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 6px 16px;
+            border-radius: 15px;
+            z-index: 10001;
+        }
+        #photoModal .modal-close {
+            position: fixed;
+            top: 16px;
+            right: 20px;
+            font-size: 2.5rem;
+            z-index: 10001;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+        #photoModal .modal-close:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
         .chat-widget {
             position: fixed;
             bottom: 24px;
@@ -971,6 +1326,7 @@
         .chat-input-area button:hover {
             transform: scale(1.1);
         }
+
         .footer {
             text-align: center;
             padding: 20px;
@@ -992,162 +1348,6 @@
         }
         .footer-links a:hover {
             color: var(--gold);
-        }
-
-        .toast {
-            position: fixed;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 12px 24px;
-            border-radius: 12px;
-            font-weight: 600;
-            z-index: 99999;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.3s ease;
-            max-width: 90%;
-            text-align: center;
-        }
-        .toast-success {
-            background: var(--gold);
-            color: var(--dark);
-        }
-        .toast-error {
-            background: #ff4757;
-            color: #fff;
-        }
-        .toast-info {
-            background: #1a73e8;
-            color: #fff;
-        }
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
-        }
-
-        .voucher-box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid var(--gold);
-            border-radius: var(--radius);
-            padding: 20px;
-            margin-top: 16px;
-        }
-        .voucher-box h3 {
-            color: var(--gold);
-            margin-bottom: 12px;
-        }
-        .voucher-box .voucher-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 6px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.85rem;
-        }
-        .voucher-box .voucher-row:last-child {
-            border-bottom: none;
-        }
-        .voucher-box .voucher-label {
-            color: var(--text-muted);
-        }
-        .voucher-box .voucher-value {
-            color: #fff;
-            font-weight: 500;
-        }
-        .btn-download-voucher {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 10px 24px;
-            background: var(--gold);
-            color: var(--dark);
-            border: none;
-            border-radius: 25px;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-        .btn-download-voucher:hover {
-            background: var(--gold-light);
-            transform: translateY(-1px);
-        }
-
-        /* Фото-модалка для мобильных */
-        #photoModal .modal-close {
-            position: fixed;
-            top: 16px;
-            right: 20px;
-            font-size: 2.5rem;
-            z-index: 10001;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-        }
-        #photoModal .modal-close:hover {
-            background: rgba(0, 0, 0, 0.7);
-        }
-        .photo-nav-btn {
-            background: rgba(0, 0, 0, 0.5);
-            border: none;
-            color: #fff;
-            font-size: 2rem;
-            padding: 16px 20px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: var(--transition);
-            touch-action: none;
-            min-width: 54px;
-            min-height: 54px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .photo-nav-btn:hover {
-            background: rgba(0, 0, 0, 0.7);
-        }
-        .photo-nav-btn:active {
-            transform: scale(0.9);
-        }
-        #photoModal .photo-container {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            touch-action: none;
-            position: relative;
-            width: 100%;
-            justify-content: center;
-        }
-        #photoModal .photo-container img {
-            max-width: 70vw;
-            max-height: 70vh;
-            border-radius: 8px;
-            object-fit: contain;
-            touch-action: none;
-            user-select: none;
-            -webkit-user-select: none;
-            -webkit-touch-callout: none;
-        }
-        #photoCounter {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #fff;
-            font-size: 0.85rem;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 6px 16px;
-            border-radius: 15px;
-            z-index: 10001;
         }
 
         @media (max-width: 768px) {
@@ -1203,6 +1403,35 @@
                 top: 12px;
                 right: 12px;
             }
+            .admin-date-nav {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }
+            .admin-date-nav .nav-group {
+                justify-content: center;
+            }
+            .admin-table {
+                font-size: 0.65rem;
+            }
+            .admin-table td input[type="number"] {
+                width: 32px;
+                padding: 2px;
+                font-size: 0.6rem;
+            }
+            .admin-table th .day-num {
+                font-size: 0.8rem;
+            }
+            .admin-table td .room-label {
+                font-size: 0.6rem;
+            }
+            .admin-table .room-row td:first-child {
+                min-width: 60px;
+                padding-left: 4px;
+            }
+            .admin-panel {
+                padding: 12px;
+            }
         }
         @media (max-width: 480px) {
             .logo-title {
@@ -1227,6 +1456,15 @@
             .modal-content {
                 padding: 16px 12px;
             }
+            .admin-table {
+                font-size: 0.55rem;
+                min-width: 400px;
+            }
+            .admin-table td input[type="number"] {
+                width: 28px;
+                padding: 2px;
+                font-size: 0.55rem;
+            }
         }
     </style>
 </head>
@@ -1250,8 +1488,7 @@
                 </div>
             </div>
 
-            <!-- Погода -->
-            <div class="weather-widget" style="display:flex;align-items:center;gap:12px;padding:10px 16px;background:rgba(255,255,255,0.04);border-radius:10px;border:1px solid var(--border-glass);font-size:0.9rem;margin:12px 0;">
+            <div style="display:flex;align-items:center;gap:12px;padding:10px 16px;background:rgba(255,255,255,0.04);border-radius:10px;border:1px solid var(--border-glass);font-size:0.9rem;margin:12px 0;">
                 <i class="fas fa-cloud-sun" style="color:var(--gold);font-size:1.3rem;"></i>
                 <span id="weatherText">Загрузка погоды...</span>
             </div>
@@ -1271,18 +1508,30 @@
             </div>
         </div>
 
-        <!-- АДМИНКА -->
+        <!-- АДМИН-ПАНЕЛЬ (обновленная) -->
         <div class="admin-panel" id="adminPanel" style="display:none;">
-            <button class="btn-exit-admin" onclick="exitAdmin()" id="btnExitAdmin">← Выйти на сайт</button>
+            <div class="admin-header">
+                <h3>🔧 Управление доступностью</h3>
+                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                    <span class="admin-badge">Админ</span>
+                    <button class="btn-exit-admin" onclick="exitAdmin()" id="btnExitAdmin">← Выйти</button>
+                </div>
+            </div>
+
             <div class="admin-tabs">
                 <button class="admin-tab active" onclick="switchAdminTab('availability')" id="tabAvail">📊 Доступность по датам</button>
-                <button class="admin-tab" onclick="switchAdminTab('bookings')" id="tabBookings">📋 Бронирования гостей</button>
+                <button class="admin-tab" onclick="switchAdminTab('bookings')" id="tabBookings">📋 Бронирования</button>
             </div>
+
             <div id="adminTabContent"></div>
-            <button class="btn-submit" style="margin-top:16px;" onclick="saveAllData()" id="btnSaveCloud">💾 Сохранить все данные в облако</button>
+
+            <div class="admin-actions">
+                <button class="admin-nav-btn primary" onclick="saveAllData()" id="btnSaveCloud">💾 Сохранить</button>
+                <span style="color:var(--text-muted);font-size:0.7rem;display:flex;align-items:center;">* Изменения сохраняются в облако</span>
+            </div>
         </div>
 
-        <!-- НОМЕРА -->
+        <!-- НОМЕРА (скрыты в админке) -->
         <div class="content-block" id="roomsBlock">
             <h2 style="font-weight:300; margin-bottom:16px; font-size:1.4rem;" id="roomsTitle">🛏️ Наши номера</h2>
             <div class="filter-bar" id="filterBar">
@@ -1422,7 +1671,7 @@
         </div>
     </div>
 
-    <!-- МОДАЛКА ФОТО (исправленная для мобильных) -->
+    <!-- МОДАЛКА ФОТО -->
     <div class="modal-overlay" id="photoModal">
         <button class="modal-close" onclick="closeModal('photoModal')">&times;</button>
         <div class="photo-container">
@@ -1433,7 +1682,7 @@
         <div id="photoCounter"></div>
     </div>
 
-    <!-- ЧАТ (Jivo не отображается автоматически) -->
+    <!-- ЧАТ -->
     <div class="chat-widget">
         <button class="chat-toggle" onclick="toggleChat()"><i class="fas fa-comments"></i></button>
         <div class="chat-box" id="chatBox">
@@ -1720,8 +1969,8 @@
                 faq6A: 'Мы принимаем оплату по ссылке (Kaspi, карты). 100% предоплата для гарантии бронирования.',
                 reviewsTitle: '💬 Отзывы гостей',
                 footerAdmin: '🔧 Админ-панель', footerA11y: '♿ Версия для слабовидящих',
-                exitAdmin: '← Выйти на сайт', tabAvail: '📊 Доступность по датам',
-                tabBookings: '📋 Бронирования гостей', btnSaveCloud: '💾 Сохранить все данные в облако',
+                exitAdmin: '← Выйти', tabAvail: '📊 Доступность по датам',
+                tabBookings: '📋 Бронирования', btnSaveCloud: '💾 Сохранить',
                 bookModTitle: '📅 Забронировать номер', bookSelRoom: '🏨 Выберите номер',
                 bookDate: '📅 Дата заезда', bookGuests: '👥 Количество гостей',
                 bookNights: '🌙 Количество ночей',
@@ -1749,7 +1998,16 @@
                 voucherBreakfast: '🍳 Завтрак включен',
                 voucherCheckIn: '🕐 Заезд с 15:00, выезд до 12:00',
                 downloadVoucher: '📄 Скачать ваучер',
-                weather: '🌤️ Кольсай'
+                weather: '🌤️ Кольсай',
+                adminTitle: 'Управление доступностью',
+                adminBadge: 'Админ',
+                today: 'Сегодня',
+                prevMonth: '◀',
+                nextMonth: '▶',
+                monthNames: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+                weekDays: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+                totalRooms: 'Всего',
+                freeRooms: 'Свободно'
             },
             en: {
                 langName: 'EN', a11yBtn: '♿ Accessibility', factLake: 'to lake', factHeight: 'altitude',
@@ -1778,8 +2036,8 @@
                 faq6Q: '💳 Payment methods?', faq6A: 'Payment via link (Kaspi, cards). 100% prepayment.',
                 reviewsTitle: '💬 Guest Reviews',
                 footerAdmin: '🔧 Admin Panel', footerA11y: '♿ Accessibility',
-                exitAdmin: '← Exit Admin', tabAvail: '📊 Date Availability', tabBookings: '📋 Guest Bookings',
-                btnSaveCloud: '💾 Save All to Cloud',
+                exitAdmin: '← Exit', tabAvail: '📊 Availability', tabBookings: '📋 Bookings',
+                btnSaveCloud: '💾 Save',
                 bookModTitle: '📅 Book a Room', bookSelRoom: '🏨 Select Room', bookDate: '📅 Check-in Date',
                 bookGuests: '👥 Number of Guests',
                 bookNights: '🌙 Number of Nights',
@@ -1808,7 +2066,16 @@
                 voucherBreakfast: '🍳 Breakfast included',
                 voucherCheckIn: '🕐 Check-in 15:00, Check-out 12:00',
                 downloadVoucher: '📄 Download voucher',
-                weather: '🌤️ Kolsay'
+                weather: '🌤️ Kolsay',
+                adminTitle: 'Availability Management',
+                adminBadge: 'Admin',
+                today: 'Today',
+                prevMonth: '◀',
+                nextMonth: '▶',
+                monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                weekDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                totalRooms: 'Total',
+                freeRooms: 'Free'
             },
             kz: {
                 langName: 'KZ', a11yBtn: '♿ Нашар көретіндерге', factLake: 'көлге дейін', factHeight: 'биіктік',
@@ -1840,8 +2107,8 @@
                 faq6Q: '💳 Төлем әдістері?', faq6A: 'Сілтеме арқылы төлем (Kaspi, карталар). 100% алдын ала төлем.',
                 reviewsTitle: '💬 Қонақтардың пікірлері',
                 footerAdmin: '🔧 Әкімші панелі', footerA11y: '♿ Нашар көретіндерге',
-                exitAdmin: '← Сайтқа шығу', tabAvail: '📊 Күндер бойынша', tabBookings: '📋 Брондаулар',
-                btnSaveCloud: '💾 Бұлтқа сақтау',
+                exitAdmin: '← Шығу', tabAvail: '📊 Қолжетімділік', tabBookings: '📋 Брондаулар',
+                btnSaveCloud: '💾 Сақтау',
                 bookModTitle: '📅 Нөмірді брондау', bookSelRoom: '🏨 Нөмірді таңдау', bookDate: '📅 Келу күні',
                 bookGuests: '👥 Қонақтар саны',
                 bookNights: '🌙 Түндер саны',
@@ -1869,7 +2136,16 @@
                 voucherBreakfast: '🍳 Таңғы ас қосылған',
                 voucherCheckIn: '🕐 Келу 15:00, кету 12:00',
                 downloadVoucher: '📄 Ваучерді жүктеу',
-                weather: '🌤️ Көлсай'
+                weather: '🌤️ Көлсай',
+                adminTitle: 'Қолжетімділікті басқару',
+                adminBadge: 'Админ',
+                today: 'Бүгін',
+                prevMonth: '◀',
+                nextMonth: '▶',
+                monthNames: ['Қаң', 'Ақп', 'Нау', 'Сәу', 'Мау', 'Мау', 'Шіл', 'Там', 'Қыр', 'Қаз', 'Қар', 'Жел'],
+                weekDays: ['Дс', 'Сс', 'Ср', 'Бс', 'Жм', 'Сб', 'Жс'],
+                totalRooms: 'Барлығы',
+                freeRooms: 'Бос'
             }
         };
 
@@ -1883,6 +2159,7 @@
             photoIdx = 0;
         let isHighContrast = false;
         let currentBookingData = null;
+        let adminDateOffset = 0;
 
         function t(key) { return L[curLang][key] || key; }
 
@@ -1920,7 +2197,6 @@
             showToast(isHighContrast ? '🔆 Включена контрастная версия' : '🌙 Обычная версия', 'info');
         }
 
-        // ===== ПОГОДА =====
         let weatherData = { temp: 0, wind: 0, code: 0 };
         let weatherLoaded = false;
 
@@ -1952,13 +2228,14 @@
                 `${emoji} ${city}, <span style="font-weight:700;">${weatherData.temp}°C</span> · Ветер ${weatherData.wind} км/ч · ${dateStr}`;
         }
 
-        // ============ ОБЛАКО ============
         async function saveToCloud() {
             const d = { avails, bookings, ts: new Date().toISOString() };
             try {
                 await fetch(BIN_URL, { method: 'PUT', headers: { 'Content-Type': 'application/json',
                         'X-Master-Key': API_KEY }, body: JSON.stringify(d) });
-            } catch (e) { localStorage.setItem('pkb_backup', JSON.stringify(d)); }
+                showToast('✅ Сохранено!', 'success');
+            } catch (e) { localStorage.setItem('pkb_backup', JSON.stringify(d));
+                showToast('⚠️ Сохранено локально', 'info'); }
         }
 
         async function loadFromCloud() {
@@ -1974,9 +2251,6 @@
                     bookings = j.bookings || []; }
             }
         }
-
-        async function saveAllData() { await saveToCloud();
-            showToast('✅ ' + (curLang === 'ru' ? 'Сохранено!' : curLang === 'en' ? 'Saved!' : 'Сақталды!'), 'success'); }
 
         function getAvail(rid, date) {
             if (avails[rid] && avails[rid][date] !== undefined) return avails[rid][date];
@@ -2172,8 +2446,6 @@
         function showVoucher(bookingId) {
             const b = bookings.find(x => x.id === bookingId);
             if (!b) return;
-            const room = ROOMS.find(r => r.id === b.rid);
-
             const modal = document.getElementById('bookingModal');
             const content = document.getElementById('bookingModalContent');
             modal.classList.add('active');
@@ -2239,7 +2511,7 @@
 
         function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 
-        // ============ ФОТО (свайп на мобильных) ============
+        // ============ ФОТО ============
         function openPhotoModal(rid, idx) {
             const r = ROOMS.find(r => r.id === rid);
             if (!r) return;
@@ -2257,7 +2529,6 @@
             document.getElementById('photoCounter').textContent = `${photoIdx+1}/${photoSet.length}`;
         }
 
-        // Свайп для мобильных
         let touchStartX = 0,
             touchStartY = 0,
             isSwiping = false;
@@ -2294,7 +2565,6 @@
             }
         }, { passive: true });
 
-        // Клавиши на десктопе
         document.addEventListener('keydown', function(e) {
             if (document.getElementById('photoModal').classList.contains('active')) {
                 if (e.key === 'ArrowRight') navigatePhoto(1);
@@ -2306,7 +2576,6 @@
             }
         });
 
-        // Закрытие по клику на фон
         document.getElementById('photoModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeModal('photoModal');
@@ -2314,7 +2583,7 @@
             }
         });
 
-        // ============ АДМИНКА ============
+        // ============ АДМИН-ПАНЕЛЬ (обновленная) ============
         function showAdminLogin() { const pw = prompt('Пароль:'); if (pw === 'pana2026') { isAdmin = true;
                 document.getElementById('adminPanel').style.display = 'block';
                 renderAdmin(); } else if (pw) showToast('Неверно', 'error'); }
@@ -2327,48 +2596,133 @@
             document.querySelector(`.admin-tab[onclick*="${tab}"]`).classList.add('active');
             renderAdmin(); }
 
+        function changeAdminMonth(delta) {
+            adminDateOffset += delta;
+            renderAdmin();
+        }
+
+        function goToTodayAdmin() {
+            adminDateOffset = 0;
+            renderAdmin();
+        }
+
         function renderAdmin() {
             const c = document.getElementById('adminTabContent');
+
+            // Получаем даты для отображения
+            const now = new Date();
+            const baseDate = new Date(now);
+            baseDate.setDate(baseDate.getDate() + adminDateOffset * 30);
+
+            // Начало месяца
+            const startOfMonth = new Date(baseDate.getFullYear(), baseDate.getMonth(), 1);
+            const endOfMonth = new Date(baseDate.getFullYear(), baseDate.getMonth() + 1, 0);
+
+            // Получаем дни месяца
+            const days = [];
+            for (let d = new Date(startOfMonth); d <= endOfMonth; d.setDate(d.getDate() + 1)) {
+                days.push(new Date(d));
+            }
+
+            const monthNames = t('monthNames');
+            const weekDays = t('weekDays');
+            const monthName = monthNames[baseDate.getMonth()];
+            const year = baseDate.getFullYear();
+
             if (curAdminTab === 'availability') {
-                const dates = [];
-                const now = new Date();
-                for (let i = 0; i < 30; i++) { const d = new Date(now);
-                    d.setDate(d.getDate() + i);
-                    dates.push(d.toISOString().split('T')[0]); }
-                let h =
-                    '<div style="overflow-x:auto;"><table class="admin-table"><thead><tr><th>Номер</th>';
-                dates.forEach(d => h += `<th>${d.slice(5)}</th>`);
-                h += '</tr></thead><tbody>';
-                ROOMS.forEach(r => {
-                    h +=
-                        `<tr><td><strong>${rName(r)}</strong><br><small>Всего:${r.total}</small></td>`;
-                    dates.forEach(d => { const v = getAvail(r.id, d),
-                            a = realAvail(r.id, d);
-                        h +=
-                            `<td style="text-align:center;"><input type="number" value="${v}" min="0" max="${r.total}" onchange="setAvail('${r.id}','${d}',+this.value)"><br><small style="color:${a?'#2ed573':'#ff4757'}">${a}</small></td>`; });
-                    h += '</tr>';
+                let navHtml = `
+                    <div class="admin-date-nav">
+                        <div class="nav-group">
+                            <button class="admin-nav-btn" onclick="changeAdminMonth(-1)">${t('prevMonth')}</button>
+                            <span class="admin-month-label">${monthName} ${year}</span>
+                            <button class="admin-nav-btn" onclick="changeAdminMonth(1)">${t('nextMonth')}</button>
+                        </div>
+                        <div class="nav-group">
+                            <button class="admin-nav-btn today-btn" onclick="goToTodayAdmin()">📅 ${t('today')}</button>
+                            <span style="color:var(--text-muted);font-size:0.7rem;">${days.length} дней</span>
+                        </div>
+                    </div>
+                `;
+
+                let tableHtml =
+                    `<div class="admin-table-wrap"><table class="admin-table"><thead><tr><th style="min-width:90px;text-align:left;">Номер</th>`;
+
+                days.forEach(d => {
+                    const dayNum = d.getDate();
+                    const dayWeek = weekDays[d.getDay() === 0 ? 6 : d.getDay() - 1];
+                    const isWeekend = d.getDay() === 0 || d.getDay() === 6;
+                    const isToday = d.toDateString() === new Date().toDateString();
+                    const dateStr = d.toISOString().split('T')[0];
+                    tableHtml +=
+                        `<th class="date-col ${isToday ? 'today' : ''} ${isWeekend ? 'weekend' : ''}"><span class="day-week">${dayWeek}</span><span class="day-num">${dayNum}</span></th>`;
                 });
-                h += '</tbody></table></div>';
-                c.innerHTML = h;
+
+                tableHtml += `</tr></thead><tbody>`;
+
+                ROOMS.forEach(room => {
+                    tableHtml +=
+                        `<tr class="room-row"><td><span class="room-label">${rName(room)}</span><span class="room-cap">${t('totalRooms')}: ${room.total}</span></td>`;
+                    days.forEach(d => {
+                        const dateStr = d.toISOString().split('T')[0];
+                        const total = room.total;
+                        const booked = bookedCount(room.id, dateStr);
+                        const available = getAvail(room.id, dateStr);
+                        const realFree = realAvail(room.id, dateStr);
+                        let statusClass = 'free';
+                        let statusText = realFree;
+                        if (realFree <= 0) { statusClass = 'busy';
+                            statusText = '0'; } else if (realFree <= 2) { statusClass = 'low'; }
+                        tableHtml +=
+                            `<td class="date-col ${d.toDateString() === new Date().toDateString() ? 'today' : ''}">
+                                <input type="number" value="${available}" min="0" max="${total}" 
+                                    onchange="setAvail('${room.id}','${dateStr}',+this.value)" 
+                                    onblur="renderAdmin()">
+                                <span class="avail-indicator ${statusClass}">${realFree}/${total}</span>
+                            </td>`;
+                    });
+                    tableHtml += `</tr>`;
+                });
+
+                tableHtml += `</tbody></table></div>`;
+
+                // Добавляем легенду
+                let legendHtml = `
+                    <div style="display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;font-size:0.7rem;color:var(--text-muted);">
+                        <span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#2ed573;vertical-align:middle;margin-right:4px;"></span> Свободно (≥3)</span>
+                        <span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#ffa502;vertical-align:middle;margin-right:4px;"></span> Мало (1-2)</span>
+                        <span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#ff4757;vertical-align:middle;margin-right:4px;"></span> Занято (0)</span>
+                        <span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:rgba(245,197,66,0.2);border:1px solid var(--gold);vertical-align:middle;margin-right:4px;"></span> Сегодня</span>
+                    </div>
+                `;
+
+                c.innerHTML = navHtml + tableHtml + legendHtml;
+
             } else {
-                if (!bookings.length) { c.innerHTML =
-                        '<p style="color:var(--text-muted);text-align:center;padding:20px;">Нет броней</p>'; return; }
+                // Вкладка "Бронирования"
+                if (!bookings.length) {
+                    c.innerHTML =
+                        '<p style="color:var(--text-muted);text-align:center;padding:20px;">📭 Нет броней</p>';
+                    return;
+                }
                 let h =
-                    '<table class="admin-table"><thead><tr><th>ID</th><th>Номер</th><th>Дата</th><th>Гость</th><th>Тел</th><th>Гостей</th><th>Ночей</th><th>Сумма</th><th></th></tr></thead><tbody>';
+                    '<div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>ID</th><th>Номер</th><th>Дата</th><th>Гость</th><th>Тел</th><th>Гостей</th><th>Ночей</th><th>Сумма</th><th></th></tr></thead><tbody>';
                 bookings.sort((a, b) => new Date(b.at) - new Date(a.at)).forEach(b => { h +=
                         `<tr><td>${b.id}</td><td>${b.rname}</td><td>${b.date}</td><td>${b.gname}</td><td>${b.phone}</td><td>${b.guests}</td><td>${b.nights||1}</td><td>${b.total.toLocaleString()} ₸</td><td>${b.st==='ok'?`<button class="btn-cancel-booking" onclick="cancelBooking('${b.id}')">Отм.</button>`:'Отменен'}</td></tr>`; });
-                h += '</tbody></table>';
+                h += '</tbody></table></div>';
                 c.innerHTML = h;
             }
         }
 
-        async function cancelBooking(bid) { if (!confirm('Отменить?')) return;
+        async function cancelBooking(bid) { if (!confirm('Отменить бронь?')) return;
             const b = bookings.find(x => x.id === bid); if (b) { b.st = 'cancelled';
                 setAvail(b.rid, b.date, Math.min(getAvail(b.rid, b.date) + 1, ROOMS.find(r => r.id === b.rid).total));
                 await saveToCloud();
                 renderRooms();
                 renderAdmin();
                 showToast('Бронь отменена', 'info'); } }
+
+        async function saveAllData() { await saveToCloud();
+            showToast('✅ Сохранено!', 'success'); }
 
         // ============ ФИЛЬТРЫ ============
         document.getElementById('filterBar').addEventListener('click', function(e) {
@@ -2453,7 +2807,6 @@
 
             document.querySelectorAll('.lang-btn').forEach(b => { b.textContent = L[b.dataset.lang].langName; });
 
-            // Обновляем погоду при смене языка
             if (weatherLoaded) {
                 updateWeatherDisplay();
             }
@@ -2501,7 +2854,6 @@
             ms.innerHTML +=
                 `<div class="chat-message bot">Подключаю... 📞 <a href="tel:+77008368964" style="color:#f5c542;">+7 700 836 8964</a></div>`;
 
-            // Загружаем Jivo только при нажатии на "Оператор"
             if (!jivoLoaded) {
                 const script = document.createElement('script');
                 script.src = '//code.jivo.ru/widget/sfanjIPwr0';
@@ -2513,7 +2865,6 @@
                     }
                 };
                 document.head.appendChild(script);
-                // Fallback через 3 секунды
                 setTimeout(() => {
                     if (!jivoLoaded) {
                         window.open('https://wa.me/77018615121', '_blank');
@@ -2549,9 +2900,7 @@
             document.getElementById('quickCheckIn').value = today;
             document.getElementById('quickCheckIn').setAttribute('min', today);
 
-            // Загружаем погоду
             await fetchWeather();
-
             switchLanguage('ru');
 
             setInterval(saveToCloud, 300000);
