@@ -175,6 +175,14 @@
             background: #e8940a;
             transform: translateY(-1px);
         }
+        .admin-btn-info {
+            background: #1a73e8;
+            color: #fff;
+        }
+        .admin-btn-info:hover {
+            background: #1557b0;
+            transform: translateY(-1px);
+        }
 
         .admin-status {
             margin-top: 12px;
@@ -298,15 +306,15 @@
         .admin-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             min-width: 600px;
         }
         .admin-table th {
             text-align: center;
-            padding: 8px 6px;
+            padding: 6px 4px;
             border-bottom: 2px solid rgba(255, 255, 255, 0.08);
             color: #f5c542;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             background: rgba(255, 255, 255, 0.02);
@@ -316,7 +324,7 @@
         }
         .admin-table th .day-num {
             display: block;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 700;
             color: #fff;
             text-transform: none;
@@ -324,12 +332,13 @@
         .admin-table th .day-week {
             font-weight: 400;
             opacity: 0.5;
+            font-size: 0.5rem;
         }
         .admin-table th.weekend .day-num {
             color: #ffa502;
         }
         .admin-table td {
-            padding: 6px 4px;
+            padding: 4px 3px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             color: rgba(255, 255, 255, 0.7);
             text-align: center;
@@ -338,22 +347,22 @@
         .admin-table td .room-label {
             font-weight: 600;
             color: #fff;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             display: block;
         }
         .admin-table td .room-cap {
-            font-size: 0.6rem;
+            font-size: 0.5rem;
             opacity: 0.4;
             display: block;
         }
         .admin-table td input[type="number"] {
-            width: 40px;
-            padding: 4px;
+            width: 34px;
+            padding: 3px;
             border-radius: 6px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             background: rgba(255, 255, 255, 0.06);
             color: #fff;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             text-align: center;
             transition: 0.3s;
         }
@@ -363,7 +372,7 @@
             outline: none;
         }
         .admin-table td .avail-indicator {
-            font-size: 0.55rem;
+            font-size: 0.5rem;
             display: block;
             margin-top: 2px;
         }
@@ -389,8 +398,8 @@
         }
         .admin-table .room-row td:first-child {
             text-align: left;
-            padding-left: 8px;
-            min-width: 80px;
+            padding-left: 6px;
+            min-width: 70px;
         }
         .admin-table .room-row:hover td {
             background: rgba(255, 255, 255, 0.02);
@@ -406,10 +415,10 @@
 
         .legend {
             display: flex;
-            gap: 16px;
-            margin-top: 12px;
+            gap: 12px;
+            margin-top: 10px;
             flex-wrap: wrap;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: rgba(255, 255, 255, 0.5);
         }
         .legend span {
@@ -419,8 +428,8 @@
         }
         .legend .dot {
             display: inline-block;
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
         }
         .legend .dot.free {
@@ -482,16 +491,16 @@
                 padding: 16px;
             }
             .admin-table {
-                font-size: 0.65rem;
+                font-size: 0.6rem;
                 min-width: 400px;
             }
             .admin-table td input[type="number"] {
-                width: 32px;
+                width: 28px;
                 padding: 2px;
-                font-size: 0.6rem;
+                font-size: 0.55rem;
             }
             .admin-table th .day-num {
-                font-size: 0.8rem;
+                font-size: 0.7rem;
             }
             .admin-date-nav {
                 flex-direction: column;
@@ -502,7 +511,7 @@
                 justify-content: center;
             }
             .admin-table .room-row td:first-child {
-                min-width: 60px;
+                min-width: 55px;
             }
             .admin-upload-area {
                 padding: 20px 16px;
@@ -514,10 +523,10 @@
         @media (max-width: 480px) {
             .admin-table {
                 min-width: 320px;
-                font-size: 0.55rem;
+                font-size: 0.5rem;
             }
             .admin-table td input[type="number"] {
-                width: 28px;
+                width: 24px;
                 padding: 2px;
                 font-size: 0.5rem;
             }
@@ -534,7 +543,7 @@
 
         <div class="admin-panel">
             <div class="admin-tabs">
-                <button class="admin-tab active" onclick="switchTab('excel')" id="tabExcel">📊 Загрузка Excel</button>
+                <button class="admin-tab active" onclick="switchTab('excel')" id="tabExcel">📊 Обновление</button>
                 <button class="admin-tab" onclick="switchTab('availability')" id="tabAvail">📅 Доступность</button>
                 <button class="admin-tab" onclick="switchTab('bookings')" id="tabBookings">📋 Бронирования</button>
             </div>
@@ -554,49 +563,53 @@
         const API_KEY = '$2a$10$AxIfA8p7dq6td0BYtWWuhecnyqCJbsTGoo.oWIds3H01C43GvLGuu';
         const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
-        // МАППИНГ типов номеров из Excel -> ID в системе
-        const ROOM_TYPE_MAPPING = {
-            'Каменный домик': 'lux-a01',
-            'Деревянный домик': 'lux-a02',
-            'Standard Room': 'standard',
-            'Стандарт без вида': 'standard',
-            'Eco House': 'standard',
-            'Superior Mountain view': 'mountain',
-            'Superior Lake view': 'lake-twin',
-            'Superior Lake view, triple': 'triple',
-            'Deluxe': 'deluxe',
-            'Deluxe +': 'deluxe-plus',
-            'Premier Deluxe': 'premier-deluxe',
-            'Suite Room': 'suite',
-            'Glamping Domes +': 'glamping',
-            'Glamping Domes': 'glamping'
-        };
-
-        // Базовые номера
+        // ============ НОМЕРА ============
         const ROOMS = [
-            { id: 'standard', total: 4, nameRu: '🏨 Standard Room' },
-            { id: 'mountain', total: 2, nameRu: '⛰ Mountain View' },
-            { id: 'lake-double', total: 1, nameRu: '🌅 Lake View Double' },
-            { id: 'lake-twin', total: 7, nameRu: '🌅 Lake View Twin' },
-            { id: 'triple', total: 2, nameRu: '🌅 Lake View Triple' },
-            { id: 'deluxe', total: 1, nameRu: '🏨 Deluxe' },
-            { id: 'deluxe-plus', total: 2, nameRu: '🏡 Deluxe+' },
-            { id: 'premier-deluxe', total: 1, nameRu: '🏡 Premier Deluxe' },
-            { id: 'suite', total: 1, nameRu: '👑 Suite Room' },
-            { id: 'lux-a02', total: 1, nameRu: '💎 Люкс A02' },
-            { id: 'lux-a01', total: 1, nameRu: '💎 Люкс A01' },
-            { id: 'glamping', total: 4, nameRu: '🏕️ Glamping' }
+            { id: 'a01-stone', total: 1, name: '🏔️ Каменный домик A01' },
+            { id: 'a02-wood', total: 1, name: '🪵 Деревянный домик A02' },
+            { id: 'standard', total: 2, name: '🏨 Standard Room' },
+            { id: 'mountain', total: 2, name: '⛰ Superior Mountain View' },
+            { id: 'lake-double', total: 7, name: '🌅 Superior Lake View Double' },
+            { id: 'triple', total: 2, name: '🌅 Superior Lake View Triple' },
+            { id: 'deluxe', total: 1, name: '🏨 Deluxe' },
+            { id: 'deluxe-plus', total: 2, name: '🏡 Deluxe+' },
+            { id: 'premier-deluxe', total: 1, name: '🏡 Premier Deluxe' },
+            { id: 'suite', total: 1, name: '👑 Suite Room' },
+            { id: 'glamping-new', total: 2, name: '🏕️ Glamping Domes +' }
         ];
+
+        // ============ МАППИНГ (все ключи в нижнем регистре) ============
+        const ROOM_TYPE_MAPPING_RAW = {
+            'каменный домик': 'a01-stone',
+            'каменный домик a01': 'a01-stone',
+            'stone house': 'a01-stone',
+            'деревянный домик': 'a02-wood',
+            'деревянный домик a02': 'a02-wood',
+            'wooden house': 'a02-wood',
+            'standard room': 'standard',
+            'standard': 'standard',
+            'superior mountain view': 'mountain',
+            'mountain view': 'mountain',
+            'superior lake view': 'lake-double',
+            'lake view': 'lake-double',
+            'superior lake view, triple': 'triple',
+            'superior lake view triple': 'triple',
+            'lake view triple': 'triple',
+            'deluxe': 'deluxe',
+            'deluxe +': 'deluxe-plus',
+            'deluxe+': 'deluxe-plus',
+            'premier deluxe': 'premier-deluxe',
+            'suite room': 'suite',
+            'suite': 'suite',
+            'glamping domes +': 'glamping-new',
+            'glamping domes': 'glamping-new'
+        };
 
         let avails = {};
         let bookings = [];
         let currentTab = 'excel';
         let adminDateOffset = 0;
         let uploadedBookingsData = null;
-
-        function rName(room) {
-            return room['nameRu'] || room.nameRu;
-        }
 
         function showToast(msg, type) {
             type = type || 'success';
@@ -663,9 +676,12 @@
 
         function bookedCount(rid, date) {
             var count = 0;
-            bookings.forEach(function(b) {
-                if (b.rid === rid && b.date === date && b.st === 'ok') count++;
-            });
+            for (var i = 0; i < bookings.length; i++) {
+                var b = bookings[i];
+                if (b.rid === rid && b.date === date && b.st === 'ok') {
+                    count++;
+                }
+            }
             return count;
         }
 
@@ -700,9 +716,10 @@
                     document.getElementById('fileNameBookings').textContent = '✅ ' + file.name + ' (' + uploadedBookingsData
                         .length + ' записей)';
                     showToast('📥 Загружен файл: ' + uploadedBookingsData.length + ' записей', 'info');
-
-                    // Показываем первую запись для отладки
                     console.log('📋 Первая запись:', uploadedBookingsData[0]);
+
+                    // Автоматически запускаем обработку
+                    processExcelFiles();
                 } catch (err) {
                     showToast('❌ Ошибка чтения файла: ' + err.message, 'error');
                 }
@@ -723,13 +740,7 @@
             el.className = 'admin-status ' + type;
         }
 
-        function clearStatus() {
-            var el = document.getElementById('adminStatus');
-            el.className = 'admin-status';
-            el.textContent = '';
-        }
-
-        // ===== ОСНОВНАЯ ЛОГИКА ОБРАБОТКИ EXCEL =====
+        // ===== ОСНОВНАЯ ФУНКЦИЯ =====
         async function processExcelFiles() {
             if (!uploadedBookingsData) {
                 setStatus('❌ Сначала загрузите bookings.xlsx', 'error');
@@ -739,21 +750,18 @@
             setProgress('Начинаем обработку...', 10);
 
             try {
-                // 1. Определяем колонки
                 var headers = Object.keys(uploadedBookingsData[0] || {});
                 console.log('📋 Все колонки:', headers);
 
-                // Ищем колонку "Категория номера" (или похожие названия)
+                // Находим колонки
                 var typeCol = null;
                 var checkInCol = null;
                 var checkOutCol = null;
 
-                // Поиск колонки с типом номера
-                var typeKeywords = ['категория', 'тип', 'room', 'номер', 'категор'];
+                var possibleTypeCols = ['Категория номера', 'категория', 'Тип номера', 'тип', 'Room', 'Категория'];
                 for (var i = 0; i < headers.length; i++) {
-                    var h = headers[i].toLowerCase();
-                    for (var j = 0; j < typeKeywords.length; j++) {
-                        if (h.indexOf(typeKeywords[j]) !== -1) {
+                    for (var j = 0; j < possibleTypeCols.length; j++) {
+                        if (headers[i].toLowerCase().indexOf(possibleTypeCols[j].toLowerCase()) !== -1) {
                             typeCol = headers[i];
                             break;
                         }
@@ -761,12 +769,10 @@
                     if (typeCol) break;
                 }
 
-                // Поиск колонки с датой заезда
-                var checkInKeywords = ['заезд', 'check-in', 'checkin', 'заезда'];
+                var possibleCheckInCols = ['Заезд', 'заезд', 'Check-in', 'check-in', 'Дата заезда'];
                 for (var i = 0; i < headers.length; i++) {
-                    var h = headers[i].toLowerCase();
-                    for (var j = 0; j < checkInKeywords.length; j++) {
-                        if (h.indexOf(checkInKeywords[j]) !== -1) {
+                    for (var j = 0; j < possibleCheckInCols.length; j++) {
+                        if (headers[i].toLowerCase().indexOf(possibleCheckInCols[j].toLowerCase()) !== -1) {
                             checkInCol = headers[i];
                             break;
                         }
@@ -774,12 +780,10 @@
                     if (checkInCol) break;
                 }
 
-                // Поиск колонки с датой выезда
-                var checkOutKeywords = ['выезд', 'check-out', 'checkout', 'выезда'];
+                var possibleCheckOutCols = ['Выезд', 'выезд', 'Check-out', 'check-out', 'Дата выезда'];
                 for (var i = 0; i < headers.length; i++) {
-                    var h = headers[i].toLowerCase();
-                    for (var j = 0; j < checkOutKeywords.length; j++) {
-                        if (h.indexOf(checkOutKeywords[j]) !== -1) {
+                    for (var j = 0; j < possibleCheckOutCols.length; j++) {
+                        if (headers[i].toLowerCase().indexOf(possibleCheckOutCols[j].toLowerCase()) !== -1) {
                             checkOutCol = headers[i];
                             break;
                         }
@@ -797,62 +801,81 @@
 
                 setProgress('Обработка броней...', 30);
 
-                // 2. Собираем все брони
+                // ===== СБОР ВСЕХ БРОНЕЙ С ПРАВИЛЬНЫМИ ДАТАМИ =====
                 var allBookings = [];
+                var unknownTypes = {};
 
                 uploadedBookingsData.forEach(function(row) {
-                    // Получаем тип номера
                     var rawTypes = String(row[typeCol] || '');
-
-                    // Разбиваем на несколько типов (если есть переносы строк или нумерация)
                     var types = rawTypes.split(/\n|\.\s*|\d+\./).map(function(s) { return s.trim(); }).filter(function(
                     s) { return s; });
-
-                    // Если после разбивки ничего не получилось, используем всю строку
                     if (types.length === 0 && rawTypes.trim()) {
                         types = [rawTypes.trim()];
                     }
 
-                    // Парсим даты
                     var checkIn, checkOut;
 
-                    // Пробуем разные форматы дат
-                    if (typeof row[checkInCol] === 'number') {
-                        // Excel число -> дата (Excel даты это число дней с 1900-01-01)
-                        checkIn = new Date((row[checkInCol] - 25569) * 86400 * 1000);
-                    } else if (typeof row[checkInCol] === 'string' && row[checkInCol].indexOf('/') !== -1) {
-                        var parts = row[checkInCol].split('/');
-                        if (parts.length === 3) {
-                            // Формат MM/DD/YYYY или DD/MM/YYYY
-                            checkIn = new Date(parts[2], parts[0] - 1, parts[1]);
-                            if (isNaN(checkIn.getTime())) {
-                                checkIn = new Date(parts[2], parts[1] - 1, parts[0]);
+                    // ===== ПРАВИЛЬНЫЙ ПАРСИНГ ДАТ =====
+                    // Пробуем разные форматы
+                    var checkInRaw = row[checkInCol];
+                    var checkOutRaw = row[checkOutCol];
+
+                    // Если дата в Excel как число (дни с 1900)
+                    if (typeof checkInRaw === 'number') {
+                        // Excel даты: 25569 = 1970-01-01
+                        checkIn = new Date((checkInRaw - 25569) * 86400 * 1000);
+                    } else if (typeof checkInRaw === 'string') {
+                        var dStr = checkInRaw.toString().trim();
+                        // Формат: "2026-07-31 15:00:00"
+                        var match = dStr.match(/(\d{4})-(\d{2})-(\d{2})/);
+                        if (match) {
+                            checkIn = new Date(match[1], match[2] - 1, match[3]);
+                        } else {
+                            // Пробуем другие форматы
+                            match = dStr.match(/(\d{2})\/(\d{2})\/(\d{4})/);
+                            if (match) {
+                                checkIn = new Date(match[3], match[1] - 1, match[2]);
+                            } else {
+                                checkIn = new Date(dStr);
                             }
                         }
+                    } else if (checkInRaw instanceof Date) {
+                        checkIn = new Date(checkInRaw);
                     } else {
-                        checkIn = new Date(row[checkInCol]);
+                        checkIn = new Date(checkInRaw);
                     }
 
-                    if (typeof row[checkOutCol] === 'number') {
-                        checkOut = new Date((row[checkOutCol] - 25569) * 86400 * 1000);
-                    } else if (typeof row[checkOutCol] === 'string' && row[checkOutCol].indexOf('/') !== -1) {
-                        var parts2 = row[checkOutCol].split('/');
-                        if (parts2.length === 3) {
-                            checkOut = new Date(parts2[2], parts2[0] - 1, parts2[1]);
-                            if (isNaN(checkOut.getTime())) {
-                                checkOut = new Date(parts2[2], parts2[1] - 1, parts2[0]);
+                    if (typeof checkOutRaw === 'number') {
+                        checkOut = new Date((checkOutRaw - 25569) * 86400 * 1000);
+                    } else if (typeof checkOutRaw === 'string') {
+                        var dStr2 = checkOutRaw.toString().trim();
+                        var match2 = dStr2.match(/(\d{4})-(\d{2})-(\d{2})/);
+                        if (match2) {
+                            checkOut = new Date(match2[1], match2[2] - 1, match2[3]);
+                        } else {
+                            match2 = dStr2.match(/(\d{2})\/(\d{2})\/(\d{4})/);
+                            if (match2) {
+                                checkOut = new Date(match2[3], match2[1] - 1, match2[2]);
+                            } else {
+                                checkOut = new Date(dStr2);
                             }
                         }
+                    } else if (checkOutRaw instanceof Date) {
+                        checkOut = new Date(checkOutRaw);
                     } else {
-                        checkOut = new Date(row[checkOutCol]);
+                        checkOut = new Date(checkOutRaw);
                     }
 
+                    // Проверяем валидность
                     if (isNaN(checkIn.getTime()) || isNaN(checkOut.getTime())) {
-                        console.log('⚠️ Ошибка парсинга дат:', row[checkInCol], row[checkOutCol]);
+                        console.log('⚠️ Ошибка парсинга дат:', checkInRaw, checkOutRaw);
                         return;
                     }
 
-                    // Проверяем, что даты корректные
+                    // Нормализуем даты (убираем время)
+                    checkIn = new Date(checkIn.getFullYear(), checkIn.getMonth(), checkIn.getDate());
+                    checkOut = new Date(checkOut.getFullYear(), checkOut.getMonth(), checkOut.getDate());
+
                     if (checkOut <= checkIn) {
                         console.log('⚠️ Даты некорректны (выезд <= заезд):', checkIn, checkOut);
                         return;
@@ -860,111 +883,93 @@
 
                     types.forEach(function(type) {
                         if (type && type.length > 1) {
-                            allBookings.push({
-                                type: type.trim(),
-                                checkIn: new Date(checkIn),
-                                checkOut: new Date(checkOut)
-                            });
+                            var typeLower = type.trim().toLowerCase();
+                            var roomId = ROOM_TYPE_MAPPING_RAW[typeLower];
+                            if (roomId) {
+                                allBookings.push({
+                                    type: type.trim(),
+                                    checkIn: new Date(checkIn),
+                                    checkOut: new Date(checkOut),
+                                    roomId: roomId
+                                });
+                            } else {
+                                unknownTypes[type] = (unknownTypes[type] || 0) + 1;
+                            }
                         }
                     });
                 });
 
+                // ===== ПОКАЗЫВАЕМ НЕИЗВЕСТНЫЕ ТИПЫ =====
+                var unknownKeys = Object.keys(unknownTypes);
+                if (unknownKeys.length > 0) {
+                    console.log('⚠️ Неизвестные типы номеров (пропущены):', unknownKeys);
+                    setStatus('⚠️ Найдены неизвестные типы: ' + unknownKeys.join(', '), 'warning');
+                }
+
                 if (allBookings.length === 0) {
-                    setStatus('❌ Не найдено ни одной корректной брони. Проверьте формат данных.', 'error');
+                    setStatus('❌ Не найдено ни одной корректной брони.', 'error');
                     setProgress('Ошибка', 100);
                     return;
                 }
 
+                console.log('✅ Найдено броней:', allBookings.length);
                 setProgress('Обработано ' + allBookings.length + ' броней...', 50);
 
-                // 3. Строим календарь занятости
+                // ===== ОПРЕДЕЛЯЕМ ДИАПАЗОН ДАТ =====
                 var minDate = new Date(Math.min.apply(null, allBookings.map(function(b) { return b.checkIn.getTime(); })));
                 var maxDate = new Date(Math.max.apply(null, allBookings.map(function(b) { return b.checkOut.getTime(); })));
                 var startDate = new Date(minDate);
                 var endDate = new Date(maxDate);
                 endDate.setDate(endDate.getDate() + 1);
 
-                // Ограничиваем диапазон 365 днями
-                var daysLimit = 365;
-                var totalDays = Math.min(Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)), daysLimit);
-                if (totalDays > daysLimit) {
+                var totalDays = Math.min(Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)), 365);
+                if (totalDays > 365) {
                     endDate = new Date(startDate);
-                    endDate.setDate(endDate.getDate() + daysLimit);
+                    endDate.setDate(endDate.getDate() + 365);
                 }
 
-                // Считаем занятость по дням и типам
-                var occupied = {};
-                allBookings.forEach(function(booking) {
-                    var type = booking.type;
-                    var d = new Date(booking.checkIn);
-                    while (d < booking.checkOut && d < endDate) {
-                        var key = type + '|' + d.toISOString().split('T')[0];
-                        occupied[key] = (occupied[key] || 0) + 1;
-                        d.setDate(d.getDate() + 1);
-                    }
-                });
-
-                setProgress('Обновление доступности...', 70);
-
-                // 4. Обновляем avails
+                // ===== СТРОИМ НОВУЮ ДОСТУПНОСТЬ =====
                 var newAvails = {};
+                var today = new Date();
+                today.setHours(0, 0, 0, 0);
 
-                // Количество номеров по типам (из ROOMS через маппинг)
-                var roomTypeTotal = {};
+                // Инициализируем для всех ROOMS
                 ROOMS.forEach(function(room) {
-                    // Находим соответствующий тип в маппинге
-                    for (var excelType in ROOM_TYPE_MAPPING) {
-                        if (ROOM_TYPE_MAPPING[excelType] === room.id) {
-                            roomTypeTotal[excelType] = room.total;
-                        }
-                    }
+                    newAvails[room.id] = {};
                 });
-
-                // Добавляем все возможные типы из маппинга
-                for (var excelType in ROOM_TYPE_MAPPING) {
-                    var rid = ROOM_TYPE_MAPPING[excelType];
-                    var room = ROOMS.find(function(r) { return r.id === rid; });
-                    if (room) {
-                        roomTypeTotal[excelType] = room.total;
-                    }
-                }
-
-                console.log('🏨 Типы номеров в системе:', Object.keys(roomTypeTotal));
 
                 var d = new Date(startDate);
                 var daysProcessed = 0;
                 var totalDaysToProcess = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
 
-                // Получаем сегодняшнюю дату для закрытия прошедших дней
-                var today = new Date();
-                today.setHours(0, 0, 0, 0);
-
+                // ===== СЧИТАЕМ ЗАНЯТОСТЬ =====
                 while (d < endDate) {
                     var dateStr = d.toISOString().split('T')[0];
                     daysProcessed++;
 
-                    for (var type in roomTypeTotal) {
-                        if (roomTypeTotal.hasOwnProperty(type)) {
-                            var total = roomTypeTotal[type];
-                            var key = type + '|' + dateStr;
-                            var busy = occupied[key] || 0;
-                            var free = Math.max(0, total - busy);
-
-                            var roomId = ROOM_TYPE_MAPPING[type];
-                            if (roomId) {
-                                if (!newAvails[roomId]) newAvails[roomId] = {};
-                                var roomTotal = 0;
-                                ROOMS.forEach(function(r) { if (r.id === roomId) roomTotal = r.total; });
-
-                                // Если дата прошедшая - ставим 0
-                                if (d < today) {
-                                    newAvails[roomId][dateStr] = 0;
-                                } else {
-                                    newAvails[roomId][dateStr] = Math.min(free, roomTotal);
+                    ROOMS.forEach(function(room) {
+                        var total = room.total;
+                        // Считаем брони на эту дату для этого типа (включая сегодняшний день)
+                        var busy = 0;
+                        allBookings.forEach(function(b) {
+                            if (b.roomId === room.id) {
+                                // Проверяем, что дата в диапазоне [checkIn, checkOut)
+                                if (d >= b.checkIn && d < b.checkOut) {
+                                    busy++;
                                 }
                             }
+                        });
+
+                        var free = Math.max(0, total - busy);
+
+                        // ===== НЕ ЗАКРЫВАЕМ СЕГОДНЯ, если есть свободные места =====
+                        // Если дата прошедшая (строго меньше сегодня) - закрываем
+                        if (d < today) {
+                            newAvails[room.id][dateStr] = 0;
+                        } else {
+                            newAvails[room.id][dateStr] = Math.min(free, total);
                         }
-                    }
+                    });
 
                     if (daysProcessed % 10 === 0) {
                         var progress = 70 + (daysProcessed / totalDaysToProcess) * 25;
@@ -975,29 +980,22 @@
                     d.setDate(d.getDate() + 1);
                 }
 
-                setProgress('Сохранение...', 95);
-
-                // Сохраняем старые данные для типов, которых нет в новом файле
-                for (var rid in avails) {
-                    if (avails.hasOwnProperty(rid) && !newAvails[rid]) {
-                        newAvails[rid] = avails[rid];
-                    }
-                }
-
+                // ===== ПРИНУДИТЕЛЬНО ЗАМЕНЯЕМ avails =====
                 avails = newAvails;
+
+                setProgress('Сохранение...', 95);
                 await saveToCloud();
 
                 setProgress('Готово!', 100);
-                var totalRooms = 0;
-                for (var t in roomTypeTotal) { if (roomTypeTotal.hasOwnProperty(t)) totalRooms += roomTypeTotal[t]; }
                 setStatus('✅ Доступность обновлена! Обработано ' + allBookings.length + ' броней, ' + totalDaysToProcess +
-                    ' дней, ' + totalRooms + ' номеров. Прошедшие даты закрыты.', 'success');
+                    ' дней. Прошедшие даты закрыты, сегодняшняя доступна.', 'success');
                 showToast('✅ Доступность успешно обновлена из Excel!', 'success');
 
                 setTimeout(function() {
                     document.getElementById('adminProgress').classList.remove('show');
                     setProgress('', 0);
-                }, 3000);
+                    switchTab('availability');
+                }, 1500);
 
             } catch (err) {
                 setStatus('❌ Ошибка: ' + err.message, 'error');
@@ -1014,6 +1012,66 @@
             showToast('🗑️ Вся доступность очищена', 'info');
         }
 
+        function closePastDates() {
+            var today = new Date();
+            today.setHours(0, 0, 0, 0);
+            var closedCount = 0;
+
+            for (var rid in avails) {
+                if (avails.hasOwnProperty(rid)) {
+                    for (var dateStr in avails[rid]) {
+                        if (avails[rid].hasOwnProperty(dateStr)) {
+                            var dateParts = dateStr.split('-');
+                            var dateObj = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+                            if (dateObj < today) {
+                                if (avails[rid][dateStr] > 0) {
+                                    avails[rid][dateStr] = 0;
+                                    closedCount++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (closedCount > 0) {
+                showToast('🔒 Закрыто ' + closedCount + ' прошедших дат', 'info');
+                setStatus('🔒 Закрыто ' + closedCount + ' прошедших дат', 'warning');
+            } else {
+                showToast('✅ Все прошедшие даты уже закрыты', 'success');
+                setStatus('✅ Все прошедшие даты уже закрыты', 'success');
+            }
+
+            saveToCloud();
+            renderAdmin();
+        }
+
+        function debugAvails() {
+            var total = 0;
+            var dates = {};
+            for (var rid in avails) {
+                if (avails.hasOwnProperty(rid)) {
+                    for (var dateStr in avails[rid]) {
+                        if (avails[rid].hasOwnProperty(dateStr)) {
+                            if (!dates[dateStr]) dates[dateStr] = 0;
+                            dates[dateStr] += avails[rid][dateStr];
+                            total++;
+                        }
+                    }
+                }
+            }
+            var msg = '📊 Всего записей доступности: ' + total + '\n';
+            var sortedDates = Object.keys(dates).sort();
+            var count = 0;
+            for (var i = 0; i < sortedDates.length && count < 15; i++) {
+                msg += sortedDates[i] + ': ' + dates[sortedDates[i]] + ' номеров\n';
+                count++;
+            }
+            if (sortedDates.length > 15) msg += '... и ещё ' + (sortedDates.length - 15) + ' дат';
+            alert(msg);
+            console.log('📊 avails:', avails);
+        }
+
         // ===== РЕНДЕР АДМИНКИ =====
         function renderAdmin() {
             var container = document.getElementById('adminContent');
@@ -1027,7 +1085,12 @@
                             🔍 Ищутся колонки: <strong>Категория номера</strong>, <strong>Заезд</strong>, <strong>Выезд</strong>
                         </p>
                         <p style="font-size:0.7rem;color:rgba(255,255,255,0.2);margin-top:2px;">
-                            Поддерживаются форматы: .xlsx, .xls
+                            📌 Обрабатываются: Standard Room, Superior Mountain view, Superior Lake view,
+                            Superior Lake view triple, Deluxe, Deluxe +, Premier Deluxe, Suite Room, Glamping Domes +,
+                            Каменный домик, Деревянный домик
+                        </p>
+                        <p style="font-size:0.7rem;color:#ffa502;margin-top:2px;">
+                            ⚠️ Пропускаются: Стандарт без вида, Glamping Domes
                         </p>
                         <span class="file-name" id="fileNameBookings">Файл не выбран</span>
                         <input type="file" id="fileInputBookings" accept=".xlsx,.xls">
@@ -1041,9 +1104,9 @@
                     <div class="admin-status" id="adminStatus"></div>
 
                     <div class="admin-actions" style="border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;margin-top:8px;flex-wrap:wrap;">
-                        <button class="admin-btn admin-btn-success" onclick="processExcelFiles()">📊 Обработать и обновить доступность</button>
                         <button class="admin-btn admin-btn-warning" onclick="closePastDates()">🔒 Закрыть прошедшие даты</button>
                         <button class="admin-btn admin-btn-danger" onclick="clearAllAvailability()">🗑️ Очистить всё</button>
+                        <button class="admin-btn admin-btn-info" onclick="debugAvails()">🔍 Статистика доступности</button>
                     </div>
                 `;
 
@@ -1127,7 +1190,7 @@
             `;
 
             var tableHtml =
-                '<div class="admin-table-wrap"><table class="admin-table"><thead><tr><th style="min-width:80px;text-align:left;">Номер</th>';
+                '<div class="admin-table-wrap"><table class="admin-table"><thead><tr><th style="min-width:70px;text-align:left;">Номер</th>';
 
             days.forEach(function(day) {
                 var dayNum = day.getDate();
@@ -1143,13 +1206,14 @@
             tableHtml += '</tr></thead><tbody>';
 
             ROOMS.forEach(function(room) {
-                tableHtml += '<tr class="room-row"><td><span class="room-label">' + rName(room) +
+                tableHtml += '<tr class="room-row"><td><span class="room-label">' + room.name +
                     '</span><span class="room-cap">всего: ' + room.total + '</span></td>';
                 days.forEach(function(day) {
                     var dateStr = day.toISOString().split('T')[0];
                     var total = room.total;
                     var available = getAvail(room.id, dateStr);
-                    var realFree = realAvail(room.id, dateStr);
+                    var booked = bookedCount(room.id, dateStr);
+                    var realFree = Math.max(0, available - booked);
                     var isPast = day < today;
                     var statusClass = 'free';
                     if (isPast) statusClass = 'past';
@@ -1190,42 +1254,6 @@
 
         function goToToday() {
             adminDateOffset = 0;
-            renderAdmin();
-        }
-
-        // ===== ЗАКРЫТИЕ ПРОШЕДШИХ ДАТ =====
-        function closePastDates() {
-            var today = new Date();
-            today.setHours(0, 0, 0, 0);
-            var todayStr = today.toISOString().split('T')[0];
-            var closedCount = 0;
-
-            for (var rid in avails) {
-                if (avails.hasOwnProperty(rid)) {
-                    for (var dateStr in avails[rid]) {
-                        if (avails[rid].hasOwnProperty(dateStr)) {
-                            var dateParts = dateStr.split('-');
-                            var dateObj = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-                            if (dateObj < today) {
-                                if (avails[rid][dateStr] > 0) {
-                                    avails[rid][dateStr] = 0;
-                                    closedCount++;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (closedCount > 0) {
-                showToast('🔒 Закрыто ' + closedCount + ' прошедших дат', 'info');
-                setStatus('🔒 Закрыто ' + closedCount + ' прошедших дат (до ' + todayStr + ')', 'warning');
-            } else {
-                showToast('✅ Все прошедшие даты уже закрыты', 'success');
-                setStatus('✅ Все прошедшие даты уже закрыты', 'success');
-            }
-
-            saveToCloud();
             renderAdmin();
         }
 
