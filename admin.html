@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
+        /* ... все стили как в вашем файле ... */
         * {
             margin: 0;
             padding: 0;
@@ -563,6 +564,9 @@
         const API_KEY = '$2a$10$AxIfA8p7dq6td0BYtWWuhecnyqCJbsTGoo.oWIds3H01C43GvLGuu';
         const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
+        // ============ АДМИН-ПАРОЛЬ ============
+        const ADMIN_PASSWORD = 'Pana2026!';  // ← МОЖЕТЕ СМЕНИТЬ НА СВОЙ
+
         // ============ НОМЕРА ============
         const ROOMS = [
             { id: 'a01-stone', total: 1, name: '🏔️ Каменный домик A01' },
@@ -578,7 +582,7 @@
             { id: 'glamping-new', total: 2, name: '🏕️ Glamping Domes +' }
         ];
 
-        // ============ МАППИНГ (все ключи в нижнем регистре) ============
+        // ============ МАППИНГ ============
         const ROOM_TYPE_MAPPING_RAW = {
             'каменный домик': 'a01-stone',
             'каменный домик a01': 'a01-stone',
@@ -801,7 +805,7 @@
 
                 setProgress('Обработка броней...', 30);
 
-                // ===== СБОР ВСЕХ БРОНЕЙ С ПРАВИЛЬНЫМИ ДАТАМИ =====
+                // ===== СБОР ВСЕХ БРОНЕЙ =====
                 var allBookings = [];
                 var unknownTypes = {};
 
@@ -815,23 +819,17 @@
 
                     var checkIn, checkOut;
 
-                    // ===== ПРАВИЛЬНЫЙ ПАРСИНГ ДАТ =====
-                    // Пробуем разные форматы
                     var checkInRaw = row[checkInCol];
                     var checkOutRaw = row[checkOutCol];
 
-                    // Если дата в Excel как число (дни с 1900)
                     if (typeof checkInRaw === 'number') {
-                        // Excel даты: 25569 = 1970-01-01
                         checkIn = new Date((checkInRaw - 25569) * 86400 * 1000);
                     } else if (typeof checkInRaw === 'string') {
                         var dStr = checkInRaw.toString().trim();
-                        // Формат: "2026-07-31 15:00:00"
                         var match = dStr.match(/(\d{4})-(\d{2})-(\d{2})/);
                         if (match) {
                             checkIn = new Date(match[1], match[2] - 1, match[3]);
                         } else {
-                            // Пробуем другие форматы
                             match = dStr.match(/(\d{2})\/(\d{2})\/(\d{4})/);
                             if (match) {
                                 checkIn = new Date(match[3], match[1] - 1, match[2]);
@@ -866,13 +864,11 @@
                         checkOut = new Date(checkOutRaw);
                     }
 
-                    // Проверяем валидность
                     if (isNaN(checkIn.getTime()) || isNaN(checkOut.getTime())) {
                         console.log('⚠️ Ошибка парсинга дат:', checkInRaw, checkOutRaw);
                         return;
                     }
 
-                    // Нормализуем даты (убираем время)
                     checkIn = new Date(checkIn.getFullYear(), checkIn.getMonth(), checkIn.getDate());
                     checkOut = new Date(checkOut.getFullYear(), checkOut.getMonth(), checkOut.getDate());
 
@@ -899,7 +895,6 @@
                     });
                 });
 
-                // ===== ПОКАЗЫВАЕМ НЕИЗВЕСТНЫЕ ТИПЫ =====
                 var unknownKeys = Object.keys(unknownTypes);
                 if (unknownKeys.length > 0) {
                     console.log('⚠️ Неизвестные типы номеров (пропущены):', unknownKeys);
@@ -915,7 +910,6 @@
                 console.log('✅ Найдено броней:', allBookings.length);
                 setProgress('Обработано ' + allBookings.length + ' броней...', 50);
 
-                // ===== ОПРЕДЕЛЯЕМ ДИАПАЗОН ДАТ =====
                 var minDate = new Date(Math.min.apply(null, allBookings.map(function(b) { return b.checkIn.getTime(); })));
                 var maxDate = new Date(Math.max.apply(null, allBookings.map(function(b) { return b.checkOut.getTime(); })));
                 var startDate = new Date(minDate);
@@ -928,12 +922,10 @@
                     endDate.setDate(endDate.getDate() + 365);
                 }
 
-                // ===== СТРОИМ НОВУЮ ДОСТУПНОСТЬ =====
                 var newAvails = {};
                 var today = new Date();
                 today.setHours(0, 0, 0, 0);
 
-                // Инициализируем для всех ROOMS
                 ROOMS.forEach(function(room) {
                     newAvails[room.id] = {};
                 });
@@ -942,18 +934,15 @@
                 var daysProcessed = 0;
                 var totalDaysToProcess = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
 
-                // ===== СЧИТАЕМ ЗАНЯТОСТЬ =====
                 while (d < endDate) {
                     var dateStr = d.toISOString().split('T')[0];
                     daysProcessed++;
 
                     ROOMS.forEach(function(room) {
                         var total = room.total;
-                        // Считаем брони на эту дату для этого типа (включая сегодняшний день)
                         var busy = 0;
                         allBookings.forEach(function(b) {
                             if (b.roomId === room.id) {
-                                // Проверяем, что дата в диапазоне [checkIn, checkOut)
                                 if (d >= b.checkIn && d < b.checkOut) {
                                     busy++;
                                 }
@@ -962,8 +951,6 @@
 
                         var free = Math.max(0, total - busy);
 
-                        // ===== НЕ ЗАКРЫВАЕМ СЕГОДНЯ, если есть свободные места =====
-                        // Если дата прошедшая (строго меньше сегодня) - закрываем
                         if (d < today) {
                             newAvails[room.id][dateStr] = 0;
                         } else {
@@ -980,7 +967,6 @@
                     d.setDate(d.getDate() + 1);
                 }
 
-                // ===== ПРИНУДИТЕЛЬНО ЗАМЕНЯЕМ avails =====
                 avails = newAvails;
 
                 setProgress('Сохранение...', 95);
@@ -1259,6 +1245,16 @@
 
         // ===== ИНИЦИАЛИЗАЦИЯ =====
         (async function() {
+            // Проверка пароля при входе
+            var pw = prompt('Введите пароль для входа в админ-панель:');
+            if (pw !== ADMIN_PASSWORD) {
+                if (pw !== null) {
+                    alert('❌ Неверный пароль!');
+                }
+                window.location.href = 'index.html';
+                return;
+            }
+
             await loadFromCloud();
             renderAdmin();
 
