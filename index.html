@@ -10,6 +10,7 @@
     <meta property="og:image" content="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200" />
     <meta name="theme-color" content="#1a2a27" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🏔%3C/text%3E%3C/svg%3E">
     <title>PANA KOLSAY | Отель на озере Кольсай</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
@@ -105,6 +106,46 @@
             overflow-x: hidden;
         }
 
+        /* ===== ИНДИКАТОР ЗАГРУЗКИ ===== */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.5s;
+        }
+        #loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loader-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--gold);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .loader-text {
+            color: var(--gold);
+            margin-top: 16px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+
         /* ===== ФИКСИРОВАННЫЙ ФОН ===== */
         .bg-fixed {
             position: fixed;
@@ -114,10 +155,12 @@
             height: 100vh;
             z-index: 0;
             background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1920') center/cover no-repeat;
+            -webkit-background-attachment: fixed;
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
-            transform: translateZ(0);
+            transform: translate3d(0, 0, 0);
+            -webkit-transform: translate3d(0, 0, 0);
             will-change: transform;
         }
         .bg-fixed::after {
@@ -144,14 +187,14 @@
             padding-top: 16px;
         }
 
-        /* ===== ФИКСИРОВАННЫЙ ВЕРХНИЙ КОЛОНТИТУЛ (ШАПКА) ===== */
+        /* ===== ФИКСИРОВАННЫЙ ВЕРХНИЙ КОЛОНТИТУЛ ===== */
         .header-sticky {
             position: sticky;
             top: 0;
             z-index: 100;
             margin: 0 -16px;
             padding: 0 16px;
-            background: rgba(26, 42, 39, 0.9);
+            background: rgba(26, 42, 39, 0.92);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-glass);
@@ -166,7 +209,7 @@
             backdrop-filter: none !important;
             border: none !important;
             box-shadow: none !important;
-            padding: 10px 0 !important;
+            padding: 8px 0 !important;
             margin-bottom: 0 !important;
             border-radius: 0 !important;
         }
@@ -264,7 +307,7 @@
             justify-content: center;
             gap: 6px;
             flex-wrap: wrap;
-            margin: 8px 0 6px 0;
+            margin: 6px 0 4px 0;
         }
         .fact-item {
             text-align: center;
@@ -394,6 +437,14 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 30px rgba(245, 197, 66, 0.5);
             animation: none;
+        }
+        .btn-share {
+            background: #1DA1F2;
+            color: #fff;
+        }
+        .btn-share:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(29, 161, 242, 0.4);
         }
 
         /* ===== ФИЛЬТРЫ ===== */
@@ -1118,7 +1169,7 @@
                 padding: 0 10px;
             }
             .header-sticky .content-block {
-                padding: 8px 0 !important;
+                padding: 6px 0 !important;
             }
             .logo-title {
                 font-size: 1.2rem;
@@ -1295,7 +1346,7 @@
                 padding: 0 6px;
             }
             .header-sticky .content-block {
-                padding: 6px 0 !important;
+                padding: 4px 0 !important;
             }
 
             .logo-title {
@@ -1507,6 +1558,12 @@
 </head>
 <body>
 
+    <!-- ===== ИНДИКАТОР ЗАГРУЗКИ ===== -->
+    <div id="loader">
+        <div class="loader-spinner"></div>
+        <div class="loader-text">🏔 PANA KOLSAY</div>
+    </div>
+
     <div class="bg-fixed"></div>
 
     <div class="main-container">
@@ -1533,6 +1590,7 @@
                     <div class="fact-item"><i class="fas fa-wifi"></i><div class="fact-value">Wi-Fi</div><div class="fact-label" id="factWifi">бесплатно</div></div>
                 </div>
 
+                <!-- ===== ПОГОДА ===== -->
                 <div class="weather-header" id="weatherMini">
                     <i class="fas fa-cloud-sun"></i>
                     <span id="weatherMiniText">Загрузка погоды...</span>
@@ -1543,6 +1601,7 @@
                     <a href="https://instagram.com/pana_hotels" target="_blank" class="contact-btn btn-instagram"><i class="fab fa-instagram"></i> <span id="btnIgText">Instagram</span></a>
                     <a href="tel:+77008368964" class="contact-btn btn-phone"><i class="fas fa-phone"></i> <span id="btnPhText">Позвонить</span></a>
                     <a href="#" class="contact-btn btn-book" onclick="openBookingModal()"><i class="fas fa-calendar-check"></i> <span id="btnBookText">Забронировать</span></a>
+                    <button class="contact-btn btn-share" onclick="sharePage()"><i class="fas fa-share-alt"></i> <span id="btnShareText">Поделиться</span></button>
                 </div>
             </div>
         </div>
@@ -1559,7 +1618,6 @@
                 <button class="filter-btn" data-filter="deluxe" id="filtDlx">Deluxe</button>
                 <button class="filter-btn" data-filter="luxury" id="filtLux">Люкс</button>
                 <button class="filter-btn" data-filter="glamping" id="filtGlp">Глэмпинг</button>
-                <!-- Кнопка "Эко" УДАЛЕНА -->
             </div>
             <div class="rooms-grid" id="roomsGrid"></div>
         </div>
@@ -1654,16 +1712,11 @@
             </div>
         </div>
 
-        <!-- ОТЗЫВЫ -->
+        <!-- ОТЗЫВЫ (НА 3 ЯЗЫКАХ) -->
         <div class="content-block" id="reviewsBlock">
             <h2 style="font-weight:300; margin-bottom:12px; font-size:1.2rem;" id="reviewsTitle">💬 Отзывы гостей</h2>
-            <div class="reviews-scroll">
-                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Потрясающий вид на озеро! Отличный сервис и вкусные завтраки!"</div><div class="review-author">— Анна М., Алматы</div></div>
-                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Идеальное место для отдыха. Чистый воздух, красивая природа!"</div><div class="review-author">— Алексей К., Астана</div></div>
-                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Көлдің керемет көрінісі! Табиғаттың ортасында тамаша демалу."</div><div class="review-author">— Айжан С., Алматы</div></div>
-                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Қызметкерлер өте мейірімді, бөлмелер таза және жайлы."</div><div class="review-author">— Ерлан Т., Шымкент</div></div>
-                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Amazing place! The lake view is breathtaking."</div><div class="review-author">— John D., UK</div></div>
-                <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><div class="review-text">"Perfect getaway. Clean rooms, friendly staff."</div><div class="review-author">— Sarah P., USA</div></div>
+            <div class="reviews-scroll" id="reviewsScroll">
+                <!-- Заполняется через JS -->
             </div>
         </div>
 
@@ -1707,12 +1760,12 @@
         const API_KEY = '$2a$10$AxIfA8p7dq6td0BYtWWuhecnyqCJbsTGoo.oWIds3H01C43GvLGuu';
         const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
-        // ============ НОМЕРА (БЕЗ ТРАНСФЕРА 40 000) ============
+        // ============ НОМЕРА ============
         const ROOMS = [{
             id: 'a01-stone',
-            nameRu: '🏔️ Каменный домик A01',
-            nameEn: '🏔️ Stone House A01',
-            nameKz: '🏔️ Тас үй A01',
+            nameRu: 'Каменный домик A01',
+            nameEn: 'Stone House A01',
+            nameKz: 'Тас үй A01',
             price: 279900,
             cap: 2,
             extra: 2,
@@ -1752,9 +1805,9 @@
             link: 'https://www.instagram.com/p/DHXcKsAt6Zg/'
         }, {
             id: 'a02-wood',
-            nameRu: '🪵 Деревянный домик A02',
-            nameEn: '🪵 Wooden House A02',
-            nameKz: '🪵 Ағаш үй A02',
+            nameRu: 'Деревянный домик A02',
+            nameEn: 'Wooden House A02',
+            nameKz: 'Ағаш үй A02',
             price: 219900,
             cap: 2,
             extra: 2,
@@ -1794,9 +1847,9 @@
             link: 'https://www.instagram.com/reel/DKjjbJjNWve/'
         }, {
             id: 'standard',
-            nameRu: '🏨 Standard Room',
-            nameEn: '🏨 Standard Room',
-            nameKz: '🏨 Standard Room',
+            nameRu: 'Standard Room',
+            nameEn: 'Standard Room',
+            nameKz: 'Standard Room',
             price: 54900,
             cap: 2,
             extra: 1,
@@ -1839,9 +1892,9 @@
             link: 'https://drive.google.com/file/d/1pEewgVeg3V_29HTFnOVYeNvZUxa5rAl8/view'
         }, {
             id: 'mountain',
-            nameRu: '⛰ Superior Mountain View',
-            nameEn: '⛰ Superior Mountain View',
-            nameKz: '⛰ Тау көрінісі',
+            nameRu: 'Superior Mountain View',
+            nameEn: 'Superior Mountain View',
+            nameKz: 'Тау көрінісі',
             price: 59900,
             cap: 2,
             extra: 1,
@@ -1884,9 +1937,9 @@
             link: 'https://drive.google.com/file/d/1dn9vFQlvhLWgdE7B19tSL-WKpmsPepqn/view'
         }, {
             id: 'lake-double',
-            nameRu: '🌅 Superior Lake View Double',
-            nameEn: '🌅 Superior Lake View Double',
-            nameKz: '🌅 Көл көрінісі Double',
+            nameRu: 'Superior Lake View Double',
+            nameEn: 'Superior Lake View Double',
+            nameKz: 'Көл көрінісі Double',
             price: 64900,
             cap: 2,
             extra: 1,
@@ -1929,9 +1982,9 @@
             link: 'https://drive.google.com/file/d/1m-1D7gTtylwBGhNm1u2QV1jXgN_M3xhr/view'
         }, {
             id: 'triple',
-            nameRu: '🌅 Superior Lake View Triple',
-            nameEn: '🌅 Superior Lake View Triple',
-            nameKz: '🌅 Көл көрінісі Triple',
+            nameRu: 'Superior Lake View Triple',
+            nameEn: 'Superior Lake View Triple',
+            nameKz: 'Көл көрінісі Triple',
             price: 74900,
             cap: 3,
             extra: 1,
@@ -1974,9 +2027,9 @@
             link: 'https://drive.google.com/file/d/1Lh4d_lGjFiZsbBHbkRjpGY9g_yvUAx8z/view'
         }, {
             id: 'deluxe',
-            nameRu: '🏨 Deluxe',
-            nameEn: '🏨 Deluxe',
-            nameKz: '🏨 Deluxe',
+            nameRu: 'Deluxe',
+            nameEn: 'Deluxe',
+            nameKz: 'Deluxe',
             price: 79900,
             cap: 4,
             extra: 1,
@@ -2019,9 +2072,9 @@
             link: 'https://drive.google.com/file/d/1bsCXUoVPz10hAwtW2hnomwOnUOZ7bJ6-/view'
         }, {
             id: 'deluxe-plus',
-            nameRu: '🏡 Deluxe+',
-            nameEn: '🏡 Deluxe+',
-            nameKz: '🏡 Deluxe+',
+            nameRu: 'Deluxe+',
+            nameEn: 'Deluxe+',
+            nameKz: 'Deluxe+',
             price: 104900,
             cap: 4,
             extra: 1,
@@ -2064,9 +2117,9 @@
             link: 'https://drive.google.com/file/d/1xUdZq5Vi13i2bNG3Oy1LtAg7157K6asr/view'
         }, {
             id: 'premier-deluxe',
-            nameRu: '🏡 Premier Deluxe',
-            nameEn: '🏡 Premier Deluxe',
-            nameKz: '🏡 Premier Deluxe',
+            nameRu: 'Premier Deluxe',
+            nameEn: 'Premier Deluxe',
+            nameKz: 'Premier Deluxe',
             price: 124900,
             cap: 4,
             extra: 1,
@@ -2109,9 +2162,9 @@
             link: 'https://drive.google.com/file/d/1t8ylE9wOguBWlzH1DFVL7eEqUDOtXWw7/view'
         }, {
             id: 'suite',
-            nameRu: '👑 Suite Room',
-            nameEn: '👑 Suite Room',
-            nameKz: '👑 Suite Room',
+            nameRu: 'Suite Room',
+            nameEn: 'Suite Room',
+            nameKz: 'Suite Room',
             price: 134900,
             cap: 4,
             extra: 1,
@@ -2154,9 +2207,9 @@
             link: 'https://drive.google.com/file/d/1w3fyIUIG0EX_DTgCDpvPG_oRME-Bz27y/view'
         }, {
             id: 'glamping-new',
-            nameRu: '🏕️ Glamping Domes + (New 2022)',
-            nameEn: '🏕️ Glamping Domes + (New 2022)',
-            nameKz: '🏕️ Glamping Domes + (New 2022)',
+            nameRu: 'Glamping Domes + (New 2022)',
+            nameEn: 'Glamping Domes + (New 2022)',
+            nameKz: 'Glamping Domes + (New 2022)',
             price: 119900,
             cap: 4,
             extra: 1,
@@ -2199,43 +2252,102 @@
             link: 'https://drive.google.com/file/d/10fC3o_LMPEA1hKapxvmKXfYC7qY2AqK7/view'
         }];
 
-        // ============ ПЕРЕВОДЫ ============
+        // ============ ПЕРЕВОДЫ (ПОЛНЫЕ) ============
         const L = {
             ru: {
-                langName: 'RU', a11yBtn: '♿ Версия для слабовидящих', factLake: 'до озера', factHeight: 'высота',
-                factDrive: 'от Алматы', factWifi: 'бесплатно',
-                btnWa: 'WhatsApp', btnIg: 'Instagram', btnPh: 'Позвонить', btnBook: 'Забронировать',
-                roomsTitle: '🛏️ Наши номера', filtAll: 'Все', filtStd: 'Стандарт', filtMnt: 'Горы',
-                filtLake: 'Озеро', filtTrp: 'Трипл', filtDlx: 'Deluxe', filtLux: 'Люкс', filtGlp: 'Глэмпинг',
-                bookingFormTitle: '📅 Проверить доступность', lblCheckIn: '📅 Дата заезда', lblGuests: '👥 Гости',
+                langName: 'RU',
+                a11yBtn: '♿ Версия для слабовидящих',
+                factLake: 'до озера',
+                factHeight: 'высота',
+                factDrive: 'от Алматы',
+                factWifi: 'бесплатно',
+                btnWa: 'WhatsApp',
+                btnIg: 'Instagram',
+                btnPh: 'Позвонить',
+                btnBook: 'Забронировать',
+                btnShare: 'Поделиться',
+                roomsTitle: '🛏️ Наши номера',
+                filtAll: 'Все',
+                filtStd: 'Стандарт',
+                filtMnt: 'Горы',
+                filtLake: 'Озеро',
+                filtTrp: 'Трипл',
+                filtDlx: 'Deluxe',
+                filtLux: 'Люкс',
+                filtGlp: 'Глэмпинг',
+                bookingFormTitle: '📅 Проверить доступность',
+                lblCheckIn: '📅 Дата заезда',
+                lblGuests: '👥 Гости',
                 lblNights: '🌙 Ночей',
                 mapTitle: '📍 Как добраться',
                 mapInfo: 'Озеро Кольсай Нижнее | Из Алматы: ~4 часа (300 км)',
-                btnRoute: '🗺️ Маршрут',
+                map2gis: '2GIS',
+                mapYandex: 'Яндекс',
+                mapGoogle: 'Google',
                 videoTitle: '🎥 Видеообзор',
-                rulesTitle: '📋 Важная информация', rulesSubTitle: 'Условия',
-                rule1Title: '1. Предоплата', rule1Text: 'Для гарантии брони требуется 100% предоплата.',
-                rule2Title: '2. Отмена', rule2Text: '• Менее 7 дней — 1 сутки<br>• Более 7 дней — полный возврат',
-                rule3Title: '3. Неявка', rule3Text: 'Удерживаются 1 сутки, остальные ночи аннулируются.',
-                rule4Title: '4. Изменение дат', rule4Text: 'При наличии мест и согласовании за 7+ дней.',
-                rule5Title: '📝 Для брони', rule5Text: 'Напишите ФИО гостя. Мы пришлём ссылку на оплату.',
+                rulesTitle: '📋 Важная информация',
+                rulesSubTitle: 'Условия',
+                rule1Title: '1. Предоплата',
+                rule1Text: 'Для гарантии брони требуется 100% предоплата.',
+                rule2Title: '2. Отмена',
+                rule2Text: '• Менее 7 дней — 1 сутки<br>• Более 7 дней — полный возврат',
+                rule3Title: '3. Неявка',
+                rule3Text: 'Удерживаются 1 сутки, остальные ночи аннулируются.',
+                rule4Title: '4. Изменение дат',
+                rule4Text: 'При наличии мест и согласовании за 7+ дней.',
+                rule5Title: '📝 Для брони',
+                rule5Text: 'Напишите ФИО гостя. Мы пришлём ссылку на оплату.',
                 faqTitle: 'Вопросы',
-                faq1Q: '🕐 Заезд и выезд?', faq1A: 'Заезд с 15:00, выезд до 12:00.',
-                faq2Q: '🍳 Питание?', faq2A: 'Завтрак включен. Рядом этно-кафе Tary.',
-                faq3Q: '🚗 Парковка?', faq3A: 'Бесплатная парковка и трансфер до отеля.',
-                faq4Q: '👶 С детьми?', faq4A: 'До 7 лет бесплатно. Доп. место 15 000 ₸.',
-                faq5Q: '🐕 Животные?', faq5A: 'К сожалению, нет.',
-                faq6Q: '💳 Оплата?', faq6A: 'По ссылке (Kaspi, карты). 100% предоплата.',
+                faq1Q: '🕐 Заезд и выезд?',
+                faq1A: 'Заезд с 15:00, выезд до 12:00.',
+                faq2Q: '🍳 Питание?',
+                faq2A: 'Завтрак включен. Рядом этно-кафе Tary.',
+                faq3Q: '🚗 Парковка?',
+                faq3A: 'Бесплатная парковка и трансфер до отеля.',
+                faq4Q: '👶 С детьми?',
+                faq4A: 'До 7 лет бесплатно. Доп. место 15 000 ₸.',
+                faq5Q: '🐕 Животные?',
+                faq5A: 'К сожалению, нет.',
+                faq6Q: '💳 Оплата?',
+                faq6A: 'По ссылке (Kaspi, карты). 100% предоплата.',
                 reviewsTitle: '💬 Отзывы гостей',
-                footerAdmin: '🔧 Админ-панель', footerA11y: '♿ Версия для слабовидящих',
-                bookModTitle: '📅 Забронировать номер', bookSelRoom: '🏨 Выберите номер',
-                bookDate: '📅 Дата заезда', bookGuests: '👥 Количество гостей',
+                reviews: [
+                    'Потрясающий вид на озеро! Отличный сервис и вкусные завтраки!',
+                    'Идеальное место для отдыха. Чистый воздух, красивая природа!',
+                    'Көлдің керемет көрінісі! Табиғаттың ортасында тамаша демалу.',
+                    'Қызметкерлер өте мейірімді, бөлмелер таза және жайлы.',
+                    'Amazing place! The lake view is breathtaking!',
+                    'Perfect getaway. Clean rooms, friendly staff.'
+                ],
+                reviewAuthors: [
+                    'Анна М., Алматы',
+                    'Алексей К., Астана',
+                    'Айжан С., Алматы',
+                    'Ерлан Т., Шымкент',
+                    'John D., UK',
+                    'Sarah P., USA'
+                ],
+                footerAdmin: '🔧 Админ-панель',
+                footerA11y: '♿ Версия для слабовидящих',
+                bookModTitle: '📅 Забронировать номер',
+                bookSelRoom: '🏨 Выберите номер',
+                bookDate: '📅 Дата заезда',
+                bookGuests: '👥 Количество гостей',
                 bookNights: '🌙 Количество ночей',
-                bookName: '👤 Ф.И.О.', bookPhone: '📞 Телефон', bookComment: '📝 Комментарий',
+                bookName: '👤 Ф.И.О.',
+                bookPhone: '📞 Телефон',
+                bookComment: '📝 Комментарий',
                 bookSubmit: '✅ Подтвердить бронирование',
-                free: 'Свободно', busy: 'Занято', noFree: 'Нет мест', selectDate: 'Выберите дату', perNight: '/ ночь',
-                guest1: 'гость', guest2: 'гостя', guest5: 'гостей',
-                extraBed: 'доп. место', extraBeds: 'доп. места',
+                free: 'Свободно',
+                busy: 'Занято',
+                noFree: 'Нет мест',
+                selectDate: 'Выберите дату',
+                perNight: '/ ночь',
+                guest1: 'гость',
+                guest2: 'гостя',
+                guest5: 'гостей',
+                extraBed: 'доп. место',
+                extraBeds: 'доп. места',
                 needExtra: '⚠️ Требуются доп. места',
                 tooMany: '❌ Слишком много гостей',
                 totalLabel: 'Итого за',
@@ -2246,6 +2358,7 @@
                 voucherTitle: '🎫 Ваучер на бронирование',
                 voucherRoom: 'Номер',
                 voucherDate: 'Дата заезда',
+                voucherNights: 'Ночей',
                 voucherGuests: 'Гостей',
                 voucherTotal: 'Итого к оплате',
                 voucherRules: 'Условия отмены',
@@ -2255,47 +2368,111 @@
                 voucherCheckIn: '🕐 Заезд с 15:00, выезд до 12:00',
                 downloadVoucher: '📄 Скачать ваучер',
                 weather: 'Погода',
+                weatherNow: 'Сейчас погода в Кольсае',
                 weatherTemp: '°C',
                 weatherWind: 'Ветер',
                 weatherSpeed: 'км/ч',
                 past: 'Прошедшая дата',
-                nights: 'ночей'
+                nights: 'ночей',
+                operator: '👩‍💼 Оператор',
+                loading: 'Загрузка...',
+                shareTitle: 'Поделиться',
+                shareText: 'Забронируйте номер с видом на озеро Кольсай!'
             },
             en: {
-                langName: 'EN', a11yBtn: '♿ Accessibility', factLake: 'to lake', factHeight: 'altitude',
-                factDrive: 'from Almaty', factWifi: 'free',
-                btnWa: 'WhatsApp', btnIg: 'Instagram', btnPh: 'Call us', btnBook: 'Book now',
-                roomsTitle: '🛏️ Our Rooms', filtAll: 'All', filtStd: 'Standard', filtMnt: 'Mountain',
-                filtLake: 'Lake', filtTrp: 'Triple', filtDlx: 'Deluxe', filtLux: 'Luxury', filtGlp: 'Glamping',
-                bookingFormTitle: '📅 Check Availability', lblCheckIn: '📅 Check-in', lblGuests: '👥 Guests',
+                langName: 'EN',
+                a11yBtn: '♿ Accessibility',
+                factLake: 'to lake',
+                factHeight: 'altitude',
+                factDrive: 'from Almaty',
+                factWifi: 'free',
+                btnWa: 'WhatsApp',
+                btnIg: 'Instagram',
+                btnPh: 'Call us',
+                btnBook: 'Book now',
+                btnShare: 'Share',
+                roomsTitle: '🛏️ Our Rooms',
+                filtAll: 'All',
+                filtStd: 'Standard',
+                filtMnt: 'Mountain',
+                filtLake: 'Lake',
+                filtTrp: 'Triple',
+                filtDlx: 'Deluxe',
+                filtLux: 'Luxury',
+                filtGlp: 'Glamping',
+                bookingFormTitle: '📅 Check Availability',
+                lblCheckIn: '📅 Check-in',
+                lblGuests: '👥 Guests',
                 lblNights: '🌙 Nights',
                 mapTitle: '📍 How to get',
                 mapInfo: 'Lower Kolsay Lake | From Almaty: ~4 hours (300 km)',
-                btnRoute: '🗺️ Route',
+                map2gis: '2GIS',
+                mapYandex: 'Yandex',
+                mapGoogle: 'Google',
                 videoTitle: '🎥 Video Tour',
-                rulesTitle: '📋 Important Info', rulesSubTitle: 'Terms',
-                rule1Title: '1. Prepayment', rule1Text: '100% prepayment required.',
-                rule2Title: '2. Cancellation', rule2Text: '• Less than 7 days — 1 night<br>• More than 7 days — full refund',
-                rule3Title: '3. No-show', rule3Text: '1 night charged, remaining nights cancelled.',
-                rule4Title: '4. Date change', rule4Text: 'Possible with availability, 7+ days before.',
-                rule5Title: '📝 To book', rule5Text: 'Provide guest full name. We will send payment link.',
+                rulesTitle: '📋 Important Info',
+                rulesSubTitle: 'Terms',
+                rule1Title: '1. Prepayment',
+                rule1Text: '100% prepayment required.',
+                rule2Title: '2. Cancellation',
+                rule2Text: '• Less than 7 days — 1 night<br>• More than 7 days — full refund',
+                rule3Title: '3. No-show',
+                rule3Text: '1 night charged, remaining nights cancelled.',
+                rule4Title: '4. Date change',
+                rule4Text: 'Possible with availability, 7+ days before.',
+                rule5Title: '📝 To book',
+                rule5Text: 'Provide guest full name. We will send payment link.',
                 faqTitle: 'FAQ',
-                faq1Q: '🕐 Check-in / Check-out?', faq1A: 'Check-in 15:00, check-out 12:00.',
-                faq2Q: '🍳 Food?', faq2A: 'Breakfast included. Tary ethnic cafe nearby.',
-                faq3Q: '🚗 Parking?', faq3A: 'Free parking and transfer to hotel.',
-                faq4Q: '👶 Children?', faq4A: 'Under 7 free. Extra bed: 15,000 ₸.',
-                faq5Q: '🐕 Pets?', faq5A: 'Unfortunately, not allowed.',
-                faq6Q: '💳 Payment?', faq6A: 'Link (Kaspi, cards). 100% prepayment.',
+                faq1Q: '🕐 Check-in / Check-out?',
+                faq1A: 'Check-in 15:00, check-out 12:00.',
+                faq2Q: '🍳 Food?',
+                faq2A: 'Breakfast included. Tary ethnic cafe nearby.',
+                faq3Q: '🚗 Parking?',
+                faq3A: 'Free parking and transfer to hotel.',
+                faq4Q: '👶 Children?',
+                faq4A: 'Under 7 free. Extra bed: 15,000 ₸.',
+                faq5Q: '🐕 Pets?',
+                faq5A: 'Unfortunately, not allowed.',
+                faq6Q: '💳 Payment?',
+                faq6A: 'Link (Kaspi, cards). 100% prepayment.',
                 reviewsTitle: '💬 Guest Reviews',
-                footerAdmin: '🔧 Admin Panel', footerA11y: '♿ Accessibility',
-                bookModTitle: '📅 Book a Room', bookSelRoom: '🏨 Select Room', bookDate: '📅 Check-in Date',
+                reviews: [
+                    'Amazing lake view! Great service and delicious breakfast!',
+                    'Perfect place to escape the city. Clean air, beautiful nature!',
+                    'Көлдің керемет көрінісі! Табиғаттың ортасында тамаша демалу.',
+                    'Қызметкерлер өте мейірімді, бөлмелер таза және жайлы.',
+                    'Absolutely stunning location! Highly recommend.',
+                    'Wonderful experience. Will definitely come back.'
+                ],
+                reviewAuthors: [
+                    'Anna M., Almaty',
+                    'Alex K., Astana',
+                    'Aizhan S., Almaty',
+                    'Yerlan T., Shymkent',
+                    'John D., UK',
+                    'Sarah P., USA'
+                ],
+                footerAdmin: '🔧 Admin Panel',
+                footerA11y: '♿ Accessibility',
+                bookModTitle: '📅 Book a Room',
+                bookSelRoom: '🏨 Select Room',
+                bookDate: '📅 Check-in Date',
                 bookGuests: '👥 Number of Guests',
                 bookNights: '🌙 Number of Nights',
-                bookName: '👤 Full Name', bookPhone: '📞 Phone', bookComment: '📝 Comment',
+                bookName: '👤 Full Name',
+                bookPhone: '📞 Phone',
+                bookComment: '📝 Comment',
                 bookSubmit: '✅ Confirm Booking',
-                free: 'Free', busy: 'Busy', noFree: 'No availability', selectDate: 'Select date', perNight: '/ night',
-                guest1: 'guest', guest2: 'guests', guest5: 'guests',
-                extraBed: 'extra bed', extraBeds: 'extra beds',
+                free: 'Free',
+                busy: 'Busy',
+                noFree: 'No availability',
+                selectDate: 'Select date',
+                perNight: '/ night',
+                guest1: 'guest',
+                guest2: 'guests',
+                guest5: 'guests',
+                extraBed: 'extra bed',
+                extraBeds: 'extra beds',
                 needExtra: '⚠️ Extra beds needed',
                 tooMany: '❌ Too many guests',
                 totalLabel: 'Total for',
@@ -2306,6 +2483,7 @@
                 voucherTitle: '🎫 Booking Voucher',
                 voucherRoom: 'Room',
                 voucherDate: 'Check-in date',
+                voucherNights: 'Nights',
                 voucherGuests: 'Guests',
                 voucherTotal: 'Total amount',
                 voucherRules: 'Cancellation policy',
@@ -2315,48 +2493,111 @@
                 voucherCheckIn: '🕐 Check-in 15:00, Check-out 12:00',
                 downloadVoucher: '📄 Download voucher',
                 weather: 'Weather',
+                weatherNow: 'Current weather in Kolsay',
                 weatherTemp: '°C',
                 weatherWind: 'Wind',
                 weatherSpeed: 'km/h',
                 past: 'Past date',
-                nights: 'nights'
+                nights: 'nights',
+                operator: '👩‍💼 Operator',
+                loading: 'Loading...',
+                shareTitle: 'Share',
+                shareText: 'Book a room with a view of Kolsay Lake!'
             },
             kz: {
-                langName: 'KZ', a11yBtn: '♿ Нашар көретіндерге', factLake: 'көлге дейін', factHeight: 'биіктік',
-                factDrive: 'Алматыдан', factWifi: 'тегін',
-                btnWa: 'WhatsApp', btnIg: 'Instagram', btnPh: 'Қоңырау шалу', btnBook: 'Брондау',
-                roomsTitle: '🛏️ Біздің нөмірлер', filtAll: 'Барлығы', filtStd: 'Стандарт', filtMnt: 'Тау',
-                filtLake: 'Көл', filtTrp: 'Трипл', filtDlx: 'Deluxe', filtLux: 'Люкс', filtGlp: 'Глэмпинг',
-                bookingFormTitle: '📅 Қолжетімділікті тексеру', lblCheckIn: '📅 Келу күні', lblGuests: '👥 Қонақтар',
+                langName: 'KZ',
+                a11yBtn: '♿ Нашар көретіндерге',
+                factLake: 'көлге дейін',
+                factHeight: 'биіктік',
+                factDrive: 'Алматыдан',
+                factWifi: 'тегін',
+                btnWa: 'WhatsApp',
+                btnIg: 'Instagram',
+                btnPh: 'Қоңырау шалу',
+                btnBook: 'Брондау',
+                btnShare: 'Бөлісу',
+                roomsTitle: '🛏️ Біздің нөмірлер',
+                filtAll: 'Барлығы',
+                filtStd: 'Стандарт',
+                filtMnt: 'Тау',
+                filtLake: 'Көл',
+                filtTrp: 'Трипл',
+                filtDlx: 'Deluxe',
+                filtLux: 'Люкс',
+                filtGlp: 'Глэмпинг',
+                bookingFormTitle: '📅 Қолжетімділікті тексеру',
+                lblCheckIn: '📅 Келу күні',
+                lblGuests: '👥 Қонақтар',
                 lblNights: '🌙 Түндер',
                 mapTitle: '📍 Қалай жетуге болады',
                 mapInfo: 'Көлсай көлі (Төменгі) | Алматыдан: ~4 сағат (300 км)',
-                btnRoute: '🗺️ Маршрут',
+                map2gis: '2GIS',
+                mapYandex: 'Яндекс',
+                mapGoogle: 'Google',
                 videoTitle: '🎥 Бейне шолу',
-                rulesTitle: '📋 Маңызды ақпарат', rulesSubTitle: 'Шарттар',
-                rule1Title: '1. Алдын ала төлем', rule1Text: '100% алдын ала төлем қажет.',
-                rule2Title: '2. Бас тарту', rule2Text: '• 7 күннен кем — 1 түн<br>• 7+ күн — толық қайтару',
-                rule3Title: '3. Келмеу', rule3Text: '1 түн ұсталады, қалған түндер жойылады.',
-                rule4Title: '4. Күнді өзгерту', rule4Text: 'Бос орын болса, келуден 7+ күн бұрын.',
+                rulesTitle: '📋 Маңызды ақпарат',
+                rulesSubTitle: 'Шарттар',
+                rule1Title: '1. Алдын ала төлем',
+                rule1Text: '100% алдын ала төлем қажет.',
+                rule2Title: '2. Бас тарту',
+                rule2Text: '• 7 күннен кем — 1 түн<br>• 7+ күн — толық қайтару',
+                rule3Title: '3. Келмеу',
+                rule3Text: '1 түн ұсталады, қалған түндер жойылады.',
+                rule4Title: '4. Күнді өзгерту',
+                rule4Text: 'Бос орын болса, келуден 7+ күн бұрын.',
                 rule5Title: '📝 Брондау үшін',
                 rule5Text: 'Бір қонақтың аты-жөнін жазыңыз. Төлем сілтемесін жібереміз.',
                 faqTitle: 'Сұрақтар',
-                faq1Q: '🕐 Келу және кету?', faq1A: 'Келу 15:00-ден, кету 12:00-ге дейін.',
-                faq2Q: '🍳 Тамақ?', faq2A: 'Таңғы ас кіреді. Tary этно-кафе жанында.',
-                faq3Q: '🚗 Тұрақ?', faq3A: 'Тегін тұрақ және трансфер.',
-                faq4Q: '👶 Балалар?', faq4A: '7 жасқа дейін тегін. Қосымша орын: 15 000 ₸.',
-                faq5Q: '🐕 Жануарлар?', faq5A: 'Өкінішке орай, жоқ.',
-                faq6Q: '💳 Төлем?', faq6A: 'Сілтеме арқылы (Kaspi, карталар). 100% алдын ала.',
+                faq1Q: '🕐 Келу және кету?',
+                faq1A: 'Келу 15:00-ден, кету 12:00-ге дейін.',
+                faq2Q: '🍳 Тамақ?',
+                faq2A: 'Таңғы ас кіреді. Tary этно-кафе жанында.',
+                faq3Q: '🚗 Тұрақ?',
+                faq3A: 'Тегін тұрақ және трансфер.',
+                faq4Q: '👶 Балалар?',
+                faq4A: '7 жасқа дейін тегін. Қосымша орын: 15 000 ₸.',
+                faq5Q: '🐕 Жануарлар?',
+                faq5A: 'Өкінішке орай, жоқ.',
+                faq6Q: '💳 Төлем?',
+                faq6A: 'Сілтеме арқылы (Kaspi, карталар). 100% алдын ала.',
                 reviewsTitle: '💬 Қонақтардың пікірлері',
-                footerAdmin: '🔧 Әкімші панелі', footerA11y: '♿ Нашар көретіндерге',
-                bookModTitle: '📅 Нөмірді брондау', bookSelRoom: '🏨 Нөмірді таңдау', bookDate: '📅 Келу күні',
+                reviews: [
+                    'Потрясающий вид на озеро! Отличный сервис и вкусные завтраки!',
+                    'Идеальное место для отдыха. Чистый воздух, красивая природа!',
+                    'Көлдің керемет көрінісі! Табиғаттың ортасында тамаша демалу.',
+                    'Қызметкерлер өте мейірімді, бөлмелер таза және жайлы.',
+                    'Amazing place! The lake view is breathtaking!',
+                    'Perfect getaway. Clean rooms, friendly staff.'
+                ],
+                reviewAuthors: [
+                    'Анна М., Алматы',
+                    'Алексей К., Астана',
+                    'Айжан С., Алматы',
+                    'Ерлан Т., Шымкент',
+                    'John D., UK',
+                    'Sarah P., USA'
+                ],
+                footerAdmin: '🔧 Әкімші панелі',
+                footerA11y: '♿ Нашар көретіндерге',
+                bookModTitle: '📅 Нөмірді брондау',
+                bookSelRoom: '🏨 Нөмірді таңдау',
+                bookDate: '📅 Келу күні',
                 bookGuests: '👥 Қонақтар саны',
                 bookNights: '🌙 Түндер саны',
-                bookName: '👤 Аты-жөні', bookPhone: '📞 Телефон', bookComment: '📝 Түсініктеме',
+                bookName: '👤 Аты-жөні',
+                bookPhone: '📞 Телефон',
+                bookComment: '📝 Түсініктеме',
                 bookSubmit: '✅ Брондауды растау',
-                free: 'Бос', busy: 'Бос емес', noFree: 'Орын жоқ', selectDate: 'Күнді таңдаңыз', perNight: '/ түн',
-                guest1: 'қонақ', guest2: 'қонақ', guest5: 'қонақ',
-                extraBed: 'қосымша орын', extraBeds: 'қосымша орын',
+                free: 'Бос',
+                busy: 'Бос емес',
+                noFree: 'Орын жоқ',
+                selectDate: 'Күнді таңдаңыз',
+                perNight: '/ түн',
+                guest1: 'қонақ',
+                guest2: 'қонақ',
+                guest5: 'қонақ',
+                extraBed: 'қосымша орын',
+                extraBeds: 'қосымша орын',
                 needExtra: '⚠️ Қосымша орын қажет',
                 tooMany: '❌ Тым көп қонақ',
                 totalLabel: 'Барлығы',
@@ -2367,6 +2608,7 @@
                 voucherTitle: '🎫 Брондау ваучері',
                 voucherRoom: 'Нөмір',
                 voucherDate: 'Келу күні',
+                voucherNights: 'Түндер',
                 voucherGuests: 'Қонақтар',
                 voucherTotal: 'Төленетін сома',
                 voucherRules: 'Бас тарту шарттары',
@@ -2376,11 +2618,16 @@
                 voucherCheckIn: '🕐 Келу 15:00, кету 12:00',
                 downloadVoucher: '📄 Ваучерді жүктеу',
                 weather: 'Ауа райы',
+                weatherNow: 'Қазір Көлсайдағы ауа райы',
                 weatherTemp: '°C',
                 weatherWind: 'Жел',
                 weatherSpeed: 'км/сағ',
                 past: 'Өткен күн',
-                nights: 'түн'
+                nights: 'түн',
+                operator: '👩‍💼 Оператор',
+                loading: 'Жүктелуде...',
+                shareTitle: 'Бөлісу',
+                shareText: 'Көлсай көлінің көрінісі бар бөлмені брондаңыз!'
             }
         };
 
@@ -2434,6 +2681,23 @@
             showToast(isHighContrast ? '🔆 Включена контрастная версия' : '🌙 Обычная версия', 'info');
         }
 
+        // ===== ПОДЕЛИТЬСЯ =====
+        function sharePage() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'PANA KOLSAY',
+                    text: t('shareText'),
+                    url: window.location.href
+                }).catch(function() {});
+            } else {
+                navigator.clipboard.writeText(window.location.href).then(function() {
+                    showToast('✅ Ссылка скопирована!', 'success');
+                }).catch(function() {
+                    showToast('📋 ' + window.location.href, 'info');
+                });
+            }
+        }
+
         // ===== ПОГОДА =====
         async function fetchWeather() {
             try {
@@ -2458,29 +2722,6 @@
             }
         }
 
-        async function fetchWeatherForDate(date) {
-            try {
-                var r = await fetch(
-                    'https://api.open-meteo.com/v1/forecast?latitude=42.935&longitude=78.346&start_date=' + date + '&end_date=' +
-                    date +
-                    '&daily=temperature_2m_max,temperature_2m_min,weathercode,windspeed_10m_max&timezone=Asia/Almaty'
-                );
-                if (!r.ok) throw new Error();
-                var d = await r.json();
-                if (d.daily) {
-                    var w = d.daily;
-                    return {
-                        temp: Math.round((w.temperature_2m_max[0] + w.temperature_2m_min[0]) / 2),
-                        wind: Math.round(w.windspeed_10m_max[0]),
-                        code: w.weathercode[0]
-                    };
-                }
-                return null;
-            } catch (e) {
-                return null;
-            }
-        }
-
         function getWeatherEmoji(code) {
             if (code === undefined || code === null) return '🌤️';
             if (code <= 1) return '☀️';
@@ -2499,24 +2740,23 @@
                 month: 'long' });
 
             document.getElementById('weatherMiniText').innerHTML =
-                emoji + ' ☀️ Сейчас погода в Кольсае: <span style="font-weight:700;">' + temp + t(
-                    'weatherTemp') + '</span> · ' + t('weatherWind') + ' ' + wind + ' ' + t('weatherSpeed') + ' · ' +
-                dateStr;
+                emoji + ' ' + t('weatherNow') + ': <span style="font-weight:700;">' + temp + t('weatherTemp') +
+                '</span> · ' + t('weatherWind') + ' ' + wind + ' ' + t('weatherSpeed') + ' · ' + dateStr;
         }
 
-        async function updateWeatherForDate(date) {
-            var data = await fetchWeatherForDate(date);
-            if (data) {
-                var emoji = getWeatherEmoji(data.code);
-                var lang = curLang;
-                var dateStr = new Date(date + 'T00:00:00').toLocaleDateString(lang === 'ru' ? 'ru' : lang === 'en' ? 'en' :
-                    'kk', { day: 'numeric', month: 'long' });
-                document.getElementById('weatherMiniText').innerHTML =
-                    emoji + ' ' + t('weather') + ' на ' + dateStr + ': <span style="font-weight:700;">' + data.temp + t(
-                        'weatherTemp') + '</span> · ' + t('weatherWind') + ' ' + data.wind + ' ' + t('weatherSpeed');
-            } else {
-                updateWeatherDisplay();
+        // ===== ОТЗЫВЫ =====
+        function renderReviews() {
+            var container = document.getElementById('reviewsScroll');
+            var reviews = t('reviews');
+            var authors = t('reviewAuthors');
+            var html = '';
+            for (var i = 0; i < reviews.length; i++) {
+                var stars = i < 4 ? '⭐⭐⭐⭐⭐' : i < 5 ? '⭐⭐⭐⭐⭐' : '⭐⭐⭐⭐';
+                html += '<div class="review-card"><div class="review-stars">' + stars +
+                    '</div><div class="review-text">"' + reviews[i] + '"</div><div class="review-author">— ' + authors[i] +
+                    '</div></div>';
             }
+            container.innerHTML = html;
         }
 
         // ===== ОБЛАКО =====
@@ -2531,10 +2771,18 @@
         async function loadFromCloud() {
             try {
                 var r = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
-                if (r.ok) { var j = await r.json();
+                if (r.ok) {
+                    var j = await r.json();
                     avails = j.record.avails || {};
-                    bookings = j.record.bookings || []; }
+                    bookings = j.record.bookings || [];
+                } else {
+                    var s = localStorage.getItem('pkb_backup');
+                    if (s) { var j = JSON.parse(s);
+                        avails = j.avails || {};
+                        bookings = j.bookings || []; }
+                }
             } catch (e) {
+                console.warn('Облако недоступно, использую локальные данные');
                 var s = localStorage.getItem('pkb_backup');
                 if (s) { var j = JSON.parse(s);
                     avails = j.avails || {};
@@ -2543,9 +2791,11 @@
         }
 
         function getAvail(rid, date) {
-            if (avails[rid] && avails[rid][date] !== undefined) return avails[rid][date];
-            var room = ROOMS.find(function(r) { return r.id === rid; });
-            return room ? room.total : 0;
+            if (!avails || !avails[rid] || avails[rid][date] === undefined) {
+                var room = ROOMS.find(function(r) { return r.id === rid; });
+                return room ? room.total : 0;
+            }
+            return avails[rid][date];
         }
 
         function setAvail(rid, date, n) {
@@ -2602,12 +2852,29 @@
                     at = t('free') + ': ' + now + '/' + total;
                 }
 
+                var nameDisplay = rName(room);
+                var emojiMap = {
+                    'a01-stone': '🏔️',
+                    'a02-wood': '🪵',
+                    'standard': '🏨',
+                    'mountain': '⛰️',
+                    'lake-double': '🌅',
+                    'triple': '🌅',
+                    'deluxe': '🏨',
+                    'deluxe-plus': '🏡',
+                    'premier-deluxe': '🏡',
+                    'suite': '👑',
+                    'glamping-new': '🏕️'
+                };
+                var emoji = emojiMap[room.id] || '🏨';
+
                 return '<div class="room-card ' + hid + '" data-cat="' + room.cat + '" data-room-id="' + room.id + '">' +
                     '<div class="room-photos" onclick="openPhotoModal(\'' + room.id + '\',0)"><img src="' + room.photos[0] +
-                    '" alt="' + rName(room) + '" loading="lazy" draggable="false" onerror="this.src=\'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a2a27%22/%3E%3Ctext fill=%22%23f5c542%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3E📷%3C/text%3E%3C/svg%3E\'"><span class="photo-count">📷 ' +
+                    '" alt="' + nameDisplay + '" loading="lazy" draggable="false" onerror="this.src=\'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a2a27%22/%3E%3Ctext fill=%22%23f5c542%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3E📷%3C/text%3E%3C/svg%3E\'"><span class="photo-count">📷 ' +
                     room.photos.length + '</span></div>' +
-                    '<div class="room-info"><div class="room-name">' + rName(room) + '</div><div class="room-price">' +
-                    room.price.toLocaleString() + ' ₸</div><div class="room-desc">' + rDesc(room) +
+                    '<div class="room-info"><div class="room-name">' + emoji + ' ' + nameDisplay +
+                    '</div><div class="room-price">' + room.price.toLocaleString() + ' ₸</div><div class="room-desc">' +
+                    rDesc(room) +
                     '</div><span class="room-availability ' + ac + '">' + at + '</span><ul class="room-features">' +
                     rFeat(room).map(function(f) { return '<li>' + f + '</li>'; }).join('') +
                     '</ul>' + (room.link && room.link !== '#' ? '<a href="' + room.link +
@@ -3049,6 +3316,7 @@
             document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
             document.querySelector('.lang-btn[data-lang="' + lang + '"]').classList.add('active');
 
+            // Обновляем все тексты
             document.getElementById('btnA11y').textContent = isHighContrast ? '🌙 Обычная версия' : t('a11yBtn');
             document.getElementById('factLake').textContent = t('factLake');
             document.getElementById('factHeight').textContent = t('factHeight');
@@ -3058,6 +3326,7 @@
             document.getElementById('btnIgText').textContent = t('btnIg');
             document.getElementById('btnPhText').textContent = t('btnPh');
             document.getElementById('btnBookText').textContent = t('btnBook');
+            document.getElementById('btnShareText').textContent = t('btnShare');
 
             document.getElementById('roomsTitle').textContent = t('roomsTitle');
             document.getElementById('bookingFormTitle').textContent = t('bookingFormTitle');
@@ -3066,8 +3335,10 @@
             document.getElementById('lblNights').textContent = t('lblNights');
             document.getElementById('mapTitle').textContent = t('mapTitle');
             document.getElementById('mapInfo').innerHTML =
-                '<i class="fas fa-map-marker-alt"></i> ' + t('mapInfo').split('|')[0] +
-                ' &nbsp;|&nbsp; <i class="fas fa-car"></i> ' + t('mapInfo').split('|')[1];
+                '<i class="fas fa-map-marker-alt"></i> ' + t('mapInfo');
+            document.querySelector('.map-btn-2gis').innerHTML = '<i class="fas fa-map"></i> ' + t('map2gis');
+            document.querySelector('.map-btn-yandex').innerHTML = '<i class="fas fa-map"></i> ' + t('mapYandex');
+            document.querySelector('.map-btn-google').innerHTML = '<i class="fas fa-map"></i> ' + t('mapGoogle');
             document.getElementById('videoTitle').textContent = t('videoTitle');
             document.getElementById('rulesTitle').textContent = t('rulesTitle');
             document.getElementById('rulesSubTitle').innerHTML =
@@ -3115,6 +3386,7 @@
                 updateWeatherDisplay();
             }
 
+            renderReviews();
             renderRooms();
             updateQuickAvail();
             if (document.getElementById('bookingModal').classList.contains('active')) {
@@ -3154,7 +3426,7 @@
                     window.open('https://wa.me/77018615121', '_blank');
                 }
             }
-            showToast('👩‍💼 Подключаем оператора...', 'info');
+            showToast('👩‍💼 ' + t('operator'), 'info');
         }
 
         // ===== ИНИЦИАЛИЗАЦИЯ =====
@@ -3172,8 +3444,14 @@
             document.getElementById('quickCheckIn').setAttribute('min', today);
 
             await fetchWeather();
+            renderReviews();
             switchLanguage('ru');
             updateQuickAvail();
+
+            // Скрываем лоадер
+            setTimeout(function() {
+                document.getElementById('loader').classList.add('hidden');
+            }, 500);
 
             setInterval(saveToCloud, 300000);
             setInterval(fetchWeather, 600000);
