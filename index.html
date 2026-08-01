@@ -226,7 +226,7 @@
             justify-content: center;
             gap: 10px;
             flex-wrap: wrap;
-            margin: 16px 0;
+            margin: 16px 0 10px 0;
         }
         .fact-item {
             text-align: center;
@@ -258,12 +258,38 @@
             letter-spacing: 0.3px;
         }
 
+        .weather-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid var(--border-glass);
+            margin: 6px 0 10px 0;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+        }
+        .weather-header i {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+        .weather-header .weather-temp {
+            font-weight: 700;
+            color: #fff;
+        }
+        .weather-header .weather-detail {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+
         .contact-bar {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 8px;
-            margin: 16px 0;
+            margin: 12px 0 0 0;
         }
         .contact-btn {
             display: inline-flex;
@@ -334,32 +360,6 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 30px rgba(245, 197, 66, 0.5);
             animation: none;
-        }
-
-        .weather-mini {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 14px;
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 10px;
-            border: 1px solid var(--border-glass);
-            font-size: 0.8rem;
-            margin: 10px 0;
-            flex-wrap: wrap;
-        }
-        .weather-mini i {
-            color: var(--gold);
-            font-size: 1.2rem;
-        }
-        .weather-mini .weather-temp {
-            font-weight: 700;
-            font-size: 1rem;
-            color: #fff;
-        }
-        .weather-mini .weather-detail {
-            color: var(--text-muted);
-            font-size: 0.7rem;
         }
 
         .filter-bar {
@@ -842,11 +842,6 @@
             grid-template-columns: 1fr 1fr;
             gap: 16px;
         }
-        @media (max-width: 768px) {
-            .rules-grid {
-                grid-template-columns: 1fr;
-            }
-        }
         .rule-item {
             margin-bottom: 10px;
             padding-left: 8px;
@@ -1044,6 +1039,7 @@
             .content-block {
                 padding: 16px 12px;
                 border-radius: 14px;
+                margin-bottom: 12px;
             }
             .header {
                 flex-direction: column;
@@ -1055,6 +1051,8 @@
             }
             .header-right {
                 justify-content: center;
+                width: 100%;
+                flex-wrap: wrap;
             }
             .lang-btn {
                 padding: 4px 10px;
@@ -1071,6 +1069,7 @@
                 padding: 6px 10px;
                 min-width: 60px;
                 max-width: 100px;
+                flex: 1 0 auto;
             }
             .fact-item i {
                 font-size: 0.85rem;
@@ -1107,6 +1106,16 @@
             .room-price {
                 font-size: 1.1rem;
             }
+            .room-desc {
+                font-size: 0.75rem;
+            }
+            .room-features {
+                font-size: 0.7rem;
+            }
+            .btn-book-room {
+                font-size: 0.8rem;
+                padding: 10px;
+            }
             .quick-check-form {
                 flex-direction: column;
                 gap: 8px;
@@ -1115,16 +1124,13 @@
                 min-width: 100%;
                 width: 100%;
             }
-            .weather-mini {
+            .weather-header {
                 font-size: 0.75rem;
                 padding: 6px 12px;
                 gap: 8px;
             }
-            .weather-mini i {
+            .weather-header i {
                 font-size: 1rem;
-            }
-            .weather-mini .weather-temp {
-                font-size: 0.9rem;
             }
             .filter-bar {
                 gap: 4px;
@@ -1172,6 +1178,10 @@
             }
             .map-container iframe {
                 height: 200px;
+            }
+            .rules-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
             }
             .reviews-scroll {
                 gap: 10px;
@@ -1245,6 +1255,14 @@
                 font-size: 0.75rem;
                 padding: 8px;
             }
+            .weather-header {
+                font-size: 0.65rem;
+                padding: 4px 10px;
+                gap: 6px;
+            }
+            .weather-header i {
+                font-size: 0.85rem;
+            }
             .filter-btn {
                 padding: 3px 8px;
                 font-size: 0.55rem;
@@ -1287,19 +1305,15 @@
             .footer p {
                 font-size: 0.6rem;
             }
-            .weather-mini {
-                font-size: 0.65rem;
-                padding: 4px 10px;
-                gap: 6px;
+            .voucher-box {
+                padding: 12px;
             }
-            .weather-mini i {
-                font-size: 0.85rem;
+            .voucher-box .voucher-row {
+                font-size: 0.7rem;
             }
-            .weather-mini .weather-temp {
-                font-size: 0.8rem;
-            }
-            .weather-mini .weather-detail {
-                font-size: 0.6rem;
+            .btn-download-voucher {
+                font-size: 0.75rem;
+                padding: 6px 14px;
             }
         }
 
@@ -1316,6 +1330,70 @@
             }
             .room-photos {
                 height: 130px;
+            }
+            .room-name {
+                font-size: 0.75rem;
+            }
+            .room-price {
+                font-size: 0.9rem;
+            }
+            .room-desc {
+                font-size: 0.6rem;
+            }
+            .room-features {
+                font-size: 0.55rem;
+            }
+            .btn-book-room {
+                font-size: 0.65rem;
+                padding: 6px;
+            }
+            .filter-btn {
+                font-size: 0.5rem;
+                padding: 2px 6px;
+            }
+            .logo-title {
+                font-size: 1rem;
+            }
+            .lang-btn {
+                font-size: 0.55rem;
+                padding: 3px 8px;
+            }
+            .btn-accessibility {
+                font-size: 0.55rem;
+                padding: 3px 8px;
+            }
+            .modal-title {
+                font-size: 0.8rem;
+            }
+            .form-group input,
+            .form-group select {
+                font-size: 0.7rem;
+                padding: 5px 8px;
+            }
+            .btn-submit {
+                font-size: 0.7rem;
+                padding: 6px;
+            }
+            .review-card {
+                min-width: 130px;
+                padding: 8px;
+            }
+            .review-text {
+                font-size: 0.55rem;
+            }
+            .review-stars {
+                font-size: 0.6rem;
+            }
+            .review-author {
+                font-size: 0.5rem;
+            }
+            .weather-header {
+                font-size: 0.55rem;
+                padding: 3px 8px;
+                gap: 4px;
+            }
+            .weather-header i {
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -1347,6 +1425,11 @@
                 <div class="fact-item"><i class="fas fa-wifi"></i><div class="fact-value">Wi-Fi</div><div class="fact-label" id="factWifi">бесплатно</div></div>
             </div>
 
+            <div class="weather-header" id="weatherMini">
+                <i class="fas fa-cloud-sun"></i>
+                <span id="weatherMiniText">Загрузка погоды...</span>
+            </div>
+
             <div class="contact-bar">
                 <a href="https://wa.me/77018615121" target="_blank" class="contact-btn btn-whatsapp"><i class="fab fa-whatsapp"></i> <span id="btnWaText">WhatsApp</span></a>
                 <a href="https://instagram.com/pana_hotels" target="_blank" class="contact-btn btn-instagram"><i class="fab fa-instagram"></i> <span id="btnIgText">Instagram</span></a>
@@ -1367,18 +1450,14 @@
                 <button class="filter-btn" data-filter="deluxe" id="filtDlx">Deluxe</button>
                 <button class="filter-btn" data-filter="luxury" id="filtLux">Люкс</button>
                 <button class="filter-btn" data-filter="glamping" id="filtGlp">Глэмпинг</button>
+                <button class="filter-btn" data-filter="eco" id="filtEco">Эко</button>
             </div>
             <div class="rooms-grid" id="roomsGrid"></div>
         </div>
 
-        <!-- ФОРМА БРОНИРОВАНИЯ + ПОГОДА -->
+        <!-- ФОРМА БРОНИРОВАНИЯ -->
         <div class="content-block" id="bookingFormBlock">
             <h2 style="font-weight:300; margin-bottom:12px; font-size:1.2rem;" id="bookingFormTitle">📅 Проверить доступность</h2>
-
-            <div class="weather-mini" id="weatherMini">
-                <i class="fas fa-cloud-sun"></i>
-                <span id="weatherMiniText">Загрузка погоды...</span>
-            </div>
 
             <div class="quick-check-form" id="quickCheckForm">
                 <div class="form-group">
@@ -1389,6 +1468,13 @@
                     <label id="lblGuests">👥 Гости</label>
                     <select id="quickGuests" onchange="updateQuickAvail()">
                         <option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                    </select>
+                </div>
+                <!-- ===== ВЫБОР КОЛИЧЕСТВА НОЧЕЙ ===== -->
+                <div class="form-group">
+                    <label id="lblNights">🌙 Ночей</label>
+                    <select id="quickNights" onchange="updateQuickAvail()">
+                        <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
                     </select>
                 </div>
             </div>
@@ -1512,227 +1598,503 @@
         const API_KEY = '$2a$10$AxIfA8p7dq6td0BYtWWuhecnyqCJbsTGoo.oWIds3H01C43GvLGuu';
         const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
-        // Базовые данные номеров
-        const ROOMS = [
-            { id: 'standard', nameRu: '🏨 Standard Room', nameEn: '🏨 Standard Room', nameKz: '🏨 Standard Room',
-                price: 54900, cap: 2, extra: 1, cat: 'standard', total: 4,
-                photos: ['https://via.placeholder.com/600x400/1a2a27/f5c542?text=Standard+1',
-                    'https://via.placeholder.com/600x400/1a2a27/f5c542?text=Standard+2'
-                ],
-                descRu: 'Стандартный номер без вида', descEn: 'Standard room without view',
-                descKz: 'Көрініссіз стандартты бөлме',
-                featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 2 взрослых', '➕ Доп. место: 15 000 ₸',
-                    '🍳 Бесплатный завтрак', '🚐 Трансфер с парковки', '👶 Дети до 7 лет — бесплатно'
-                ],
-                featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 2 adults', '➕ Extra bed: 15,000 ₸',
-                    '🍳 Free breakfast', '🚐 Free transfer', '👶 Child under 7 — free'
-                ],
-                featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 2 ересек', '➕ Қосымша орын: 15 000 ₸',
-                    '🍳 Тегін таңғы ас', '🚐 Тегін трансфер', '👶 7 жасқа дейін — тегін'
-                ],
-                link: 'https://drive.google.com/file/d/1pEewgVeg3V_29HTFnOVYeNvZUxa5rAl8/view'
-            },
-            { id: 'mountain', nameRu: '⛰ Mountain View', nameEn: '⛰ Mountain View', nameKz: '⛰ Mountain View',
-                price: 59900, cap: 2, extra: 1, cat: 'mountain', total: 2,
-                photos: ['https://via.placeholder.com/600x400/1a2a27/f5c542?text=Mountain+1',
-                    'https://via.placeholder.com/600x400/1a2a27/f5c542?text=Mountain+2'
-                ],
-                descRu: 'С видом на горы', descEn: 'Mountain view',
-                descKz: 'Тау көрінісі',
-                featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 2 взрослых', '🛏️ Twin или Double',
-                    '🍳 Бесплатный завтрак', '🚐 Трансфер с парковки'
-                ],
-                featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 2 adults', '🛏️ Twin or Double',
-                    '🍳 Free breakfast', '🚐 Free transfer'
-                ],
-                featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 2 ересек', '🛏️ Twin немесе Double',
-                    '🍳 Тегін таңғы ас', '🚐 Тегін трансфер'
-                ],
-                link: 'https://clck.ru/3RhvxN'
-            },
-            { id: 'lake-double', nameRu: '🌅 Lake View Double', nameEn: '🌅 Lake View Double',
-                nameKz: '🌅 Lake View Double', price: 64900, cap: 2, extra: 1, cat: 'lake', total: 1,
-                photos: ['https://via.placeholder.com/600x400/1a2a27/f5c542?text=Lake+Double+1',
-                    'https://via.placeholder.com/600x400/1a2a27/f5c542?text=Lake+Double+2'
-                ],
-                descRu: 'Вид на озеро, Double', descEn: 'Lake view, Double',
-                descKz: 'Көл көрінісі, Double',
-                featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 2 взрослых', '🛏️ Double (неделимый)',
-                    '🍳 Бесплатный завтрак', '🚐 Трансфер с парковки'
-                ],
-                featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 2 adults', '🛏️ Double (non-split)',
-                    '🍳 Free breakfast', '🚐 Free transfer'
-                ],
-                featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 2 ересек', '🛏️ Double (бөлінбейді)',
-                    '🍳 Тегін таңғы ас', '🚐 Тегін трансфер'
-                ],
-                link: '#'
-            },
-            { id: 'lake-twin', nameRu: '🌅 Lake View Twin', nameEn: '🌅 Lake View Twin', nameKz: '🌅 Lake View Twin',
-                price: 64900, cap: 2, extra: 1, cat: 'lake', total: 7,
-                photos: ['https://via.placeholder.com/600x400/1a2a27/f5c542?text=Lake+Twin+1',
-                    'https://via.placeholder.com/600x400/1a2a27/f5c542?text=Lake+Twin+2'
-                ],
-                descRu: 'Вид на озеро, Twin', descEn: 'Lake view, Twin',
-                descKz: 'Көл көрінісі, Twin',
-                featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 2 взрослых', '🛏️ Twin (можно разделить)',
-                    '🍳 Бесплатный завтрак', '🚐 Трансфер с парковки'
-                ],
-                featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 2 adults', '🛏️ Twin (can split)',
-                    '🍳 Free breakfast', '🚐 Free transfer'
-                ],
-                featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 2 ересек', '🛏️ Twin (бөлуге болады)',
-                    '🍳 Тегін таңғы ас', '🚐 Тегін трансфер'
-                ],
-                link: '#'
-            },
-            { id: 'triple', nameRu: '🌅 Lake View Triple', nameEn: '🌅 Lake View Triple', nameKz: '🌅 Lake View Triple',
-                price: 74900, cap: 3, extra: 1, cat: 'triple', total: 2,
-                photos: ['https://via.placeholder.com/600x400/1a2a27/f5c542?text=Triple+1',
-                    'https://via.placeholder.com/600x400/1a2a27/f5c542?text=Triple+2'
-                ],
-                descRu: 'Вид на озеро, 2 кровати + кровать-чердак', descEn: 'Lake view, 2 beds + loft bed',
-                descKz: 'Көл көрінісі, 2 кереует + шатырлы кереует',
-                featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 3 гостя', '🛏️ 2 кровати + кровать на возвышении',
-                    '🍳 Бесплатный завтрак', '🚐 Трансфер с парковки'
-                ],
-                featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 3 guests', '🛏️ 2 beds + loft bed',
-                    '🍳 Free breakfast', '🚐 Free transfer'
-                ],
-                featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 3 қонақ', '🛏️ 2 кереует + биік кереует',
-                    '🍳 Тегін таңғы ас', '🚐 Тегін трансфер'
-                ],
-                link: '#'
-            },
-            { id: 'deluxe', nameRu: '🏨 Deluxe', nameEn: '🏨 Deluxe', nameKz: '🏨 Deluxe', price: 79900, cap: 4,
-                extra: 0, cat: 'deluxe', total: 1,
-                photos: ['https://via.placeholder.com/600x400/1a2a27/f5c542?text=Deluxe+1',
-                    'https://via.placeholder.com/600x400/1a2a27/f5c542?text=Deluxe+2'
-                ],
-                descRu: '2 комнаты: двухъярусная + Double', descEn: '2 rooms: bunk bed + Double',
-                descKz: '2 бөлме: екіқабатты + Double',
-                featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👨‍👩‍👧‍👦 2 взрослых + 2 детей', '🛏️ Двухъярусная + Double',
-                    '🍳 Завтрак на 4-х', '🚐 Трансфер с парковки'
-                ],
-                featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👨‍👩‍👧‍👦 2 adults + 2 children',
-                    '🛏️ Bunk bed + Double', '🍳 Breakfast for 4', '🚐 Free transfer'
-                ],
-                featKz: ['🕒 Келу 15:00 — кету 12:00', '👨‍👩‍👧‍👦 2 ересек + 2 бала', '🛏️ Екіқабатты + Double',
-                    '🍳 4 адамға таңғы ас', '🚐 Тегін трансфер'
-                ],
-                link: '#'
-            },
-            { id: 'deluxe-plus', nameRu: '🏡 Deluxe+', nameEn: '🏡 Deluxe+', nameKz: '🏡 Deluxe+', price: 104900,
-                cap: 4, extra: 0, cat: 'deluxe', total: 2,
-                photos: ['https://via.placeholder.com/600x400/1a2a27/f5c542?text=Deluxe+Plus+1',
-                    'https://via.placeholder.com/600x400/1a2a27/f5c542?text=Deluxe+Plus+2'
-                ],
-                descRu: '2 комнаты: топчан + Double', descEn: '2 rooms: daybed + Double',
-                descKz: '2 бөлме: топчан + Double',
-                featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 4 взрослых', '🛏️ Топчан + Double (неделимый)',
-                    '🍳 Бесплатный завтрак', '🚐 Трансфер с парковки'
-                ],
-                featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 4 adults', '🛏️ Daybed + Double',
-                    '🍳 Free breakfast', '🚐 Free transfer'
-                ],
-                featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 4 ересек', '🛏️ Топчан + Double',
-                    '🍳 Тегін таңғы ас', '🚐 Тегін трансфер'
-                ],
-                link: '#'
-            },
-            { id: 'premier-deluxe', nameRu: '🏡 Premier Deluxe', nameEn: '🏡 Premier Deluxe',
-                nameKz: '🏡 Premier Deluxe', price: 124900, cap: 4, extra: 2, cat: 'luxury', total: 1,
-                photos: ['https://via.placeholder.com/600x400/1a2a27/f5c542?text=Premier+Deluxe+1',
-                    'https://via.placeholder.com/600x400/1a2a27/f5c542?text=Premier+Deluxe+2'
-                ],
-                descRu: '2 комнаты: Double + Twin (можно 2 доп. места)',
-                descEn: '2 rooms: Double + Twin (up to 2 extra beds)',
-                descKz: '2 бөлме: Double + Twin (2 қосымша орын)',
-                featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 до 6 гостей', '➕ 2 доп. места × 15 000 ₸',
-                    '🍳 Завтрак на 4-х', '🚐 Трансфер с парковки'
-                ],
-                featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 up to 6 guests',
-                    '➕ 2 extra beds × 15,000 ₸', '🍳 Breakfast for 4', '🚐 Free transfer'
-                ],
-                featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 6 қонаққа дейін', '➕ 2 қосымша орын × 15 000 ₸',
-                    '🍳 4 адамға таңғы ас', '🚐 Тегін трансфер'
-                ],
-                link: '#'
-            },
-            { id: 'suite', nameRu: '👑 Suite Room', nameEn: '👑 Suite Room', nameKz: '👑 Suite Room', price: 134900,
-                cap: 4, extra: 2, cat: 'luxury', total: 1,
-                photos: ['https://via.placeholder.com/600x400/1a2a27/f5c542?text=Suite+1',
-                    'https://via.placeholder.com/600x400/1a2a27/f5c542?text=Suite+2'
-                ],
-                descRu: '2 комнаты с Double (можно 2 доп. места)', descEn: '2 rooms with Double (up to 2 extra beds)',
-                descKz: '2 бөлме Double (2 қосымша орын)',
-                featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 до 6 гостей', '➕ 2 доп. места × 15 000 ₸',
-                    '🍳 Завтрак на 4-х', '🚐 Трансфер с парковки'
-                ],
-                featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 up to 6 guests',
-                    '➕ 2 extra beds × 15,000 ₸', '🍳 Breakfast for 4', '🚐 Free transfer'
-                ],
-                featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 6 қонаққа дейін', '➕ 2 қосымша орын × 15 000 ₸',
-                    '🍳 4 адамға таңғы ас', '🚐 Тегін трансфер'
-                ],
-                link: '#'
-            },
-            { id: 'lux-a02', nameRu: '💎 Люкс A02', nameEn: '💎 Lux A02', nameKz: '💎 Люкс A02', price: 219900,
-                cap: 2, extra: 1, cat: 'luxury', total: 1,
-                photos: ['https://via.placeholder.com/600x400/1a2a27/f5c542?text=Lux+A02+1',
-                    'https://via.placeholder.com/600x400/1a2a27/f5c542?text=Lux+A02+2'
-                ],
-                descRu: 'Люкс для 2-х персон', descEn: 'Luxury for 2 persons', descKz: '2 адамға арналған люкс',
-                featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 2 взрослых', '➕ Доп. место: 15 000 ₸',
-                    '🍳 Завтрак 8:00–10:00', '🚐 Трансфер с парковки'
-                ],
-                featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 2 adults', '➕ Extra bed: 15,000 ₸',
-                    '🍳 Breakfast 8:00–10:00', '🚐 Free transfer'
-                ],
-                featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 2 ересек', '➕ Қосымша орын: 15 000 ₸',
-                    '🍳 Таңғы ас 8:00–10:00', '🚐 Тегін трансфер'
-                ],
-                link: 'https://www.instagram.com/p/DHXcKsAt6Zg/'
-            },
-            { id: 'lux-a01', nameRu: '💎 Люкс A01', nameEn: '💎 Lux A01', nameKz: '💎 Люкс A01', price: 279900,
-                cap: 2, extra: 1, cat: 'luxury', total: 1,
-                photos: ['https://via.placeholder.com/600x400/1a2a27/f5c542?text=Lux+A01+1',
-                    'https://via.placeholder.com/600x400/1a2a27/f5c542?text=Lux+A01+2'
-                ],
-                descRu: 'Премиум люкс для 2-х персон', descEn: 'Premium luxury for 2 persons',
-                descKz: '2 адамға арналған премиум люкс',
-                featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 2 взрослых', '➕ Доп. место: 15 000 ₸',
-                    '🍳 Завтрак 8:00–10:00', '🚐 Трансфер с парковки'
-                ],
-                featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 2 adults', '➕ Extra bed: 15,000 ₸',
-                    '🍳 Breakfast 8:00–10:00', '🚐 Free transfer'
-                ],
-                featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 2 ересек', '➕ Қосымша орын: 15 000 ₸',
-                    '🍳 Таңғы ас 8:00–10:00', '🚐 Тегін трансфер'
-                ],
-                link: 'https://www.instagram.com/reel/DKjjbJjNWve/'
-            },
-            { id: 'glamping', nameRu: '🏕️ Glamping', nameEn: '🏕️ Glamping', nameKz: '🏕️ Glamping', price: 119900,
-                cap: 4, extra: 0, cat: 'glamping', total: 4,
-                photos: ['https://via.placeholder.com/600x400/1a2a27/f5c542?text=Glamping+1',
-                    'https://via.placeholder.com/600x400/1a2a27/f5c542?text=Glamping+2',
-                    'https://via.placeholder.com/600x400/1a2a27/f5c542?text=Glamping+3'
-                ],
-                descRu: 'Двухуровневый: кровать + топчан наверху',
-                descEn: 'Two-level: bed + loft daybed',
-                descKz: 'Екі деңгейлі: кереует + жоғарыда топчан',
-                featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 4 взрослых', '🛏️ Кровать + топчан на 2-м уровне',
-                    '🍳 Завтрак на 4-х', '🚐 Трансфер с парковки'
-                ],
-                featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 4 adults', '🛏️ Bed + loft daybed',
-                    '🍳 Breakfast for 4', '🚐 Free transfer'
-                ],
-                featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 4 ересек', '🛏️ Кереует + 2-деңгейде топчан',
-                    '🍳 4 адамға таңғы ас', '🚐 Тегін трансфер'
-                ],
-                link: 'https://www.youtube.com/watch?v=TMAxBtymLFI'
-            }
-        ];
+        // ============ НОМЕРА (С ПРАВИЛЬНЫМИ КОЛИЧЕСТВАМИ) ============
+        const ROOMS = [{
+            id: 'a01-stone',
+            nameRu: '🏔️ Каменный домик A01',
+            nameEn: '🏔️ Stone House A01',
+            nameKz: '🏔️ Тас үй A01',
+            price: 279900,
+            cap: 2,
+            extra: 2,
+            cat: 'luxury',
+            total: 1,
+            photos: [
+                'https://lh3.googleusercontent.com/d/1wezgXvtZeBW3WwgIF-zPka9Zl-fEU0Oi=w1200',
+                'https://lh3.googleusercontent.com/d/1vzIOcC_g2iG0vrYJTKTk9-vbTyPCSv18=w1200'
+            ],
+            descRu: 'Каменный домик А01. Заезд 14:00, выезд 12:00. Макс. 2 взрослых + 2 детей. 37 м².',
+            descEn: 'Stone house A01. Check-in 14:00, check-out 12:00. Max 2 adults + 2 children. 37 m².',
+            descKz: 'Тас үй А01. Келу 14:00, кету 12:00. Макс. 2 ересек + 2 бала. 37 м².',
+            featRu: [
+                '🕒 Заезд 14:00 — выезд 12:00',
+                '👥 2 взрослых + 2 детей',
+                '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 2-х',
+                '🚐 Бесплатный трансфер с парковки',
+                '🚗 Трансфер из Алматы: 40 000 ₸ (300 км)',
+                '🍽️ Рядом этно-кафе Тары'
+            ],
+            featEn: [
+                '🕒 Check-in 14:00 — Check-out 12:00',
+                '👥 2 adults + 2 children',
+                '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 2',
+                '🚐 Free transfer from parking',
+                '🚗 Transfer from Almaty: 40,000 ₸ (300 km)',
+                '🍽️ Tary ethnic cafe nearby'
+            ],
+            featKz: [
+                '🕒 Келу 14:00 — кету 12:00',
+                '👥 2 ересек + 2 бала',
+                '➕ Қосымша орын: 15 000 ₸',
+                '🍳 2 адамға тегін таңғы ас',
+                '🚐 Тұрақтан тегін трансфер',
+                '🚗 Алматыдан трансфер: 40 000 ₸ (300 км)',
+                '🍽️ Tary этно-кафе жанында'
+            ],
+            link: 'https://www.instagram.com/p/DHXcKsAt6Zg/'
+        }, {
+            id: 'a02-wood',
+            nameRu: '🪵 Деревянный домик A02',
+            nameEn: '🪵 Wooden House A02',
+            nameKz: '🪵 Ағаш үй A02',
+            price: 219900,
+            cap: 2,
+            extra: 2,
+            cat: 'luxury',
+            total: 1,
+            photos: [
+                'https://lh3.googleusercontent.com/d/1wZki3IlnTcrB2InnikQDFzfXjcCtuxwO=w1200',
+                'https://lh3.googleusercontent.com/d/1XlSE1OTY0JRVUJEbK5U5och4Ghr_1M8h=w1200'
+            ],
+            descRu: 'Деревянный домик А02. Заезд 14:00, выезд 12:00. Макс. 2 взрослых + 2 детей. 37 м².',
+            descEn: 'Wooden house A02. Check-in 14:00, check-out 12:00. Max 2 adults + 2 children. 37 m².',
+            descKz: 'Ағаш үй А02. Келу 14:00, кету 12:00. Макс. 2 ересек + 2 бала. 37 м².',
+            featRu: [
+                '🕒 Заезд 14:00 — выезд 12:00',
+                '👥 2 взрослых + 2 детей',
+                '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 2-х',
+                '🚐 Бесплатный трансфер с парковки',
+                '🚗 Трансфер из Алматы: 40 000 ₸ (300 км)',
+                '🍽️ Рядом этно-кафе Тары'
+            ],
+            featEn: [
+                '🕒 Check-in 14:00 — Check-out 12:00',
+                '👥 2 adults + 2 children',
+                '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 2',
+                '🚐 Free transfer from parking',
+                '🚗 Transfer from Almaty: 40,000 ₸ (300 km)',
+                '🍽️ Tary ethnic cafe nearby'
+            ],
+            featKz: [
+                '🕒 Келу 14:00 — кету 12:00',
+                '👥 2 ересек + 2 бала',
+                '➕ Қосымша орын: 15 000 ₸',
+                '🍳 2 адамға тегін таңғы ас',
+                '🚐 Тұрақтан тегін трансфер',
+                '🚗 Алматыдан трансфер: 40 000 ₸ (300 км)',
+                '🍽️ Tary этно-кафе жанында'
+            ],
+            link: 'https://www.instagram.com/reel/DKjjbJjNWve/'
+        }, {
+            id: 'standard',
+            nameRu: '🏨 Standard Room',
+            nameEn: '🏨 Standard Room',
+            nameKz: '🏨 Standard Room',
+            price: 54900,
+            cap: 2,
+            extra: 1,
+            cat: 'standard',
+            total: 2, // ← ИСПРАВЛЕНО: 2 номера
+            photos: [
+                'https://lh3.googleusercontent.com/d/1dZ2jSYbGk3xdYl50Ruho6z5fVSewkUWq=w800',
+                'https://lh3.googleusercontent.com/d/1DCtw5GRUWdlB1Uy2358mz4TbdQPo-t9x=w800'
+            ],
+            descRu: 'Стандартный номер без вида для 2-х персон. Заезд 15:00, выезд 12:00.',
+            descEn: 'Standard room without view for 2 persons. Check-in 15:00, check-out 12:00.',
+            descKz: 'Көрініссіз стандартты бөлме 2 адамға. Келу 15:00, кету 12:00.',
+            featRu: [
+                '🕒 Заезд 15:00 — выезд 12:00',
+                '👥 2 взрослых + 1 ребенок',
+                '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 2-х',
+                '🚐 Бесплатный трансфер с парковки',
+                '👶 Дети до 5 лет — бесплатно',
+                '🍽️ Рядом этно-кафе Тары'
+            ],
+            featEn: [
+                '🕒 Check-in 15:00 — Check-out 12:00',
+                '👥 2 adults + 1 child',
+                '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 2',
+                '🚐 Free transfer from parking',
+                '👶 Children under 5 — free',
+                '🍽️ Tary ethnic cafe nearby'
+            ],
+            featKz: [
+                '🕒 Келу 15:00 — кету 12:00',
+                '👥 2 ересек + 1 бала',
+                '➕ Қосымша орын: 15 000 ₸',
+                '🍳 2 адамға тегін таңғы ас',
+                '🚐 Тұрақтан тегін трансфер',
+                '👶 5 жасқа дейін — тегін',
+                '🍽️ Tary этно-кафе жанында'
+            ],
+            link: 'https://drive.google.com/file/d/1pEewgVeg3V_29HTFnOVYeNvZUxa5rAl8/view'
+        }, {
+            id: 'mountain',
+            nameRu: '⛰ Superior Mountain View',
+            nameEn: '⛰ Superior Mountain View',
+            nameKz: '⛰ Тау көрінісі',
+            price: 59900,
+            cap: 2,
+            extra: 1,
+            cat: 'mountain',
+            total: 2,
+            photos: [
+                'https://lh3.googleusercontent.com/d/1cqdfwaYNZtCEVWexRbqcd-9fe1o5WUpC=w1200',
+                'https://lh3.googleusercontent.com/d/1aXjg2ecY0lTRfKS9ADyf6DAgmweCd474=w1200'
+            ],
+            descRu: 'Стандартный номер с видом на горы для 2-х персон. Заезд 15:00, выезд 12:00.',
+            descEn: 'Standard room with mountain view for 2 persons. Check-in 15:00, check-out 12:00.',
+            descKz: 'Тау көрінісі бар стандартты бөлме 2 адамға. Келу 15:00, кету 12:00.',
+            featRu: [
+                '🕒 Заезд 15:00 — выезд 12:00',
+                '👥 2 взрослых + 1 ребенок',
+                '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 2-х',
+                '🚐 Бесплатный трансфер с парковки',
+                '👶 Дети до 5 лет — бесплатно',
+                '🍽️ Рядом этно-кафе Тары'
+            ],
+            featEn: [
+                '🕒 Check-in 15:00 — Check-out 12:00',
+                '👥 2 adults + 1 child',
+                '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 2',
+                '🚐 Free transfer from parking',
+                '👶 Children under 5 — free',
+                '🍽️ Tary ethnic cafe nearby'
+            ],
+            featKz: [
+                '🕒 Келу 15:00 — кету 12:00',
+                '👥 2 ересек + 1 бала',
+                '➕ Қосымша орын: 15 000 ₸',
+                '🍳 2 адамға тегін таңғы ас',
+                '🚐 Тұрақтан тегін трансфер',
+                '👶 5 жасқа дейін — тегін',
+                '🍽️ Tary этно-кафе жанында'
+            ],
+            link: 'https://drive.google.com/file/d/1dn9vFQlvhLWgdE7B19tSL-WKpmsPepqn/view'
+        }, {
+            id: 'lake-double',
+            nameRu: '🌅 Superior Lake View Double',
+            nameEn: '🌅 Superior Lake View Double',
+            nameKz: '🌅 Көл көрінісі Double',
+            price: 64900,
+            cap: 2,
+            extra: 1,
+            cat: 'lake',
+            total: 7,
+            photos: [
+                'https://lh3.googleusercontent.com/d/1ptwAdkxgwMnuKiwTCGMLNsncTZ4SCD32=w800',
+                'https://lh3.googleusercontent.com/d/1YVkMTwwWAkDK1lSwfDPQ6qMKpZFhzqWE=w800'
+            ],
+            descRu: 'Стандартный номер с видом на озеро Кольсай для 2-х персон. Double кровать.',
+            descEn: 'Standard room with Kolsay Lake view for 2 persons. Double bed.',
+            descKz: 'Көлсай көлінің көрінісі бар стандартты бөлме 2 адамға. Double кереует.',
+            featRu: [
+                '🕒 Заезд 15:00 — выезд 12:00',
+                '👥 2 взрослых + 1 ребенок',
+                '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 2-х',
+                '🚐 Бесплатный трансфер с парковки',
+                '👶 Дети до 5 лет — бесплатно',
+                '🍽️ Рядом этно-кафе Тары'
+            ],
+            featEn: [
+                '🕒 Check-in 15:00 — Check-out 12:00',
+                '👥 2 adults + 1 child',
+                '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 2',
+                '🚐 Free transfer from parking',
+                '👶 Children under 5 — free',
+                '🍽️ Tary ethnic cafe nearby'
+            ],
+            featKz: [
+                '🕒 Келу 15:00 — кету 12:00',
+                '👥 2 ересек + 1 бала',
+                '➕ Қосымша орын: 15 000 ₸',
+                '🍳 2 адамға тегін таңғы ас',
+                '🚐 Тұрақтан тегін трансфер',
+                '👶 5 жасқа дейін — тегін',
+                '🍽️ Tary этно-кафе жанында'
+            ],
+            link: 'https://drive.google.com/file/d/1m-1D7gTtylwBGhNm1u2QV1jXgN_M3xhr/view'
+        }, {
+            id: 'triple',
+            nameRu: '🌅 Superior Lake View Triple',
+            nameEn: '🌅 Superior Lake View Triple',
+            nameKz: '🌅 Көл көрінісі Triple',
+            price: 74900,
+            cap: 3,
+            extra: 1,
+            cat: 'triple',
+            total: 2,
+            photos: [
+                'https://lh3.googleusercontent.com/d/1mGehFtdQ7win_x-V758s0u0RIf6B9sEc=w800',
+                'https://lh3.googleusercontent.com/d/12LpF2YVubLYGZoNG0kmKVFSYmePofzU1=w800'
+            ],
+            descRu: 'Стандартный номер с видом на озеро Кольсай для 3-х персон.',
+            descEn: 'Standard room with Kolsay Lake view for 3 persons.',
+            descKz: 'Көлсай көлінің көрінісі бар стандартты бөлме 3 адамға.',
+            featRu: [
+                '🕒 Заезд 15:00 — выезд 12:00',
+                '👥 3 взрослых + 1 ребенок',
+                '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 2-х',
+                '🚐 Бесплатный трансфер с парковки',
+                '👶 Дети до 5 лет — бесплатно',
+                '🍽️ Рядом этно-кафе Тары'
+            ],
+            featEn: [
+                '🕒 Check-in 15:00 — Check-out 12:00',
+                '👥 3 adults + 1 child',
+                '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 2',
+                '🚐 Free transfer from parking',
+                '👶 Children under 5 — free',
+                '🍽️ Tary ethnic cafe nearby'
+            ],
+            featKz: [
+                '🕒 Келу 15:00 — кету 12:00',
+                '👥 3 ересек + 1 бала',
+                '➕ Қосымша орын: 15 000 ₸',
+                '🍳 2 адамға тегін таңғы ас',
+                '🚐 Тұрақтан тегін трансфер',
+                '👶 5 жасқа дейін — тегін',
+                '🍽️ Tary этно-кафе жанында'
+            ],
+            link: 'https://drive.google.com/file/d/1Lh4d_lGjFiZsbBHbkRjpGY9g_yvUAx8z/view'
+        }, {
+            id: 'deluxe',
+            nameRu: '🏨 Deluxe',
+            nameEn: '🏨 Deluxe',
+            nameKz: '🏨 Deluxe',
+            price: 79900,
+            cap: 4,
+            extra: 1,
+            cat: 'deluxe',
+            total: 1,
+            photos: [
+                'https://lh3.googleusercontent.com/d/1NAY7HBLgs9nQC1P509-ezDdbgtz2wpHl=w800',
+                'https://lh3.googleusercontent.com/d/1YVkMTwwWAkDK1lSwfDPQ6qMKpZFhzqWE=w800'
+            ],
+            descRu: 'Deluxe для 4-х персон. Заезд 15:00, выезд 12:00.',
+            descEn: 'Deluxe for 4 persons. Check-in 15:00, check-out 12:00.',
+            descKz: '4 адамға арналған Deluxe. Келу 15:00, кету 12:00.',
+            featRu: [
+                '🕒 Заезд 15:00 — выезд 12:00',
+                '👥 4 взрослых + 1 ребенок',
+                '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 4-х',
+                '🚐 Бесплатный трансфер с парковки',
+                '👶 Дети до 5 лет — бесплатно',
+                '🍽️ Рядом этно-кафе Тары'
+            ],
+            featEn: [
+                '🕒 Check-in 15:00 — Check-out 12:00',
+                '👥 4 adults + 1 child',
+                '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 4',
+                '🚐 Free transfer from parking',
+                '👶 Children under 5 — free',
+                '🍽️ Tary ethnic cafe nearby'
+            ],
+            featKz: [
+                '🕒 Келу 15:00 — кету 12:00',
+                '👥 4 ересек + 1 бала',
+                '➕ Қосымша орын: 15 000 ₸',
+                '🍳 4 адамға тегін таңғы ас',
+                '🚐 Тұрақтан тегін трансфер',
+                '👶 5 жасқа дейін — тегін',
+                '🍽️ Tary этно-кафе жанында'
+            ],
+            link: 'https://drive.google.com/file/d/1bsCXUoVPz10hAwtW2hnomwOnUOZ7bJ6-/view'
+        }, {
+            id: 'deluxe-plus',
+            nameRu: '🏡 Deluxe+',
+            nameEn: '🏡 Deluxe+',
+            nameKz: '🏡 Deluxe+',
+            price: 104900,
+            cap: 4,
+            extra: 1,
+            cat: 'deluxe',
+            total: 2,
+            photos: [
+                'https://lh3.googleusercontent.com/d/1Gc8NNcyvv1g4htILGRcn_HShvY3RflZP=w800',
+                'https://lh3.googleusercontent.com/d/1xc3RAvBFUoyL0e8KCX_7HzwLjeQEIpqk=w800'
+            ],
+            descRu: 'Deluxe+ для 4-х персон. Заезд 15:00, выезд 12:00.',
+            descEn: 'Deluxe+ for 4 persons. Check-in 15:00, check-out 12:00.',
+            descKz: '4 адамға арналған Deluxe+. Келу 15:00, кету 12:00.',
+            featRu: [
+                '🕒 Заезд 15:00 — выезд 12:00',
+                '👥 4 взрослых + 1 ребенок',
+                '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 4-х',
+                '🚐 Бесплатный трансфер с парковки',
+                '👶 Дети до 5 лет — бесплатно',
+                '🍽️ Рядом этно-кафе Тары'
+            ],
+            featEn: [
+                '🕒 Check-in 15:00 — Check-out 12:00',
+                '👥 4 adults + 1 child',
+                '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 4',
+                '🚐 Free transfer from parking',
+                '👶 Children under 5 — free',
+                '🍽️ Tary ethnic cafe nearby'
+            ],
+            featKz: [
+                '🕒 Келу 15:00 — кету 12:00',
+                '👥 4 ересек + 1 бала',
+                '➕ Қосымша орын: 15 000 ₸',
+                '🍳 4 адамға тегін таңғы ас',
+                '🚐 Тұрақтан тегін трансфер',
+                '👶 5 жасқа дейін — тегін',
+                '🍽️ Tary этно-кафе жанында'
+            ],
+            link: 'https://drive.google.com/file/d/1xUdZq5Vi13i2bNG3Oy1LtAg7157K6asr/view'
+        }, {
+            id: 'premier-deluxe',
+            nameRu: '🏡 Premier Deluxe',
+            nameEn: '🏡 Premier Deluxe',
+            nameKz: '🏡 Premier Deluxe',
+            price: 124900,
+            cap: 4,
+            extra: 1,
+            cat: 'deluxe',
+            total: 1,
+            photos: [
+                'https://lh3.googleusercontent.com/d/1rTsaISNCU9DkBxkkesAqc6vvA1Q4QLYE=w1200',
+                'https://lh3.googleusercontent.com/d/1hasi_mV_no9fsPYedP6UzXq1qY8blBTP=w1200'
+            ],
+            descRu: 'Premier Deluxe для 4-х персон. Заезд 15:00, выезд 12:00.',
+            descEn: 'Premier Deluxe for 4 persons. Check-in 15:00, check-out 12:00.',
+            descKz: '4 адамға арналған Premier Deluxe. Келу 15:00, кету 12:00.',
+            featRu: [
+                '🕒 Заезд 15:00 — выезд 12:00',
+                '👥 4 взрослых + 1 ребенок',
+                '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 4-х',
+                '🚐 Бесплатный трансфер с парковки',
+                '👶 Дети до 5 лет — бесплатно',
+                '🍽️ Рядом этно-кафе Тары'
+            ],
+            featEn: [
+                '🕒 Check-in 15:00 — Check-out 12:00',
+                '👥 4 adults + 1 child',
+                '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 4',
+                '🚐 Free transfer from parking',
+                '👶 Children under 5 — free',
+                '🍽️ Tary ethnic cafe nearby'
+            ],
+            featKz: [
+                '🕒 Келу 15:00 — кету 12:00',
+                '👥 4 ересек + 1 бала',
+                '➕ Қосымша орын: 15 000 ₸',
+                '🍳 4 адамға тегін таңғы ас',
+                '🚐 Тұрақтан тегін трансфер',
+                '👶 5 жасқа дейін — тегін',
+                '🍽️ Tary этно-кафе жанында'
+            ],
+            link: 'https://drive.google.com/file/d/1t8ylE9wOguBWlzH1DFVL7eEqUDOtXWw7/view'
+        }, {
+            id: 'suite',
+            nameRu: '👑 Suite Room',
+            nameEn: '👑 Suite Room',
+            nameKz: '👑 Suite Room',
+            price: 134900,
+            cap: 4,
+            extra: 1,
+            cat: 'luxury',
+            total: 1,
+            photos: [
+                'https://lh3.googleusercontent.com/d/1t3XTXwNULnuAoMnQB2CnaDNtQtfJim7j=w800',
+                'https://lh3.googleusercontent.com/d/1Ja_ofE8s06EF0cAeSyejN5TWbNacXRtd=w800'
+            ],
+            descRu: 'Suite Room для 4-х персон. Заезд 15:00, выезд 12:00.',
+            descEn: 'Suite Room for 4 persons. Check-in 15:00, check-out 12:00.',
+            descKz: '4 адамға арналған Suite Room. Келу 15:00, кету 12:00.',
+            featRu: [
+                '🕒 Заезд 15:00 — выезд 12:00',
+                '👥 4 взрослых + 1 ребенок',
+                '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 4-х',
+                '🚐 Бесплатный трансфер с парковки',
+                '👶 Дети до 5 лет — бесплатно',
+                '🍽️ Рядом этно-кафе Тары'
+            ],
+            featEn: [
+                '🕒 Check-in 15:00 — Check-out 12:00',
+                '👥 4 adults + 1 child',
+                '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 4',
+                '🚐 Free transfer from parking',
+                '👶 Children under 5 — free',
+                '🍽️ Tary ethnic cafe nearby'
+            ],
+            featKz: [
+                '🕒 Келу 15:00 — кету 12:00',
+                '👥 4 ересек + 1 бала',
+                '➕ Қосымша орын: 15 000 ₸',
+                '🍳 4 адамға тегін таңғы ас',
+                '🚐 Тұрақтан тегін трансфер',
+                '👶 5 жасқа дейін — тегін',
+                '🍽️ Tary этно-кафе жанында'
+            ],
+            link: 'https://drive.google.com/file/d/1w3fyIUIG0EX_DTgCDpvPG_oRME-Bz27y/view'
+        }, {
+            id: 'glamping-new',
+            nameRu: '🏕️ Glamping Domes + (New 2022)',
+            nameEn: '🏕️ Glamping Domes + (New 2022)',
+            nameKz: '🏕️ Glamping Domes + (New 2022)',
+            price: 119900,
+            cap: 4,
+            extra: 1,
+            cat: 'glamping',
+            total: 2,
+            photos: [
+                'https://lh3.googleusercontent.com/d/1kFa_4oV5uLJ31flTUK_mMo2DpFS3jVli=w800',
+                'https://lh3.googleusercontent.com/d/1mjvD9ZbNlUaqRpiiyRTYBDmP63WNwvet=w800'
+            ],
+            descRu: 'Новый глэмпинг 2022 для 4-х гостей. Заезд 15:00, выезд 12:00.',
+            descEn: 'New glamping 2022 for 4 guests. Check-in 15:00, check-out 12:00.',
+            descKz: 'Жаңа глэмпинг 2022 4 қонаққа. Келу 15:00, кету 12:00.',
+            featRu: [
+                '🕒 Заезд 15:00 — выезд 12:00',
+                '👥 4 взрослых + 1 ребенок',
+                '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 4-х',
+                '🚐 Бесплатный трансфер с парковки',
+                '👶 Дети до 5 лет — бесплатно',
+                '🍽️ Рядом этно-кафе Тары'
+            ],
+            featEn: [
+                '🕒 Check-in 15:00 — Check-out 12:00',
+                '👥 4 adults + 1 child',
+                '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 4',
+                '🚐 Free transfer from parking',
+                '👶 Children under 5 — free',
+                '🍽️ Tary ethnic cafe nearby'
+            ],
+            featKz: [
+                '🕒 Келу 15:00 — кету 12:00',
+                '👥 4 ересек + 1 бала',
+                '➕ Қосымша орын: 15 000 ₸',
+                '🍳 4 адамға тегін таңғы ас',
+                '🚐 Тұрақтан тегін трансфер',
+                '👶 5 жасқа дейін — тегін',
+                '🍽️ Tary этно-кафе жанында'
+            ],
+            link: 'https://drive.google.com/file/d/10fC3o_LMPEA1hKapxvmKXfYC7qY2AqK7/view'
+        }];
 
         // ============ ПЕРЕВОДЫ ============
         const L = {
@@ -1741,8 +2103,9 @@
                 factDrive: 'от Алматы', factWifi: 'бесплатно',
                 btnWa: 'WhatsApp', btnIg: 'Instagram', btnPh: 'Позвонить', btnBook: 'Забронировать',
                 roomsTitle: '🛏️ Наши номера', filtAll: 'Все', filtStd: 'Стандарт', filtMnt: 'Горы',
-                filtLake: 'Озеро', filtTrp: 'Трипл', filtDlx: 'Deluxe', filtLux: 'Люкс', filtGlp: 'Глэмпинг',
+                filtLake: 'Озеро', filtTrp: 'Трипл', filtDlx: 'Deluxe', filtLux: 'Люкс', filtGlp: 'Глэмпинг', filtEco: 'Эко',
                 bookingFormTitle: '📅 Проверить доступность', lblCheckIn: '📅 Дата заезда', lblGuests: '👥 Гости',
+                lblNights: '🌙 Ночей',
                 mapTitle: '📍 Как добраться', mapInfo: 'Озеро Кольсай Нижнее | Из Алматы: ~4 часа (300 км)',
                 btnRoute: '🗺️ Маршрут',
                 videoTitle: '🎥 Видеообзор',
@@ -1763,6 +2126,7 @@
                 footerAdmin: '🔧 Админ-панель', footerA11y: '♿ Версия для слабовидящих',
                 bookModTitle: '📅 Забронировать номер', bookSelRoom: '🏨 Выберите номер',
                 bookDate: '📅 Дата заезда', bookGuests: '👥 Количество гостей',
+                bookNights: '🌙 Количество ночей',
                 bookName: '👤 Ф.И.О.', bookPhone: '📞 Телефон', bookComment: '📝 Комментарий',
                 bookSubmit: '✅ Подтвердить бронирование',
                 free: 'Свободно', busy: 'Занято', noFree: 'Нет мест', selectDate: 'Выберите дату', perNight: '/ ночь',
@@ -1770,7 +2134,7 @@
                 extraBed: 'доп. место', extraBeds: 'доп. места',
                 needExtra: '⚠️ Требуются доп. места',
                 tooMany: '❌ Слишком много гостей',
-                totalLabel: 'Итого',
+                totalLabel: 'Итого за',
                 bookedOk: '✅ Бронирование подтверждено!',
                 noRooms: 'Нет свободных номеров на выбранную дату',
                 fillNamePhone: 'Пожалуйста, заполните Ф.И.О. и телефон',
@@ -1790,15 +2154,17 @@
                 weatherTemp: '°C',
                 weatherWind: 'Ветер',
                 weatherSpeed: 'км/ч',
-                past: 'Прошедшая дата'
+                past: 'Прошедшая дата',
+                nights: 'ночей'
             },
             en: {
                 langName: 'EN', a11yBtn: '♿ Accessibility', factLake: 'to lake', factHeight: 'altitude',
                 factDrive: 'from Almaty', factWifi: 'free',
                 btnWa: 'WhatsApp', btnIg: 'Instagram', btnPh: 'Call us', btnBook: 'Book now',
                 roomsTitle: '🛏️ Our Rooms', filtAll: 'All', filtStd: 'Standard', filtMnt: 'Mountain',
-                filtLake: 'Lake', filtTrp: 'Triple', filtDlx: 'Deluxe', filtLux: 'Luxury', filtGlp: 'Glamping',
+                filtLake: 'Lake', filtTrp: 'Triple', filtDlx: 'Deluxe', filtLux: 'Luxury', filtGlp: 'Glamping', filtEco: 'Eco',
                 bookingFormTitle: '📅 Check Availability', lblCheckIn: '📅 Check-in', lblGuests: '👥 Guests',
+                lblNights: '🌙 Nights',
                 mapTitle: '📍 How to get', mapInfo: 'Lower Kolsay Lake | From Almaty: ~4 hours (300 km)',
                 btnRoute: '🗺️ Route',
                 videoTitle: '🎥 Video Tour',
@@ -1819,6 +2185,7 @@
                 footerAdmin: '🔧 Admin Panel', footerA11y: '♿ Accessibility',
                 bookModTitle: '📅 Book a Room', bookSelRoom: '🏨 Select Room', bookDate: '📅 Check-in Date',
                 bookGuests: '👥 Number of Guests',
+                bookNights: '🌙 Number of Nights',
                 bookName: '👤 Full Name', bookPhone: '📞 Phone', bookComment: '📝 Comment',
                 bookSubmit: '✅ Confirm Booking',
                 free: 'Free', busy: 'Busy', noFree: 'No availability', selectDate: 'Select date', perNight: '/ night',
@@ -1826,7 +2193,7 @@
                 extraBed: 'extra bed', extraBeds: 'extra beds',
                 needExtra: '⚠️ Extra beds needed',
                 tooMany: '❌ Too many guests',
-                totalLabel: 'Total',
+                totalLabel: 'Total for',
                 bookedOk: '✅ Booking confirmed!',
                 noRooms: 'No rooms available for selected date',
                 fillNamePhone: 'Please fill in name and phone',
@@ -1846,15 +2213,17 @@
                 weatherTemp: '°C',
                 weatherWind: 'Wind',
                 weatherSpeed: 'km/h',
-                past: 'Past date'
+                past: 'Past date',
+                nights: 'nights'
             },
             kz: {
                 langName: 'KZ', a11yBtn: '♿ Нашар көретіндерге', factLake: 'көлге дейін', factHeight: 'биіктік',
                 factDrive: 'Алматыдан', factWifi: 'тегін',
                 btnWa: 'WhatsApp', btnIg: 'Instagram', btnPh: 'Қоңырау шалу', btnBook: 'Брондау',
                 roomsTitle: '🛏️ Біздің нөмірлер', filtAll: 'Барлығы', filtStd: 'Стандарт', filtMnt: 'Тау',
-                filtLake: 'Көл', filtTrp: 'Трипл', filtDlx: 'Deluxe', filtLux: 'Люкс', filtGlp: 'Глэмпинг',
+                filtLake: 'Көл', filtTrp: 'Трипл', filtDlx: 'Deluxe', filtLux: 'Люкс', filtGlp: 'Глэмпинг', filtEco: 'Эко',
                 bookingFormTitle: '📅 Қолжетімділікті тексеру', lblCheckIn: '📅 Келу күні', lblGuests: '👥 Қонақтар',
+                lblNights: '🌙 Түндер',
                 mapTitle: '📍 Қалай жетуге болады',
                 mapInfo: 'Көлсай көлі (Төменгі) | Алматыдан: ~4 сағат (300 км)', btnRoute: '🗺️ Маршрут',
                 videoTitle: '🎥 Бейне шолу',
@@ -1876,6 +2245,7 @@
                 footerAdmin: '🔧 Әкімші панелі', footerA11y: '♿ Нашар көретіндерге',
                 bookModTitle: '📅 Нөмірді брондау', bookSelRoom: '🏨 Нөмірді таңдау', bookDate: '📅 Келу күні',
                 bookGuests: '👥 Қонақтар саны',
+                bookNights: '🌙 Түндер саны',
                 bookName: '👤 Аты-жөні', bookPhone: '📞 Телефон', bookComment: '📝 Түсініктеме',
                 bookSubmit: '✅ Брондауды растау',
                 free: 'Бос', busy: 'Бос емес', noFree: 'Орын жоқ', selectDate: 'Күнді таңдаңыз', perNight: '/ түн',
@@ -1903,10 +2273,12 @@
                 weatherTemp: '°C',
                 weatherWind: 'Жел',
                 weatherSpeed: 'км/сағ',
-                past: 'Өткен күн'
+                past: 'Өткен күн',
+                nights: 'түн'
             }
         };
 
+        // ============ ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ============
         let curLang = 'ru';
         let avails = {};
         let bookings = [];
@@ -1984,7 +2356,8 @@
             try {
                 var r = await fetch(
                     'https://api.open-meteo.com/v1/forecast?latitude=42.935&longitude=78.346&start_date=' + date + '&end_date=' +
-                    date + '&daily=temperature_2m_max,temperature_2m_min,weathercode,windspeed_10m_max&timezone=Asia/Almaty'
+                    date +
+                    '&daily=temperature_2m_max,temperature_2m_min,weathercode,windspeed_10m_max&timezone=Asia/Almaty'
                 );
                 if (!r.ok) throw new Error();
                 var d = await r.json();
@@ -2020,8 +2393,9 @@
                 month: 'long' });
 
             document.getElementById('weatherMiniText').innerHTML =
-                emoji + ' ' + t('weather') + ' на ' + dateStr + ': <span style="font-weight:700;">' + temp + t(
-                    'weatherTemp') + '</span> · ' + t('weatherWind') + ' ' + wind + ' ' + t('weatherSpeed');
+                emoji + ' ☀️ Сейчас погода в Кольсае: <span style="font-weight:700;">' + temp + t(
+                    'weatherTemp') + '</span> · ' + t('weatherWind') + ' ' + wind + ' ' + t('weatherSpeed') + ' · ' +
+                dateStr;
         }
 
         async function updateWeatherForDate(date) {
@@ -2101,7 +2475,6 @@
                 var total = room.total;
                 var hid = curFilter !== 'all' && room.cat !== curFilter ? 'hidden' : '';
 
-                // Определяем доступность для сегодняшней даты (для отображения в карточке)
                 var today = new Date().toISOString().split('T')[0];
                 var now = realAvail(room.id, today);
                 var isPast = isPastDate(today);
@@ -2132,23 +2505,20 @@
                     '</div><span class="room-availability ' + ac + '">' + at + '</span><ul class="room-features">' +
                     rFeat(room).map(function(f) { return '<li>' + f + '</li>'; }).join('') +
                     '</ul>' + (room.link && room.link !== '#' ? '<a href="' + room.link +
-                    '" target="_blank" class="room-link">🔍 Подробнее</a>' : '') + '</div>' +
+                        '" target="_blank" class="room-link">🔍 Подробнее</a>' : '') + '</div>' +
                     '<button class="btn-book-room ' + btnDisabled + '" onclick="openBookingModal(\'' + room.id +
                     '\')">' + t('btnBook') + '</button>' +
                     '</div>';
             }).join('');
         }
 
-        // ===== БЫСТРАЯ ПРОВЕРКА =====
+        // ===== БЫСТРАЯ ПРОВЕРКА (С УЧЁТОМ НОЧЕЙ) =====
         function updateQuickAvail() {
             var date = document.getElementById('quickCheckIn').value;
             var guests = parseInt(document.getElementById('quickGuests').value) || 2;
+            var nights = parseInt(document.getElementById('quickNights').value) || 1;
             var resDiv = document.getElementById('quickAvailResult');
             var btnDiv = document.getElementById('btnOpenBookForm');
-
-            if (date) {
-                updateWeatherForDate(date);
-            }
 
             if (!date || isPastDate(date)) {
                 if (date && isPastDate(date)) {
@@ -2163,15 +2533,28 @@
                 return;
             }
 
-            var html = '<strong>📊 ' + t('free') + ' ' + date + ':</strong><br>';
+            var html = '<strong>📊 ' + t('free') + ' ' + date + ' (' + nights + ' ' + t('nights') + '):</strong><br>';
             var anyAvail = false;
             ROOMS.forEach(function(room) {
-                var a = realAvail(room.id, date);
-                if (a > 0) anyAvail = true;
+                // Проверяем доступность на все ночи
+                var allAvailable = true;
+                var d = new Date(date);
+                for (var i = 0; i < nights; i++) {
+                    var dateStr = d.toISOString().split('T')[0];
+                    if (realAvail(room.id, dateStr) <= 0) {
+                        allAvailable = false;
+                        break;
+                    }
+                    d.setDate(d.getDate() + 1);
+                }
+
+                if (allAvailable) anyAvail = true;
+                var a = allAvailable ? 1 : 0;
+                var total = room.total;
                 html +=
                     '<div class="avail-list-item"><span>' + rName(room) + ' (до ' + (room.cap + room.extra) +
-                    ' чел.)</span> <span class="' + (a > 0 ? 'avail-free' : 'avail-busy') + '">' + (a > 0 ? a +
-                        ' ' + t('free').toLowerCase() : t('busy')) + '</span></div>';
+                    ' чел.)</span> <span class="' + (a > 0 ? 'avail-free' : 'avail-busy') + '">' + (a > 0 ? '✅' +
+                        ' ' + nights + ' ' + t('nights') : '❌ ' + t('busy')) + '</span></div>';
             });
             resDiv.innerHTML = html;
             resDiv.style.display = 'block';
@@ -2183,7 +2566,7 @@
             }
         }
 
-        // ===== МОДАЛКА БРОНИРОВАНИЯ =====
+        // ===== МОДАЛКА БРОНИРОВАНИЯ (С НОЧАМИ) =====
         function openBookingModal(rid) {
             rid = rid || null;
             var today = new Date().toISOString().split('T')[0];
@@ -2205,6 +2588,11 @@
                         n) + '</option>';
                 }).join('') + '</select></div>' +
                 '</div>' +
+                '<div class="form-group"><label>' + t('bookNights') +
+                '</label><select id="bNights" onchange="updateBookingForm()">' + [1, 2, 3, 4, 5, 6, 7].map(function(
+                    n) {
+                    return '<option value="' + n + '" ' + (n === 1 ? 'selected' : '') + '>' + n + '</option>';
+                }).join('') + '</select></div>' +
                 '<div class="form-group"><label>' + t('bookSelRoom') +
                 '</label><select id="bRoom" onchange="updateBookingForm()">' + opts + '</select></div>' +
                 '<div id="bAvailInfo" class="avail-list-box" style="max-height:160px; margin-bottom:10px;"></div>' +
@@ -2240,6 +2628,7 @@
         function updateBookingForm() {
             var date = document.getElementById('bDate')?.value || '';
             var guests = parseInt(document.getElementById('bGuests')?.value || 2);
+            var nights = parseInt(document.getElementById('bNights')?.value || 1);
             var rid = document.getElementById('bRoom')?.value;
             var infoDiv = document.getElementById('bAvailInfo');
             var suggDiv = document.getElementById('bSugg');
@@ -2247,7 +2636,7 @@
 
             if (date && infoDiv) {
                 var isPast = isPastDate(date);
-                var html = '<strong>📊 ' + t('free') + ' ' + date + ':</strong><br>';
+                var html = '<strong>📊 ' + t('free') + ' ' + date + ' (' + nights + ' ' + t('nights') + '):</strong><br>';
                 if (isPast) {
                     html += '<div style="text-align:center;color:rgba(255,255,255,0.3);padding:10px;">🔒 ' + t(
                         'past') + '</div>';
@@ -2257,10 +2646,20 @@
                     return;
                 }
                 ROOMS.forEach(function(r) {
-                    var a = realAvail(r.id, date);
+                    var allAvailable = true;
+                    var d = new Date(date);
+                    for (var i = 0; i < nights; i++) {
+                        var dateStr = d.toISOString().split('T')[0];
+                        if (realAvail(r.id, dateStr) <= 0) {
+                            allAvailable = false;
+                            break;
+                        }
+                        d.setDate(d.getDate() + 1);
+                    }
+                    var a = allAvailable ? 1 : 0;
                     html +=
                         '<div class="avail-list-item"><span>' + rName(r) + '</span> <span class="' + (a > 0 ?
-                            'avail-free' : 'avail-busy') + '">' + (a > 0 ? a : t('busy')) + '</span></div>';
+                            'avail-free' : 'avail-busy') + '">' + (a > 0 ? '✅' : '❌') + '</span></div>';
                 });
                 infoDiv.innerHTML = html;
             }
@@ -2268,27 +2667,42 @@
             if (!rid || !suggDiv || !totDiv) return;
             var room = ROOMS.find(function(r) { return r.id === rid; });
             if (!room) return;
-            var avail = realAvail(rid, date);
+
+            // Проверяем доступность на все ночи
+            var allAvailable = true;
+            var d = new Date(date);
+            for (var i = 0; i < nights; i++) {
+                var dateStr = d.toISOString().split('T')[0];
+                if (realAvail(rid, dateStr) <= 0) {
+                    allAvailable = false;
+                    break;
+                }
+                d.setDate(d.getDate() + 1);
+            }
+
             var max = room.cap + room.extra;
             var can = false,
                 total = 0,
                 html = '';
             suggDiv.style.display = 'block';
+
             if (!date) {
                 html = '<span style="color:#ffa502;">' + t('selectDate') + '</span>';
             } else if (isPastDate(date)) {
                 html = '<strong style="color:rgba(255,255,255,0.3);">🔒 ' + t('past') + '</strong>';
                 can = false;
-            } else if (avail <= 0) {
-                html = '<strong style="color:#ff4757;">❌ ' + t('noFree') + ' ' + date + '</strong>';
+            } else if (!allAvailable) {
+                html = '<strong style="color:#ff4757;">❌ ' + t('noRooms') + ' на ' + nights + ' ' + t('nights') +
+                    '</strong>';
             } else if (guests <= room.cap) {
                 can = true;
-                total = room.price;
-                html = '<strong style="color:#2ed573;">✅ ' + t('totalLabel') + '</strong>';
+                total = room.price * nights;
+                html = '<strong style="color:#2ed573;">✅ ' + t('totalLabel') + ' ' + nights + ' ' + t('nights') +
+                    '</strong>';
             } else if (guests <= max && room.extra > 0) {
                 can = true;
                 var ex = guests - room.cap;
-                total = room.price + ex * 15000;
+                total = (room.price + ex * 15000) * nights;
                 html = '<strong style="color:#ffa502;">' + t('needExtra') + ': ' + ex + ' ' + extraWord(ex) +
                     ' × 15 000 ₸</strong>';
             } else {
@@ -2296,9 +2710,10 @@
                     '</strong>';
             }
             suggDiv.innerHTML = html;
-            totDiv.textContent = can ? t('totalLabel') + ': ' + total.toLocaleString() + ' ₸ ' + t('perNight') :
-            '';
-            currentBookingData = { rid: rid, date: date, guests: guests, total: can ? total : 0, room: room };
+            totDiv.textContent = can ? t('totalLabel') + ' ' + nights + ' ' + t('nights') + ': ' + total.toLocaleString() +
+                ' ₸' : '';
+            currentBookingData = { rid: rid, date: date, guests: guests, nights: nights, total: can ? total : 0,
+                room: room };
         }
 
         var currentBookingData = null;
@@ -2307,6 +2722,7 @@
             var rid = document.getElementById('bRoom').value;
             var date = document.getElementById('bDate').value;
             var guests = parseInt(document.getElementById('bGuests').value);
+            var nights = parseInt(document.getElementById('bNights').value) || 1;
             var name = document.getElementById('bName').value.trim();
             var phone = document.getElementById('bPhone').value.trim();
             var comm = document.getElementById('bComm').value.trim();
@@ -2318,16 +2734,39 @@
 
             if (!name || !phone) { showToast(t('fillNamePhone'), 'error'); return; }
             var room = ROOMS.find(function(r) { return r.id === rid; });
-            if (realAvail(rid, date) <= 0) { showToast(t('noRooms'), 'error'); return; }
+
+            // Проверяем доступность на все ночи
+            var allAvailable = true;
+            var d = new Date(date);
+            for (var i = 0; i < nights; i++) {
+                var dateStr = d.toISOString().split('T')[0];
+                if (realAvail(rid, dateStr) <= 0) {
+                    allAvailable = false;
+                    break;
+                }
+                d.setDate(d.getDate() + 1);
+            }
+
+            if (!allAvailable) { showToast(t('noRooms') + ' на ' + nights + ' ' + t('nights'), 'error'); return; }
+
             var max = room.cap + room.extra;
             if (guests > max) { showToast(t('maxCap') + ': ' + max, 'error'); return; }
             var ex = Math.max(0, guests - room.cap);
-            var total = room.price + ex * 15000;
+            var total = (room.price + ex * 15000) * nights;
             var bookingId = 'BK' + Date.now().toString(36).toUpperCase();
+
             bookings.push({ id: bookingId, rid: rid, rname: rName(room), date: date, gname: name,
-                phone: phone, guests: guests, extra: ex, nights: 1, total: total, comm: comm, st: 'ok',
+                phone: phone, guests: guests, extra: ex, nights: nights, total: total, comm: comm, st: 'ok',
                 at: new Date().toISOString() });
-            setAvail(rid, date, getAvail(rid, date) - 1);
+
+            // Уменьшаем доступность на все ночи
+            var d2 = new Date(date);
+            for (var i = 0; i < nights; i++) {
+                var dateStr = d2.toISOString().split('T')[0];
+                setAvail(rid, dateStr, getAvail(rid, dateStr) - 1);
+                d2.setDate(d2.getDate() + 1);
+            }
+
             await saveToCloud();
             closeModal('bookingModal');
             renderRooms();
@@ -2351,6 +2790,8 @@
                 ':</span><span class="voucher-value">' + b.rname + '</span></div>' +
                 '<div class="voucher-row"><span class="voucher-label">' + t('voucherDate') +
                 ':</span><span class="voucher-value">' + b.date + '</span></div>' +
+                '<div class="voucher-row"><span class="voucher-label">' + t('voucherNights') +
+                ':</span><span class="voucher-value">' + b.nights + '</span></div>' +
                 '<div class="voucher-row"><span class="voucher-label">' + t('voucherGuests') +
                 ':</span><span class="voucher-value">' + b.guests + ' (' + b.gname + ')</span></div>' +
                 '<div class="voucher-row"><span class="voucher-label">📞 ' + t('bookPhone') +
@@ -2382,6 +2823,7 @@
                 'ID: ' + b.id + '\n' +
                 t('voucherRoom') + ': ' + b.rname + '\n' +
                 t('voucherDate') + ': ' + b.date + '\n' +
+                t('voucherNights') + ': ' + b.nights + '\n' +
                 t('voucherGuests') + ': ' + b.guests + ' (' + b.gname + ')\n' +
                 '📞 ' + t('bookPhone') + ': ' + b.phone + '\n' +
                 t('voucherTotal') + ': ' + b.total.toLocaleString() + ' ₸\n\n' +
@@ -2520,6 +2962,7 @@
             document.getElementById('bookingFormTitle').textContent = t('bookingFormTitle');
             document.getElementById('lblCheckIn').textContent = t('lblCheckIn');
             document.getElementById('lblGuests').textContent = t('lblGuests');
+            document.getElementById('lblNights').textContent = t('lblNights');
             document.getElementById('mapTitle').textContent = t('mapTitle');
             document.getElementById('mapInfo').innerHTML =
                 '<i class="fas fa-map-marker-alt"></i> ' + t('mapInfo').split('|')[0] +
@@ -2565,6 +3008,7 @@
             document.getElementById('filtDlx').textContent = t('filtDlx');
             document.getElementById('filtLux').textContent = t('filtLux');
             document.getElementById('filtGlp').textContent = t('filtGlp');
+            document.getElementById('filtEco').textContent = t('filtEco');
 
             document.querySelectorAll('.lang-btn').forEach(function(b) { b.textContent = L[b.dataset.lang].langName; });
 
