@@ -32,6 +32,7 @@
             --radius-sm: 10px;
             --radius-lg: 24px;
             --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --header-height: 60px;
         }
 
         body.high-contrast {
@@ -103,6 +104,8 @@
             transition: background 0.3s, color 0.3s;
             overflow-x: hidden;
         }
+
+        /* ===== ФИКСИРОВАННЫЙ ФОН ===== */
         .bg-fixed {
             position: fixed;
             top: 0;
@@ -112,6 +115,10 @@
             z-index: 0;
             background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1920') center/cover no-repeat;
             background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            transform: translateZ(0);
+            will-change: transform;
         }
         .bg-fixed::after {
             content: '';
@@ -127,13 +134,43 @@
             pointer-events: none;
             transition: background 0.3s;
         }
+
         .main-container {
             position: relative;
             z-index: 1;
             max-width: 1200px;
             margin: 0 auto;
             padding: 16px;
+            padding-top: 16px;
         }
+
+        /* ===== ФИКСИРОВАННЫЙ ВЕРХНИЙ КОЛОНТИТУЛ (ШАПКА) ===== */
+        .header-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            margin: 0 -16px;
+            padding: 0 16px;
+            background: rgba(26, 42, 39, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-glass);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s;
+        }
+        body.high-contrast .header-sticky {
+            background: rgba(0, 0, 0, 0.95);
+        }
+        .header-sticky .content-block {
+            background: transparent !important;
+            backdrop-filter: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 10px 0 !important;
+            margin-bottom: 0 !important;
+            border-radius: 0 !important;
+        }
+
         .content-block {
             background: var(--glass);
             backdrop-filter: blur(10px);
@@ -145,15 +182,16 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             transition: background 0.3s, border-color 0.3s;
         }
+
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 8px;
         }
         .logo-title {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 300;
             letter-spacing: 2px;
             display: flex;
@@ -168,24 +206,24 @@
         .header-right {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
         .lang-switch {
             display: flex;
-            gap: 4px;
+            gap: 3px;
             background: rgba(255, 255, 255, 0.08);
             border-radius: 40px;
-            padding: 4px;
+            padding: 3px;
             border: 1px solid rgba(255, 255, 255, 0.06);
         }
         .lang-btn {
             background: transparent;
             border: none;
             color: var(--text-muted);
-            padding: 6px 12px;
+            padding: 4px 10px;
             border-radius: 30px;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
@@ -200,13 +238,13 @@
             color: var(--dark);
         }
         .btn-accessibility {
-            padding: 6px 12px;
+            padding: 4px 10px;
             border-radius: 30px;
             border: 1px solid var(--border-glass);
             background: rgba(255, 255, 255, 0.05);
             color: var(--text-muted);
             cursor: pointer;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             font-weight: 500;
             transition: var(--transition);
             white-space: nowrap;
@@ -224,35 +262,35 @@
         .quick-facts {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 6px;
             flex-wrap: wrap;
-            margin: 16px 0 10px 0;
+            margin: 8px 0 6px 0;
         }
         .fact-item {
             text-align: center;
-            padding: 8px 14px;
+            padding: 4px 10px;
             background: rgba(255, 255, 255, 0.04);
-            border-radius: 10px;
+            border-radius: 8px;
             border: 1px solid var(--border-glass);
-            min-width: 70px;
+            min-width: 60px;
             backdrop-filter: blur(5px);
             transition: background 0.3s, border-color 0.3s;
             flex: 1;
-            max-width: 120px;
+            max-width: 100px;
         }
         .fact-item i {
-            font-size: 1rem;
+            font-size: 0.8rem;
             color: var(--gold);
-            margin-bottom: 4px;
+            margin-bottom: 2px;
             display: block;
         }
         .fact-value {
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             color: #fff;
         }
         .fact-label {
-            font-size: 0.6rem;
+            font-size: 0.5rem;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.3px;
@@ -262,54 +300,50 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            padding: 8px 16px;
+            gap: 8px;
+            padding: 4px 12px;
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
+            border-radius: 10px;
             border: 1px solid var(--border-glass);
-            margin: 6px 0 10px 0;
+            margin: 4px 0 6px 0;
             flex-wrap: wrap;
-            font-size: 0.85rem;
+            font-size: 0.7rem;
         }
         .weather-header i {
             color: var(--gold);
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
         .weather-header .weather-temp {
             font-weight: 700;
             color: #fff;
-        }
-        .weather-header .weather-detail {
-            color: var(--text-muted);
-            font-size: 0.75rem;
         }
 
         .contact-bar {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 8px;
-            margin: 12px 0 0 0;
+            gap: 4px;
+            margin: 6px 0 0 0;
         }
         .contact-btn {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 10px 16px;
+            gap: 4px;
+            padding: 6px 12px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 0.65rem;
             transition: var(--transition);
             border: none;
             cursor: pointer;
             white-space: nowrap;
             flex: 1;
             justify-content: center;
-            min-width: 80px;
+            min-width: 60px;
         }
         .contact-btn i {
-            font-size: 1rem;
+            font-size: 0.8rem;
         }
         .btn-whatsapp {
             background: #25D366;
@@ -362,21 +396,22 @@
             animation: none;
         }
 
+        /* ===== ФИЛЬТРЫ ===== */
         .filter-bar {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 16px;
+            gap: 4px;
+            margin-bottom: 12px;
         }
         .filter-btn {
-            padding: 6px 14px;
+            padding: 4px 10px;
             border-radius: 30px;
             border: 1px solid var(--border-glass);
             background: rgba(255, 255, 255, 0.04);
             color: var(--text-muted);
             cursor: pointer;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             font-weight: 500;
             transition: var(--transition);
             backdrop-filter: blur(5px);
@@ -397,6 +432,8 @@
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 16px;
         }
+
+        /* ===== КАРТОЧКИ НОМЕРОВ ===== */
         .room-card {
             background: var(--glass-card);
             backdrop-filter: blur(8px);
@@ -568,22 +605,22 @@
 
         .quick-check-form {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
             align-items: flex-end;
         }
         .quick-check-form .form-group {
             flex: 1;
-            min-width: 120px;
+            min-width: 100px;
             margin-bottom: 0;
         }
         .quick-check-form .form-group label {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
         }
         .quick-check-form .form-group input,
         .quick-check-form .form-group select {
-            padding: 8px 12px;
-            font-size: 0.85rem;
+            padding: 6px 10px;
+            font-size: 0.8rem;
         }
 
         .modal-overlay {
@@ -813,13 +850,52 @@
             border-radius: var(--radius);
             overflow: hidden;
             border: 1px solid var(--border-glass);
+            position: relative;
         }
         .map-container iframe {
             width: 100%;
-            height: 250px;
+            height: 350px;
             border: 0;
             border-radius: 12px;
         }
+        .map-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .map-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.75rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            flex: 1;
+            justify-content: center;
+            min-width: 100px;
+        }
+        .map-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+        }
+        .map-btn-2gis {
+            background: #ff6b00;
+        }
+        .map-btn-yandex {
+            background: #fc3f1d;
+        }
+        .map-btn-google {
+            background: #4285f4;
+        }
+
         .video-container {
             position: relative;
             padding-bottom: 56.25%;
@@ -1032,67 +1108,63 @@
             color: var(--gold);
         }
 
+        /* ===== АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ ===== */
         @media (max-width: 768px) {
             .main-container {
                 padding: 10px;
             }
-            .content-block {
-                padding: 16px 12px;
-                border-radius: 14px;
-                margin-bottom: 12px;
+            .header-sticky {
+                margin: 0 -10px;
+                padding: 0 10px;
             }
-            .header {
-                flex-direction: column;
-                text-align: center;
-                gap: 8px;
+            .header-sticky .content-block {
+                padding: 8px 0 !important;
             }
             .logo-title {
-                font-size: 1.4rem;
-            }
-            .header-right {
-                justify-content: center;
-                width: 100%;
-                flex-wrap: wrap;
+                font-size: 1.2rem;
             }
             .lang-btn {
-                padding: 4px 10px;
-                font-size: 0.65rem;
+                font-size: 0.55rem;
+                padding: 3px 8px;
             }
             .btn-accessibility {
-                padding: 4px 10px;
-                font-size: 0.65rem;
+                font-size: 0.55rem;
+                padding: 3px 8px;
             }
             .quick-facts {
-                gap: 6px;
+                gap: 4px;
             }
             .fact-item {
-                padding: 6px 10px;
-                min-width: 60px;
-                max-width: 100px;
-                flex: 1 0 auto;
+                padding: 4px 8px;
+                min-width: 50px;
+                max-width: 80px;
             }
             .fact-item i {
-                font-size: 0.85rem;
+                font-size: 0.7rem;
             }
             .fact-value {
-                font-size: 0.8rem;
+                font-size: 0.65rem;
             }
             .fact-label {
-                font-size: 0.5rem;
+                font-size: 0.45rem;
             }
-            .contact-bar {
+            .weather-header {
+                font-size: 0.6rem;
+                padding: 4px 10px;
                 gap: 6px;
             }
-            .contact-btn {
-                padding: 8px 12px;
-                font-size: 0.7rem;
-                min-width: 60px;
-                flex: 1 0 auto;
-                max-width: 48%;
-            }
-            .contact-btn i {
+            .weather-header i {
                 font-size: 0.85rem;
             }
+            .contact-btn {
+                padding: 6px 10px;
+                font-size: 0.6rem;
+                min-width: 50px;
+            }
+            .contact-btn i {
+                font-size: 0.7rem;
+            }
+
             .rooms-grid {
                 grid-template-columns: 1fr;
                 gap: 12px;
@@ -1116,29 +1188,24 @@
                 font-size: 0.8rem;
                 padding: 10px;
             }
+
             .quick-check-form {
                 flex-direction: column;
-                gap: 8px;
+                gap: 6px;
             }
             .quick-check-form .form-group {
                 min-width: 100%;
                 width: 100%;
             }
-            .weather-header {
-                font-size: 0.75rem;
-                padding: 6px 12px;
-                gap: 8px;
-            }
-            .weather-header i {
-                font-size: 1rem;
-            }
+
             .filter-bar {
-                gap: 4px;
+                gap: 3px;
             }
             .filter-btn {
-                padding: 4px 10px;
-                font-size: 0.6rem;
+                padding: 3px 8px;
+                font-size: 0.55rem;
             }
+
             .modal-content {
                 padding: 16px 12px;
                 max-width: 100%;
@@ -1154,6 +1221,7 @@
             .modal-title {
                 font-size: 1rem;
             }
+
             .photo-container img {
                 max-width: 90vw;
                 max-height: 60vh;
@@ -1176,13 +1244,24 @@
                 padding: 3px 12px;
                 bottom: 16px;
             }
+
             .map-container iframe {
-                height: 200px;
+                height: 220px;
             }
+            .map-buttons {
+                gap: 6px;
+            }
+            .map-btn {
+                font-size: 0.65rem;
+                padding: 6px 12px;
+                min-width: 70px;
+            }
+
             .rules-grid {
                 grid-template-columns: 1fr;
                 gap: 12px;
             }
+
             .reviews-scroll {
                 gap: 10px;
             }
@@ -1193,6 +1272,7 @@
             .review-text {
                 font-size: 0.75rem;
             }
+
             .footer-links {
                 gap: 10px;
             }
@@ -1210,32 +1290,56 @@
                 border-radius: 12px;
                 margin-bottom: 10px;
             }
+            .header-sticky {
+                margin: 0 -6px;
+                padding: 0 6px;
+            }
+            .header-sticky .content-block {
+                padding: 6px 0 !important;
+            }
+
             .logo-title {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
             .fact-item {
-                padding: 4px 8px;
-                min-width: 50px;
-                max-width: 80px;
+                padding: 3px 6px;
+                min-width: 40px;
+                max-width: 65px;
             }
             .fact-item i {
-                font-size: 0.75rem;
+                font-size: 0.6rem;
             }
             .fact-value {
-                font-size: 0.7rem;
+                font-size: 0.55rem;
             }
             .fact-label {
-                font-size: 0.45rem;
+                font-size: 0.4rem;
             }
             .contact-btn {
-                padding: 6px 10px;
-                font-size: 0.6rem;
-                min-width: 50px;
-                max-width: 48%;
+                padding: 5px 8px;
+                font-size: 0.55rem;
+                min-width: 40px;
             }
             .contact-btn i {
-                font-size: 0.75rem;
+                font-size: 0.6rem;
             }
+            .weather-header {
+                font-size: 0.55rem;
+                padding: 3px 8px;
+                gap: 4px;
+            }
+            .weather-header i {
+                font-size: 0.7rem;
+            }
+            .lang-btn {
+                font-size: 0.5rem;
+                padding: 2px 6px;
+            }
+            .btn-accessibility {
+                font-size: 0.5rem;
+                padding: 2px 6px;
+            }
+
             .room-photos {
                 height: 150px;
             }
@@ -1255,18 +1359,12 @@
                 font-size: 0.75rem;
                 padding: 8px;
             }
-            .weather-header {
-                font-size: 0.65rem;
-                padding: 4px 10px;
-                gap: 6px;
-            }
-            .weather-header i {
-                font-size: 0.85rem;
-            }
+
             .filter-btn {
-                padding: 3px 8px;
-                font-size: 0.55rem;
+                padding: 2px 6px;
+                font-size: 0.5rem;
             }
+
             .form-group input,
             .form-group select {
                 padding: 6px 10px;
@@ -1276,6 +1374,7 @@
                 font-size: 0.65rem;
                 padding: 3px 0;
             }
+
             .modal-content {
                 padding: 12px 10px;
             }
@@ -1286,9 +1385,16 @@
                 font-size: 0.8rem;
                 padding: 8px;
             }
+
             .map-container iframe {
-                height: 160px;
+                height: 180px;
             }
+            .map-btn {
+                font-size: 0.55rem;
+                padding: 5px 10px;
+                min-width: 60px;
+            }
+
             .review-card {
                 min-width: 160px;
                 padding: 10px;
@@ -1299,6 +1405,7 @@
             .review-stars {
                 font-size: 0.7rem;
             }
+
             .footer-links a {
                 font-size: 0.6rem;
             }
@@ -1319,14 +1426,14 @@
 
         @media (max-width: 360px) {
             .fact-item {
-                min-width: 40px;
-                max-width: 65px;
-                padding: 3px 6px;
+                min-width: 35px;
+                max-width: 55px;
+                padding: 2px 4px;
             }
             .contact-btn {
-                font-size: 0.55rem;
-                padding: 5px 8px;
-                min-width: 40px;
+                font-size: 0.5rem;
+                padding: 4px 6px;
+                min-width: 35px;
             }
             .room-photos {
                 height: 130px;
@@ -1348,19 +1455,19 @@
                 padding: 6px;
             }
             .filter-btn {
-                font-size: 0.5rem;
-                padding: 2px 6px;
+                font-size: 0.45rem;
+                padding: 2px 5px;
             }
             .logo-title {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
             .lang-btn {
-                font-size: 0.55rem;
-                padding: 3px 8px;
+                font-size: 0.45rem;
+                padding: 2px 5px;
             }
             .btn-accessibility {
-                font-size: 0.55rem;
-                padding: 3px 8px;
+                font-size: 0.45rem;
+                padding: 2px 5px;
             }
             .modal-title {
                 font-size: 0.8rem;
@@ -1388,12 +1495,12 @@
                 font-size: 0.5rem;
             }
             .weather-header {
-                font-size: 0.55rem;
-                padding: 3px 8px;
-                gap: 4px;
+                font-size: 0.5rem;
+                padding: 2px 6px;
+                gap: 3px;
             }
             .weather-header i {
-                font-size: 0.7rem;
+                font-size: 0.6rem;
             }
         }
     </style>
@@ -1404,37 +1511,39 @@
 
     <div class="main-container">
 
-        <!-- ШАПКА -->
-        <div class="content-block" id="headerBlock">
-            <div class="header">
-                <div class="logo-title">🏔️ PANA <span>KOLSAY</span></div>
-                <div class="header-right">
-                    <div class="lang-switch" id="langSwitch">
-                        <button class="lang-btn active" data-lang="ru">RU</button>
-                        <button class="lang-btn" data-lang="en">EN</button>
-                        <button class="lang-btn" data-lang="kz">KZ</button>
+        <!-- ===== ФИКСИРОВАННЫЙ ВЕРХНИЙ КОЛОНТИТУЛ ===== -->
+        <div class="header-sticky">
+            <div class="content-block" id="headerBlock">
+                <div class="header">
+                    <div class="logo-title">🏔️ PANA <span>KOLSAY</span></div>
+                    <div class="header-right">
+                        <div class="lang-switch" id="langSwitch">
+                            <button class="lang-btn active" data-lang="ru">RU</button>
+                            <button class="lang-btn" data-lang="en">EN</button>
+                            <button class="lang-btn" data-lang="kz">KZ</button>
+                        </div>
+                        <button class="btn-accessibility" onclick="toggleAccessibility()" id="btnA11y">♿ Версия для слабовидящих</button>
                     </div>
-                    <button class="btn-accessibility" onclick="toggleAccessibility()" id="btnA11y">♿ Версия для слабовидящих</button>
                 </div>
-            </div>
 
-            <div class="quick-facts">
-                <div class="fact-item"><i class="fas fa-water"></i><div class="fact-value">700 м</div><div class="fact-label" id="factLake">до озера</div></div>
-                <div class="fact-item"><i class="fas fa-mountain"></i><div class="fact-value">1800 м</div><div class="fact-label" id="factHeight">высота</div></div>
-                <div class="fact-item"><i class="fas fa-car"></i><div class="fact-value">~4 ч</div><div class="fact-label" id="factDrive">от Алматы</div></div>
-                <div class="fact-item"><i class="fas fa-wifi"></i><div class="fact-value">Wi-Fi</div><div class="fact-label" id="factWifi">бесплатно</div></div>
-            </div>
+                <div class="quick-facts">
+                    <div class="fact-item"><i class="fas fa-water"></i><div class="fact-value">700 м</div><div class="fact-label" id="factLake">до озера</div></div>
+                    <div class="fact-item"><i class="fas fa-mountain"></i><div class="fact-value">1800 м</div><div class="fact-label" id="factHeight">высота</div></div>
+                    <div class="fact-item"><i class="fas fa-car"></i><div class="fact-value">~4 ч</div><div class="fact-label" id="factDrive">от Алматы</div></div>
+                    <div class="fact-item"><i class="fas fa-wifi"></i><div class="fact-value">Wi-Fi</div><div class="fact-label" id="factWifi">бесплатно</div></div>
+                </div>
 
-            <div class="weather-header" id="weatherMini">
-                <i class="fas fa-cloud-sun"></i>
-                <span id="weatherMiniText">Загрузка погоды...</span>
-            </div>
+                <div class="weather-header" id="weatherMini">
+                    <i class="fas fa-cloud-sun"></i>
+                    <span id="weatherMiniText">Загрузка погоды...</span>
+                </div>
 
-            <div class="contact-bar">
-                <a href="https://wa.me/77018615121" target="_blank" class="contact-btn btn-whatsapp"><i class="fab fa-whatsapp"></i> <span id="btnWaText">WhatsApp</span></a>
-                <a href="https://instagram.com/pana_hotels" target="_blank" class="contact-btn btn-instagram"><i class="fab fa-instagram"></i> <span id="btnIgText">Instagram</span></a>
-                <a href="tel:+77008368964" class="contact-btn btn-phone"><i class="fas fa-phone"></i> <span id="btnPhText">Позвонить</span></a>
-                <a href="#" class="contact-btn btn-book" onclick="openBookingModal()"><i class="fas fa-calendar-check"></i> <span id="btnBookText">Забронировать</span></a>
+                <div class="contact-bar">
+                    <a href="https://wa.me/77018615121" target="_blank" class="contact-btn btn-whatsapp"><i class="fab fa-whatsapp"></i> <span id="btnWaText">WhatsApp</span></a>
+                    <a href="https://instagram.com/pana_hotels" target="_blank" class="contact-btn btn-instagram"><i class="fab fa-instagram"></i> <span id="btnIgText">Instagram</span></a>
+                    <a href="tel:+77008368964" class="contact-btn btn-phone"><i class="fas fa-phone"></i> <span id="btnPhText">Позвонить</span></a>
+                    <a href="#" class="contact-btn btn-book" onclick="openBookingModal()"><i class="fas fa-calendar-check"></i> <span id="btnBookText">Забронировать</span></a>
+                </div>
             </div>
         </div>
 
@@ -1450,7 +1559,7 @@
                 <button class="filter-btn" data-filter="deluxe" id="filtDlx">Deluxe</button>
                 <button class="filter-btn" data-filter="luxury" id="filtLux">Люкс</button>
                 <button class="filter-btn" data-filter="glamping" id="filtGlp">Глэмпинг</button>
-                <button class="filter-btn" data-filter="eco" id="filtEco">Эко</button>
+                <!-- Кнопка "Эко" УДАЛЕНА -->
             </div>
             <div class="rooms-grid" id="roomsGrid"></div>
         </div>
@@ -1470,7 +1579,6 @@
                         <option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
                     </select>
                 </div>
-                <!-- ===== ВЫБОР КОЛИЧЕСТВА НОЧЕЙ ===== -->
                 <div class="form-group">
                     <label id="lblNights">🌙 Ночей</label>
                     <select id="quickNights" onchange="updateQuickAvail()">
@@ -1487,11 +1595,12 @@
         <div class="content-block" id="mapBlock">
             <h2 style="font-weight:300; margin-bottom:12px; font-size:1.2rem;" id="mapTitle">📍 Как добраться</h2>
             <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2908.5!2d78.346125!3d42.935452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDU2JzA3LjYiTiA3OMKwMjAnNDYuMSJF!5e0!3m2!1sru!2skz!4v1" width="100%" height="250" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!4v1745860598743!6m8!1m7!1sCIHM0ogKEICAgIC_gIDUpQE!2m2!1d42.988277!2d78.325599!3f75!4f0!5f0.7820865974627469" width="100%" height="350" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy"></iframe>
             </div>
-            <div style="margin-top:12px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
-                <p style="color:var(--text-secondary); font-size:0.8rem;" id="mapInfo"><i class="fas fa-map-marker-alt"></i> Озеро Кольсай Нижнее &nbsp;|&nbsp; <i class="fas fa-car"></i> Из Алматы: ~4 часа (300 км)</p>
-                <a href="https://2gis.kz/almaty/directions/points/%D0%90%D0%BB%D0%BC%D0%B0%D1%82%D1%8B%7C78.346125%2C42.935452%7B%D0%9A%D0%BE%D0%BB%D1%8C%D1%81%D0%B0%D0%B9%7D" target="_blank" class="contact-btn btn-book" style="animation:none; flex:0 0 auto; padding:8px 16px; font-size:0.75rem;" id="btnRoute">🗺️ Маршрут</a>
+            <div class="map-buttons">
+                <a href="https://go.2gis.com/k4fIM" target="_blank" class="map-btn map-btn-2gis"><i class="fas fa-map"></i> 2GIS</a>
+                <a href="https://yandex.kz/maps/ru/-/CTvwaRo5" target="_blank" class="map-btn map-btn-yandex"><i class="fas fa-map"></i> Яндекс</a>
+                <a href="https://www.google.com/maps/place/%D0%BE%D0%B7.+%D0%9A%D0%BE%D0%BB%D1%8C%D1%81%D0%B0%D0%B9+%D0%9D%D0%B8%D0%B6%D0%BD%D0%B5%D0%B5/@42.988277,78.325599,3a,75y,122.66h,48.6t/data=!3m8!1e1!3m6!1sCIHM0ogKEICAgIC_gIDUpQE!2e10!3e11!6shttps:%2F%2Flh3.googleusercontent.com%2Fgpms-cs-s%2FAFP8RcOtNio5Yt_LrtIVnLf4oxjAPn1vkqS-45jQYUzym1DL9uz-Eb4j8vd8f0cVk_5PHIXjql_bKZEx2n3uRVMj6vhFl_DTLSUll07Uw1OL80olo5HLktZx3Fo10L5D95nMuk7hpugmww%3Dw900-h600-k-no-pi41.400749763749836-ya297.7961297227911-ro0-fo100!7i12000!8i6000!4m16!1m8!3m7!1s0x3886c0e5604528f3:0x4fb0bf36fe7869bb!2z0JrQvtC70YzRgdCw0LnRgdC60LjQtSDQvtC30ZHRgNCw!8m2!3d42.935386!4d78.3259016!10e5!16s%2Fg%2F1pxy2mv1m!3m6!1s0x3886c71645551041:0x199e38ca417e7588!8m2!3d42.9837687!4d78.3237673!10e5!16s%2Fg%2F1tczt9q9?entry=ttu&g_ep=EgoyMDI2MDcyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="map-btn map-btn-google"><i class="fas fa-map"></i> Google</a>
             </div>
         </div>
 
@@ -1598,7 +1707,7 @@
         const API_KEY = '$2a$10$AxIfA8p7dq6td0BYtWWuhecnyqCJbsTGoo.oWIds3H01C43GvLGuu';
         const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
-        // ============ НОМЕРА (С ПРАВИЛЬНЫМИ КОЛИЧЕСТВАМИ) ============
+        // ============ НОМЕРА (БЕЗ ТРАНСФЕРА 40 000) ============
         const ROOMS = [{
             id: 'a01-stone',
             nameRu: '🏔️ Каменный домик A01',
@@ -1622,7 +1731,6 @@
                 '➕ Доп. место: 15 000 ₸',
                 '🍳 Бесплатный завтрак на 2-х',
                 '🚐 Бесплатный трансфер с парковки',
-                '🚗 Трансфер из Алматы: 40 000 ₸ (300 км)',
                 '🍽️ Рядом этно-кафе Тары'
             ],
             featEn: [
@@ -1631,7 +1739,6 @@
                 '➕ Extra bed: 15,000 ₸',
                 '🍳 Free breakfast for 2',
                 '🚐 Free transfer from parking',
-                '🚗 Transfer from Almaty: 40,000 ₸ (300 km)',
                 '🍽️ Tary ethnic cafe nearby'
             ],
             featKz: [
@@ -1640,7 +1747,6 @@
                 '➕ Қосымша орын: 15 000 ₸',
                 '🍳 2 адамға тегін таңғы ас',
                 '🚐 Тұрақтан тегін трансфер',
-                '🚗 Алматыдан трансфер: 40 000 ₸ (300 км)',
                 '🍽️ Tary этно-кафе жанында'
             ],
             link: 'https://www.instagram.com/p/DHXcKsAt6Zg/'
@@ -1667,7 +1773,6 @@
                 '➕ Доп. место: 15 000 ₸',
                 '🍳 Бесплатный завтрак на 2-х',
                 '🚐 Бесплатный трансфер с парковки',
-                '🚗 Трансфер из Алматы: 40 000 ₸ (300 км)',
                 '🍽️ Рядом этно-кафе Тары'
             ],
             featEn: [
@@ -1676,7 +1781,6 @@
                 '➕ Extra bed: 15,000 ₸',
                 '🍳 Free breakfast for 2',
                 '🚐 Free transfer from parking',
-                '🚗 Transfer from Almaty: 40,000 ₸ (300 km)',
                 '🍽️ Tary ethnic cafe nearby'
             ],
             featKz: [
@@ -1685,7 +1789,6 @@
                 '➕ Қосымша орын: 15 000 ₸',
                 '🍳 2 адамға тегін таңғы ас',
                 '🚐 Тұрақтан тегін трансфер',
-                '🚗 Алматыдан трансфер: 40 000 ₸ (300 км)',
                 '🍽️ Tary этно-кафе жанында'
             ],
             link: 'https://www.instagram.com/reel/DKjjbJjNWve/'
@@ -1698,7 +1801,7 @@
             cap: 2,
             extra: 1,
             cat: 'standard',
-            total: 2, // ← ИСПРАВЛЕНО: 2 номера
+            total: 2,
             photos: [
                 'https://lh3.googleusercontent.com/d/1dZ2jSYbGk3xdYl50Ruho6z5fVSewkUWq=w800',
                 'https://lh3.googleusercontent.com/d/1DCtw5GRUWdlB1Uy2358mz4TbdQPo-t9x=w800'
@@ -2103,10 +2206,11 @@
                 factDrive: 'от Алматы', factWifi: 'бесплатно',
                 btnWa: 'WhatsApp', btnIg: 'Instagram', btnPh: 'Позвонить', btnBook: 'Забронировать',
                 roomsTitle: '🛏️ Наши номера', filtAll: 'Все', filtStd: 'Стандарт', filtMnt: 'Горы',
-                filtLake: 'Озеро', filtTrp: 'Трипл', filtDlx: 'Deluxe', filtLux: 'Люкс', filtGlp: 'Глэмпинг', filtEco: 'Эко',
+                filtLake: 'Озеро', filtTrp: 'Трипл', filtDlx: 'Deluxe', filtLux: 'Люкс', filtGlp: 'Глэмпинг',
                 bookingFormTitle: '📅 Проверить доступность', lblCheckIn: '📅 Дата заезда', lblGuests: '👥 Гости',
                 lblNights: '🌙 Ночей',
-                mapTitle: '📍 Как добраться', mapInfo: 'Озеро Кольсай Нижнее | Из Алматы: ~4 часа (300 км)',
+                mapTitle: '📍 Как добраться',
+                mapInfo: 'Озеро Кольсай Нижнее | Из Алматы: ~4 часа (300 км)',
                 btnRoute: '🗺️ Маршрут',
                 videoTitle: '🎥 Видеообзор',
                 rulesTitle: '📋 Важная информация', rulesSubTitle: 'Условия',
@@ -2162,10 +2266,11 @@
                 factDrive: 'from Almaty', factWifi: 'free',
                 btnWa: 'WhatsApp', btnIg: 'Instagram', btnPh: 'Call us', btnBook: 'Book now',
                 roomsTitle: '🛏️ Our Rooms', filtAll: 'All', filtStd: 'Standard', filtMnt: 'Mountain',
-                filtLake: 'Lake', filtTrp: 'Triple', filtDlx: 'Deluxe', filtLux: 'Luxury', filtGlp: 'Glamping', filtEco: 'Eco',
+                filtLake: 'Lake', filtTrp: 'Triple', filtDlx: 'Deluxe', filtLux: 'Luxury', filtGlp: 'Glamping',
                 bookingFormTitle: '📅 Check Availability', lblCheckIn: '📅 Check-in', lblGuests: '👥 Guests',
                 lblNights: '🌙 Nights',
-                mapTitle: '📍 How to get', mapInfo: 'Lower Kolsay Lake | From Almaty: ~4 hours (300 km)',
+                mapTitle: '📍 How to get',
+                mapInfo: 'Lower Kolsay Lake | From Almaty: ~4 hours (300 km)',
                 btnRoute: '🗺️ Route',
                 videoTitle: '🎥 Video Tour',
                 rulesTitle: '📋 Important Info', rulesSubTitle: 'Terms',
@@ -2221,11 +2326,12 @@
                 factDrive: 'Алматыдан', factWifi: 'тегін',
                 btnWa: 'WhatsApp', btnIg: 'Instagram', btnPh: 'Қоңырау шалу', btnBook: 'Брондау',
                 roomsTitle: '🛏️ Біздің нөмірлер', filtAll: 'Барлығы', filtStd: 'Стандарт', filtMnt: 'Тау',
-                filtLake: 'Көл', filtTrp: 'Трипл', filtDlx: 'Deluxe', filtLux: 'Люкс', filtGlp: 'Глэмпинг', filtEco: 'Эко',
+                filtLake: 'Көл', filtTrp: 'Трипл', filtDlx: 'Deluxe', filtLux: 'Люкс', filtGlp: 'Глэмпинг',
                 bookingFormTitle: '📅 Қолжетімділікті тексеру', lblCheckIn: '📅 Келу күні', lblGuests: '👥 Қонақтар',
                 lblNights: '🌙 Түндер',
                 mapTitle: '📍 Қалай жетуге болады',
-                mapInfo: 'Көлсай көлі (Төменгі) | Алматыдан: ~4 сағат (300 км)', btnRoute: '🗺️ Маршрут',
+                mapInfo: 'Көлсай көлі (Төменгі) | Алматыдан: ~4 сағат (300 км)',
+                btnRoute: '🗺️ Маршрут',
                 videoTitle: '🎥 Бейне шолу',
                 rulesTitle: '📋 Маңызды ақпарат', rulesSubTitle: 'Шарттар',
                 rule1Title: '1. Алдын ала төлем', rule1Text: '100% алдын ала төлем қажет.',
@@ -2512,7 +2618,7 @@
             }).join('');
         }
 
-        // ===== БЫСТРАЯ ПРОВЕРКА (С УЧЁТОМ НОЧЕЙ) =====
+        // ===== БЫСТРАЯ ПРОВЕРКА =====
         function updateQuickAvail() {
             var date = document.getElementById('quickCheckIn').value;
             var guests = parseInt(document.getElementById('quickGuests').value) || 2;
@@ -2536,7 +2642,6 @@
             var html = '<strong>📊 ' + t('free') + ' ' + date + ' (' + nights + ' ' + t('nights') + '):</strong><br>';
             var anyAvail = false;
             ROOMS.forEach(function(room) {
-                // Проверяем доступность на все ночи
                 var allAvailable = true;
                 var d = new Date(date);
                 for (var i = 0; i < nights; i++) {
@@ -2550,7 +2655,6 @@
 
                 if (allAvailable) anyAvail = true;
                 var a = allAvailable ? 1 : 0;
-                var total = room.total;
                 html +=
                     '<div class="avail-list-item"><span>' + rName(room) + ' (до ' + (room.cap + room.extra) +
                     ' чел.)</span> <span class="' + (a > 0 ? 'avail-free' : 'avail-busy') + '">' + (a > 0 ? '✅' +
@@ -2566,7 +2670,7 @@
             }
         }
 
-        // ===== МОДАЛКА БРОНИРОВАНИЯ (С НОЧАМИ) =====
+        // ===== МОДАЛКА БРОНИРОВАНИЯ =====
         function openBookingModal(rid) {
             rid = rid || null;
             var today = new Date().toISOString().split('T')[0];
@@ -2668,7 +2772,6 @@
             var room = ROOMS.find(function(r) { return r.id === rid; });
             if (!room) return;
 
-            // Проверяем доступность на все ночи
             var allAvailable = true;
             var d = new Date(date);
             for (var i = 0; i < nights; i++) {
@@ -2735,7 +2838,6 @@
             if (!name || !phone) { showToast(t('fillNamePhone'), 'error'); return; }
             var room = ROOMS.find(function(r) { return r.id === rid; });
 
-            // Проверяем доступность на все ночи
             var allAvailable = true;
             var d = new Date(date);
             for (var i = 0; i < nights; i++) {
@@ -2759,7 +2861,6 @@
                 phone: phone, guests: guests, extra: ex, nights: nights, total: total, comm: comm, st: 'ok',
                 at: new Date().toISOString() });
 
-            // Уменьшаем доступность на все ночи
             var d2 = new Date(date);
             for (var i = 0; i < nights; i++) {
                 var dateStr = d2.toISOString().split('T')[0];
@@ -2967,7 +3068,6 @@
             document.getElementById('mapInfo').innerHTML =
                 '<i class="fas fa-map-marker-alt"></i> ' + t('mapInfo').split('|')[0] +
                 ' &nbsp;|&nbsp; <i class="fas fa-car"></i> ' + t('mapInfo').split('|')[1];
-            document.getElementById('btnRoute').textContent = t('btnRoute');
             document.getElementById('videoTitle').textContent = t('videoTitle');
             document.getElementById('rulesTitle').textContent = t('rulesTitle');
             document.getElementById('rulesSubTitle').innerHTML =
@@ -3008,7 +3108,6 @@
             document.getElementById('filtDlx').textContent = t('filtDlx');
             document.getElementById('filtLux').textContent = t('filtLux');
             document.getElementById('filtGlp').textContent = t('filtGlp');
-            document.getElementById('filtEco').textContent = t('filtEco');
 
             document.querySelectorAll('.lang-btn').forEach(function(b) { b.textContent = L[b.dataset.lang].langName; });
 
