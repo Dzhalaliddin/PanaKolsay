@@ -103,6 +103,49 @@
             overflow-x: hidden;
         }
 
+        /* Jivo кнопка - круглый значок */
+        .jivo-custom-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #1a73e8;
+            color: #fff;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 9999;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .jivo-custom-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
+        }
+        .jivo-custom-btn .pulse {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid #1a73e8;
+            animation: pulse-ring 1.5s ease-out infinite;
+        }
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.3);
+                opacity: 0;
+            }
+        }
+
         #loader {
             position: fixed;
             top: 0;
@@ -743,7 +786,7 @@
             transition: background 0.3s, border-color 0.3s;
         }
         .modal-content.wide {
-            max-width: 600px;
+            max-width: 650px;
         }
         .modal-close {
             position: absolute;
@@ -913,6 +956,7 @@
             font-size: 0.75rem;
         }
 
+        /* Групповое бронирование */
         .group-booking-item {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--border-glass);
@@ -926,6 +970,10 @@
         }
         .group-booking-item .room-name-display {
             color: #fff;
+        }
+        .group-booking-item .room-dates {
+            color: var(--text-muted);
+            font-size: 0.7rem;
         }
         .group-booking-item .remove-btn {
             background: rgba(255, 71, 87, 0.2);
@@ -1439,6 +1487,13 @@
                 grid-template-columns: 1fr;
                 gap: 6px;
             }
+            .jivo-custom-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 22px;
+                bottom: 20px;
+                right: 20px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1588,6 +1643,13 @@
                 font-size: 0.75rem;
                 padding: 6px 14px;
             }
+            .jivo-custom-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+                bottom: 15px;
+                right: 15px;
+            }
         }
 
         @media (min-width: 769px) {
@@ -1599,6 +1661,12 @@
     </style>
 </head>
 <body>
+
+    <!-- ===== КРУГЛАЯ КНОПКА JIVO ===== -->
+    <button class="jivo-custom-btn" onclick="connectOperator()" id="jivoBtn" title="Напишите нам">
+        <span class="pulse"></span>
+        <i class="fas fa-comment-dots"></i>
+    </button>
 
     <!-- ===== ЗАГРУЗЧИК ===== -->
     <div id="loader">
@@ -1761,12 +1829,12 @@
         <!-- ===== ФУТЕР ===== -->
         <div class="footer">
             <div class="footer-links">
-                <a href="#" onclick="showAdminLogin()" id="footerAdmin">🔧 Админ-панель</a>
+                <a href="admin.html" id="footerAdmin" target="_blank">🔧 Админ-панель</a>
                 <a href="#" onclick="toggleAccessibility()" id="footerA11y">♿ Версия для слабовидящих</a>
                 <a href="tel:+77008368964">📞 +7 700 836 8964</a>
                 <a href="#" onclick="connectOperator()" id="operatorLink">👩‍💼 Оператор</a>
             </div>
-            <p>© 2026 PANA KOLSAY · Озеро Кольсай, Казахстан</p>
+            <p id="footerCopy">© 2026 PANA KOLSAY · Озеро Кольсай, Казахстан</p>
         </div>
     </div>
 
@@ -1797,10 +1865,12 @@
         const API_KEY = '$2a$10$AxIfA8p7dq6td0BYtWWuhecnyqCJbsTGoo.oWIds3H01C43GvLGuu';
         const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
-        // ============ TELEGRAM ============
+        // ============ EMAIL (JIVO) ============
+        const JIVO_EMAIL = 'ida59f5i7fdmjivosite@jivo-mail.com';
+
+        // ============ TELEGRAM (дублирование в группу) ============
         const TELEGRAM_BOT_TOKEN = '1156354193:AAE3gQefzxsmuWSfIIzTOCW1-j6x1YoTNxs';
-        // !!! ИЗМЕНИТЕ НА ПРАВИЛЬНЫЙ USERNAME БОТА 1 (КОТОРЫЙ В JIVO) !!!
-        const BOT1_USERNAME = '@JivoBot';
+        const TELEGRAM_CHAT_ID = '-5423943839';
 
         // ============ АДМИН-ПАРОЛЬ ============
         const ADMIN_PASSWORD = 'Pana2026!';
@@ -2257,7 +2327,12 @@
                 selectRoomFirst: '🏨 Сначала выберите номер',
                 available: 'Свободно',
                 notAvailable: 'Нет мест',
-                of: 'из'
+                of: 'из',
+                details: 'Подробнее',
+                operatorText: 'Оператор',
+                location: 'Озеро Кольсай, Казахстан',
+                jivoTitle: 'Напишите нам',
+                sendToEmail: '📧 Отправка на почту...'
             },
             en: {
                 langName: 'EN',
@@ -2393,7 +2468,12 @@
                 selectRoomFirst: '🏨 Select room first',
                 available: 'Available',
                 notAvailable: 'Not available',
-                of: 'of'
+                of: 'of',
+                details: 'Details',
+                operatorText: 'Operator',
+                location: 'Kolsay Lake, Kazakhstan',
+                jivoTitle: 'Contact us',
+                sendToEmail: '📧 Sending to email...'
             },
             kz: {
                 langName: 'KZ',
@@ -2529,7 +2609,12 @@
                 selectRoomFirst: '🏨 Алдымен нөмірді таңдаңыз',
                 available: 'Бос',
                 notAvailable: 'Орын жоқ',
-                of: 'ішінен'
+                of: 'ішінен',
+                details: 'Толығырақ',
+                operatorText: 'Оператор',
+                location: 'Көлсай көлі, Қазақстан',
+                jivoTitle: 'Бізге жазыңыз',
+                sendToEmail: '📧 Поштаға жіберу...'
             }
         };
 
@@ -2545,8 +2630,7 @@
         let jivoLoaded = false;
         let weatherData = { temp: 0, wind: 0, code: 0, date: '' };
         let weatherLoaded = false;
-        let selectedRooms = [];
-        let groupBookingTotal = 0;
+        let selectedRooms = []; // массив объектов {rid, date, nights}
 
         // ============ ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ============
         function t(key) { return L[curLang][key] || key; }
@@ -2596,7 +2680,23 @@
             }
         }
 
-        // ===== TELEGRAM =====
+        // ===== EMAIL (JIVO) =====
+        async function sendEmail(text) {
+            try {
+                // Используем mailto как простой способ
+                const subject = encodeURIComponent('🏨 Новая бронь PANA KOLSAY');
+                const body = encodeURIComponent(text.replace(/<[^>]*>/g, ''));
+                const mailtoLink = `mailto:${JIVO_EMAIL}?subject=${subject}&body=${body}`;
+                window.open(mailtoLink, '_blank');
+                console.log('📧 Отправлено на почту:', JIVO_EMAIL);
+                return true;
+            } catch (e) {
+                console.error('❌ Ошибка отправки email:', e);
+                return false;
+            }
+        }
+
+        // ===== TELEGRAM (дублирование в группу) =====
         async function sendTelegramMessage(text) {
             try {
                 const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
@@ -2604,16 +2704,16 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        chat_id: BOT1_USERNAME,
-                        text: text,
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: text.replace(/<[^>]*>/g, ''),
                         parse_mode: 'HTML'
                     })
                 });
                 const data = await response.json();
                 if (!data.ok) {
-                    console.error('❌ Ошибка отправки Боту 1:', data);
+                    console.error('❌ Ошибка отправки в Telegram:', data);
                 } else {
-                    console.log('✅ Сообщение отправлено Боту 1:', BOT1_USERNAME);
+                    console.log('✅ Сообщение отправлено в Telegram группу');
                 }
                 return data;
             } catch (e) {
@@ -2631,24 +2731,36 @@
                 year: 'numeric'
             });
 
-            let msg = '🏨 <b>НОВАЯ БРОНЬ!</b>\n';
+            let msg = '🏨 НОВАЯ БРОНЬ!\n';
             msg += '═'.repeat(20) + '\n';
-            msg += `🆔 <b>ID:</b> ${booking.id}\n`;
-            msg += `📅 <b>Дата заезда:</b> ${dateStr}\n`;
-            msg += `🌙 <b>Ночей:</b> ${booking.nights}\n`;
-            msg += `👥 <b>Гостей:</b> ${booking.guests}\n`;
-            msg += `🛏️ <b>Номер:</b> ${roomName}\n`;
-            msg += `👤 <b>Гость:</b> ${booking.gname}\n`;
-            msg += `📞 <b>Телефон:</b> ${booking.phone}\n`;
+            msg += `🆔 ID: ${booking.id}\n`;
+            msg += `📅 Дата заезда: ${dateStr}\n`;
+            msg += `🌙 Ночей: ${booking.nights}\n`;
+            msg += `👥 Гостей: ${booking.guests}\n`;
+            msg += `🛏️ Номер: ${roomName}\n`;
+            msg += `👤 Гость: ${booking.gname}\n`;
+            msg += `📞 Телефон: ${booking.phone}\n`;
             if (booking.comm) {
-                msg += `📝 <b>Комментарий:</b> ${booking.comm}\n`;
+                msg += `📝 Комментарий: ${booking.comm}\n`;
             }
             msg += '═'.repeat(20) + '\n';
-            msg += `💰 <b>Сумма:</b> ${booking.total.toLocaleString()} ₸\n`;
-            msg += `🕐 <b>Время брони:</b> ${new Date().toLocaleString(lang === 'ru' ? 'ru' : lang === 'en' ? 'en' : 'kk')}\n`;
+            msg += `💰 Сумма: ${booking.total.toLocaleString()} ₸\n`;
+            msg += `🕐 Время брони: ${new Date().toLocaleString(lang === 'ru' ? 'ru' : lang === 'en' ? 'en' : 'kk')}\n`;
             msg += '\n#НоваяБронь #PANA_KOLSAY';
 
             return msg;
+        }
+
+        // ===== ОТПРАВКА УВЕДОМЛЕНИЙ =====
+        async function sendNotification(bookingData) {
+            const msg = formatBookingMessage(bookingData);
+
+            // 1. Отправляем на почту Jivo
+            showToast(t('sendToEmail'), 'info');
+            await sendEmail(msg);
+
+            // 2. Дублируем в Telegram группу
+            await sendTelegramMessage(msg);
         }
 
         // ===== ПОГОДА =====
@@ -2761,7 +2873,8 @@
         function bookedCount(rid, date) {
             var count = 0;
             bookings.forEach(function(b) {
-                if (b.rid && b.rid.indexOf(rid) !== -1 && b.date === date && b.st === 'ok') count++;
+                var rids = b.rid ? b.rid.split(',') : [];
+                if (rids.indexOf(rid) !== -1 && b.date === date && b.st === 'ok') count++;
             });
             return count;
         }
@@ -2810,7 +2923,6 @@
                     }
                 }
 
-                // Обновляем кнопку
                 var btn = card.querySelector('.btn-book-room');
                 if (btn) {
                     if (isPast || avail <= 0) {
@@ -2868,6 +2980,10 @@
                 };
                 var emoji = emojiMap[room.id] || '🏨';
 
+                var linkText = t('details');
+                var linkHtml = room.link && room.link !== '#' ? '<a href="' + room.link +
+                    '" target="_blank" class="room-link">🔍 ' + linkText + '</a>' : '';
+
                 return '<div class="room-card ' + hid + '" data-cat="' + room.cat + '" data-room-id="' + room.id + '">' +
                     '<div class="room-photos" onclick="openPhotoModal(\'' + room.id + '\',0)"><img src="' + room.photos[0] +
                     '" alt="' + nameDisplay + '" loading="lazy" draggable="false" onerror="this.src=\'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a2a27%22/%3E%3Ctext fill=%22%23f5c542%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3E📷%3C/text%3E%3C/svg%3E\'"><span class="photo-count">📷 ' +
@@ -2877,8 +2993,7 @@
                     rDesc(room) +
                     '</div><div class="room-availability ' + statusClass + '">' + at + '</div><ul class="room-features">' +
                     rFeat(room).map(function(f) { return '<li>' + f + '</li>'; }).join('') +
-                    '</ul>' + (room.link && room.link !== '#' ? '<a href="' + room.link +
-                        '" target="_blank" class="room-link">🔍 Подробнее</a>' : '') + '</div>' +
+                    '</ul>' + linkHtml + '</div>' +
                     '<button class="btn-book-room ' + btnDisabled + '" onclick="openBookingModal(\'' + room.id +
                     '\')">' + btnText + '</button>' +
                     '</div>';
@@ -2967,8 +3082,6 @@
             }
 
             resDiv.innerHTML = html;
-
-            // Обновляем карточки при смене даты
             updateRoomAvailability();
         }
 
@@ -2980,16 +3093,23 @@
             var content = document.getElementById('bookingModalContent');
 
             if (!rid) {
+                // Если не передан номер, добавляем пустой слот
+                var defaultDate = document.getElementById('quickCheckIn').value || today;
+                var defaultNights = parseInt(document.getElementById('quickNights').value) || 1;
                 selectedRooms = [];
             } else {
-                if (selectedRooms.indexOf(rid) === -1) {
-                    selectedRooms = [rid];
-                }
+                // Проверяем, есть ли уже этот номер в списке (можно добавлять несколько одинаковых)
+                // Добавляем новый слот с этим номером
+                var dateVal = document.getElementById('quickCheckIn').value || today;
+                var nightsVal = parseInt(document.getElementById('quickNights').value) || 1;
+                selectedRooms.push({
+                    rid: rid,
+                    date: dateVal,
+                    nights: nightsVal
+                });
             }
 
-            var dateValue = document.getElementById('quickCheckIn').value || today;
             var guestsValue = parseInt(document.getElementById('quickGuests').value) || 2;
-            var nightsValue = parseInt(document.getElementById('quickNights').value) || 1;
 
             var roomOptions = ROOMS.map(function(r) {
                 return '<option value="' + r.id + '">' + rName(r) + ' — ' + r.price.toLocaleString() + ' ₸</option>';
@@ -2997,21 +3117,20 @@
 
             content.innerHTML = '' +
                 '<div class="form-row">' +
-                '<div class="form-group"><label>' + t('bookDate') +
-                '</label><input type="date" id="bDate" value="' + dateValue + '" min="' + today +
-                '" onchange="updateBookingForm()"></div>' +
                 '<div class="form-group"><label>' + t('bookGuests') +
                 '</label><select id="bGuests" onchange="updateBookingForm()">' + [1, 2, 3, 4, 5, 6].map(function(n) {
                     return '<option value="' + n + '" ' + (n === guestsValue ? 'selected' : '') + '>' + n + ' ' +
                         guestWord(n) + '</option>';
                 }).join('') + '</select></div>' +
+                '<div class="form-group"><label>' + t('bookName') +
+                '</label><input type="text" id="bName" placeholder="Иванов Иван"></div>' +
                 '</div>' +
-                '<div class="form-group"><label>' + t('bookNights') +
-                '</label><select id="bNights" onchange="updateBookingForm()">' + [1, 2, 3, 4, 5, 6, 7].map(function(
-                    n) {
-                    return '<option value="' + n + '" ' + (n === nightsValue ? 'selected' : '') + '>' + n +
-                        '</option>';
-                }).join('') + '</select></div>' +
+                '<div class="form-row">' +
+                '<div class="form-group"><label>' + t('bookPhone') +
+                '</label><input type="tel" id="bPhone" placeholder="+7 700 123 4567"></div>' +
+                '<div class="form-group"><label>' + t('bookComment') +
+                '</label><input type="text" id="bComm" placeholder="..."></div>' +
+                '</div>' +
 
                 '<div style="margin-top:12px;">' +
                 '<div id="selectedRoomsList"></div>' +
@@ -3019,18 +3138,18 @@
                 '<select id="addRoomSelect" style="flex:1; padding:8px; border-radius:10px; border:1px solid var(--border-glass); background:rgba(255,255,255,0.06); color:#fff; font-size:0.8rem;">' +
                 roomOptions +
                 '</select>' +
+                '<input type="date" id="addRoomDate" value="' + today + '" style="padding:8px; border-radius:10px; border:1px solid var(--border-glass); background:rgba(255,255,255,0.06); color:#fff; font-size:0.8rem;">' +
+                '<select id="addRoomNights" style="padding:8px; border-radius:10px; border:1px solid var(--border-glass); background:rgba(255,255,255,0.06); color:#fff; font-size:0.8rem;">' +
+                [1, 2, 3, 4, 5, 6, 7].map(function(n) {
+                    return '<option value="' + n + '" ' + (n === 1 ? 'selected' : '') + '>' + n +
+                        '</option>';
+                }).join('') +
+                '</select>' +
                 '<button class="btn-add-room" onclick="addRoomToGroup()">' + t('addRoom') + '</button>' +
                 '</div>' +
                 '</div>' +
 
                 '<div id="bAvailInfo" class="avail-list-box" style="max-height:160px; margin-bottom:10px; display:none;"></div>' +
-
-                '<div class="form-row"><div class="form-group"><label>' + t('bookName') +
-                '</label><input type="text" id="bName" placeholder="Иванов Иван"></div>' +
-                '<div class="form-group"><label>' + t('bookPhone') +
-                '</label><input type="tel" id="bPhone" placeholder="+7 700 123 4567"></div></div>' +
-                '<div class="form-group"><label>' + t('bookComment') +
-                '</label><input type="text" id="bComm" placeholder="..."></div>' +
 
                 '<div id="bTotal" class="group-total">' + t('totalLabel') + ' 0 ₸</div>' +
                 '<button class="btn-submit" onclick="submitGroupBooking()">' + t('bookSubmit') + '</button>';
@@ -3038,18 +3157,11 @@
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
 
+            // Устанавливаем дату для добавления
             setTimeout(function() {
-                var phoneInput = document.getElementById('bPhone');
-                if (phoneInput && navigator.clipboard) {
-                    navigator.clipboard.readText().then(function(text) {
-                        if (text && text.replace(/\D/g, '').length >= 10) {
-                            phoneInput.value = text;
-                        }
-                    }).catch(function() {});
-                }
-                var nameInput = document.getElementById('bName');
-                if (nameInput) nameInput.focus();
-            }, 300);
+                var addDate = document.getElementById('addRoomDate');
+                if (addDate) addDate.value = today;
+            }, 100);
 
             updateSelectedRoomsList();
             updateBookingForm();
@@ -3057,21 +3169,30 @@
 
         function addRoomToGroup() {
             var select = document.getElementById('addRoomSelect');
-            if (!select) return;
+            var dateInput = document.getElementById('addRoomDate');
+            var nightsSelect = document.getElementById('addRoomNights');
+            if (!select || !dateInput || !nightsSelect) return;
+
             var rid = select.value;
+            var date = dateInput.value;
+            var nights = parseInt(nightsSelect.value) || 1;
+
             if (!rid) {
                 showToast(t('selectRoomFirst'), 'info');
                 return;
             }
 
-            if (selectedRooms.indexOf(rid) !== -1) {
-                showToast('❌ Этот номер уже добавлен', 'error');
+            if (!date) {
+                showToast('📅 ' + t('selectDate'), 'error');
                 return;
             }
 
-            var date = document.getElementById('bDate')?.value || '';
-            var nights = parseInt(document.getElementById('bNights')?.value) || 1;
+            if (isPastDate(date)) {
+                showToast('🔒 ' + t('past'), 'error');
+                return;
+            }
 
+            // Проверяем доступность
             var allAvailable = true;
             var d = new Date(date);
             for (var i = 0; i < nights; i++) {
@@ -3088,16 +3209,26 @@
                 return;
             }
 
-            selectedRooms.push(rid);
+            // Добавляем номер (можно несколько одинаковых)
+            selectedRooms.push({
+                rid: rid,
+                date: date,
+                nights: nights
+            });
+
             updateSelectedRoomsList();
             updateBookingForm();
             showToast('✅ ' + rName(ROOMS.find(function(r) { return r.id === rid; })) + ' добавлен', 'success');
+
+            // Обновляем дату для следующего добавления
+            var nextDate = new Date(date);
+            nextDate.setDate(nextDate.getDate() + nights);
+            dateInput.value = nextDate.toISOString().split('T')[0];
         }
 
-        function removeRoomFromGroup(rid) {
-            var idx = selectedRooms.indexOf(rid);
-            if (idx !== -1) {
-                selectedRooms.splice(idx, 1);
+        function removeRoomFromGroup(index) {
+            if (index >= 0 && index < selectedRooms.length) {
+                selectedRooms.splice(index, 1);
                 updateSelectedRoomsList();
                 updateBookingForm();
                 showToast('🗑️ Номер удален', 'info');
@@ -3115,13 +3246,17 @@
             }
 
             var html = '';
-            selectedRooms.forEach(function(rid) {
-                var room = ROOMS.find(function(r) { return r.id === rid; });
+            selectedRooms.forEach(function(item, index) {
+                var room = ROOMS.find(function(r) { return r.id === item.rid; });
                 if (room) {
+                    var dateObj = new Date(item.date);
+                    var dateStr = dateObj.toLocaleDateString(curLang === 'ru' ? 'ru' : curLang === 'en' ? 'en' :
+                        'kk', { day: 'numeric', month: 'short' });
                     html += '<div class="group-booking-item">' +
-                        '<span class="room-name-display">' + rName(room) + ' — ' + room.price.toLocaleString() +
-                        ' ₸/ночь</span>' +
-                        '<button class="remove-btn" onclick="removeRoomFromGroup(\'' + rid + '\')">' + t(
+                        '<div><span class="room-name-display">' + rName(room) + '</span>' +
+                        ' <span class="room-dates">📅 ' + dateStr + ' · 🌙 ' + item.nights + ' ' + t('nights') +
+                        '</span></div>' +
+                        '<button class="remove-btn" onclick="removeRoomFromGroup(' + index + ')">' + t(
                             'removeRoom') + '</button>' +
                         '</div>';
                 }
@@ -3130,45 +3265,51 @@
         }
 
         function updateBookingForm() {
-            var date = document.getElementById('bDate')?.value || '';
             var guests = parseInt(document.getElementById('bGuests')?.value || 2);
-            var nights = parseInt(document.getElementById('bNights')?.value || 1);
             var totDiv = document.getElementById('bTotal');
             var infoDiv = document.getElementById('bAvailInfo');
 
-            if (!date || isPastDate(date)) {
-                if (totDiv) totDiv.textContent = t('totalLabel') + ' 0 ₸';
+            var totalPrice = 0;
+            var allAvailable = true;
+            var availabilityHtml = '<strong>📊 ' + t('free') + ':</strong><br>';
+
+            if (selectedRooms.length === 0) {
+                if (totDiv) totDiv.textContent = '⚠️ ' + t('bookSelRoom');
                 if (infoDiv) infoDiv.style.display = 'none';
                 return;
             }
 
-            var totalPrice = 0;
-            var allAvailable = true;
-            var availabilityHtml = '<strong>📊 ' + t('free') + ' ' + date + ' (' + nights + ' ' + t('nights') + '):</strong><br>';
-
-            selectedRooms.forEach(function(rid) {
-                var room = ROOMS.find(function(r) { return r.id === rid; });
+            selectedRooms.forEach(function(item) {
+                var room = ROOMS.find(function(r) { return r.id === item.rid; });
                 if (!room) return;
 
                 var available = true;
-                var d = new Date(date);
-                for (var i = 0; i < nights; i++) {
+                var d = new Date(item.date);
+                for (var i = 0; i < item.nights; i++) {
                     var dateStr = d.toISOString().split('T')[0];
-                    if (realAvail(rid, dateStr) <= 0) {
+                    if (realAvail(item.rid, dateStr) <= 0) {
                         available = false;
                         break;
                     }
                     d.setDate(d.getDate() + 1);
                 }
 
+                var dateObj = new Date(item.date);
+                var dateStr = dateObj.toLocaleDateString(curLang === 'ru' ? 'ru' : curLang === 'en' ? 'en' : 'kk', {
+                    day: 'numeric',
+                    month: 'short'
+                });
+
                 if (available) {
-                    totalPrice += room.price * nights;
-                    availabilityHtml += '<div class="avail-list-item"><span>✅ ' + rName(room) +
-                        '</span> <span class="avail-free">' + t('free') + '</span></div>';
+                    totalPrice += room.price * item.nights;
+                    availabilityHtml += '<div class="avail-list-item"><span>✅ ' + rName(room) + ' (' + dateStr +
+                        ', ' + item.nights + ' ' + t('nights') + ')</span> <span class="avail-free">' + t(
+                        'free') + '</span></div>';
                 } else {
                     allAvailable = false;
-                    availabilityHtml += '<div class="avail-list-item"><span>❌ ' + rName(room) +
-                        '</span> <span class="avail-busy">' + t('busy') + '</span></div>';
+                    availabilityHtml += '<div class="avail-list-item"><span>❌ ' + rName(room) + ' (' + dateStr +
+                        ', ' + item.nights + ' ' + t('nights') + ')</span> <span class="avail-busy">' + t(
+                        'busy') + '</span></div>';
                 }
             });
 
@@ -3181,10 +3322,10 @@
                 if (selectedRooms.length === 0) {
                     totDiv.textContent = '⚠️ ' + t('bookSelRoom');
                 } else if (!allAvailable) {
-                    totDiv.textContent = '❌ ' + t('noRooms') + ' на ' + nights + ' ' + t('nights');
+                    totDiv.textContent = '❌ ' + t('noRooms');
                 } else {
-                    totDiv.textContent = t('totalLabel') + ' ' + nights + ' ' + t('nights') + ': ' + totalPrice
-                    .toLocaleString() + ' ₸ (' + selectedRooms.length + ' ' + t('roomsAvailable') + ')';
+                    totDiv.textContent = t('totalLabel') + ' ' + totalPrice.toLocaleString() + ' ₸ (' + selectedRooms
+                        .length + ' ' + t('roomsAvailable') + ')';
                 }
             }
         }
@@ -3195,17 +3336,10 @@
         }
 
         async function submitGroupBooking() {
-            var date = document.getElementById('bDate').value;
             var guests = parseInt(document.getElementById('bGuests').value);
-            var nights = parseInt(document.getElementById('bNights').value) || 1;
             var name = document.getElementById('bName').value.trim();
             var phone = document.getElementById('bPhone').value.trim();
             var comm = document.getElementById('bComm').value.trim();
-
-            if (isPastDate(date)) {
-                showToast('🔒 ' + t('past'), 'error');
-                return;
-            }
 
             if (!name) { showToast('👤 ' + t('bookName') + ' обязательно', 'error'); return; }
 
@@ -3224,15 +3358,15 @@
             var roomNames = [];
 
             for (var idx = 0; idx < selectedRooms.length; idx++) {
-                var rid = selectedRooms[idx];
-                var room = ROOMS.find(function(r) { return r.id === rid; });
+                var item = selectedRooms[idx];
+                var room = ROOMS.find(function(r) { return r.id === item.rid; });
                 if (!room) continue;
 
                 var available = true;
-                var d = new Date(date);
-                for (var i = 0; i < nights; i++) {
+                var d = new Date(item.date);
+                for (var i = 0; i < item.nights; i++) {
                     var dateStr = d.toISOString().split('T')[0];
-                    if (realAvail(rid, dateStr) <= 0) {
+                    if (realAvail(item.rid, dateStr) <= 0) {
                         available = false;
                         break;
                     }
@@ -3241,12 +3375,14 @@
 
                 if (!available) {
                     allAvailable = false;
-                    showToast('❌ ' + rName(room) + ' ' + t('noRooms') + ' на ' + nights + ' ' + t('nights'), 'error');
+                    showToast('❌ ' + rName(room) + ' ' + t('noRooms'), 'error');
                     return;
                 }
 
-                totalPrice += room.price * nights;
-                roomNames.push(rName(room));
+                totalPrice += room.price * item.nights;
+                var dateObj = new Date(item.date);
+                roomNames.push(rName(room) + ' (' + dateObj.toLocaleDateString() + ', ' + item.nights + ' ' + t(
+                    'nights') + ')');
             }
 
             if (!allAvailable) return;
@@ -3255,29 +3391,27 @@
 
             var bookingData = {
                 id: bookingId,
-                rid: selectedRooms.join(','),
+                rid: selectedRooms.map(function(item) { return item.rid; }).join(','),
                 rname: roomNames.join(' + '),
-                date: date,
+                date: selectedRooms[0].date,
                 gname: name,
                 phone: phone,
                 guests: guests,
                 extra: 0,
-                nights: nights,
+                nights: selectedRooms.reduce(function(sum, item) { return sum + item.nights; }, 0),
                 total: totalPrice,
                 comm: comm,
                 st: 'ok',
                 at: new Date().toISOString(),
-                rooms: selectedRooms.map(function(rid) {
-                    return ROOMS.find(function(r) { return r.id === rid; });
-                })
+                rooms: selectedRooms
             };
 
             for (var idx = 0; idx < selectedRooms.length; idx++) {
-                var rid = selectedRooms[idx];
-                var d = new Date(date);
-                for (var i = 0; i < nights; i++) {
+                var item = selectedRooms[idx];
+                var d = new Date(item.date);
+                for (var i = 0; i < item.nights; i++) {
                     var dateStr = d.toISOString().split('T')[0];
-                    setAvail(rid, dateStr, getAvail(rid, dateStr) - 1);
+                    setAvail(item.rid, dateStr, getAvail(item.rid, dateStr) - 1);
                     d.setDate(d.getDate() + 1);
                 }
             }
@@ -3286,8 +3420,8 @@
 
             await saveToCloud();
 
-            var msg = formatBookingMessage(bookingData);
-            sendTelegramMessage(msg);
+            // Отправляем уведомления (Email + Telegram)
+            await sendNotification(bookingData);
 
             closeModal('bookingModal');
             renderRooms();
@@ -3465,6 +3599,34 @@
             }
         });
 
+        // ===== JIVO КНОПКА =====
+        function connectOperator() {
+            if (!jivoLoaded) {
+                var script = document.createElement('script');
+                script.src = '//code.jivo.ru/widget/sfanjIPwr0';
+                script.async = true;
+                script.onload = function() {
+                    jivoLoaded = true;
+                    if (typeof jivo_api !== 'undefined') {
+                        jivo_api.open();
+                    }
+                };
+                document.head.appendChild(script);
+                setTimeout(function() {
+                    if (!jivoLoaded) {
+                        window.open('https://wa.me/77018615121', '_blank');
+                    }
+                }, 3000);
+            } else {
+                if (typeof jivo_api !== 'undefined') {
+                    jivo_api.open();
+                } else {
+                    window.open('https://wa.me/77018615121', '_blank');
+                }
+            }
+            showToast('👩‍💼 ' + t('operator'), 'info');
+        }
+
         // ===== ЯЗЫКИ =====
         function switchLanguage(lang) {
             curLang = lang;
@@ -3528,6 +3690,13 @@
             document.getElementById('footerAdmin').textContent = t('footerAdmin');
             document.getElementById('footerA11y').textContent = t('footerA11y');
 
+            // Футер
+            document.getElementById('operatorLink').textContent = '👩‍💼 ' + t('operator');
+            document.getElementById('footerCopy').textContent = '© 2026 PANA KOLSAY · ' + t('location');
+
+            // Кнопка Jivo
+            document.getElementById('jivoBtn').title = t('jivoTitle');
+
             document.getElementById('filtAll').textContent = t('filtAll');
             document.getElementById('filtStd').textContent = t('filtStd');
             document.getElementById('filtMnt').textContent = t('filtMnt');
@@ -3561,7 +3730,7 @@
                 var modalContent = document.getElementById('bookingModalContent');
                 if (modalContent) {
                     var currentSelected = selectedRooms.slice();
-                    openBookingModal(currentSelected.length > 0 ? currentSelected[0] : null);
+                    openBookingModal(null);
                     selectedRooms = currentSelected;
                     updateSelectedRoomsList();
                     updateBookingForm();
@@ -3574,34 +3743,6 @@
                 switchLanguage(e.target.dataset.lang);
             }
         });
-
-        // ===== ОПЕРАТОР =====
-        function connectOperator() {
-            if (!jivoLoaded) {
-                var script = document.createElement('script');
-                script.src = '//code.jivo.ru/widget/sfanjIPwr0';
-                script.async = true;
-                script.onload = function() {
-                    jivoLoaded = true;
-                    if (typeof jivo_api !== 'undefined') {
-                        jivo_api.open();
-                    }
-                };
-                document.head.appendChild(script);
-                setTimeout(function() {
-                    if (!jivoLoaded) {
-                        window.open('https://wa.me/77018615121', '_blank');
-                    }
-                }, 3000);
-            } else {
-                if (typeof jivo_api !== 'undefined') {
-                    jivo_api.open();
-                } else {
-                    window.open('https://wa.me/77018615121', '_blank');
-                }
-            }
-            showToast('👩‍💼 ' + t('operator'), 'info');
-        }
 
         // ===== ИНИЦИАЛИЗАЦИЯ =====
         (async function() {
