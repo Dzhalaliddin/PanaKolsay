@@ -103,49 +103,6 @@
             overflow-x: hidden;
         }
 
-        /* Jivo кнопка - круглый значок */
-        .jivo-custom-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: #1a73e8;
-            color: #fff;
-            border: none;
-            font-size: 28px;
-            cursor: pointer;
-            z-index: 9999;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .jivo-custom-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
-        }
-        .jivo-custom-btn .pulse {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 2px solid #1a73e8;
-            animation: pulse-ring 1.5s ease-out infinite;
-        }
-        @keyframes pulse-ring {
-            0% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1.3);
-                opacity: 0;
-            }
-        }
-
         #loader {
             position: fixed;
             top: 0;
@@ -956,7 +913,6 @@
             font-size: 0.75rem;
         }
 
-        /* Групповое бронирование */
         .group-booking-item {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--border-glass);
@@ -1487,13 +1443,6 @@
                 grid-template-columns: 1fr;
                 gap: 6px;
             }
-            .jivo-custom-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 22px;
-                bottom: 20px;
-                right: 20px;
-            }
         }
 
         @media (max-width: 480px) {
@@ -1643,13 +1592,6 @@
                 font-size: 0.75rem;
                 padding: 6px 14px;
             }
-            .jivo-custom-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
-                bottom: 15px;
-                right: 15px;
-            }
         }
 
         @media (min-width: 769px) {
@@ -1661,12 +1603,6 @@
     </style>
 </head>
 <body>
-
-    <!-- ===== КРУГЛАЯ КНОПКА JIVO ===== -->
-    <button class="jivo-custom-btn" onclick="connectOperator()" id="jivoBtn" title="Напишите нам">
-        <span class="pulse"></span>
-        <i class="fas fa-comment-dots"></i>
-    </button>
 
     <!-- ===== ЗАГРУЗЧИК ===== -->
     <div id="loader">
@@ -2331,7 +2267,6 @@
                 details: 'Подробнее',
                 operatorText: 'Оператор',
                 location: 'Озеро Кольсай, Казахстан',
-                jivoTitle: 'Напишите нам',
                 sendToEmail: '📧 Отправка на почту...'
             },
             en: {
@@ -2472,7 +2407,6 @@
                 details: 'Details',
                 operatorText: 'Operator',
                 location: 'Kolsay Lake, Kazakhstan',
-                jivoTitle: 'Contact us',
                 sendToEmail: '📧 Sending to email...'
             },
             kz: {
@@ -2613,7 +2547,6 @@
                 details: 'Толығырақ',
                 operatorText: 'Оператор',
                 location: 'Көлсай көлі, Қазақстан',
-                jivoTitle: 'Бізге жазыңыз',
                 sendToEmail: '📧 Поштаға жіберу...'
             }
         };
@@ -2630,7 +2563,7 @@
         let jivoLoaded = false;
         let weatherData = { temp: 0, wind: 0, code: 0, date: '' };
         let weatherLoaded = false;
-        let selectedRooms = []; // массив объектов {rid, date, nights}
+        let selectedRooms = [];
 
         // ============ ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ============
         function t(key) { return L[curLang][key] || key; }
@@ -2683,7 +2616,6 @@
         // ===== EMAIL (JIVO) =====
         async function sendEmail(text) {
             try {
-                // Используем mailto как простой способ
                 const subject = encodeURIComponent('🏨 Новая бронь PANA KOLSAY');
                 const body = encodeURIComponent(text.replace(/<[^>]*>/g, ''));
                 const mailtoLink = `mailto:${JIVO_EMAIL}?subject=${subject}&body=${body}`;
@@ -3093,13 +3025,8 @@
             var content = document.getElementById('bookingModalContent');
 
             if (!rid) {
-                // Если не передан номер, добавляем пустой слот
-                var defaultDate = document.getElementById('quickCheckIn').value || today;
-                var defaultNights = parseInt(document.getElementById('quickNights').value) || 1;
                 selectedRooms = [];
             } else {
-                // Проверяем, есть ли уже этот номер в списке (можно добавлять несколько одинаковых)
-                // Добавляем новый слот с этим номером
                 var dateVal = document.getElementById('quickCheckIn').value || today;
                 var nightsVal = parseInt(document.getElementById('quickNights').value) || 1;
                 selectedRooms.push({
@@ -3157,7 +3084,6 @@
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
 
-            // Устанавливаем дату для добавления
             setTimeout(function() {
                 var addDate = document.getElementById('addRoomDate');
                 if (addDate) addDate.value = today;
@@ -3192,7 +3118,6 @@
                 return;
             }
 
-            // Проверяем доступность
             var allAvailable = true;
             var d = new Date(date);
             for (var i = 0; i < nights; i++) {
@@ -3209,7 +3134,6 @@
                 return;
             }
 
-            // Добавляем номер (можно несколько одинаковых)
             selectedRooms.push({
                 rid: rid,
                 date: date,
@@ -3220,7 +3144,6 @@
             updateBookingForm();
             showToast('✅ ' + rName(ROOMS.find(function(r) { return r.id === rid; })) + ' добавлен', 'success');
 
-            // Обновляем дату для следующего добавления
             var nextDate = new Date(date);
             nextDate.setDate(nextDate.getDate() + nights);
             dateInput.value = nextDate.toISOString().split('T')[0];
@@ -3420,7 +3343,6 @@
 
             await saveToCloud();
 
-            // Отправляем уведомления (Email + Telegram)
             await sendNotification(bookingData);
 
             closeModal('bookingModal');
@@ -3599,7 +3521,7 @@
             }
         });
 
-        // ===== JIVO КНОПКА =====
+        // ===== JIVO =====
         function connectOperator() {
             if (!jivoLoaded) {
                 var script = document.createElement('script');
@@ -3690,12 +3612,8 @@
             document.getElementById('footerAdmin').textContent = t('footerAdmin');
             document.getElementById('footerA11y').textContent = t('footerA11y');
 
-            // Футер
             document.getElementById('operatorLink').textContent = '👩‍💼 ' + t('operator');
             document.getElementById('footerCopy').textContent = '© 2026 PANA KOLSAY · ' + t('location');
-
-            // Кнопка Jivo
-            document.getElementById('jivoBtn').title = t('jivoTitle');
 
             document.getElementById('filtAll').textContent = t('filtAll');
             document.getElementById('filtStd').textContent = t('filtStd');
