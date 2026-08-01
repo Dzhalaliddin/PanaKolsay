@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <style>
-        /* ===== ВСЕ СТИЛИ (КАК В ПРЕДЫДУЩЕЙ ВЕРСИИ) ===== */
+        /* ===== ВСЕ СТИЛИ (как в предыдущей версии) ===== */
         :root {
             --gold: #f5c542;
             --gold-light: #ffe28a;
@@ -107,7 +107,6 @@
             overflow-x: hidden;
         }
 
-        /* ===== ИНДИКАТОР ЗАГРУЗКИ ===== */
         #loader {
             position: fixed;
             top: 0;
@@ -147,7 +146,6 @@
             font-size: 0.9rem;
         }
 
-        /* ===== ФИКСИРОВАННЫЙ ФОН ===== */
         .bg-fixed {
             position: fixed;
             top: 0;
@@ -188,7 +186,6 @@
             padding-top: 16px;
         }
 
-        /* ===== ФИКСИРОВАННЫЙ ВЕРХНИЙ КОЛОНТИТУЛ ===== */
         .header-sticky {
             position: sticky;
             top: 0;
@@ -438,14 +435,6 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 30px rgba(245, 197, 66, 0.5);
             animation: none;
-        }
-        .btn-share {
-            background: #1DA1F2;
-            color: #fff;
-        }
-        .btn-share:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(29, 161, 242, 0.4);
         }
 
         .filter-bar {
@@ -1598,8 +1587,31 @@
                     <a href="https://instagram.com/pana_hotels" target="_blank" class="contact-btn btn-instagram"><i class="fab fa-instagram"></i> <span id="btnIgText">Instagram</span></a>
                     <a href="tel:+77008368964" class="contact-btn btn-phone"><i class="fas fa-phone"></i> <span id="btnPhText">Позвонить</span></a>
                     <a href="#" class="contact-btn btn-book" onclick="openBookingModal()"><i class="fas fa-calendar-check"></i> <span id="btnBookText">Забронировать</span></a>
-                    <button class="contact-btn btn-share" onclick="sharePage()"><i class="fas fa-share-alt"></i> <span id="btnShareText">Поделиться</span></button>
                 </div>
+            </div>
+        </div>
+
+        <!-- ===== КАЛЕНДАРЬ ДОСТУПНОСТИ ДЛЯ ГОСТЕЙ ===== -->
+        <div class="content-block" id="guestCalendarBlock">
+            <h2 style="font-weight:300; margin-bottom:12px; font-size:1.2rem;" id="calendarTitle">📆 Календарь доступности</h2>
+            <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:12px;">
+                <button class="btn-submit" style="width:auto; padding:6px 14px; font-size:0.8rem;" onclick="changeGuestMonth(-1)">◀</button>
+                <span style="font-weight:600; font-size:1rem; min-width:140px; text-align:center;" id="calendarMonthLabel">Август 2026</span>
+                <button class="btn-submit" style="width:auto; padding:6px 14px; font-size:0.8rem;" onclick="changeGuestMonth(1)">▶</button>
+                <button class="btn-submit" style="width:auto; padding:6px 14px; font-size:0.8rem; background:#2ed573; color:#fff;" onclick="goToTodayGuest()">📅 Сегодня</button>
+            </div>
+            <div class="calendar-wrap" style="overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:12px; border:1px solid var(--border-glass);">
+                <table class="calendar-table" style="width:100%; border-collapse:collapse; font-size:0.7rem; min-width:500px;">
+                    <thead id="calendarHead"></thead>
+                    <tbody id="calendarBody"></tbody>
+                </table>
+            </div>
+            <div style="display:flex; gap:12px; margin-top:10px; flex-wrap:wrap; font-size:0.7rem; color:var(--text-muted); justify-content:center;">
+                <span><span style="display:inline-block; width:12px; height:12px; border-radius:50%; background:#2ed573; vertical-align:middle; margin-right:4px;"></span> Свободно (≥3)</span>
+                <span><span style="display:inline-block; width:12px; height:12px; border-radius:50%; background:#ffa502; vertical-align:middle; margin-right:4px;"></span> 1-2 места</span>
+                <span><span style="display:inline-block; width:12px; height:12px; border-radius:50%; background:#ff4757; vertical-align:middle; margin-right:4px;"></span> Занято</span>
+                <span><span style="color:rgba(255,255,255,0.3);">🟡 Сегодня</span></span>
+                <span style="color:var(--text-muted);">📌 Нажмите на дату для проверки</span>
             </div>
         </div>
 
@@ -1650,12 +1662,12 @@
         <div class="content-block" id="mapBlock">
             <h2 style="font-weight:300; margin-bottom:12px; font-size:1.2rem;" id="mapTitle">📍 Как добраться</h2>
             <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!4v1745860598743!6m8!1m7!1sCIHM0ogKEICAgIC_gIDUpQE!2m2!1d42.988277!2d78.325599!3f75!4f0!5f0.7820865974627469" width="100%" height="350" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!4v1745860598743!6m8!1m7!1sCIHM0ogKEICAgIC_gICCdg!2m2!1d42.995647!2d78.326559!3f85.8!4f0!5f0.7820865974627469" width="100%" height="350" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy"></iframe>
             </div>
             <div class="map-buttons">
                 <a href="https://go.2gis.com/k4fIM" target="_blank" class="map-btn map-btn-2gis"><i class="fas fa-map"></i> 2GIS</a>
                 <a href="https://yandex.kz/maps/ru/-/CTvwaRo5" target="_blank" class="map-btn map-btn-yandex"><i class="fas fa-map"></i> Яндекс</a>
-                <a href="https://www.google.com/maps/place/%D0%BE%D0%B7.+%D0%9A%D0%BE%D0%BB%D1%8C%D1%81%D0%B0%D0%B9+%D0%9D%D0%B8%D0%B6%D0%BD%D0%B5%D0%B5/@42.988277,78.325599,3a,75y,122.66h,48.6t/data=!3m8!1e1!3m6!1sCIHM0ogKEICAgIC_gIDUpQE!2e10!3e11!6shttps:%2F%2Flh3.googleusercontent.com%2Fgpms-cs-s%2FAFP8RcOtNio5Yt_LrtIVnLf4oxjAPn1vkqS-45jQYUzym1DL9uz-Eb4j8vd8f0cVk_5PHIXjql_bKZEx2n3uRVMj6vhFl_DTLSUll07Uw1OL80olo5HLktZx3Fo10L5D95nMuk7hpugmww%3Dw900-h600-k-no-pi41.400749763749836-ya297.7961297227911-ro0-fo100!7i12000!8i6000!4m16!1m8!3m7!1s0x3886c0e5604528f3:0x4fb0bf36fe7869bb!2z0JrQvtC70YzRgdCw0LnRgdC60LjQtSDQvtC30ZHRgNCw!8m2!3d42.935386!4d78.3259016!10e5!16s%2Fg%2F1pxy2mv1m!3m6!1s0x3886c71645551041:0x199e38ca417e7588!8m2!3d42.9837687!4d78.3237673!10e5!16s%2Fg%2F1tczt9q9?entry=ttu&g_ep=EgoyMDI2MDcyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="map-btn map-btn-google"><i class="fas fa-map"></i> Google</a>
+                <a href="https://www.google.com/maps/@42.995647,78.326559,3a,85.8y,135.91h,51.71t/data=!3m8!1e1!3m6!1sCIHM0ogKEICAgIC_gICCdg!2e10!3e11!6shttps:%2F%2Flh3.googleusercontent.com%2Fgpms-cs-s%2FAFP8RcO5B_MQCzvrrnqWdfO8aUFViM9sI_tg3_lQJey2yEd69AcRYpDmSB0A3u5BjNBjgXDCKhclEds-QdwSKqpekuZyOGtU2iQslWcp1MvgRK8_4K9SMp5947qMkU32SiMAoUz5DKna%3Dw900-h600-k-no-pi38.28553290897283-ya335.52992239260266-ro0-fo100!7i12000!8i6000?hl=ru&entry=ttu&g_ep=EgoyMDI2MDcyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="map-btn map-btn-google"><i class="fas fa-map"></i> Google</a>
             </div>
         </div>
 
@@ -1712,15 +1724,13 @@
         <!-- ОТЗЫВЫ -->
         <div class="content-block" id="reviewsBlock">
             <h2 style="font-weight:300; margin-bottom:12px; font-size:1.2rem;" id="reviewsTitle">💬 Отзывы гостей</h2>
-            <div class="reviews-scroll" id="reviewsScroll">
-                <!-- Заполняется через JS -->
-            </div>
+            <div class="reviews-scroll" id="reviewsScroll"></div>
         </div>
 
         <!-- ФУТЕР -->
         <div class="footer">
             <div class="footer-links">
-                <a href="admin.html" target="_blank" id="footerAdmin">🔧 Админ-панель</a>
+                <a href="#" onclick="showAdminLogin()" id="footerAdmin">🔧 Админ-панель</a>
                 <a href="#" onclick="toggleAccessibility()" id="footerA11y">♿ Версия для слабовидящих</a>
                 <a href="tel:+77008368964">📞 +7 700 836 8964</a>
                 <a href="#" onclick="connectOperator()" id="operatorLink">👩‍💼 Оператор</a>
@@ -1759,7 +1769,10 @@
 
         // ============ TELEGRAM ============
         const TELEGRAM_BOT_TOKEN = '1156354193:AAE3gQefzxsmuWSfIIzTOCW1-j6x1YoTNxs';
-        const TELEGRAM_CHAT_ID = '1156354193'; // бот пишет сам себе
+        const TELEGRAM_CHAT_ID = '-5423943839';
+
+        // ============ АДМИН-ПАРОЛЬ ============
+        const ADMIN_PASSWORD = 'Pana2026!';
 
         // ============ НОМЕРА ============
         const ROOMS = [{
@@ -1772,36 +1785,20 @@
             extra: 2,
             cat: 'luxury',
             total: 1,
-            photos: [
-                'https://lh3.googleusercontent.com/d/1wezgXvtZeBW3WwgIF-zPka9Zl-fEU0Oi=w1200',
+            photos: ['https://lh3.googleusercontent.com/d/1wezgXvtZeBW3WwgIF-zPka9Zl-fEU0Oi=w1200',
                 'https://lh3.googleusercontent.com/d/1vzIOcC_g2iG0vrYJTKTk9-vbTyPCSv18=w1200'
             ],
             descRu: 'Каменный домик А01. Заезд 14:00, выезд 12:00. Макс. 2 взрослых + 2 детей. 37 м².',
             descEn: 'Stone house A01. Check-in 14:00, check-out 12:00. Max 2 adults + 2 children. 37 m².',
             descKz: 'Тас үй А01. Келу 14:00, кету 12:00. Макс. 2 ересек + 2 бала. 37 м².',
-            featRu: [
-                '🕒 Заезд 14:00 — выезд 12:00',
-                '👥 2 взрослых + 2 детей',
-                '➕ Доп. место: 15 000 ₸',
-                '🍳 Бесплатный завтрак на 2-х',
-                '🚐 Бесплатный трансфер с парковки',
-                '🍽️ Рядом этно-кафе Тары'
+            featRu: ['🕒 Заезд 14:00 — выезд 12:00', '👥 2 взрослых + 2 детей', '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 2-х', '🚐 Бесплатный трансфер с парковки', '🍽️ Рядом этно-кафе Тары'
             ],
-            featEn: [
-                '🕒 Check-in 14:00 — Check-out 12:00',
-                '👥 2 adults + 2 children',
-                '➕ Extra bed: 15,000 ₸',
-                '🍳 Free breakfast for 2',
-                '🚐 Free transfer from parking',
-                '🍽️ Tary ethnic cafe nearby'
+            featEn: ['🕒 Check-in 14:00 — Check-out 12:00', '👥 2 adults + 2 children', '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 2', '🚐 Free transfer from parking', '🍽️ Tary ethnic cafe nearby'
             ],
-            featKz: [
-                '🕒 Келу 14:00 — кету 12:00',
-                '👥 2 ересек + 2 бала',
-                '➕ Қосымша орын: 15 000 ₸',
-                '🍳 2 адамға тегін таңғы ас',
-                '🚐 Тұрақтан тегін трансфер',
-                '🍽️ Tary этно-кафе жанында'
+            featKz: ['🕒 Келу 14:00 — кету 12:00', '👥 2 ересек + 2 бала', '➕ Қосымша орын: 15 000 ₸',
+                '🍳 2 адамға тегін таңғы ас', '🚐 Тұрақтан тегін трансфер', '🍽️ Tary этно-кафе жанында'
             ],
             link: 'https://www.instagram.com/p/DHXcKsAt6Zg/'
         }, {
@@ -1814,36 +1811,20 @@
             extra: 2,
             cat: 'luxury',
             total: 1,
-            photos: [
-                'https://lh3.googleusercontent.com/d/1wZki3IlnTcrB2InnikQDFzfXjcCtuxwO=w1200',
+            photos: ['https://lh3.googleusercontent.com/d/1wZki3IlnTcrB2InnikQDFzfXjcCtuxwO=w1200',
                 'https://lh3.googleusercontent.com/d/1XlSE1OTY0JRVUJEbK5U5och4Ghr_1M8h=w1200'
             ],
             descRu: 'Деревянный домик А02. Заезд 14:00, выезд 12:00. Макс. 2 взрослых + 2 детей. 37 м².',
             descEn: 'Wooden house A02. Check-in 14:00, check-out 12:00. Max 2 adults + 2 children. 37 m².',
             descKz: 'Ағаш үй А02. Келу 14:00, кету 12:00. Макс. 2 ересек + 2 бала. 37 м².',
-            featRu: [
-                '🕒 Заезд 14:00 — выезд 12:00',
-                '👥 2 взрослых + 2 детей',
-                '➕ Доп. место: 15 000 ₸',
-                '🍳 Бесплатный завтрак на 2-х',
-                '🚐 Бесплатный трансфер с парковки',
-                '🍽️ Рядом этно-кафе Тары'
+            featRu: ['🕒 Заезд 14:00 — выезд 12:00', '👥 2 взрослых + 2 детей', '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 2-х', '🚐 Бесплатный трансфер с парковки', '🍽️ Рядом этно-кафе Тары'
             ],
-            featEn: [
-                '🕒 Check-in 14:00 — Check-out 12:00',
-                '👥 2 adults + 2 children',
-                '➕ Extra bed: 15,000 ₸',
-                '🍳 Free breakfast for 2',
-                '🚐 Free transfer from parking',
-                '🍽️ Tary ethnic cafe nearby'
+            featEn: ['🕒 Check-in 14:00 — Check-out 12:00', '👥 2 adults + 2 children', '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 2', '🚐 Free transfer from parking', '🍽️ Tary ethnic cafe nearby'
             ],
-            featKz: [
-                '🕒 Келу 14:00 — кету 12:00',
-                '👥 2 ересек + 2 бала',
-                '➕ Қосымша орын: 15 000 ₸',
-                '🍳 2 адамға тегін таңғы ас',
-                '🚐 Тұрақтан тегін трансфер',
-                '🍽️ Tary этно-кафе жанында'
+            featKz: ['🕒 Келу 14:00 — кету 12:00', '👥 2 ересек + 2 бала', '➕ Қосымша орын: 15 000 ₸',
+                '🍳 2 адамға тегін таңғы ас', '🚐 Тұрақтан тегін трансфер', '🍽️ Tary этно-кафе жанында'
             ],
             link: 'https://www.instagram.com/reel/DKjjbJjNWve/'
         }, {
@@ -1856,38 +1837,22 @@
             extra: 1,
             cat: 'standard',
             total: 2,
-            photos: [
-                'https://lh3.googleusercontent.com/d/1dZ2jSYbGk3xdYl50Ruho6z5fVSewkUWq=w800',
+            photos: ['https://lh3.googleusercontent.com/d/1dZ2jSYbGk3xdYl50Ruho6z5fVSewkUWq=w800',
                 'https://lh3.googleusercontent.com/d/1DCtw5GRUWdlB1Uy2358mz4TbdQPo-t9x=w800'
             ],
             descRu: 'Стандартный номер без вида для 2-х персон. Заезд 15:00, выезд 12:00.',
             descEn: 'Standard room without view for 2 persons. Check-in 15:00, check-out 12:00.',
             descKz: 'Көрініссіз стандартты бөлме 2 адамға. Келу 15:00, кету 12:00.',
-            featRu: [
-                '🕒 Заезд 15:00 — выезд 12:00',
-                '👥 2 взрослых + 1 ребенок',
-                '➕ Доп. место: 15 000 ₸',
-                '🍳 Бесплатный завтрак на 2-х',
-                '🚐 Бесплатный трансфер с парковки',
-                '👶 Дети до 5 лет — бесплатно',
+            featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 2 взрослых + 1 ребенок', '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 2-х', '🚐 Бесплатный трансфер с парковки', '👶 Дети до 5 лет — бесплатно',
                 '🍽️ Рядом этно-кафе Тары'
             ],
-            featEn: [
-                '🕒 Check-in 15:00 — Check-out 12:00',
-                '👥 2 adults + 1 child',
-                '➕ Extra bed: 15,000 ₸',
-                '🍳 Free breakfast for 2',
-                '🚐 Free transfer from parking',
-                '👶 Children under 5 — free',
+            featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 2 adults + 1 child', '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 2', '🚐 Free transfer from parking', '👶 Children under 5 — free',
                 '🍽️ Tary ethnic cafe nearby'
             ],
-            featKz: [
-                '🕒 Келу 15:00 — кету 12:00',
-                '👥 2 ересек + 1 бала',
-                '➕ Қосымша орын: 15 000 ₸',
-                '🍳 2 адамға тегін таңғы ас',
-                '🚐 Тұрақтан тегін трансфер',
-                '👶 5 жасқа дейін — тегін',
+            featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 2 ересек + 1 бала', '➕ Қосымша орын: 15 000 ₸',
+                '🍳 2 адамға тегін таңғы ас', '🚐 Тұрақтан тегін трансфер', '👶 5 жасқа дейін — тегін',
                 '🍽️ Tary этно-кафе жанында'
             ],
             link: 'https://drive.google.com/file/d/1pEewgVeg3V_29HTFnOVYeNvZUxa5rAl8/view'
@@ -1901,38 +1866,22 @@
             extra: 1,
             cat: 'mountain',
             total: 2,
-            photos: [
-                'https://lh3.googleusercontent.com/d/1cqdfwaYNZtCEVWexRbqcd-9fe1o5WUpC=w1200',
+            photos: ['https://lh3.googleusercontent.com/d/1cqdfwaYNZtCEVWexRbqcd-9fe1o5WUpC=w1200',
                 'https://lh3.googleusercontent.com/d/1aXjg2ecY0lTRfKS9ADyf6DAgmweCd474=w1200'
             ],
             descRu: 'Стандартный номер с видом на горы для 2-х персон. Заезд 15:00, выезд 12:00.',
             descEn: 'Standard room with mountain view for 2 persons. Check-in 15:00, check-out 12:00.',
             descKz: 'Тау көрінісі бар стандартты бөлме 2 адамға. Келу 15:00, кету 12:00.',
-            featRu: [
-                '🕒 Заезд 15:00 — выезд 12:00',
-                '👥 2 взрослых + 1 ребенок',
-                '➕ Доп. место: 15 000 ₸',
-                '🍳 Бесплатный завтрак на 2-х',
-                '🚐 Бесплатный трансфер с парковки',
-                '👶 Дети до 5 лет — бесплатно',
+            featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 2 взрослых + 1 ребенок', '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 2-х', '🚐 Бесплатный трансфер с парковки', '👶 Дети до 5 лет — бесплатно',
                 '🍽️ Рядом этно-кафе Тары'
             ],
-            featEn: [
-                '🕒 Check-in 15:00 — Check-out 12:00',
-                '👥 2 adults + 1 child',
-                '➕ Extra bed: 15,000 ₸',
-                '🍳 Free breakfast for 2',
-                '🚐 Free transfer from parking',
-                '👶 Children under 5 — free',
+            featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 2 adults + 1 child', '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 2', '🚐 Free transfer from parking', '👶 Children under 5 — free',
                 '🍽️ Tary ethnic cafe nearby'
             ],
-            featKz: [
-                '🕒 Келу 15:00 — кету 12:00',
-                '👥 2 ересек + 1 бала',
-                '➕ Қосымша орын: 15 000 ₸',
-                '🍳 2 адамға тегін таңғы ас',
-                '🚐 Тұрақтан тегін трансфер',
-                '👶 5 жасқа дейін — тегін',
+            featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 2 ересек + 1 бала', '➕ Қосымша орын: 15 000 ₸',
+                '🍳 2 адамға тегін таңғы ас', '🚐 Тұрақтан тегін трансфер', '👶 5 жасқа дейін — тегін',
                 '🍽️ Tary этно-кафе жанында'
             ],
             link: 'https://drive.google.com/file/d/1dn9vFQlvhLWgdE7B19tSL-WKpmsPepqn/view'
@@ -1946,38 +1895,22 @@
             extra: 1,
             cat: 'lake',
             total: 7,
-            photos: [
-                'https://lh3.googleusercontent.com/d/1ptwAdkxgwMnuKiwTCGMLNsncTZ4SCD32=w800',
+            photos: ['https://lh3.googleusercontent.com/d/1ptwAdkxgwMnuKiwTCGMLNsncTZ4SCD32=w800',
                 'https://lh3.googleusercontent.com/d/1YVkMTwwWAkDK1lSwfDPQ6qMKpZFhzqWE=w800'
             ],
             descRu: 'Стандартный номер с видом на озеро Кольсай для 2-х персон. Double кровать.',
             descEn: 'Standard room with Kolsay Lake view for 2 persons. Double bed.',
             descKz: 'Көлсай көлінің көрінісі бар стандартты бөлме 2 адамға. Double кереует.',
-            featRu: [
-                '🕒 Заезд 15:00 — выезд 12:00',
-                '👥 2 взрослых + 1 ребенок',
-                '➕ Доп. место: 15 000 ₸',
-                '🍳 Бесплатный завтрак на 2-х',
-                '🚐 Бесплатный трансфер с парковки',
-                '👶 Дети до 5 лет — бесплатно',
+            featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 2 взрослых + 1 ребенок', '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 2-х', '🚐 Бесплатный трансфер с парковки', '👶 Дети до 5 лет — бесплатно',
                 '🍽️ Рядом этно-кафе Тары'
             ],
-            featEn: [
-                '🕒 Check-in 15:00 — Check-out 12:00',
-                '👥 2 adults + 1 child',
-                '➕ Extra bed: 15,000 ₸',
-                '🍳 Free breakfast for 2',
-                '🚐 Free transfer from parking',
-                '👶 Children under 5 — free',
+            featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 2 adults + 1 child', '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 2', '🚐 Free transfer from parking', '👶 Children under 5 — free',
                 '🍽️ Tary ethnic cafe nearby'
             ],
-            featKz: [
-                '🕒 Келу 15:00 — кету 12:00',
-                '👥 2 ересек + 1 бала',
-                '➕ Қосымша орын: 15 000 ₸',
-                '🍳 2 адамға тегін таңғы ас',
-                '🚐 Тұрақтан тегін трансфер',
-                '👶 5 жасқа дейін — тегін',
+            featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 2 ересек + 1 бала', '➕ Қосымша орын: 15 000 ₸',
+                '🍳 2 адамға тегін таңғы ас', '🚐 Тұрақтан тегін трансфер', '👶 5 жасқа дейін — тегін',
                 '🍽️ Tary этно-кафе жанында'
             ],
             link: 'https://drive.google.com/file/d/1m-1D7gTtylwBGhNm1u2QV1jXgN_M3xhr/view'
@@ -1991,38 +1924,22 @@
             extra: 1,
             cat: 'triple',
             total: 2,
-            photos: [
-                'https://lh3.googleusercontent.com/d/1mGehFtdQ7win_x-V758s0u0RIf6B9sEc=w800',
+            photos: ['https://lh3.googleusercontent.com/d/1mGehFtdQ7win_x-V758s0u0RIf6B9sEc=w800',
                 'https://lh3.googleusercontent.com/d/12LpF2YVubLYGZoNG0kmKVFSYmePofzU1=w800'
             ],
             descRu: 'Стандартный номер с видом на озеро Кольсай для 3-х персон.',
             descEn: 'Standard room with Kolsay Lake view for 3 persons.',
             descKz: 'Көлсай көлінің көрінісі бар стандартты бөлме 3 адамға.',
-            featRu: [
-                '🕒 Заезд 15:00 — выезд 12:00',
-                '👥 3 взрослых + 1 ребенок',
-                '➕ Доп. место: 15 000 ₸',
-                '🍳 Бесплатный завтрак на 2-х',
-                '🚐 Бесплатный трансфер с парковки',
-                '👶 Дети до 5 лет — бесплатно',
+            featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 3 взрослых + 1 ребенок', '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 2-х', '🚐 Бесплатный трансфер с парковки', '👶 Дети до 5 лет — бесплатно',
                 '🍽️ Рядом этно-кафе Тары'
             ],
-            featEn: [
-                '🕒 Check-in 15:00 — Check-out 12:00',
-                '👥 3 adults + 1 child',
-                '➕ Extra bed: 15,000 ₸',
-                '🍳 Free breakfast for 2',
-                '🚐 Free transfer from parking',
-                '👶 Children under 5 — free',
+            featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 3 adults + 1 child', '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 2', '🚐 Free transfer from parking', '👶 Children under 5 — free',
                 '🍽️ Tary ethnic cafe nearby'
             ],
-            featKz: [
-                '🕒 Келу 15:00 — кету 12:00',
-                '👥 3 ересек + 1 бала',
-                '➕ Қосымша орын: 15 000 ₸',
-                '🍳 2 адамға тегін таңғы ас',
-                '🚐 Тұрақтан тегін трансфер',
-                '👶 5 жасқа дейін — тегін',
+            featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 3 ересек + 1 бала', '➕ Қосымша орын: 15 000 ₸',
+                '🍳 2 адамға тегін таңғы ас', '🚐 Тұрақтан тегін трансфер', '👶 5 жасқа дейін — тегін',
                 '🍽️ Tary этно-кафе жанында'
             ],
             link: 'https://drive.google.com/file/d/1Lh4d_lGjFiZsbBHbkRjpGY9g_yvUAx8z/view'
@@ -2036,38 +1953,22 @@
             extra: 1,
             cat: 'deluxe',
             total: 1,
-            photos: [
-                'https://lh3.googleusercontent.com/d/1NAY7HBLgs9nQC1P509-ezDdbgtz2wpHl=w800',
+            photos: ['https://lh3.googleusercontent.com/d/1NAY7HBLgs9nQC1P509-ezDdbgtz2wpHl=w800',
                 'https://lh3.googleusercontent.com/d/1YVkMTwwWAkDK1lSwfDPQ6qMKpZFhzqWE=w800'
             ],
             descRu: 'Deluxe для 4-х персон. Заезд 15:00, выезд 12:00.',
             descEn: 'Deluxe for 4 persons. Check-in 15:00, check-out 12:00.',
             descKz: '4 адамға арналған Deluxe. Келу 15:00, кету 12:00.',
-            featRu: [
-                '🕒 Заезд 15:00 — выезд 12:00',
-                '👥 4 взрослых + 1 ребенок',
-                '➕ Доп. место: 15 000 ₸',
-                '🍳 Бесплатный завтрак на 4-х',
-                '🚐 Бесплатный трансфер с парковки',
-                '👶 Дети до 5 лет — бесплатно',
+            featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 4 взрослых + 1 ребенок', '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 4-х', '🚐 Бесплатный трансфер с парковки', '👶 Дети до 5 лет — бесплатно',
                 '🍽️ Рядом этно-кафе Тары'
             ],
-            featEn: [
-                '🕒 Check-in 15:00 — Check-out 12:00',
-                '👥 4 adults + 1 child',
-                '➕ Extra bed: 15,000 ₸',
-                '🍳 Free breakfast for 4',
-                '🚐 Free transfer from parking',
-                '👶 Children under 5 — free',
+            featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 4 adults + 1 child', '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 4', '🚐 Free transfer from parking', '👶 Children under 5 — free',
                 '🍽️ Tary ethnic cafe nearby'
             ],
-            featKz: [
-                '🕒 Келу 15:00 — кету 12:00',
-                '👥 4 ересек + 1 бала',
-                '➕ Қосымша орын: 15 000 ₸',
-                '🍳 4 адамға тегін таңғы ас',
-                '🚐 Тұрақтан тегін трансфер',
-                '👶 5 жасқа дейін — тегін',
+            featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 4 ересек + 1 бала', '➕ Қосымша орын: 15 000 ₸',
+                '🍳 4 адамға тегін таңғы ас', '🚐 Тұрақтан тегін трансфер', '👶 5 жасқа дейін — тегін',
                 '🍽️ Tary этно-кафе жанында'
             ],
             link: 'https://drive.google.com/file/d/1bsCXUoVPz10hAwtW2hnomwOnUOZ7bJ6-/view'
@@ -2081,38 +1982,22 @@
             extra: 1,
             cat: 'deluxe',
             total: 2,
-            photos: [
-                'https://lh3.googleusercontent.com/d/1Gc8NNcyvv1g4htILGRcn_HShvY3RflZP=w800',
+            photos: ['https://lh3.googleusercontent.com/d/1Gc8NNcyvv1g4htILGRcn_HShvY3RflZP=w800',
                 'https://lh3.googleusercontent.com/d/1xc3RAvBFUoyL0e8KCX_7HzwLjeQEIpqk=w800'
             ],
             descRu: 'Deluxe+ для 4-х персон. Заезд 15:00, выезд 12:00.',
             descEn: 'Deluxe+ for 4 persons. Check-in 15:00, check-out 12:00.',
             descKz: '4 адамға арналған Deluxe+. Келу 15:00, кету 12:00.',
-            featRu: [
-                '🕒 Заезд 15:00 — выезд 12:00',
-                '👥 4 взрослых + 1 ребенок',
-                '➕ Доп. место: 15 000 ₸',
-                '🍳 Бесплатный завтрак на 4-х',
-                '🚐 Бесплатный трансфер с парковки',
-                '👶 Дети до 5 лет — бесплатно',
+            featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 4 взрослых + 1 ребенок', '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 4-х', '🚐 Бесплатный трансфер с парковки', '👶 Дети до 5 лет — бесплатно',
                 '🍽️ Рядом этно-кафе Тары'
             ],
-            featEn: [
-                '🕒 Check-in 15:00 — Check-out 12:00',
-                '👥 4 adults + 1 child',
-                '➕ Extra bed: 15,000 ₸',
-                '🍳 Free breakfast for 4',
-                '🚐 Free transfer from parking',
-                '👶 Children under 5 — free',
+            featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 4 adults + 1 child', '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 4', '🚐 Free transfer from parking', '👶 Children under 5 — free',
                 '🍽️ Tary ethnic cafe nearby'
             ],
-            featKz: [
-                '🕒 Келу 15:00 — кету 12:00',
-                '👥 4 ересек + 1 бала',
-                '➕ Қосымша орын: 15 000 ₸',
-                '🍳 4 адамға тегін таңғы ас',
-                '🚐 Тұрақтан тегін трансфер',
-                '👶 5 жасқа дейін — тегін',
+            featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 4 ересек + 1 бала', '➕ Қосымша орын: 15 000 ₸',
+                '🍳 4 адамға тегін таңғы ас', '🚐 Тұрақтан тегін трансфер', '👶 5 жасқа дейін — тегін',
                 '🍽️ Tary этно-кафе жанында'
             ],
             link: 'https://drive.google.com/file/d/1xUdZq5Vi13i2bNG3Oy1LtAg7157K6asr/view'
@@ -2126,38 +2011,22 @@
             extra: 1,
             cat: 'deluxe',
             total: 1,
-            photos: [
-                'https://lh3.googleusercontent.com/d/1rTsaISNCU9DkBxkkesAqc6vvA1Q4QLYE=w1200',
+            photos: ['https://lh3.googleusercontent.com/d/1rTsaISNCU9DkBxkkesAqc6vvA1Q4QLYE=w1200',
                 'https://lh3.googleusercontent.com/d/1hasi_mV_no9fsPYedP6UzXq1qY8blBTP=w1200'
             ],
             descRu: 'Premier Deluxe для 4-х персон. Заезд 15:00, выезд 12:00.',
             descEn: 'Premier Deluxe for 4 persons. Check-in 15:00, check-out 12:00.',
             descKz: '4 адамға арналған Premier Deluxe. Келу 15:00, кету 12:00.',
-            featRu: [
-                '🕒 Заезд 15:00 — выезд 12:00',
-                '👥 4 взрослых + 1 ребенок',
-                '➕ Доп. место: 15 000 ₸',
-                '🍳 Бесплатный завтрак на 4-х',
-                '🚐 Бесплатный трансфер с парковки',
-                '👶 Дети до 5 лет — бесплатно',
+            featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 4 взрослых + 1 ребенок', '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 4-х', '🚐 Бесплатный трансфер с парковки', '👶 Дети до 5 лет — бесплатно',
                 '🍽️ Рядом этно-кафе Тары'
             ],
-            featEn: [
-                '🕒 Check-in 15:00 — Check-out 12:00',
-                '👥 4 adults + 1 child',
-                '➕ Extra bed: 15,000 ₸',
-                '🍳 Free breakfast for 4',
-                '🚐 Free transfer from parking',
-                '👶 Children under 5 — free',
+            featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 4 adults + 1 child', '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 4', '🚐 Free transfer from parking', '👶 Children under 5 — free',
                 '🍽️ Tary ethnic cafe nearby'
             ],
-            featKz: [
-                '🕒 Келу 15:00 — кету 12:00',
-                '👥 4 ересек + 1 бала',
-                '➕ Қосымша орын: 15 000 ₸',
-                '🍳 4 адамға тегін таңғы ас',
-                '🚐 Тұрақтан тегін трансфер',
-                '👶 5 жасқа дейін — тегін',
+            featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 4 ересек + 1 бала', '➕ Қосымша орын: 15 000 ₸',
+                '🍳 4 адамға тегін таңғы ас', '🚐 Тұрақтан тегін трансфер', '👶 5 жасқа дейін — тегін',
                 '🍽️ Tary этно-кафе жанында'
             ],
             link: 'https://drive.google.com/file/d/1t8ylE9wOguBWlzH1DFVL7eEqUDOtXWw7/view'
@@ -2171,38 +2040,22 @@
             extra: 1,
             cat: 'luxury',
             total: 1,
-            photos: [
-                'https://lh3.googleusercontent.com/d/1t3XTXwNULnuAoMnQB2CnaDNtQtfJim7j=w800',
+            photos: ['https://lh3.googleusercontent.com/d/1t3XTXwNULnuAoMnQB2CnaDNtQtfJim7j=w800',
                 'https://lh3.googleusercontent.com/d/1Ja_ofE8s06EF0cAeSyejN5TWbNacXRtd=w800'
             ],
             descRu: 'Suite Room для 4-х персон. Заезд 15:00, выезд 12:00.',
             descEn: 'Suite Room for 4 persons. Check-in 15:00, check-out 12:00.',
             descKz: '4 адамға арналған Suite Room. Келу 15:00, кету 12:00.',
-            featRu: [
-                '🕒 Заезд 15:00 — выезд 12:00',
-                '👥 4 взрослых + 1 ребенок',
-                '➕ Доп. место: 15 000 ₸',
-                '🍳 Бесплатный завтрак на 4-х',
-                '🚐 Бесплатный трансфер с парковки',
-                '👶 Дети до 5 лет — бесплатно',
+            featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 4 взрослых + 1 ребенок', '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 4-х', '🚐 Бесплатный трансфер с парковки', '👶 Дети до 5 лет — бесплатно',
                 '🍽️ Рядом этно-кафе Тары'
             ],
-            featEn: [
-                '🕒 Check-in 15:00 — Check-out 12:00',
-                '👥 4 adults + 1 child',
-                '➕ Extra bed: 15,000 ₸',
-                '🍳 Free breakfast for 4',
-                '🚐 Free transfer from parking',
-                '👶 Children under 5 — free',
+            featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 4 adults + 1 child', '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 4', '🚐 Free transfer from parking', '👶 Children under 5 — free',
                 '🍽️ Tary ethnic cafe nearby'
             ],
-            featKz: [
-                '🕒 Келу 15:00 — кету 12:00',
-                '👥 4 ересек + 1 бала',
-                '➕ Қосымша орын: 15 000 ₸',
-                '🍳 4 адамға тегін таңғы ас',
-                '🚐 Тұрақтан тегін трансфер',
-                '👶 5 жасқа дейін — тегін',
+            featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 4 ересек + 1 бала', '➕ Қосымша орын: 15 000 ₸',
+                '🍳 4 адамға тегін таңғы ас', '🚐 Тұрақтан тегін трансфер', '👶 5 жасқа дейін — тегін',
                 '🍽️ Tary этно-кафе жанында'
             ],
             link: 'https://drive.google.com/file/d/1w3fyIUIG0EX_DTgCDpvPG_oRME-Bz27y/view'
@@ -2216,70 +2069,84 @@
             extra: 1,
             cat: 'glamping',
             total: 2,
-            photos: [
-                'https://lh3.googleusercontent.com/d/1kFa_4oV5uLJ31flTUK_mMo2DpFS3jVli=w800',
+            photos: ['https://lh3.googleusercontent.com/d/1kFa_4oV5uLJ31flTUK_mMo2DpFS3jVli=w800',
                 'https://lh3.googleusercontent.com/d/1mjvD9ZbNlUaqRpiiyRTYBDmP63WNwvet=w800'
             ],
             descRu: 'Новый глэмпинг 2022 для 4-х гостей. Заезд 15:00, выезд 12:00.',
             descEn: 'New glamping 2022 for 4 guests. Check-in 15:00, check-out 12:00.',
             descKz: 'Жаңа глэмпинг 2022 4 қонаққа. Келу 15:00, кету 12:00.',
-            featRu: [
-                '🕒 Заезд 15:00 — выезд 12:00',
-                '👥 4 взрослых + 1 ребенок',
-                '➕ Доп. место: 15 000 ₸',
-                '🍳 Бесплатный завтрак на 4-х',
-                '🚐 Бесплатный трансфер с парковки',
-                '👶 Дети до 5 лет — бесплатно',
+            featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 4 взрослых + 1 ребенок', '➕ Доп. место: 15 000 ₸',
+                '🍳 Бесплатный завтрак на 4-х', '🚐 Бесплатный трансфер с парковки', '👶 Дети до 5 лет — бесплатно',
                 '🍽️ Рядом этно-кафе Тары'
             ],
-            featEn: [
-                '🕒 Check-in 15:00 — Check-out 12:00',
-                '👥 4 adults + 1 child',
-                '➕ Extra bed: 15,000 ₸',
-                '🍳 Free breakfast for 4',
-                '🚐 Free transfer from parking',
-                '👶 Children under 5 — free',
+            featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 4 adults + 1 child', '➕ Extra bed: 15,000 ₸',
+                '🍳 Free breakfast for 4', '🚐 Free transfer from parking', '👶 Children under 5 — free',
                 '🍽️ Tary ethnic cafe nearby'
             ],
-            featKz: [
-                '🕒 Келу 15:00 — кету 12:00',
-                '👥 4 ересек + 1 бала',
-                '➕ Қосымша орын: 15 000 ₸',
-                '🍳 4 адамға тегін таңғы ас',
-                '🚐 Тұрақтан тегін трансфер',
-                '👶 5 жасқа дейін — тегін',
+            featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 4 ересек + 1 бала', '➕ Қосымша орын: 15 000 ₸',
+                '🍳 4 адамға тегін таңғы ас', '🚐 Тұрақтан тегін трансфер', '👶 5 жасқа дейін — тегін',
                 '🍽️ Tary этно-кафе жанында'
             ],
             link: 'https://drive.google.com/file/d/10fC3o_LMPEA1hKapxvmKXfYC7qY2AqK7/view'
         }];
 
-        // ============ ПЕРЕВОДЫ ============
+        // ============ ПЕРЕВОДЫ (полные) ============
         const L = {
             ru: {
-                langName: 'RU', a11yBtn: '♿ Версия для слабовидящих', factLake: 'до озера', factHeight: 'высота',
-                factDrive: 'от Алматы', factWifi: 'бесплатно',
-                btnWa: 'WhatsApp', btnIg: 'Instagram', btnPh: 'Позвонить', btnBook: 'Забронировать',
-                btnShare: 'Поделиться',
-                roomsTitle: '🛏️ Наши номера', filtAll: 'Все', filtStd: 'Стандарт', filtMnt: 'Горы',
-                filtLake: 'Озеро', filtTrp: 'Трипл', filtDlx: 'Deluxe', filtLux: 'Люкс', filtGlp: 'Глэмпинг',
-                bookingFormTitle: '📅 Проверить доступность', lblCheckIn: '📅 Дата заезда', lblGuests: '👥 Гости',
+                langName: 'RU',
+                a11yBtn: '♿ Версия для слабовидящих',
+                factLake: 'до озера',
+                factHeight: 'высота',
+                factDrive: 'от Алматы',
+                factWifi: 'бесплатно',
+                btnWa: 'WhatsApp',
+                btnIg: 'Instagram',
+                btnPh: 'Позвонить',
+                btnBook: 'Забронировать',
+                roomsTitle: '🛏️ Наши номера',
+                filtAll: 'Все',
+                filtStd: 'Стандарт',
+                filtMnt: 'Горы',
+                filtLake: 'Озеро',
+                filtTrp: 'Трипл',
+                filtDlx: 'Deluxe',
+                filtLux: 'Люкс',
+                filtGlp: 'Глэмпинг',
+                bookingFormTitle: '📅 Проверить доступность',
+                lblCheckIn: '📅 Дата заезда',
+                lblGuests: '👥 Гости',
                 lblNights: '🌙 Ночей',
-                mapTitle: '📍 Как добраться', mapInfo: 'Озеро Кольсай Нижнее | Из Алматы: ~4 часа (300 км)',
-                map2gis: '2GIS', mapYandex: 'Яндекс', mapGoogle: 'Google',
+                mapTitle: '📍 Как добраться',
+                mapInfo: 'Озеро Кольсай Нижнее | Из Алматы: ~4 часа (300 км)',
+                map2gis: '2GIS',
+                mapYandex: 'Яндекс',
+                mapGoogle: 'Google',
                 videoTitle: '🎥 Видеообзор',
-                rulesTitle: '📋 Важная информация', rulesSubTitle: 'Условия',
-                rule1Title: '1. Предоплата', rule1Text: 'Для гарантии брони требуется 100% предоплата.',
-                rule2Title: '2. Отмена', rule2Text: '• Менее 7 дней — 1 сутки<br>• Более 7 дней — полный возврат',
-                rule3Title: '3. Неявка', rule3Text: 'Удерживаются 1 сутки, остальные ночи аннулируются.',
-                rule4Title: '4. Изменение дат', rule4Text: 'При наличии мест и согласовании за 7+ дней.',
-                rule5Title: '📝 Для брони', rule5Text: 'Напишите ФИО гостя. Мы пришлём ссылку на оплату.',
+                rulesTitle: '📋 Важная информация',
+                rulesSubTitle: 'Условия',
+                rule1Title: '1. Предоплата',
+                rule1Text: 'Для гарантии брони требуется 100% предоплата.',
+                rule2Title: '2. Отмена',
+                rule2Text: '• Менее 7 дней — 1 сутки<br>• Более 7 дней — полный возврат',
+                rule3Title: '3. Неявка',
+                rule3Text: 'Удерживаются 1 сутки, остальные ночи аннулируются.',
+                rule4Title: '4. Изменение дат',
+                rule4Text: 'При наличии мест и согласовании за 7+ дней.',
+                rule5Title: '📝 Для брони',
+                rule5Text: 'Напишите ФИО гостя. Мы пришлём ссылку на оплату.',
                 faqTitle: 'Вопросы',
-                faq1Q: '🕐 Заезд и выезд?', faq1A: 'Заезд с 15:00, выезд до 12:00.',
-                faq2Q: '🍳 Питание?', faq2A: 'Завтрак включен. Рядом этно-кафе Tary.',
-                faq3Q: '🚗 Парковка?', faq3A: 'Бесплатная парковка и трансфер до отеля.',
-                faq4Q: '👶 С детьми?', faq4A: 'До 7 лет бесплатно. Доп. место 15 000 ₸.',
-                faq5Q: '🐕 Животные?', faq5A: 'К сожалению, нет.',
-                faq6Q: '💳 Оплата?', faq6A: 'По ссылке (Kaspi, карты). 100% предоплата.',
+                faq1Q: '🕐 Заезд и выезд?',
+                faq1A: 'Заезд с 15:00, выезд до 12:00.',
+                faq2Q: '🍳 Питание?',
+                faq2A: 'Завтрак включен. Рядом этно-кафе Tary.',
+                faq3Q: '🚗 Парковка?',
+                faq3A: 'Бесплатная парковка и трансфер до отеля.',
+                faq4Q: '👶 С детьми?',
+                faq4A: 'До 7 лет бесплатно. Доп. место 15 000 ₸.',
+                faq5Q: '🐕 Животные?',
+                faq5A: 'К сожалению, нет.',
+                faq6Q: '💳 Оплата?',
+                faq6A: 'По ссылке (Kaspi, карты). 100% предоплата.',
                 reviewsTitle: '💬 Отзывы гостей',
                 reviews: [
                     'Потрясающий вид на озеро! Отличный сервис и вкусные завтраки!',
@@ -2297,15 +2164,27 @@
                     'John D., UK',
                     'Sarah P., USA'
                 ],
-                footerAdmin: '🔧 Админ-панель', footerA11y: '♿ Версия для слабовидящих',
-                bookModTitle: '📅 Забронировать номер', bookSelRoom: '🏨 Выберите номер',
-                bookDate: '📅 Дата заезда', bookGuests: '👥 Количество гостей',
+                footerAdmin: '🔧 Админ-панель',
+                footerA11y: '♿ Версия для слабовидящих',
+                bookModTitle: '📅 Забронировать номер',
+                bookSelRoom: '🏨 Выберите номер',
+                bookDate: '📅 Дата заезда',
+                bookGuests: '👥 Количество гостей',
                 bookNights: '🌙 Количество ночей',
-                bookName: '👤 Ф.И.О.', bookPhone: '📞 Телефон', bookComment: '📝 Комментарий',
+                bookName: '👤 Ф.И.О.',
+                bookPhone: '📞 Телефон',
+                bookComment: '📝 Комментарий',
                 bookSubmit: '✅ Подтвердить бронирование',
-                free: 'Свободно', busy: 'Занято', noFree: 'Нет мест', selectDate: 'Выберите дату', perNight: '/ ночь',
-                guest1: 'гость', guest2: 'гостя', guest5: 'гостей',
-                extraBed: 'доп. место', extraBeds: 'доп. места',
+                free: 'Свободно',
+                busy: 'Занято',
+                noFree: 'Нет мест',
+                selectDate: 'Выберите дату',
+                perNight: '/ ночь',
+                guest1: 'гость',
+                guest2: 'гостя',
+                guest5: 'гостей',
+                extraBed: 'доп. место',
+                extraBeds: 'доп. места',
                 needExtra: '⚠️ Требуются доп. места',
                 tooMany: '❌ Слишком много гостей',
                 totalLabel: 'Итого за',
@@ -2334,34 +2213,70 @@
                 nights: 'ночей',
                 operator: '👩‍💼 Оператор',
                 loading: 'Загрузка...',
-                shareTitle: 'Поделиться',
-                shareText: 'Забронируйте номер с видом на озеро Кольсай!'
+                calendarTitle: '📆 Календарь доступности',
+                calendarLegend: 'Свободно (≥3)',
+                calendarLegend2: '1-2 места',
+                calendarLegend3: 'Занято',
+                calendarToday: '🟡 Сегодня',
+                calendarClick: '📌 Нажмите на дату для проверки',
+                adminPassword: 'Введите пароль:',
+                adminWrong: 'Неверный пароль'
             },
             en: {
-                langName: 'EN', a11yBtn: '♿ Accessibility', factLake: 'to lake', factHeight: 'altitude',
-                factDrive: 'from Almaty', factWifi: 'free',
-                btnWa: 'WhatsApp', btnIg: 'Instagram', btnPh: 'Call us', btnBook: 'Book now',
-                btnShare: 'Share',
-                roomsTitle: '🛏️ Our Rooms', filtAll: 'All', filtStd: 'Standard', filtMnt: 'Mountain',
-                filtLake: 'Lake', filtTrp: 'Triple', filtDlx: 'Deluxe', filtLux: 'Luxury', filtGlp: 'Glamping',
-                bookingFormTitle: '📅 Check Availability', lblCheckIn: '📅 Check-in', lblGuests: '👥 Guests',
+                langName: 'EN',
+                a11yBtn: '♿ Accessibility',
+                factLake: 'to lake',
+                factHeight: 'altitude',
+                factDrive: 'from Almaty',
+                factWifi: 'free',
+                btnWa: 'WhatsApp',
+                btnIg: 'Instagram',
+                btnPh: 'Call us',
+                btnBook: 'Book now',
+                roomsTitle: '🛏️ Our Rooms',
+                filtAll: 'All',
+                filtStd: 'Standard',
+                filtMnt: 'Mountain',
+                filtLake: 'Lake',
+                filtTrp: 'Triple',
+                filtDlx: 'Deluxe',
+                filtLux: 'Luxury',
+                filtGlp: 'Glamping',
+                bookingFormTitle: '📅 Check Availability',
+                lblCheckIn: '📅 Check-in',
+                lblGuests: '👥 Guests',
                 lblNights: '🌙 Nights',
-                mapTitle: '📍 How to get', mapInfo: 'Lower Kolsay Lake | From Almaty: ~4 hours (300 km)',
-                map2gis: '2GIS', mapYandex: 'Yandex', mapGoogle: 'Google',
+                mapTitle: '📍 How to get',
+                mapInfo: 'Lower Kolsay Lake | From Almaty: ~4 hours (300 km)',
+                map2gis: '2GIS',
+                mapYandex: 'Yandex',
+                mapGoogle: 'Google',
                 videoTitle: '🎥 Video Tour',
-                rulesTitle: '📋 Important Info', rulesSubTitle: 'Terms',
-                rule1Title: '1. Prepayment', rule1Text: '100% prepayment required.',
-                rule2Title: '2. Cancellation', rule2Text: '• Less than 7 days — 1 night<br>• More than 7 days — full refund',
-                rule3Title: '3. No-show', rule3Text: '1 night charged, remaining nights cancelled.',
-                rule4Title: '4. Date change', rule4Text: 'Possible with availability, 7+ days before.',
-                rule5Title: '📝 To book', rule5Text: 'Provide guest full name. We will send payment link.',
+                rulesTitle: '📋 Important Info',
+                rulesSubTitle: 'Terms',
+                rule1Title: '1. Prepayment',
+                rule1Text: '100% prepayment required.',
+                rule2Title: '2. Cancellation',
+                rule2Text: '• Less than 7 days — 1 night<br>• More than 7 days — full refund',
+                rule3Title: '3. No-show',
+                rule3Text: '1 night charged, remaining nights cancelled.',
+                rule4Title: '4. Date change',
+                rule4Text: 'Possible with availability, 7+ days before.',
+                rule5Title: '📝 To book',
+                rule5Text: 'Provide guest full name. We will send payment link.',
                 faqTitle: 'FAQ',
-                faq1Q: '🕐 Check-in / Check-out?', faq1A: 'Check-in 15:00, check-out 12:00.',
-                faq2Q: '🍳 Food?', faq2A: 'Breakfast included. Tary ethnic cafe nearby.',
-                faq3Q: '🚗 Parking?', faq3A: 'Free parking and transfer to hotel.',
-                faq4Q: '👶 Children?', faq4A: 'Under 7 free. Extra bed: 15,000 ₸.',
-                faq5Q: '🐕 Pets?', faq5A: 'Unfortunately, not allowed.',
-                faq6Q: '💳 Payment?', faq6A: 'Link (Kaspi, cards). 100% prepayment.',
+                faq1Q: '🕐 Check-in / Check-out?',
+                faq1A: 'Check-in 15:00, check-out 12:00.',
+                faq2Q: '🍳 Food?',
+                faq2A: 'Breakfast included. Tary ethnic cafe nearby.',
+                faq3Q: '🚗 Parking?',
+                faq3A: 'Free parking and transfer to hotel.',
+                faq4Q: '👶 Children?',
+                faq4A: 'Under 7 free. Extra bed: 15,000 ₸.',
+                faq5Q: '🐕 Pets?',
+                faq5A: 'Unfortunately, not allowed.',
+                faq6Q: '💳 Payment?',
+                faq6A: 'Link (Kaspi, cards). 100% prepayment.',
                 reviewsTitle: '💬 Guest Reviews',
                 reviews: [
                     'Amazing lake view! Great service and delicious breakfast!',
@@ -2379,15 +2294,27 @@
                     'John D., UK',
                     'Sarah P., USA'
                 ],
-                footerAdmin: '🔧 Admin Panel', footerA11y: '♿ Accessibility',
-                bookModTitle: '📅 Book a Room', bookSelRoom: '🏨 Select Room', bookDate: '📅 Check-in Date',
+                footerAdmin: '🔧 Admin Panel',
+                footerA11y: '♿ Accessibility',
+                bookModTitle: '📅 Book a Room',
+                bookSelRoom: '🏨 Select Room',
+                bookDate: '📅 Check-in Date',
                 bookGuests: '👥 Number of Guests',
                 bookNights: '🌙 Number of Nights',
-                bookName: '👤 Full Name', bookPhone: '📞 Phone', bookComment: '📝 Comment',
+                bookName: '👤 Full Name',
+                bookPhone: '📞 Phone',
+                bookComment: '📝 Comment',
                 bookSubmit: '✅ Confirm Booking',
-                free: 'Free', busy: 'Busy', noFree: 'No availability', selectDate: 'Select date', perNight: '/ night',
-                guest1: 'guest', guest2: 'guests', guest5: 'guests',
-                extraBed: 'extra bed', extraBeds: 'extra beds',
+                free: 'Free',
+                busy: 'Busy',
+                noFree: 'No availability',
+                selectDate: 'Select date',
+                perNight: '/ night',
+                guest1: 'guest',
+                guest2: 'guests',
+                guest5: 'guests',
+                extraBed: 'extra bed',
+                extraBeds: 'extra beds',
                 needExtra: '⚠️ Extra beds needed',
                 tooMany: '❌ Too many guests',
                 totalLabel: 'Total for',
@@ -2416,36 +2343,70 @@
                 nights: 'nights',
                 operator: '👩‍💼 Operator',
                 loading: 'Loading...',
-                shareTitle: 'Share',
-                shareText: 'Book a room with a view of Kolsay Lake!'
+                calendarTitle: '📆 Availability Calendar',
+                calendarLegend: 'Available (≥3)',
+                calendarLegend2: '1-2 left',
+                calendarLegend3: 'Full',
+                calendarToday: '🟡 Today',
+                calendarClick: '📌 Click date to check',
+                adminPassword: 'Enter password:',
+                adminWrong: 'Wrong password'
             },
             kz: {
-                langName: 'KZ', a11yBtn: '♿ Нашар көретіндерге', factLake: 'көлге дейін', factHeight: 'биіктік',
-                factDrive: 'Алматыдан', factWifi: 'тегін',
-                btnWa: 'WhatsApp', btnIg: 'Instagram', btnPh: 'Қоңырау шалу', btnBook: 'Брондау',
-                btnShare: 'Бөлісу',
-                roomsTitle: '🛏️ Біздің нөмірлер', filtAll: 'Барлығы', filtStd: 'Стандарт', filtMnt: 'Тау',
-                filtLake: 'Көл', filtTrp: 'Трипл', filtDlx: 'Deluxe', filtLux: 'Люкс', filtGlp: 'Глэмпинг',
-                bookingFormTitle: '📅 Қолжетімділікті тексеру', lblCheckIn: '📅 Келу күні', lblGuests: '👥 Қонақтар',
+                langName: 'KZ',
+                a11yBtn: '♿ Нашар көретіндерге',
+                factLake: 'көлге дейін',
+                factHeight: 'биіктік',
+                factDrive: 'Алматыдан',
+                factWifi: 'тегін',
+                btnWa: 'WhatsApp',
+                btnIg: 'Instagram',
+                btnPh: 'Қоңырау шалу',
+                btnBook: 'Брондау',
+                roomsTitle: '🛏️ Біздің нөмірлер',
+                filtAll: 'Барлығы',
+                filtStd: 'Стандарт',
+                filtMnt: 'Тау',
+                filtLake: 'Көл',
+                filtTrp: 'Трипл',
+                filtDlx: 'Deluxe',
+                filtLux: 'Люкс',
+                filtGlp: 'Глэмпинг',
+                bookingFormTitle: '📅 Қолжетімділікті тексеру',
+                lblCheckIn: '📅 Келу күні',
+                lblGuests: '👥 Қонақтар',
                 lblNights: '🌙 Түндер',
                 mapTitle: '📍 Қалай жетуге болады',
                 mapInfo: 'Көлсай көлі (Төменгі) | Алматыдан: ~4 сағат (300 км)',
-                map2gis: '2GIS', mapYandex: 'Яндекс', mapGoogle: 'Google',
+                map2gis: '2GIS',
+                mapYandex: 'Яндекс',
+                mapGoogle: 'Google',
                 videoTitle: '🎥 Бейне шолу',
-                rulesTitle: '📋 Маңызды ақпарат', rulesSubTitle: 'Шарттар',
-                rule1Title: '1. Алдын ала төлем', rule1Text: '100% алдын ала төлем қажет.',
-                rule2Title: '2. Бас тарту', rule2Text: '• 7 күннен кем — 1 түн<br>• 7+ күн — толық қайтару',
-                rule3Title: '3. Келмеу', rule3Text: '1 түн ұсталады, қалған түндер жойылады.',
-                rule4Title: '4. Күнді өзгерту', rule4Text: 'Бос орын болса, келуден 7+ күн бұрын.',
+                rulesTitle: '📋 Маңызды ақпарат',
+                rulesSubTitle: 'Шарттар',
+                rule1Title: '1. Алдын ала төлем',
+                rule1Text: '100% алдын ала төлем қажет.',
+                rule2Title: '2. Бас тарту',
+                rule2Text: '• 7 күннен кем — 1 түн<br>• 7+ күн — толық қайтару',
+                rule3Title: '3. Келмеу',
+                rule3Text: '1 түн ұсталады, қалған түндер жойылады.',
+                rule4Title: '4. Күнді өзгерту',
+                rule4Text: 'Бос орын болса, келуден 7+ күн бұрын.',
                 rule5Title: '📝 Брондау үшін',
                 rule5Text: 'Бір қонақтың аты-жөнін жазыңыз. Төлем сілтемесін жібереміз.',
                 faqTitle: 'Сұрақтар',
-                faq1Q: '🕐 Келу және кету?', faq1A: 'Келу 15:00-ден, кету 12:00-ге дейін.',
-                faq2Q: '🍳 Тамақ?', faq2A: 'Таңғы ас кіреді. Tary этно-кафе жанында.',
-                faq3Q: '🚗 Тұрақ?', faq3A: 'Тегін тұрақ және трансфер.',
-                faq4Q: '👶 Балалар?', faq4A: '7 жасқа дейін тегін. Қосымша орын: 15 000 ₸.',
-                faq5Q: '🐕 Жануарлар?', faq5A: 'Өкінішке орай, жоқ.',
-                faq6Q: '💳 Төлем?', faq6A: 'Сілтеме арқылы (Kaspi, карталар). 100% алдын ала.',
+                faq1Q: '🕐 Келу және кету?',
+                faq1A: 'Келу 15:00-ден, кету 12:00-ге дейін.',
+                faq2Q: '🍳 Тамақ?',
+                faq2A: 'Таңғы ас кіреді. Tary этно-кафе жанында.',
+                faq3Q: '🚗 Тұрақ?',
+                faq3A: 'Тегін тұрақ және трансфер.',
+                faq4Q: '👶 Балалар?',
+                faq4A: '7 жасқа дейін тегін. Қосымша орын: 15 000 ₸.',
+                faq5Q: '🐕 Жануарлар?',
+                faq5A: 'Өкінішке орай, жоқ.',
+                faq6Q: '💳 Төлем?',
+                faq6A: 'Сілтеме арқылы (Kaspi, карталар). 100% алдын ала.',
                 reviewsTitle: '💬 Қонақтардың пікірлері',
                 reviews: [
                     'Потрясающий вид на озеро! Отличный сервис и вкусные завтраки!',
@@ -2463,15 +2424,27 @@
                     'John D., UK',
                     'Sarah P., USA'
                 ],
-                footerAdmin: '🔧 Әкімші панелі', footerA11y: '♿ Нашар көретіндерге',
-                bookModTitle: '📅 Нөмірді брондау', bookSelRoom: '🏨 Нөмірді таңдау', bookDate: '📅 Келу күні',
+                footerAdmin: '🔧 Әкімші панелі',
+                footerA11y: '♿ Нашар көретіндерге',
+                bookModTitle: '📅 Нөмірді брондау',
+                bookSelRoom: '🏨 Нөмірді таңдау',
+                bookDate: '📅 Келу күні',
                 bookGuests: '👥 Қонақтар саны',
                 bookNights: '🌙 Түндер саны',
-                bookName: '👤 Аты-жөні', bookPhone: '📞 Телефон', bookComment: '📝 Түсініктеме',
+                bookName: '👤 Аты-жөні',
+                bookPhone: '📞 Телефон',
+                bookComment: '📝 Түсініктеме',
                 bookSubmit: '✅ Брондауды растау',
-                free: 'Бос', busy: 'Бос емес', noFree: 'Орын жоқ', selectDate: 'Күнді таңдаңыз', perNight: '/ түн',
-                guest1: 'қонақ', guest2: 'қонақ', guest5: 'қонақ',
-                extraBed: 'қосымша орын', extraBeds: 'қосымша орын',
+                free: 'Бос',
+                busy: 'Бос емес',
+                noFree: 'Орын жоқ',
+                selectDate: 'Күнді таңдаңыз',
+                perNight: '/ түн',
+                guest1: 'қонақ',
+                guest2: 'қонақ',
+                guest5: 'қонақ',
+                extraBed: 'қосымша орын',
+                extraBeds: 'қосымша орын',
                 needExtra: '⚠️ Қосымша орын қажет',
                 tooMany: '❌ Тым көп қонақ',
                 totalLabel: 'Барлығы',
@@ -2500,8 +2473,14 @@
                 nights: 'түн',
                 operator: '👩‍💼 Оператор',
                 loading: 'Жүктелуде...',
-                shareTitle: 'Бөлісу',
-                shareText: 'Көлсай көлінің көрінісі бар бөлмені брондаңыз!'
+                calendarTitle: '📆 Қолжетімділік күнтізбесі',
+                calendarLegend: 'Бос (≥3)',
+                calendarLegend2: '1-2 орын',
+                calendarLegend3: 'Толық',
+                calendarToday: '🟡 Бүгін',
+                calendarClick: '📌 Тексеру үшін күнді басыңыз',
+                adminPassword: 'Құпия сөзді енгізіңіз:',
+                adminWrong: 'Құпия сөз қате'
             }
         };
 
@@ -2517,8 +2496,10 @@
         let jivoLoaded = false;
         let weatherData = { temp: 0, wind: 0, code: 0, date: '' };
         let weatherLoaded = false;
-        let isLoaded = false;
+        let guestMonthOffset = 0;
+        let isAdmin = false;
 
+        // ============ ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ============
         function t(key) { return L[curLang][key] || key; }
 
         function rName(room) { return room['name' + (curLang === 'ru' ? 'Ru' : curLang === 'en' ? 'En' : 'Kz')]; }
@@ -2554,6 +2535,17 @@
             btn.textContent = isHighContrast ? '🌙 Обычная версия' : t('a11yBtn');
             localStorage.setItem('pana_high_contrast', isHighContrast ? '1' : '0');
             showToast(isHighContrast ? '🔆 Включена контрастная версия' : '🌙 Обычная версия', 'info');
+        }
+
+        // ===== АДМИН-ПАНЕЛЬ С ПАРОЛЕМ =====
+        function showAdminLogin() {
+            var pw = prompt(t('adminPassword'));
+            if (pw === ADMIN_PASSWORD) {
+                isAdmin = true;
+                window.open('admin.html', '_blank');
+            } else if (pw !== null) {
+                showToast(t('adminWrong'), 'error');
+            }
         }
 
         // ===== TELEGRAM =====
@@ -2607,23 +2599,6 @@
             msg += '\n#НоваяБронь #PANA_KOLSAY';
 
             return msg;
-        }
-
-        // ===== ПОДЕЛИТЬСЯ =====
-        function sharePage() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'PANA KOLSAY',
-                    text: t('shareText'),
-                    url: window.location.href
-                }).catch(function() {});
-            } else {
-                navigator.clipboard.writeText(window.location.href).then(function() {
-                    showToast('✅ Ссылка скопирована!', 'success');
-                }).catch(function() {
-                    showToast('📋 ' + window.location.href, 'info');
-                });
-            }
         }
 
         // ===== ПОГОДА =====
@@ -2685,6 +2660,100 @@
                     '</div></div>';
             }
             container.innerHTML = html;
+        }
+
+        // ===== КАЛЕНДАРЬ ДОСТУПНОСТИ ДЛЯ ГОСТЕЙ =====
+        function renderGuestCalendar() {
+            var now = new Date();
+            var baseDate = new Date(now);
+            baseDate.setDate(baseDate.getDate() + guestMonthOffset * 30);
+
+            var startOfMonth = new Date(baseDate.getFullYear(), baseDate.getMonth(), 1);
+            var endOfMonth = new Date(baseDate.getFullYear(), baseDate.getMonth() + 1, 0);
+
+            var days = [];
+            for (var d = new Date(startOfMonth); d <= endOfMonth; d.setDate(d.getDate() + 1)) {
+                days.push(new Date(d));
+            }
+
+            var monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь',
+                'Ноябрь', 'Декабрь'
+            ];
+            var weekDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+
+            // Определяем язык для месяца
+            var lang = curLang;
+            var monthName = monthNames[baseDate.getMonth()];
+            var year = baseDate.getFullYear();
+
+            document.getElementById('calendarMonthLabel').textContent = monthName + ' ' + year;
+
+            var today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            // Заголовок
+            var headHtml = '<tr><th style="min-width:60px;text-align:left;">Номер</th>';
+            days.forEach(function(day) {
+                var dayNum = day.getDate();
+                var dayWeek = weekDays[day.getDay() === 0 ? 6 : day.getDay() - 1];
+                var isWeekend = day.getDay() === 0 || day.getDay() === 6;
+                var isToday = day.toDateString() === today.toDateString();
+                headHtml +=
+                    '<th class="date-col ' + (isToday ? 'today' : '') + ' ' + (isWeekend ? 'weekend' : '') + '" style="text-align:center;padding:4px 2px;border-bottom:2px solid var(--border-glass);color:var(--gold);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.5px;"><span class="day-week" style="font-weight:400;opacity:0.6;font-size:0.5rem;">' +
+                    dayWeek + '</span><span class="day-num" style="display:block;font-size:0.85rem;font-weight:700;color:#fff;">' +
+                    dayNum + '</span></th>';
+            });
+            headHtml += '</tr>';
+            document.getElementById('calendarHead').innerHTML = headHtml;
+
+            // Тело
+            var bodyHtml = '';
+            var displayedRooms = ROOMS.filter(function(r) { return curFilter === 'all' || r.cat === curFilter; });
+            displayedRooms.forEach(function(room) {
+                bodyHtml += '<tr class="room-row"><td style="text-align:left;padding-left:6px;min-width:60px;"><span class="room-label" style="font-weight:600;color:#fff;font-size:0.6rem;display:block;">' +
+                    rName(room) + '</span></td>';
+                days.forEach(function(day) {
+                    var dateStr = day.toISOString().split('T')[0];
+                    var realFree = realAvail(room.id, dateStr);
+                    var total = room.total;
+                    var status = 'empty';
+                    var title = t('free') + ': 0/' + total;
+                    if (realFree > 0) {
+                        if (realFree <= 2) { status = 'low';
+                            title = t('free') + ': ' + realFree + '/' + total; } else { status = 'free';
+                            title = t('free') + ': ' + realFree + '/' + total; }
+                    } else {
+                        title = t('busy') + ': 0/' + total;
+                    }
+                    var isToday = day.toDateString() === today.toDateString();
+                    bodyHtml +=
+                        '<td class="date-col ' + (isToday ? 'today' : '') + '" style="text-align:center;padding:4px 2px;cursor:pointer;" onclick="selectDateFromCalendar(\'' +
+                        dateStr + '\')"><span class="avail-dot" style="display:inline-block;width:14px;height:14px;border-radius:50%;margin:1px;transition:transform 0.2s;background:' +
+                        (status === 'free' ? '#2ed573' : status === 'low' ? '#ffa502' : status === 'empty' ?
+                            'rgba(255,255,255,0.08)' : '#ff4757') + ';" title="' + title + '"></span></td>';
+                });
+                bodyHtml += '</tr>';
+            });
+            document.getElementById('calendarBody').innerHTML = bodyHtml;
+        }
+
+        function selectDateFromCalendar(date) {
+            document.getElementById('quickCheckIn').value = date;
+            updateQuickAvail();
+            showToast('📅 ' + t('selectDate') + ': ' + date, 'info');
+        }
+
+        function changeGuestMonth(delta) {
+            guestMonthOffset += delta;
+            renderGuestCalendar();
+        }
+
+        function goToTodayGuest() {
+            guestMonthOffset = 0;
+            renderGuestCalendar();
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById('quickCheckIn').value = today;
+            updateQuickAvail();
         }
 
         // ===== ОБЛАКО =====
@@ -3086,6 +3155,7 @@
 
             closeModal('bookingModal');
             renderRooms();
+            renderGuestCalendar();
             showVoucher(bookingId);
         }
 
@@ -3255,6 +3325,7 @@
                 e.target.classList.add('active');
                 curFilter = e.target.dataset.filter;
                 renderRooms();
+                renderGuestCalendar();
             }
         });
 
@@ -3274,7 +3345,6 @@
             document.getElementById('btnIgText').textContent = t('btnIg');
             document.getElementById('btnPhText').textContent = t('btnPh');
             document.getElementById('btnBookText').textContent = t('btnBook');
-            document.getElementById('btnShareText').textContent = t('btnShare');
 
             document.getElementById('roomsTitle').textContent = t('roomsTitle');
             document.getElementById('bookingFormTitle').textContent = t('bookingFormTitle');
@@ -3328,6 +3398,9 @@
             document.getElementById('filtLux').textContent = t('filtLux');
             document.getElementById('filtGlp').textContent = t('filtGlp');
 
+            // Календарь
+            document.getElementById('calendarTitle').textContent = t('calendarTitle');
+
             document.querySelectorAll('.lang-btn').forEach(function(b) { b.textContent = L[b.dataset.lang].langName; });
 
             if (weatherLoaded) {
@@ -3336,6 +3409,7 @@
 
             renderReviews();
             renderRooms();
+            renderGuestCalendar();
             updateQuickAvail();
             if (document.getElementById('bookingModal').classList.contains('active')) {
                 var selRoom = document.getElementById('bRoom')?.value;
@@ -3396,9 +3470,9 @@
                 await fetchWeather();
                 renderReviews();
                 switchLanguage('ru');
+                renderGuestCalendar();
                 updateQuickAvail();
 
-                // Скрываем лоадер
                 setTimeout(function() {
                     document.getElementById('loader').classList.add('hidden');
                 }, 500);
@@ -3409,9 +3483,7 @@
 
             } catch (error) {
                 console.error('Ошибка инициализации:', error);
-                // Всё равно скрываем лоадер
                 document.getElementById('loader').classList.add('hidden');
-                showToast('⚠️ Ошибка загрузки данных, проверьте соединение', 'error');
             }
         })();
     </script>
