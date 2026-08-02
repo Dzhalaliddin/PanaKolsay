@@ -2640,48 +2640,55 @@
         const data = await response.json();
         console.log('✅ Данные загружены');
         
-        // Проверяем, есть ли данные
         if (!data.values || data.values.length < 2) {
             console.warn('⚠️ Нет данных в таблице');
             return null;
         }
         
         const rows = data.values;
-        
-        // Первая строка — заголовки (даты)
         const headers = rows[0] || [];
         console.log('📋 Заголовки (первые 5):', headers.slice(0, 5));
         console.log('📋 Всего строк в таблице:', rows.length);
         
         const result = {};
         
-        // Остальные строки — номера
+        // Проходим по всем строкам
         for (let i = 1; i < rows.length; i++) {
             const row = rows[i];
             
-            // ===== ПРОВЕРКА НА ПУСТУЮ СТРОКУ =====
+            // Пропускаем пустые строки
             if (!row || row.length === 0) {
                 console.log(`⚠️ Строка ${i+1} пустая, пропускаем.`);
                 continue;
             }
             
-            // ===== ПРОВЕРКА НА ПУСТОЕ НАЗВАНИЕ =====
+            // Получаем первую ячейку
             const firstCell = row[0];
-            if (firstCell === undefined || firstCell === null || firstCell === '') {
-                console.log(`⚠️ Строка ${i+1} не содержит названия, пропускаем.`);
+            
+            // Если нет данных в первой ячейке — пропускаем
+            if (firstCell === undefined || firstCell === null) {
+                console.log(`⚠️ Строка ${i+1} не содержит данных в первой колонке, пропускаем.`);
                 continue;
             }
             
-            // ===== ПРИВОДИМ К СТРОКЕ =====
-            let roomName = String(firstCell).trim();
+            // ПРЕОБРАЗУЕМ В СТРОКУ БЕЗОПАСНО
+            let roomName;
+            try {
+                roomName = String(firstCell).trim();
+            } catch (e) {
+                console.log(`⚠️ Строка ${i+1} не может быть преобразована в строку, пропускаем.`);
+                continue;
+            }
+            
+            // Если после преобразования строка пустая — пропускаем
             if (!roomName) {
-                console.log(`⚠️ Строка ${i+1} имеет пустое название после очистки, пропускаем.`);
+                console.log(`⚠️ Строка ${i+1} имеет пустое название, пропускаем.`);
                 continue;
             }
             
             console.log(`🔍 Обработка строки ${i+1}: "${roomName}"`);
             
-            // Находим ID номера
+            // Ищем ID номера
             let roomId = null;
             const searchName = roomName.toLowerCase();
             
@@ -2689,7 +2696,6 @@
                 const rName = r.name.toLowerCase();
                 const rId = r.id.toLowerCase();
                 
-                // Проверяем все возможные совпадения
                 if (searchName === rId || searchName === rName || 
                     searchName.includes(rId) || rName.includes(searchName) ||
                     rId.includes(searchName)) {
