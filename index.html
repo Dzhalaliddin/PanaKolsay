@@ -2667,29 +2667,32 @@
             'деревянный домик a02': 'a02-wood'
         };
         
+        // Проходим по строкам (начиная со второй, потому что первая — заголовки)
         for (let i = 1; i < rows.length; i++) {
             const row = rows[i];
             
-            // Пропускаем пустые строки
+            // Проверка на пустую строку
             if (!row || row.length === 0) {
                 console.log(`⚠️ Строка ${i+1} пустая, пропускаем.`);
                 continue;
             }
             
-            const firstCell = row[0];
+            // Получаем первую ячейку
+            let firstCell = row[0];
             
-            // Пропускаем если нет данных
-            if (firstCell === undefined || firstCell === null || firstCell === '') {
-                console.log(`⚠️ Строка ${i+1} не содержит названия, пропускаем.`);
+            // Проверка на undefined или null
+            if (firstCell === undefined || firstCell === null) {
+                console.log(`⚠️ Строка ${i+1} не содержит данных в первой колонке, пропускаем.`);
                 continue;
             }
             
-            // Пропускаем числа
+            // Проверка на число
             if (typeof firstCell === 'number') {
-                console.log(`⚠️ Строка ${i+1} содержит число, пропускаем.`);
+                console.log(`⚠️ Строка ${i+1} содержит число "${firstCell}", пропускаем.`);
                 continue;
             }
             
+            // ПРЕОБРАЗУЕМ В СТРОКУ
             let roomName;
             try {
                 roomName = String(firstCell).trim().toLowerCase();
@@ -2698,12 +2701,15 @@
                 continue;
             }
             
+            // Проверка на пустую строку после преобразования
             if (!roomName) {
                 console.log(`⚠️ Строка ${i+1} имеет пустое название, пропускаем.`);
                 continue;
             }
             
-            // Ищем ID по маппингу
+            console.log(`🔍 Обработка строки ${i+1}: "${roomName}"`);
+            
+            // Ищем ID номера по маппингу
             let roomId = nameMapping[roomName];
             
             // Если не нашли — пробуем по частичному совпадению
@@ -2721,7 +2727,7 @@
                 continue;
             }
             
-            console.log(`✅ Строка ${i+1}: "${roomName}" → ID: ${roomId}`);
+            console.log(`✅ Найден ID: ${roomId}`);
             
             result[roomId] = {};
             
@@ -2730,6 +2736,7 @@
                 const dateStr = headers[j] || '';
                 const value = parseInt(row[j]) || 0;
                 
+                // Парсим дату в формате ДД.ММ.ГГГГ
                 const dateMatch = dateStr.match(/(\d{2})\.(\d{2})\.(\d{4})/);
                 if (dateMatch) {
                     const isoDate = `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`;
@@ -2739,6 +2746,10 @@
         }
         
         console.log('📊 Распарсенные данные (номеров):', Object.keys(result).length);
+        if (Object.keys(result).length === 0) {
+            console.warn('⚠️ Не удалось распарсить ни одного номера!');
+            return null;
+        }
         return result;
         
     } catch (error) {
