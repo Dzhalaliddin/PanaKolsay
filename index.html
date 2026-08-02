@@ -2625,7 +2625,7 @@
         console.log('🔄 Загрузка данных из Google Таблицы...');
         
         // ===== НАСТРОЙКИ =====
-        const API_KEY = 'ВАШ_API_КЛЮЧ'; // ← ВСТАВЬТЕ СВОЙ КЛЮЧ
+        const API_KEY = 'AIzaSyBYks7NJgliBsZzOMjfm2UOTznOZSAKp8U'; // ← ВАШ КЛЮЧ
         const SHEET_ID = '1QsZqEHLWD0JEb7LV3Pbqr1Ux7nSMExYv9GXDrpYR3B4';
         const SHEET_NAME = 'Доступность';
         
@@ -2636,7 +2636,7 @@
         const response = await fetch(url);
         
         if (!response.ok) {
-            throw new Error(`Ошибка загрузки: ${response.status} - ${response.statusText}`);
+            throw new Error(`Ошибка загрузки: ${response.status}`);
         }
         
         const data = await response.json();
