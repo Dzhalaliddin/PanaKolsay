@@ -14,7 +14,7 @@
     <title>PANA KOLSAY | Отель на озере Кольсай</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
-        /* ===== ВСЕ ВАШИ СУЩЕСТВУЮЩИЕ СТИЛИ ===== */
+        /* ===== ВСЕ СТИЛИ ===== */
         :root {
             --gold: #f5c542;
             --gold-light: #ffe28a;
@@ -1821,8 +1821,10 @@
 
     <script>
         // ============ НАСТРОЙКИ ============
+        const API_KEY = 'AIzaSyBYks7NJgliBsZzOMjfm2UOTznOZSAKp8U';
         const SHEET_ID = '1QsZqEHLWD0JEb7LV3Pbqr1Ux7nSMExYv9GXDrpYR3B4';
-        const SHEET_NAME = 'Доступность';
+        const SHEET_NAME_AVAIL = 'Доступность';
+        const SHEET_NAME_BOOKINGS = 'Бронирования';
 
         // ============ НОМЕРА ============
         const ROOMS = [{
@@ -2577,7 +2579,6 @@
         let weatherData = { temp: 0, wind: 0, code: 0, date: '' };
         let weatherLoaded = false;
         let selectedRooms = [];
-        let dataLoaded = false;
         let googleData = null;
         let touchStartX = 0,
             touchStartY = 0,
@@ -2621,153 +2622,118 @@
 
         // ===== ЗАГРУЗКА ИЗ GOOGLE ТАБЛИЦЫ =====
         async function loadFromGoogleSheet() {
-    try {
-        console.log('🔄 Загрузка данных из Google Таблицы...');
-        
-        const API_KEY = 'AIzaSyBYks7NJgliBsZzOMjfm2UOTznOZSAKp8U';
-        const SHEET_ID = '1QsZqEHLWD0JEb7LV3Pbqr1Ux7nSMExYv9GXDrpYR3B4';
-        const SHEET_NAME = 'Доступность';
-        
-        const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_NAME}?key=${API_KEY}`;
-        
-        console.log('📡 Запрос к:', url);
-        const response = await fetch(url);
-        
-        if (!response.ok) {
-            throw new Error(`Ошибка загрузки: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        console.log('✅ Данные загружены');
-        
-        if (!data.values || data.values.length < 2) {
-            console.warn('⚠️ Нет данных в таблице');
-            return null;
-        }
-        
-        const rows = data.values;
-        const headers = rows[0] || [];
-        console.log('📋 Заголовки (первые 5):', headers.slice(0, 5));
-        console.log('📋 Всего строк в таблице:', rows.length);
-        
-        const result = {};
-        
-        // МАППИНГ названий из таблицы → ID номера
-        const nameMapping = {
-            'standard room': 'standard',
-            'superior mountain view': 'mountain',
-            'superior lake view double': 'lake-double',
-            'superior lake view triple': 'triple',
-            'deluxe': 'deluxe',
-            'deluxe+': 'deluxe-plus',
-            'premier deluxe': 'premier-deluxe',
-            'suite room': 'suite',
-            'glamping domes +': 'glamping-new',
-            'каменный домик a01': 'a01-stone',
-            'деревянный домик a02': 'a02-wood'
-        };
-        
-        // Проходим по строкам (начиная со второй, потому что первая — заголовки)
-        for (let i = 1; i < rows.length; i++) {
-            const row = rows[i];
-            
-            // Проверка на пустую строку
-            if (!row || row.length === 0) {
-                console.log(`⚠️ Строка ${i+1} пустая, пропускаем.`);
-                continue;
-            }
-            
-            // Получаем первую ячейку
-            let firstCell = row[0];
-            
-            // Проверка на undefined или null
-            if (firstCell === undefined || firstCell === null) {
-                console.log(`⚠️ Строка ${i+1} не содержит данных в первой колонке, пропускаем.`);
-                continue;
-            }
-            
-            // Проверка на число
-            if (typeof firstCell === 'number') {
-                console.log(`⚠️ Строка ${i+1} содержит число "${firstCell}", пропускаем.`);
-                continue;
-            }
-            
-            // ПРЕОБРАЗУЕМ В СТРОКУ
-            let roomName;
             try {
-                roomName = String(firstCell).trim().toLowerCase();
-            } catch (e) {
-                console.log(`⚠️ Строка ${i+1} не может быть преобразована в строку, пропускаем.`);
-                continue;
-            }
-            
-            // Проверка на пустую строку после преобразования
-            if (!roomName) {
-                console.log(`⚠️ Строка ${i+1} имеет пустое название, пропускаем.`);
-                continue;
-            }
-            
-            console.log(`🔍 Обработка строки ${i+1}: "${roomName}"`);
-            
-            // Ищем ID номера по маппингу
-            let roomId = nameMapping[roomName];
-            
-            // Если не нашли — пробуем по частичному совпадению
-            if (!roomId) {
-                for (let key in nameMapping) {
-                    if (roomName.includes(key) || key.includes(roomName)) {
-                        roomId = nameMapping[key];
-                        break;
+                console.log('🔄 Загрузка данных из Google Таблицы...');
+                const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_NAME_AVAIL}?key=${API_KEY}`;
+                console.log('📡 Запрос к:', url);
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Ошибка загрузки: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log('✅ Данные загружены');
+                if (!data.values || data.values.length < 2) {
+                    console.warn('⚠️ Нет данных в таблице');
+                    return null;
+                }
+                const rows = data.values;
+                const headers = rows[0] || [];
+                console.log('📋 Заголовки (первые 5):', headers.slice(0, 5));
+                console.log('📋 Всего строк в таблице:', rows.length);
+                const result = {};
+                const nameMapping = {
+                    'standard room': 'standard',
+                    'superior mountain view': 'mountain',
+                    'superior lake view double': 'lake-double',
+                    'superior lake view triple': 'triple',
+                    'deluxe': 'deluxe',
+                    'deluxe+': 'deluxe-plus',
+                    'premier deluxe': 'premier-deluxe',
+                    'suite room': 'suite',
+                    'glamping domes +': 'glamping-new',
+                    'каменный домик a01': 'a01-stone',
+                    'деревянный домик a02': 'a02-wood'
+                };
+                for (let i = 1; i < rows.length; i++) {
+                    const row = rows[i];
+                    if (!row || row.length === 0) continue;
+                    let firstCell = row[0];
+                    if (firstCell === undefined || firstCell === null || typeof firstCell === 'number') continue;
+                    let roomName;
+                    try {
+                        roomName = String(firstCell).trim().toLowerCase();
+                    } catch (e) { continue; }
+                    if (!roomName) continue;
+                    let roomId = nameMapping[roomName];
+                    if (!roomId) {
+                        for (let key in nameMapping) {
+                            if (roomName.includes(key) || key.includes(roomName)) {
+                                roomId = nameMapping[key];
+                                break;
+                            }
+                        }
+                    }
+                    if (!roomId) continue;
+                    result[roomId] = {};
+                    for (let j = 1; j < headers.length && j < row.length; j++) {
+                        const dateStr = headers[j] || '';
+                        const value = parseInt(row[j]) || 0;
+                        const dateMatch = dateStr.match(/(\d{2})\.(\d{2})\.(\d{4})/);
+                        if (dateMatch) {
+                            const isoDate = `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`;
+                            result[roomId][isoDate] = value;
+                        }
                     }
                 }
+                console.log('📊 Распарсенные данные (номеров):', Object.keys(result).length);
+                return result;
+            } catch (error) {
+                console.error('❌ Ошибка загрузки из Google Таблицы:', error);
+                return null;
             }
-            
-            if (!roomId) {
-                console.warn(`⚠️ Неизвестный номер: "${roomName}"`);
-                continue;
-            }
-            
-            console.log(`✅ Найден ID: ${roomId}`);
-            
-            result[roomId] = {};
-            
-            // Парсим даты
-            for (let j = 1; j < headers.length && j < row.length; j++) {
-                const dateStr = headers[j] || '';
-                const value = parseInt(row[j]) || 0;
-                
-                // Парсим дату в формате ДД.ММ.ГГГГ
-                const dateMatch = dateStr.match(/(\d{2})\.(\d{2})\.(\d{4})/);
-                if (dateMatch) {
-                    const isoDate = `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`;
-                    result[roomId][isoDate] = value;
+        }
+
+        // ===== ЗАПИСЬ БРОНИ В GOOGLE ТАБЛИЦУ =====
+        async function saveBookingToSheet(bookingData) {
+            try {
+                const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_NAME_BOOKINGS}:append?valueInputOption=USER_ENTERED&key=${API_KEY}`;
+                const values = [
+                    [
+                        bookingData.id,
+                        bookingData.rid,
+                        bookingData.date,
+                        bookingData.nights,
+                        bookingData.gname,
+                        bookingData.phone,
+                        bookingData.total,
+                        'Активно'
+                    ]
+                ];
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ values: values })
+                });
+                if (!response.ok) {
+                    throw new Error(`Ошибка записи: ${response.status}`);
                 }
+                console.log('✅ Бронь записана в Google Таблицу');
+                return true;
+            } catch (error) {
+                console.error('❌ Ошибка записи брони:', error);
+                return false;
             }
         }
-        
-        console.log('📊 Распарсенные данные (номеров):', Object.keys(result).length);
-        if (Object.keys(result).length === 0) {
-            console.warn('⚠️ Не удалось распарсить ни одного номера!');
-            return null;
-        }
-        return result;
-        
-    } catch (error) {
-        console.error('❌ Ошибка загрузки из Google Таблицы:', error);
-        return null;
-    }
-}
+
         // ===== ФУНКЦИИ ДОСТУПНОСТИ =====
         function realAvail(rid, date) {
             if (googleData && googleData[rid] && googleData[rid][date] !== undefined) {
                 return Math.max(0, googleData[rid][date]);
             }
-
             if (!avails || !avails[rid] || avails[rid][date] === undefined) {
                 var room = ROOMS.find(function(r) { return r.id === rid; });
                 return room ? room.total : 0;
             }
-
             var base = avails[rid] && avails[rid][date] !== undefined ? avails[rid][date] : 0;
             var booked = bookedCount(rid, date);
             return Math.max(0, base - booked);
@@ -2795,19 +2761,15 @@
         function updateRoomAvailability() {
             var date = document.getElementById('quickCheckIn').value;
             if (!date) return;
-
             var cards = document.querySelectorAll('.room-card');
             cards.forEach(function(card) {
                 var rid = card.getAttribute('data-room-id');
                 if (!rid) return;
-
                 var total = 0;
                 var room = ROOMS.find(function(r) { return r.id === rid; });
                 if (room) total = room.total;
-
                 var avail = realAvail(rid, date);
                 var isPast = isPastDate(date);
-
                 var availEl = card.querySelector('.room-availability');
                 if (availEl) {
                     if (isPast) {
@@ -2821,7 +2783,6 @@
                         availEl.className = 'room-availability free';
                     }
                 }
-
                 var btn = card.querySelector('.btn-book-room');
                 if (btn) {
                     if (isPast || avail <= 0) {
@@ -2840,14 +2801,11 @@
             var grid = document.getElementById('roomsGrid');
             var today = new Date().toISOString().split('T')[0];
             var selectedDate = document.getElementById('quickCheckIn').value || today;
-
             grid.innerHTML = ROOMS.map(function(room) {
                 var total = room.total;
                 var hid = curFilter !== 'all' && room.cat !== curFilter ? 'hidden' : '';
-
                 var avail = realAvail(room.id, selectedDate);
                 var isPast = isPastDate(selectedDate);
-
                 var at, statusClass;
                 if (isPast) {
                     at = '🔒 ' + t('past');
@@ -2859,10 +2817,8 @@
                     at = t('available') + ' ' + avail + '/' + total;
                     statusClass = 'free';
                 }
-
                 var btnDisabled = (isPast || avail <= 0) ? 'disabled' : '';
                 var btnText = (isPast || avail <= 0) ? at : t('btnBook');
-
                 var nameDisplay = rName(room);
                 var emojiMap = {
                     'a01-stone': '🏔️',
@@ -2878,11 +2834,9 @@
                     'glamping-new': '🏕️'
                 };
                 var emoji = emojiMap[room.id] || '🏨';
-
                 var linkText = t('details');
                 var linkHtml = room.link && room.link !== '#' ? '<a href="' + room.link +
                     '" target="_blank" class="room-link">🔍 ' + linkText + '</a>' : '';
-
                 return '<div class="room-card ' + hid + '" data-cat="' + room.cat + '" data-room-id="' + room.id + '">' +
                     '<div class="room-photos" onclick="openPhotoModal(\'' + room.id + '\',0)"><img src="' + room.photos[0] +
                     '" alt="' + nameDisplay + '" loading="lazy" draggable="false" onerror="this.src=\'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a2a27%22/%3E%3Ctext fill=%22%23f5c542%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3E📷%3C/text%3E%3C/svg%3E\'"><span class="photo-count">📷 ' +
@@ -2906,31 +2860,26 @@
             var nights = parseInt(document.getElementById('quickNights').value) || 1;
             var resDiv = document.getElementById('quickAvailResult');
             var btnDiv = document.getElementById('btnOpenBookForm');
-
             if (!date) {
                 resDiv.innerHTML = '<div style="text-align:center;color:rgba(255,255,255,0.3);padding:10px;">📅 ' + t(
                     'selectDate') + '</div>';
                 btnDiv.style.display = 'none';
                 return;
             }
-
             if (isPastDate(date)) {
                 resDiv.innerHTML = '<div style="text-align:center;color:rgba(255,255,255,0.3);padding:10px;">🔒 ' + t(
                     'past') + '</div>';
                 btnDiv.style.display = 'none';
                 return;
             }
-
             var html = '<div class="avail-list-full"><div class="avail-list-header">' +
                 '<span>' + t('roomName') + '</span>' +
                 '<span>' + t('capacity') + '</span>' +
                 '<span>' + t('availability') + '</span>' +
                 '<span>' + t('status') + '</span>' +
                 '</div>';
-
             var anyAvail = false;
             var availRooms = [];
-
             ROOMS.forEach(function(room) {
                 var allAvailable = true;
                 var d = new Date(date);
@@ -2942,11 +2891,9 @@
                     }
                     d.setDate(d.getDate() + 1);
                 }
-
                 var firstDate = new Date(date).toISOString().split('T')[0];
                 var freeNow = realAvail(room.id, firstDate);
                 var total = room.total;
-
                 var statusClass, statusText;
                 if (!allAvailable) {
                     statusClass = 'busy';
@@ -2957,9 +2904,7 @@
                     statusText = '✅ ' + t('free') + ' ' + freeNow + '/' + total;
                     availRooms.push({ room: room, free: freeNow });
                 }
-
                 var capText = room.cap + (room.extra > 0 ? '+' + room.extra : '');
-
                 html += '<div class="avail-list-item-full" data-room-id="' + room.id + '" data-available="' + (allAvailable ?
                     'true' : 'false') + '">' +
                     '<span class="room-name-small">' + rName(room) + '</span>' +
@@ -2968,9 +2913,7 @@
                     '<span class="avail-status ' + statusClass + '">' + statusText + '</span>' +
                     '</div>';
             });
-
             html += '</div>';
-
             if (anyAvail && availRooms.length > 0) {
                 btnDiv.style.display = 'block';
                 var count = availRooms.length;
@@ -2979,7 +2922,6 @@
             } else {
                 btnDiv.style.display = 'none';
             }
-
             resDiv.innerHTML = html;
             updateRoomAvailability();
         }
@@ -2990,7 +2932,6 @@
             var today = new Date().toISOString().split('T')[0];
             var modal = document.getElementById('bookingModal');
             var content = document.getElementById('bookingModalContent');
-
             if (!rid) {
                 selectedRooms = [];
             } else {
@@ -3002,13 +2943,10 @@
                     nights: nightsVal
                 });
             }
-
             var guestsValue = parseInt(document.getElementById('quickGuests').value) || 2;
-
             var roomOptions = ROOMS.map(function(r) {
                 return '<option value="' + r.id + '">' + rName(r) + ' — ' + r.price.toLocaleString() + ' ₸</option>';
             }).join('');
-
             content.innerHTML = '' +
                 '<div class="form-row">' +
                 '<div class="form-group"><label>' + t('bookGuests') +
@@ -3025,7 +2963,6 @@
                 '<div class="form-group"><label>' + t('bookComment') +
                 '</label><input type="text" id="bComm" placeholder="..."></div>' +
                 '</div>' +
-
                 '<div style="margin-top:12px;">' +
                 '<div id="selectedRoomsList"></div>' +
                 '<div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;">' +
@@ -3042,20 +2979,15 @@
                 '<button class="btn-add-room" onclick="addRoomToGroup()">' + t('addRoom') + '</button>' +
                 '</div>' +
                 '</div>' +
-
                 '<div id="bAvailInfo" class="avail-list-box" style="max-height:160px; margin-bottom:10px; display:none;"></div>' +
-
                 '<div id="bTotal" class="group-total">' + t('totalLabel') + ' 0 ₸</div>' +
                 '<button class="btn-submit" onclick="submitGroupBooking()">' + t('bookSubmit') + '</button>';
-
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
-
             setTimeout(function() {
                 var addDate = document.getElementById('addRoomDate');
                 if (addDate) addDate.value = today;
             }, 100);
-
             updateSelectedRoomsList();
             updateBookingForm();
         }
@@ -3065,26 +2997,21 @@
             var dateInput = document.getElementById('addRoomDate');
             var nightsSelect = document.getElementById('addRoomNights');
             if (!select || !dateInput || !nightsSelect) return;
-
             var rid = select.value;
             var date = dateInput.value;
             var nights = parseInt(nightsSelect.value) || 1;
-
             if (!rid) {
                 showToast(t('selectRoomFirst'), 'info');
                 return;
             }
-
             if (!date) {
                 showToast('📅 ' + t('selectDate'), 'error');
                 return;
             }
-
             if (isPastDate(date)) {
                 showToast('🔒 ' + t('past'), 'error');
                 return;
             }
-
             var allAvailable = true;
             var d = new Date(date);
             for (var i = 0; i < nights; i++) {
@@ -3095,22 +3022,18 @@
                 }
                 d.setDate(d.getDate() + 1);
             }
-
             if (!allAvailable) {
                 showToast('❌ Номер недоступен на выбранные даты', 'error');
                 return;
             }
-
             selectedRooms.push({
                 rid: rid,
                 date: date,
                 nights: nights
             });
-
             updateSelectedRoomsList();
             updateBookingForm();
             showToast('✅ ' + rName(ROOMS.find(function(r) { return r.id === rid; })) + ' добавлен', 'success');
-
             var nextDate = new Date(date);
             nextDate.setDate(nextDate.getDate() + nights);
             dateInput.value = nextDate.toISOString().split('T')[0];
@@ -3128,13 +3051,11 @@
         function updateSelectedRoomsList() {
             var container = document.getElementById('selectedRoomsList');
             if (!container) return;
-
             if (selectedRooms.length === 0) {
                 container.innerHTML = '<p style="color:rgba(255,255,255,0.3);font-size:0.8rem;padding:8px;">' + t(
                     'bookSelRoom') + '</p>';
                 return;
             }
-
             var html = '';
             selectedRooms.forEach(function(item, index) {
                 var room = ROOMS.find(function(r) { return r.id === item.rid; });
@@ -3158,21 +3079,17 @@
             var guests = parseInt(document.getElementById('bGuests')?.value || 2);
             var totDiv = document.getElementById('bTotal');
             var infoDiv = document.getElementById('bAvailInfo');
-
             var totalPrice = 0;
             var allAvailable = true;
             var availabilityHtml = '<strong>📊 ' + t('free') + ':</strong><br>';
-
             if (selectedRooms.length === 0) {
                 if (totDiv) totDiv.textContent = '⚠️ ' + t('bookSelRoom');
                 if (infoDiv) infoDiv.style.display = 'none';
                 return;
             }
-
             selectedRooms.forEach(function(item) {
                 var room = ROOMS.find(function(r) { return r.id === item.rid; });
                 if (!room) return;
-
                 var available = true;
                 var d = new Date(item.date);
                 for (var i = 0; i < item.nights; i++) {
@@ -3183,13 +3100,11 @@
                     }
                     d.setDate(d.getDate() + 1);
                 }
-
                 var dateObj = new Date(item.date);
                 var dateStr = dateObj.toLocaleDateString(curLang === 'ru' ? 'ru' : curLang === 'en' ? 'en' : 'kk', {
                     day: 'numeric',
                     month: 'short'
                 });
-
                 if (available) {
                     totalPrice += room.price * item.nights;
                     availabilityHtml += '<div class="avail-list-item"><span>✅ ' + rName(room) + ' (' + dateStr +
@@ -3202,12 +3117,10 @@
                         'busy') + '</span></div>';
                 }
             });
-
             if (infoDiv) {
                 infoDiv.innerHTML = availabilityHtml;
                 infoDiv.style.display = 'block';
             }
-
             if (totDiv) {
                 if (selectedRooms.length === 0) {
                     totDiv.textContent = '⚠️ ' + t('bookSelRoom');
@@ -3232,12 +3145,10 @@
             var comm = document.getElementById('bComm').value.trim();
 
             if (!name) { showToast('👤 ' + t('bookName') + ' обязательно', 'error'); return; }
-
             if (!validatePhone(phone)) {
                 showToast('📞 ' + t('bookPhone') + ' должен содержать минимум 10 цифр', 'error');
                 return;
             }
-
             if (selectedRooms.length === 0) {
                 showToast('⚠️ ' + t('bookSelRoom'), 'error');
                 return;
@@ -3311,6 +3222,9 @@
             }
 
             bookings.push(bookingData);
+
+            // ===== ЗАПИСЬ В GOOGLE ТАБЛИЦУ =====
+            await saveBookingToSheet(bookingData);
 
             closeModal('bookingModal');
             renderRooms();
@@ -3686,6 +3600,23 @@
             container.innerHTML = html;
         }
 
+        // ===== АВТООБНОВЛЕНИЕ КАЖДЫЕ 60 СЕКУНД =====
+        let autoUpdateInterval = null;
+
+        async function autoUpdateData() {
+            console.log('🔄 Автообновление данных (60 сек)...');
+            const newData = await loadFromGoogleSheet();
+            if (newData && Object.keys(newData).length > 0) {
+                googleData = newData;
+                renderRooms();
+                updateQuickAvail();
+                updateRoomAvailability();
+                console.log('✅ Данные обновлены автоматически');
+            } else {
+                console.warn('⚠️ Новые данные не загружены');
+            }
+        }
+
         // ===== ИНИЦИАЛИЗАЦИЯ =====
         (async function() {
             try {
@@ -3724,8 +3655,20 @@
                     document.getElementById('loader').classList.add('hidden');
                 }, 500);
 
+                // ===== АВТООБНОВЛЕНИЕ КАЖДЫЕ 60 СЕКУНД =====
+                if (autoUpdateInterval) clearInterval(autoUpdateInterval);
+                autoUpdateInterval = setInterval(autoUpdateData, 60000);
+
                 // ===== ПОГОДА ОБНОВЛЯЕТСЯ =====
                 setInterval(fetchWeather, 600000);
+
+                // ===== ОБНОВЛЕНИЕ ПРИ ВОЗВРАТЕ НА ВКЛАДКУ =====
+                document.addEventListener('visibilitychange', function() {
+                    if (!document.hidden) {
+                        console.log('🔄 Обновление данных при возврате на вкладку...');
+                        autoUpdateData();
+                    }
+                });
 
             } catch (error) {
                 console.error('Ошибка инициализации:', error);
