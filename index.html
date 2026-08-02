@@ -13,8 +13,9 @@
     <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🏔%3C/text%3E%3C/svg%3E">
     <title>PANA KOLSAY | Отель на озере Кольсай</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
-        /* ===== ОСНОВНЫЕ СТИЛИ ===== */
+        /* ===== ВСЕ СТИЛИ ===== */
         :root {
             --gold: #f5c542;
             --gold-light: #ffe28a;
@@ -36,7 +37,6 @@
             --header-height: 60px;
         }
 
-        /* ===== КОНТРАСТНАЯ ВЕРСИЯ ===== */
         body.high-contrast {
             --dark: #000000;
             --dark-light: #0a0a0a;
@@ -90,11 +90,9 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         html {
             scroll-behavior: smooth;
         }
-
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             color: var(--text-primary);
@@ -102,11 +100,10 @@
             background: var(--dark);
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
             transition: background 0.3s, color 0.3s;
+            overflow-x: hidden;
         }
 
-        /* ===== ЗАГРУЗЧИК ===== */
         #loader {
             position: fixed;
             top: 0;
@@ -146,7 +143,6 @@
             font-size: 0.9rem;
         }
 
-        /* ===== ФОН ===== */
         .bg-fixed {
             position: fixed;
             top: 0;
@@ -198,7 +194,6 @@
             transition: background 0.3s, border-color 0.3s;
         }
 
-        /* ===== ШАПКА ===== */
         .header-sticky {
             position: sticky;
             top: 0;
@@ -319,9 +314,9 @@
             border: 1px solid var(--border-glass);
             min-width: 60px;
             backdrop-filter: blur(5px);
+            transition: background 0.3s, border-color 0.3s;
             flex: 1;
             max-width: 100px;
-            transition: background 0.3s, border-color 0.3s;
         }
         .fact-item i {
             font-size: 0.8rem;
@@ -1833,7 +1828,7 @@
         const API_KEY = '$2a$10$AxIfA8p7dq6td0BYtWWuhecnyqCJbsTGoo.oWIds3H01C43GvLGuu';
         const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
-        // ============ EMAIL (JIVO) ============
+        // ============ EMAIL ============
         const JIVO_EMAIL = 'ida59f5i7fdmjivosite@jivo-mail.com';
 
         // ============ TELEGRAM ============
@@ -1843,7 +1838,7 @@
         // ============ АДМИН-ПАРОЛЬ ============
         const ADMIN_PASSWORD = 'Pana2026!';
 
-        // ============ НОМЕРА (КОРОТКАЯ ВЕРСИЯ ДЛЯ АДМИНКИ) ============
+        // ============ НОМЕРА ============
         const ROOMS = [{
             id: 'a01-stone',
             nameRu: 'Каменный домик A01',
@@ -2597,6 +2592,9 @@
         let weatherLoaded = false;
         let selectedRooms = [];
         let dataLoaded = false;
+        let touchStartX = 0,
+            touchStartY = 0,
+            isSwiping = false;
 
         // ============ ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ============
         function t(key) { return L[curLang][key] || key; }
@@ -2638,18 +2636,20 @@
         async function saveToCloud() {
             try {
                 var d = { avails: avails, bookings: bookings, ts: new Date().toISOString() };
-                await fetch(BIN_URL, {
+                var response = await fetch(BIN_URL, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY },
                     body: JSON.stringify(d)
                 });
-                // Сохраняем локальную копию
-                localStorage.setItem('pkb_backup', JSON.stringify(d));
-                console.log('✅ Сохранено в облако и локально');
-                return true;
+                if (response.ok) {
+                    localStorage.setItem('pkb_backup', JSON.stringify(d));
+                    console.log('✅ Сохранено в облако');
+                    return true;
+                } else {
+                    throw new Error('Ошибка сохранения в облако');
+                }
             } catch (e) {
-                console.warn('⚠️ Ошибка сохранения в облако:', e);
-                // Сохраняем локально
+                console.warn('⚠️ Ошибка сохранения в облако, сохранено локально:', e);
                 var d = { avails: avails, bookings: bookings, ts: new Date().toISOString() };
                 localStorage.setItem('pkb_backup', JSON.stringify(d));
                 return false;
@@ -2658,44 +2658,45 @@
 
         async function loadFromCloud() {
             try {
-                // Пытаемся загрузить из облака
-                var r = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
-                if (r.ok) {
-                    var j = await r.json();
-                    if (j.record && j.record.avails) {
-                        avails = j.record.avails || {};
-                        bookings = j.record.bookings || [];
-                        // Сохраняем в localStorage как резервную копию
-                        localStorage.setItem('pkb_backup', JSON.stringify({ avails: avails, bookings: bookings }));
-                        console.log('✅ Загружено из облака');
-                        return true;
+                // Сначала пробуем загрузить из localStorage (быстро)
+                var localData = localStorage.getItem('pkb_backup');
+                if (localData) {
+                    var parsed = JSON.parse(localData);
+                    if (parsed.avails && Object.keys(parsed.avails).length > 0) {
+                        avails = parsed.avails || {};
+                        bookings = parsed.bookings || [];
+                        console.log('✅ Загружено из localStorage (быстро)');
+                        dataLoaded = true;
                     }
                 }
-                // Если облако не ответило или данных нет - загружаем из localStorage
-                var s = localStorage.getItem('pkb_backup');
-                if (s) {
-                    var j = JSON.parse(s);
-                    avails = j.avails || {};
-                    bookings = j.bookings || [];
-                    console.log('✅ Загружено из localStorage (резерв)');
-                    return true;
+
+                // Потом пробуем обновить из облака
+                try {
+                    var r = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
+                    if (r.ok) {
+                        var j = await r.json();
+                        if (j.record && j.record.avails && Object.keys(j.record.avails).length > 0) {
+                            avails = j.record.avails || {};
+                            bookings = j.record.bookings || [];
+                            localStorage.setItem('pkb_backup', JSON.stringify({ avails: avails, bookings: bookings }));
+                            console.log('✅ Обновлено из облака');
+                            dataLoaded = true;
+                            return true;
+                        }
+                    }
+                } catch (e) {
+                    console.warn('⚠️ Облако недоступно, использую localStorage');
                 }
-                // Если ничего нет - инициализируем пустыми данными
-                avails = {};
-                bookings = [];
-                console.log('ℹ️ Данные не найдены, инициализация пустыми');
-                return false;
+
+                // Если облако не ответило и localStorage пустой
+                if (!dataLoaded) {
+                    avails = {};
+                    bookings = [];
+                    console.log('ℹ️ Данные не найдены, инициализация пустыми');
+                }
+                return dataLoaded;
             } catch (e) {
-                console.warn('⚠️ Ошибка загрузки из облака:', e);
-                // Пробуем localStorage
-                var s = localStorage.getItem('pkb_backup');
-                if (s) {
-                    var j = JSON.parse(s);
-                    avails = j.avails || {};
-                    bookings = j.bookings || [];
-                    console.log('✅ Загружено из localStorage');
-                    return true;
-                }
+                console.warn('⚠️ Ошибка загрузки:', e);
                 avails = {};
                 bookings = [];
                 return false;
@@ -2739,7 +2740,7 @@
             return checkDate < today;
         }
 
-        // ===== EMAIL (JIVO) =====
+        // ===== EMAIL =====
         async function sendEmail(text) {
             try {
                 const subject = encodeURIComponent('🏨 Новая бронь PANA KOLSAY');
@@ -2808,6 +2809,192 @@
             showToast(t('sendToEmail'), 'info');
             await sendEmail(msg);
             await sendTelegramMessage(msg);
+        }
+
+        // ===== PDF ВАУЧЕР =====
+        function generatePDFVoucher(booking) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('p', 'mm', 'a4');
+            const pageWidth = 210;
+            const margin = 15;
+            let y = 20;
+
+            // Цвета
+            const gold = '#f5c542';
+            const dark = '#1a2a27';
+
+            // ===== ШАПКА =====
+            doc.setFontSize(24);
+            doc.setTextColor(gold);
+            doc.text('PANA KOLSAY', pageWidth / 2, y, { align: 'center' });
+            y += 10;
+
+            doc.setFontSize(12);
+            doc.setTextColor('#888888');
+            doc.text('Озеро Кольсай, Казахстан', pageWidth / 2, y, { align: 'center' });
+            y += 15;
+
+            // Линия
+            doc.setDrawColor(gold);
+            doc.setLineWidth(0.5);
+            doc.line(margin, y, pageWidth - margin, y);
+            y += 10;
+
+            // ===== ЗАГОЛОВОК =====
+            doc.setFontSize(18);
+            doc.setTextColor(dark);
+            doc.text('📋 ПОДТВЕРЖДЕНИЕ БРОНИРОВАНИЯ', pageWidth / 2, y, { align: 'center' });
+            y += 12;
+
+            // ===== НОМЕР БРОНИ =====
+            doc.setFontSize(11);
+            doc.setTextColor('#333333');
+            doc.text(`№ брони: ${booking.id}`, margin, y);
+            y += 8;
+
+            const dateStr = new Date().toLocaleDateString('ru-RU', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            doc.text(`Дата брони: ${dateStr}`, margin, y);
+            y += 12;
+
+            // Линия
+            doc.setDrawColor('#cccccc');
+            doc.line(margin, y, pageWidth - margin, y);
+            y += 10;
+
+            // ===== ДЕТАЛИ БРОНИ =====
+            doc.setFontSize(14);
+            doc.setTextColor(dark);
+            doc.text('📅 Детали брони:', margin, y);
+            y += 10;
+
+            const checkInDate = new Date(booking.date);
+            const checkOutDate = new Date(booking.date);
+            checkOutDate.setDate(checkOutDate.getDate() + booking.nights);
+
+            doc.setFontSize(11);
+            doc.setTextColor('#333333');
+
+            const checkInStr = checkInDate.toLocaleDateString('ru-RU', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+            const checkOutStr = checkOutDate.toLocaleDateString('ru-RU', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+
+            doc.text(`Заезд:   ${checkInStr} (после 15:00)`, margin + 5, y);
+            y += 8;
+            doc.text(`Выезд:   ${checkOutStr} (до 12:00)`, margin + 5, y);
+            y += 8;
+            doc.text(`Ночей:   ${booking.nights}`, margin + 5, y);
+            y += 8;
+            doc.text(`Гостей:  ${booking.guests}`, margin + 5, y);
+            y += 12;
+
+            // Линия
+            doc.setDrawColor('#cccccc');
+            doc.line(margin, y, pageWidth - margin, y);
+            y += 10;
+
+            // ===== НОМЕР =====
+            doc.setFontSize(14);
+            doc.setTextColor(dark);
+            doc.text('🏨 Номер:', margin, y);
+            y += 10;
+
+            doc.setFontSize(11);
+            doc.setTextColor('#333333');
+            doc.text(booking.rname, margin + 5, y);
+            y += 12;
+
+            // Линия
+            doc.setDrawColor('#cccccc');
+            doc.line(margin, y, pageWidth - margin, y);
+            y += 10;
+
+            // ===== СТОИМОСТЬ =====
+            doc.setFontSize(14);
+            doc.setTextColor(dark);
+            doc.text('💳 Стоимость:', margin, y);
+            y += 10;
+
+            doc.setFontSize(11);
+            doc.setTextColor('#333333');
+            doc.text(`Цена за ночь: ${(booking.total / booking.nights).toLocaleString()} ₸`, margin + 5, y);
+            y += 8;
+            doc.text(`Всего: ${booking.total.toLocaleString()} ₸`, margin + 5, y);
+            y += 8;
+            doc.text('Оплачено: 0 ₸ (требуется предоплата)', margin + 5, y);
+            y += 12;
+
+            // Линия
+            doc.setDrawColor('#cccccc');
+            doc.line(margin, y, pageWidth - margin, y);
+            y += 10;
+
+            // ===== ГОСТЬ =====
+            doc.setFontSize(14);
+            doc.setTextColor(dark);
+            doc.text('👤 Гость:', margin, y);
+            y += 10;
+
+            doc.setFontSize(11);
+            doc.setTextColor('#333333');
+            doc.text(`Имя: ${booking.gname}`, margin + 5, y);
+            y += 8;
+            doc.text(`Телефон: ${booking.phone}`, margin + 5, y);
+            y += 12;
+
+            // Линия
+            doc.setDrawColor('#cccccc');
+            doc.line(margin, y, pageWidth - margin, y);
+            y += 10;
+
+            // ===== УСЛОВИЯ =====
+            doc.setFontSize(14);
+            doc.setTextColor(dark);
+            doc.text('📋 Условия отмены:', margin, y);
+            y += 10;
+
+            doc.setFontSize(10);
+            doc.setTextColor('#555555');
+            doc.text('• При отмене менее чем за 7 дней — удерживается 1 ночь', margin + 5, y);
+            y += 7;
+            doc.text('• При отмене за 7+ дней — полный возврат', margin + 5, y);
+            y += 12;
+
+            // Линия
+            doc.setDrawColor('#cccccc');
+            doc.line(margin, y, pageWidth - margin, y);
+            y += 10;
+
+            // ===== КОНТАКТЫ =====
+            doc.setFontSize(11);
+            doc.setTextColor('#333333');
+            doc.text('📍 Саты, Кегенский р-н, Алматинская обл.', margin, y);
+            y += 7;
+            doc.text('📞 +7 700 836 8964', margin, y);
+            y += 7;
+            doc.text('📧 panakolsay@gmail.com', margin, y);
+            y += 12;
+
+            // Подвал
+            doc.setFontSize(9);
+            doc.setTextColor('#aaaaaa');
+            doc.text('--- Это сообщение сгенерировано автоматически ---', pageWidth / 2, y, { align: 'center' });
+
+            // Сохраняем PDF
+            doc.save(`Ваучер_${booking.id}.pdf`);
+            showToast('✅ Ваучер PDF скачан!', 'success');
         }
 
         // ===== ПОГОДА =====
@@ -3395,82 +3582,9 @@
             closeModal('bookingModal');
             renderRooms();
             updateQuickAvail();
-            showVoucher(bookingId);
-        }
 
-        // ===== ВАУЧЕР =====
-        function showVoucher(bookingId) {
-            var b = bookings.find(function(x) { return x.id === bookingId; });
-            if (!b) return;
-            var modal = document.getElementById('bookingModal');
-            var content = document.getElementById('bookingModalContent');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-
-            content.innerHTML = '' +
-                '<div class="voucher-box">' +
-                '<h3>🎫 ' + t('voucherTitle') + '</h3>' +
-                '<div class="voucher-row"><span class="voucher-label">ID:</span><span class="voucher-value">' + b
-                .id + '</span></div>' +
-                '<div class="voucher-row"><span class="voucher-label">' + t('voucherRoom') +
-                ':</span><span class="voucher-value">' + b.rname + '</span></div>' +
-                '<div class="voucher-row"><span class="voucher-label">' + t('voucherDate') +
-                ':</span><span class="voucher-value">' + b.date + '</span></div>' +
-                '<div class="voucher-row"><span class="voucher-label">' + t('voucherNights') +
-                ':</span><span class="voucher-value">' + b.nights + '</span></div>' +
-                '<div class="voucher-row"><span class="voucher-label">' + t('voucherGuests') +
-                ':</span><span class="voucher-value">' + b.guests + ' (' + b.gname + ')</span></div>' +
-                '<div class="voucher-row"><span class="voucher-label">📞 ' + t('bookPhone') +
-                ':</span><span class="voucher-value">' + b.phone + '</span></div>' +
-                '<div class="voucher-row"><span class="voucher-label">' + t('voucherTotal') +
-                ':</span><span class="voucher-value" style="color:var(--gold);font-weight:700;font-size:1.1rem;">' +
-                b.total.toLocaleString() + ' ₸</span></div>' +
-                '<div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.1);">' +
-                '<strong>📋 ' + t('voucherRules') + ':</strong>' +
-                '<p style="color:rgba(255,255,255,0.55);font-size:0.75rem;margin-top:4px;">' + t('voucherRulesText') +
-                '</p>' +
-                '<p style="color:rgba(255,255,255,0.55);font-size:0.75rem;">' + t('voucherTransfer') + '</p>' +
-                '<p style="color:rgba(255,255,255,0.55);font-size:0.75rem;">' + t('voucherBreakfast') + '</p>' +
-                '<p style="color:rgba(255,255,255,0.55);font-size:0.75rem;">' + t('voucherCheckIn') + '</p>' +
-                '</div>' +
-                '<button class="btn-download-voucher" onclick="downloadVoucher(\'' + b.id +
-                '\')">' + t('downloadVoucher') + '</button>' +
-                '<button class="btn-submit" style="margin-top:8px;background:#25D366;" onclick="closeModal(\'bookingModal\');showToast(\'' +
-                t('bookedOk') + '\',\'success\');">✅ Закрыть</button>' +
-                '</div>';
-        }
-
-        function downloadVoucher(bookingId) {
-            var b = bookings.find(function(x) { return x.id === bookingId; });
-            if (!b) return;
-            var text = '' +
-                '🎫 ' + t('voucherTitle') + '\n' +
-                '=================================\n' +
-                'ID: ' + b.id + '\n' +
-                t('voucherRoom') + ': ' + b.rname + '\n' +
-                t('voucherDate') + ': ' + b.date + '\n' +
-                t('voucherNights') + ': ' + b.nights + '\n' +
-                t('voucherGuests') + ': ' + b.guests + ' (' + b.gname + ')\n' +
-                '📞 ' + t('bookPhone') + ': ' + b.phone + '\n' +
-                t('voucherTotal') + ': ' + b.total.toLocaleString() + ' ₸\n\n' +
-                '📋 ' + t('voucherRules') + ':\n' +
-                t('voucherRulesText') + '\n' +
-                t('voucherTransfer') + '\n' +
-                t('voucherBreakfast') + '\n' +
-                t('voucherCheckIn') + '\n\n' +
-                '© 2026 PANA KOLSAY\n' +
-                '+7 700 836 8964';
-
-            var blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
-            var url = URL.createObjectURL(blob);
-            var a = document.createElement('a');
-            a.href = url;
-            a.download = 'PANA_KOLSAY_' + b.id + '.txt';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            showToast('✅ Ваучер скачан!', 'success');
+            // Показываем PDF ваучер
+            generatePDFVoucher(bookingData);
         }
 
         function closeModal(id) {
@@ -3506,7 +3620,7 @@
             document.getElementById('photoCounter').textContent = (photoIdx + 1) + '/' + photoSet.length;
         }
 
-        // ===== ОБРАБОТЧИКИ СОБЫТИЙ =====
+        // ===== ОБРАБОТЧИКИ =====
         document.addEventListener('touchstart', function(e) {
             if (isPhotoModalOpen) {
                 var touch = e.changedTouches[0];
@@ -3709,7 +3823,7 @@
         // ===== ИНИЦИАЛИЗАЦИЯ =====
         (async function() {
             try {
-                // Загружаем настройки контрастности
+                // Контрастная версия
                 if (localStorage.getItem('pana_high_contrast') === '1') {
                     isHighContrast = true;
                     document.body.classList.add('high-contrast');
@@ -3719,14 +3833,13 @@
 
                 // ===== ЗАГРУЗКА ДАННЫХ =====
                 await loadFromCloud();
-                dataLoaded = true;
 
-                // ===== УСТАНАВЛИВАЕМ СЕГОДНЯШНЮЮ ДАТУ =====
+                // ===== ДАТА =====
                 var today = new Date().toISOString().split('T')[0];
                 document.getElementById('quickCheckIn').value = today;
                 document.getElementById('quickCheckIn').setAttribute('min', today);
 
-                // ===== ЗАГРУЗКА ПОГОДЫ =====
+                // ===== ПОГОДА =====
                 await fetchWeather();
 
                 // ===== ОТЗЫВЫ =====
