@@ -2624,12 +2624,10 @@
     try {
         console.log('🔄 Загрузка данных из Google Таблицы...');
         
-        // ===== НАСТРОЙКИ =====
-        const API_KEY = 'AIzaSyBYks7NJgliBsZzOMjfm2UOTznOZSAKp8U'; // ← ВАШ КЛЮЧ
+        const API_KEY = 'AIzaSyBYks7NJgliBsZzOMjfm2UOTznOZSAKp8U';
         const SHEET_ID = '1QsZqEHLWD0JEb7LV3Pbqr1Ux7nSMExYv9GXDrpYR3B4';
         const SHEET_NAME = 'Доступность';
         
-        // Используем Google Sheets API v4
         const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_NAME}?key=${API_KEY}`;
         
         console.log('📡 Запрос к:', url);
@@ -2642,43 +2640,58 @@
         const data = await response.json();
         console.log('✅ Данные загружены');
         
-        const rows = data.values || [];
-        if (rows.length < 2) {
-            throw new Error('Нет данных в таблице');
+        // Проверяем, есть ли данные
+        if (!data.values || data.values.length < 2) {
+            console.warn('⚠️ Нет данных в таблице');
+            return null;
         }
         
+        const rows = data.values;
+        
         // Первая строка — заголовки (даты)
-        const headers = rows[0];
-        console.log('📋 Заголовки:', headers);
+        const headers = rows[0] || [];
+        console.log('📋 Заголовки (первые 5):', headers.slice(0, 5));
         
         const result = {};
         
         // Остальные строки — номера
         for (let i = 1; i < rows.length; i++) {
             const row = rows[i];
-            if (row.length < 2) continue;
+            if (!row || row.length < 2) continue;
             
-            const roomName = row[0] || '';
+            // Получаем название номера (первая колонка)
+            let roomName = row[0] || '';
+            roomName = roomName.trim();
             if (!roomName) continue;
+            
+            console.log(`🔍 Обработка: "${roomName}"`);
             
             // Находим ID номера
             let roomId = null;
             for (let r of ROOMS) {
-                if (roomName.toLowerCase().includes(r.id) || r.name.toLowerCase().includes(roomName.toLowerCase())) {
+                const rName = r.name.toLowerCase();
+                const rId = r.id.toLowerCase();
+                const searchName = roomName.toLowerCase();
+                
+                if (searchName === rId || searchName === rName || 
+                    searchName.includes(rId) || rName.includes(searchName)) {
                     roomId = r.id;
                     break;
                 }
             }
-            if (!roomId) continue;
+            
+            if (!roomId) {
+                console.warn(`⚠️ Неизвестный номер: "${roomName}"`);
+                continue;
+            }
             
             result[roomId] = {};
             
-            // Парсим даты (начиная с 1-й колонки)
+            // Парсим даты
             for (let j = 1; j < headers.length && j < row.length; j++) {
                 const dateStr = headers[j] || '';
                 const value = parseInt(row[j]) || 0;
                 
-                // Преобразуем дату из формата ДД.ММ.ГГГГ в ГГГГ-ММ-ДД
                 const dateMatch = dateStr.match(/(\d{2})\.(\d{2})\.(\d{4})/);
                 if (dateMatch) {
                     const isoDate = `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`;
