@@ -2652,7 +2652,21 @@
         
         const result = {};
         
-        // Проходим по всем строкам
+        // МАППИНГ названий из таблицы → ID номера
+        const nameMapping = {
+            'standard room': 'standard',
+            'superior mountain view': 'mountain',
+            'superior lake view double': 'lake-double',
+            'superior lake view triple': 'triple',
+            'deluxe': 'deluxe',
+            'deluxe+': 'deluxe-plus',
+            'premier deluxe': 'premier-deluxe',
+            'suite room': 'suite',
+            'glamping domes +': 'glamping-new',
+            'каменный домик a01': 'a01-stone',
+            'деревянный домик a02': 'a02-wood'
+        };
+        
         for (let i = 1; i < rows.length; i++) {
             const row = rows[i];
             
@@ -2662,45 +2676,43 @@
                 continue;
             }
             
-            // Получаем первую ячейку
             const firstCell = row[0];
             
-            // Если нет данных в первой ячейке — пропускаем
-            if (firstCell === undefined || firstCell === null) {
-                console.log(`⚠️ Строка ${i+1} не содержит данных в первой колонке, пропускаем.`);
+            // Пропускаем если нет данных
+            if (firstCell === undefined || firstCell === null || firstCell === '') {
+                console.log(`⚠️ Строка ${i+1} не содержит названия, пропускаем.`);
                 continue;
             }
             
-            // ПРЕОБРАЗУЕМ В СТРОКУ БЕЗОПАСНО
+            // Пропускаем числа
+            if (typeof firstCell === 'number') {
+                console.log(`⚠️ Строка ${i+1} содержит число, пропускаем.`);
+                continue;
+            }
+            
             let roomName;
             try {
-                roomName = String(firstCell).trim();
+                roomName = String(firstCell).trim().toLowerCase();
             } catch (e) {
                 console.log(`⚠️ Строка ${i+1} не может быть преобразована в строку, пропускаем.`);
                 continue;
             }
             
-            // Если после преобразования строка пустая — пропускаем
             if (!roomName) {
                 console.log(`⚠️ Строка ${i+1} имеет пустое название, пропускаем.`);
                 continue;
             }
             
-            console.log(`🔍 Обработка строки ${i+1}: "${roomName}"`);
+            // Ищем ID по маппингу
+            let roomId = nameMapping[roomName];
             
-            // Ищем ID номера
-            let roomId = null;
-            const searchName = roomName.toLowerCase();
-            
-            for (let r of ROOMS) {
-                const rName = r.name.toLowerCase();
-                const rId = r.id.toLowerCase();
-                
-                if (searchName === rId || searchName === rName || 
-                    searchName.includes(rId) || rName.includes(searchName) ||
-                    rId.includes(searchName)) {
-                    roomId = r.id;
-                    break;
+            // Если не нашли — пробуем по частичному совпадению
+            if (!roomId) {
+                for (let key in nameMapping) {
+                    if (roomName.includes(key) || key.includes(roomName)) {
+                        roomId = nameMapping[key];
+                        break;
+                    }
                 }
             }
             
@@ -2709,7 +2721,7 @@
                 continue;
             }
             
-            console.log(`✅ Найден ID: ${roomId}`);
+            console.log(`✅ Строка ${i+1}: "${roomName}" → ID: ${roomId}`);
             
             result[roomId] = {};
             
