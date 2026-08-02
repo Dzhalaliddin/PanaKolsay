@@ -2630,6 +2630,7 @@
         
         const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_NAME}?key=${API_KEY}`;
         
+        console.log('📡 Запрос к:', url);
         const response = await fetch(url);
         
         if (!response.ok) {
@@ -2639,41 +2640,48 @@
         const data = await response.json();
         console.log('✅ Данные загружены');
         
+        // Проверяем, есть ли данные
         if (!data.values || data.values.length < 2) {
             console.warn('⚠️ Нет данных в таблице');
             return null;
         }
         
         const rows = data.values;
-        const headers = rows[0] || [];
         
+        // Первая строка — заголовки (даты)
+        const headers = rows[0] || [];
         console.log('📋 Заголовки (первые 5):', headers.slice(0, 5));
+        console.log('📋 Всего строк в таблице:', rows.length);
         
         const result = {};
         
-        // Проходим по всем строкам
+        // Остальные строки — номера
         for (let i = 1; i < rows.length; i++) {
             const row = rows[i];
             
-            // ПРОВЕРКА: если строка пустая или нет данных в первой колонке — пропускаем
+            // ===== ПРОВЕРКА НА ПУСТУЮ СТРОКУ =====
             if (!row || row.length === 0) {
                 console.log(`⚠️ Строка ${i+1} пустая, пропускаем.`);
                 continue;
             }
             
-            // Получаем название номера
-            let roomName = row[0];
-            if (!roomName || typeof roomName !== 'string') {
+            // ===== ПРОВЕРКА НА ПУСТОЕ НАЗВАНИЕ =====
+            const firstCell = row[0];
+            if (firstCell === undefined || firstCell === null || firstCell === '') {
                 console.log(`⚠️ Строка ${i+1} не содержит названия, пропускаем.`);
                 continue;
             }
             
-            roomName = roomName.trim();
-            if (!roomName) continue;
+            // ===== ПРИВОДИМ К СТРОКЕ =====
+            let roomName = String(firstCell).trim();
+            if (!roomName) {
+                console.log(`⚠️ Строка ${i+1} имеет пустое название после очистки, пропускаем.`);
+                continue;
+            }
             
-            console.log(`🔍 Обработка: "${roomName}"`);
+            console.log(`🔍 Обработка строки ${i+1}: "${roomName}"`);
             
-            // Поиск ID номера
+            // Находим ID номера
             let roomId = null;
             const searchName = roomName.toLowerCase();
             
@@ -2684,7 +2692,7 @@
                 // Проверяем все возможные совпадения
                 if (searchName === rId || searchName === rName || 
                     searchName.includes(rId) || rName.includes(searchName) ||
-                    rId.includes(searchName) || searchName.includes(rName)) {
+                    rId.includes(searchName)) {
                     roomId = r.id;
                     break;
                 }
@@ -2694,6 +2702,8 @@
                 console.warn(`⚠️ Неизвестный номер: "${roomName}"`);
                 continue;
             }
+            
+            console.log(`✅ Найден ID: ${roomId}`);
             
             result[roomId] = {};
             
@@ -2710,7 +2720,7 @@
             }
         }
         
-        console.log('📊 Распарсенные данные (количество номеров):', Object.keys(result).length);
+        console.log('📊 Распарсенные данные (номеров):', Object.keys(result).length);
         return result;
         
     } catch (error) {
