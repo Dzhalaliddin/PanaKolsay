@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
-        /* ... все стили как в вашем файле ... */
         * {
             margin: 0;
             padding: 0;
@@ -18,12 +17,117 @@
             background: #1a2a27;
             color: #fff;
             min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 20px;
+            transition: background 0.3s;
         }
+
+        /* ===== СТРАНИЦА ВХОДА ===== */
+        .login-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 40px 32px;
+            max-width: 400px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        .login-container .logo {
+            font-size: 2rem;
+            color: #f5c542;
+            font-weight: 300;
+            margin-bottom: 4px;
+        }
+        .login-container .logo span {
+            font-weight: 700;
+        }
+        .login-container .subtitle {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.8rem;
+            margin-bottom: 24px;
+        }
+        .login-container .form-group {
+            margin-bottom: 16px;
+            text-align: left;
+        }
+        .login-container .form-group label {
+            display: block;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .login-container .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+        .login-container .form-group input:focus {
+            border-color: #f5c542;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .login-container .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #f5c542;
+            color: #1a2a27;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 8px;
+        }
+        .login-btn:hover {
+            background: #ffe28a;
+            transform: translateY(-1px);
+        }
+        .login-error {
+            color: #ff4757;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            display: none;
+        }
+        .login-error.show {
+            display: block;
+        }
+        .login-loading {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.7rem;
+            margin-top: 10px;
+            display: none;
+        }
+        .login-loading.show {
+            display: block;
+        }
+
+        /* ===== АДМИН-ПАНЕЛЬ ===== */
         .admin-wrapper {
             max-width: 1200px;
+            width: 100%;
             margin: 0 auto;
+            display: none;
         }
+        .admin-wrapper.active {
+            display: block;
+        }
+
         .admin-header {
             display: flex;
             justify-content: space-between;
@@ -54,6 +158,13 @@
         .admin-header .back-link:hover {
             background: rgba(255, 255, 255, 0.08);
             color: #fff;
+        }
+        .admin-header .back-link.logout-link {
+            border-color: rgba(255, 71, 87, 0.3);
+            color: #ff4757;
+        }
+        .admin-header .back-link.logout-link:hover {
+            background: rgba(255, 71, 87, 0.15);
         }
 
         .admin-panel {
@@ -482,8 +593,8 @@
         }
 
         @media (max-width: 768px) {
-            body {
-                padding: 12px;
+            .login-container {
+                padding: 28px 20px;
             }
             .admin-header h1 {
                 font-size: 1.2rem;
@@ -514,12 +625,6 @@
             .admin-table .room-row td:first-child {
                 min-width: 55px;
             }
-            .admin-upload-area {
-                padding: 20px 16px;
-            }
-            .admin-upload-area i {
-                font-size: 2rem;
-            }
         }
         @media (max-width: 480px) {
             .admin-table {
@@ -536,15 +641,33 @@
 </head>
 <body>
 
-    <div class="admin-wrapper">
+    <!-- ===== СТРАНИЦА ВХОДА ===== -->
+    <div class="login-container" id="loginPage">
+        <div class="logo">🏔️ PANA <span>KOLSAY</span></div>
+        <div class="subtitle">Вход в административную панель</div>
+        <div class="form-group">
+            <label>🔑 Пароль</label>
+            <input type="password" id="passwordInput" placeholder="Введите пароль" onkeydown="if(event.key==='Enter') login()">
+        </div>
+        <button class="login-btn" onclick="login()">Войти</button>
+        <div class="login-error" id="loginError">❌ Неверный пароль. Попробуйте снова.</div>
+        <div class="login-loading" id="loginLoading">⏳ Загрузка данных из облака...</div>
+        <div style="margin-top:16px;font-size:0.7rem;color:rgba(255,255,255,0.2);">Введите пароль для доступа к панели управления</div>
+    </div>
+
+    <!-- ===== АДМИН-ПАНЕЛЬ ===== -->
+    <div class="admin-wrapper" id="adminPanel">
         <div class="admin-header">
             <h1>🔧 PANA <span>KOLSAY</span> · Админ-панель</h1>
-            <a href="index.html" class="back-link">← Вернуться на сайт</a>
+            <div>
+                <a href="index.html" class="back-link" target="_blank">← Открыть сайт</a>
+                <a href="#" class="back-link logout-link" onclick="logout()">🚪 Выйти</a>
+            </div>
         </div>
 
         <div class="admin-panel">
             <div class="admin-tabs">
-                <button class="admin-tab active" onclick="switchTab('excel')" id="tabExcel">📊 Обновление</button>
+                <button class="admin-tab active" onclick="switchTab('excel')" id="tabExcel">📊 Загрузка Excel</button>
                 <button class="admin-tab" onclick="switchTab('availability')" id="tabAvail">📅 Доступность</button>
                 <button class="admin-tab" onclick="switchTab('bookings')" id="tabBookings">📋 Бронирования</button>
             </div>
@@ -553,6 +676,8 @@
 
             <div class="admin-actions" style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06);">
                 <button class="admin-btn admin-btn-primary" onclick="saveAllData()">💾 Сохранить в облако</button>
+                <button class="admin-btn admin-btn-warning" onclick="closePastDates()">🔒 Закрыть прошедшие даты</button>
+                <button class="admin-btn admin-btn-danger" onclick="clearAllAvailability()">🗑️ Очистить всё</button>
                 <span style="color:rgba(255,255,255,0.3);font-size:0.7rem;display:flex;align-items:center;">* Изменения сохраняются в облако</span>
             </div>
         </div>
@@ -565,7 +690,7 @@
         const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
         // ============ АДМИН-ПАРОЛЬ ============
-        const ADMIN_PASSWORD = 'Pana2026!';  // ← МОЖЕТЕ СМЕНИТЬ НА СВОЙ
+        const ADMIN_PASSWORD = 'Pana2026!';
 
         // ============ НОМЕРА ============
         const ROOMS = [
@@ -614,6 +739,46 @@
         let currentTab = 'excel';
         let adminDateOffset = 0;
         let uploadedBookingsData = null;
+        let isLoggedIn = false;
+        let dataLoaded = false;
+
+        // ============ ВХОД/ВЫХОД ============
+        async function login() {
+            var input = document.getElementById('passwordInput');
+            var error = document.getElementById('loginError');
+            var loading = document.getElementById('loginLoading');
+
+            if (input.value === ADMIN_PASSWORD) {
+                isLoggedIn = true;
+                error.classList.remove('show');
+                loading.classList.add('show');
+                loading.textContent = '⏳ Загрузка данных из облака...';
+
+                // Загружаем данные
+                await loadFromCloud();
+                dataLoaded = true;
+
+                loading.classList.remove('show');
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('adminPanel').classList.add('active');
+                renderAdmin();
+                showToast('✅ Добро пожаловать в админ-панель!');
+            } else {
+                error.classList.add('show');
+                input.value = '';
+                input.focus();
+            }
+        }
+
+        function logout() {
+            if (confirm('Вы уверены, что хотите выйти?')) {
+                isLoggedIn = false;
+                document.getElementById('loginPage').style.display = 'block';
+                document.getElementById('adminPanel').classList.remove('active');
+                document.getElementById('passwordInput').value = '';
+                showToast('🔒 Вы вышли из системы', 'info');
+            }
+        }
 
         function showToast(msg, type) {
             type = type || 'success';
@@ -632,37 +797,81 @@
             }, 3000);
         }
 
+        // ============ ОБЛАКО ============
         async function loadFromCloud() {
             try {
-                var r = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
-                if (r.ok) {
-                    var j = await r.json();
-                    avails = j.record.avails || {};
-                    bookings = j.record.bookings || [];
+                // Сначала загружаем из localStorage (быстро)
+                var localData = localStorage.getItem('pkb_backup');
+                if (localData) {
+                    try {
+                        var parsed = JSON.parse(localData);
+                        if (parsed.avails && Object.keys(parsed.avails).length > 0) {
+                            avails = parsed.avails || {};
+                            bookings = parsed.bookings || [];
+                            console.log('✅ Загружено из localStorage');
+                        }
+                    } catch(e) {}
                 }
+
+                // Потом обновляем из облака
+                try {
+                    var r = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
+                    if (r.ok) {
+                        var j = await r.json();
+                        if (j.record && j.record.avails) {
+                            avails = j.record.avails || {};
+                            bookings = j.record.bookings || [];
+                            localStorage.setItem('pkb_backup', JSON.stringify({ avails: avails, bookings: bookings }));
+                            console.log('✅ Обновлено из облака');
+                            return true;
+                        }
+                    }
+                } catch (e) {
+                    console.warn('⚠️ Облако недоступно, использую localStorage');
+                }
+
+                // Если облако не ответило и localStorage пустой
+                if (!avails || Object.keys(avails).length === 0) {
+                    avails = {};
+                    bookings = [];
+                    console.log('ℹ️ Данные не найдены');
+                }
+                return true;
             } catch (e) {
-                var s = localStorage.getItem('pkb_backup');
-                if (s) {
-                    var j = JSON.parse(s);
-                    avails = j.avails || {};
-                    bookings = j.bookings || [];
-                }
+                console.warn('⚠️ Ошибка загрузки:', e);
+                avails = {};
+                bookings = [];
+                return false;
             }
         }
 
         async function saveToCloud() {
-            var d = { avails: avails, bookings: bookings, ts: new Date().toISOString() };
             try {
-                await fetch(BIN_URL, {
+                var d = { avails: avails, bookings: bookings, ts: new Date().toISOString() };
+                var response = await fetch(BIN_URL, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY },
                     body: JSON.stringify(d)
                 });
-                showToast('✅ Сохранено в облако!');
+                if (response.ok) {
+                    localStorage.setItem('pkb_backup', JSON.stringify(d));
+                    showToast('✅ Сохранено в облако!');
+                    return true;
+                } else {
+                    throw new Error('Ошибка сохранения');
+                }
             } catch (e) {
+                console.warn('⚠️ Ошибка сохранения в облако, сохранено локально:', e);
+                var d = { avails: avails, bookings: bookings, ts: new Date().toISOString() };
                 localStorage.setItem('pkb_backup', JSON.stringify(d));
-                showToast('⚠️ Сохранено локально', 'info');
+                showToast('⚠️ Сохранено локально (облако недоступно)', 'info');
+                return false;
             }
+        }
+
+        async function saveAllData() {
+            await saveToCloud();
+            renderAdmin();
         }
 
         function getAvail(rid, date) {
@@ -682,7 +891,8 @@
             var count = 0;
             for (var i = 0; i < bookings.length; i++) {
                 var b = bookings[i];
-                if (b.rid === rid && b.date === date && b.st === 'ok') {
+                var rids = b.rid ? b.rid.split(',') : [];
+                if (rids.indexOf(rid) !== -1 && b.date === date && b.st === 'ok') {
                     count++;
                 }
             }
@@ -693,10 +903,7 @@
             return Math.max(0, getAvail(rid, date) - bookedCount(rid, date));
         }
 
-        async function saveAllData() {
-            await saveToCloud();
-        }
-
+        // ===== ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК =====
         function switchTab(tab) {
             currentTab = tab;
             var tabs = document.querySelectorAll('.admin-tab');
@@ -721,8 +928,6 @@
                         .length + ' записей)';
                     showToast('📥 Загружен файл: ' + uploadedBookingsData.length + ' записей', 'info');
                     console.log('📋 Первая запись:', uploadedBookingsData[0]);
-
-                    // Автоматически запускаем обработку
                     processExcelFiles();
                 } catch (err) {
                     showToast('❌ Ошибка чтения файла: ' + err.message, 'error');
@@ -744,7 +949,7 @@
             el.className = 'admin-status ' + type;
         }
 
-        // ===== ОСНОВНАЯ ФУНКЦИЯ =====
+        // ===== ОСНОВНАЯ ФУНКЦИЯ ОБРАБОТКИ EXCEL =====
         async function processExcelFiles() {
             if (!uploadedBookingsData) {
                 setStatus('❌ Сначала загрузите bookings.xlsx', 'error');
@@ -757,7 +962,6 @@
                 var headers = Object.keys(uploadedBookingsData[0] || {});
                 console.log('📋 Все колонки:', headers);
 
-                // Находим колонки
                 var typeCol = null;
                 var checkInCol = null;
                 var checkOutCol = null;
@@ -805,7 +1009,6 @@
 
                 setProgress('Обработка броней...', 30);
 
-                // ===== СБОР ВСЕХ БРОНЕЙ =====
                 var allBookings = [];
                 var unknownTypes = {};
 
@@ -818,7 +1021,6 @@
                     }
 
                     var checkIn, checkOut;
-
                     var checkInRaw = row[checkInCol];
                     var checkOutRaw = row[checkOutCol];
 
@@ -948,9 +1150,7 @@
                                 }
                             }
                         });
-
                         var free = Math.max(0, total - busy);
-
                         if (d < today) {
                             newAvails[room.id][dateStr] = 0;
                         } else {
@@ -974,7 +1174,7 @@
 
                 setProgress('Готово!', 100);
                 setStatus('✅ Доступность обновлена! Обработано ' + allBookings.length + ' броней, ' + totalDaysToProcess +
-                    ' дней. Прошедшие даты закрыты, сегодняшняя доступна.', 'success');
+                    ' дней. Прошедшие даты закрыты.', 'success');
                 showToast('✅ Доступность успешно обновлена из Excel!', 'success');
 
                 setTimeout(function() {
@@ -990,6 +1190,7 @@
             }
         }
 
+        // ===== ОЧИСТКА =====
         function clearAllAvailability() {
             if (!confirm('Вы уверены, что хотите очистить всю доступность?')) return;
             avails = {};
@@ -1032,32 +1233,6 @@
             renderAdmin();
         }
 
-        function debugAvails() {
-            var total = 0;
-            var dates = {};
-            for (var rid in avails) {
-                if (avails.hasOwnProperty(rid)) {
-                    for (var dateStr in avails[rid]) {
-                        if (avails[rid].hasOwnProperty(dateStr)) {
-                            if (!dates[dateStr]) dates[dateStr] = 0;
-                            dates[dateStr] += avails[rid][dateStr];
-                            total++;
-                        }
-                    }
-                }
-            }
-            var msg = '📊 Всего записей доступности: ' + total + '\n';
-            var sortedDates = Object.keys(dates).sort();
-            var count = 0;
-            for (var i = 0; i < sortedDates.length && count < 15; i++) {
-                msg += sortedDates[i] + ': ' + dates[sortedDates[i]] + ' номеров\n';
-                count++;
-            }
-            if (sortedDates.length > 15) msg += '... и ещё ' + (sortedDates.length - 15) + ' дат';
-            alert(msg);
-            console.log('📊 avails:', avails);
-        }
-
         // ===== РЕНДЕР АДМИНКИ =====
         function renderAdmin() {
             var container = document.getElementById('adminContent');
@@ -1075,9 +1250,6 @@
                             Superior Lake view triple, Deluxe, Deluxe +, Premier Deluxe, Suite Room, Glamping Domes +,
                             Каменный домик, Деревянный домик
                         </p>
-                        <p style="font-size:0.7rem;color:#ffa502;margin-top:2px;">
-                            ⚠️ Пропускаются: Стандарт без вида, Glamping Domes
-                        </p>
                         <span class="file-name" id="fileNameBookings">Файл не выбран</span>
                         <input type="file" id="fileInputBookings" accept=".xlsx,.xls">
                     </div>
@@ -1088,12 +1260,6 @@
                     </div>
 
                     <div class="admin-status" id="adminStatus"></div>
-
-                    <div class="admin-actions" style="border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;margin-top:8px;flex-wrap:wrap;">
-                        <button class="admin-btn admin-btn-warning" onclick="closePastDates()">🔒 Закрыть прошедшие даты</button>
-                        <button class="admin-btn admin-btn-danger" onclick="clearAllAvailability()">🗑️ Очистить всё</button>
-                        <button class="admin-btn admin-btn-info" onclick="debugAvails()">🔍 Статистика доступности</button>
-                    </div>
                 `;
 
                 var dropZoneB = document.getElementById('dropZoneBookings');
@@ -1244,23 +1410,29 @@
         }
 
         // ===== ИНИЦИАЛИЗАЦИЯ =====
-        (async function() {
-            // Проверка пароля при входе
-            var pw = prompt('Введите пароль для входа в админ-панель:');
-            if (pw !== ADMIN_PASSWORD) {
-                if (pw !== null) {
-                    alert('❌ Неверный пароль!');
-                }
-                window.location.href = 'index.html';
-                return;
+        // Если пользователь уже был залогинен — показываем админку
+        // Иначе — страница входа
+        console.log('🔐 Админ-панель загружена');
+
+        // Проверяем, есть ли сохраненная сессия
+        var savedSession = localStorage.getItem('pana_admin_session');
+        if (savedSession === 'true') {
+            // Пробуем войти автоматически
+            document.getElementById('passwordInput').value = ADMIN_PASSWORD;
+            login();
+        }
+
+        // Обработчик для кнопки "Войти" по Enter
+        document.getElementById('passwordInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                login();
             }
+        });
 
-            await loadFromCloud();
-            renderAdmin();
+        // При загрузке страницы показываем лоадер
+        document.getElementById('loginLoading').textContent = '⏳ Подготовка...';
 
-            setInterval(saveToCloud, 300000);
-            window.addEventListener('beforeunload', function() { saveToCloud(); });
-        })();
+        console.log('✅ Админ-панель готова');
     </script>
 
 </body>
