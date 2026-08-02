@@ -642,7 +642,7 @@
 <body>
 
     <!-- ===== СТРАНИЦА ВХОДА ===== -->
-    <div class="login-container" id="loginPage">
+    <div class="login-container" id="loginPage" style="display:none;">
         <div class="logo">🏔️ PANA <span>KOLSAY</span></div>
         <div class="subtitle">Вход в административную панель</div>
         <div class="form-group">
@@ -742,6 +742,22 @@
         let isLoggedIn = false;
         let dataLoaded = false;
 
+        // ============ ПРОВЕРКА СЕССИИ ============
+        function checkSession() {
+            var session = localStorage.getItem('pana_admin_session');
+            if (session === 'true') {
+                // Автоматический вход
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('adminPanel').classList.add('active');
+                isLoggedIn = true;
+                loadFromCloud();
+                renderAdmin();
+                showToast('✅ Добро пожаловать!');
+                return true;
+            }
+            return false;
+        }
+
         // ============ ВХОД/ВЫХОД ============
         async function login() {
             var input = document.getElementById('passwordInput');
@@ -754,7 +770,9 @@
                 loading.classList.add('show');
                 loading.textContent = '⏳ Загрузка данных из облака...';
 
-                // Загружаем данные
+                // Сохраняем сессию
+                localStorage.setItem('pana_admin_session', 'true');
+
                 await loadFromCloud();
                 dataLoaded = true;
 
@@ -772,6 +790,7 @@
 
         function logout() {
             if (confirm('Вы уверены, что хотите выйти?')) {
+                localStorage.removeItem('pana_admin_session');
                 isLoggedIn = false;
                 document.getElementById('loginPage').style.display = 'block';
                 document.getElementById('adminPanel').classList.remove('active');
@@ -800,7 +819,6 @@
         // ============ ОБЛАКО ============
         async function loadFromCloud() {
             try {
-                // Сначала загружаем из localStorage (быстро)
                 var localData = localStorage.getItem('pkb_backup');
                 if (localData) {
                     try {
@@ -813,7 +831,6 @@
                     } catch(e) {}
                 }
 
-                // Потом обновляем из облака
                 try {
                     var r = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
                     if (r.ok) {
@@ -830,7 +847,6 @@
                     console.warn('⚠️ Облако недоступно, использую localStorage');
                 }
 
-                // Если облако не ответило и localStorage пустой
                 if (!avails || Object.keys(avails).length === 0) {
                     avails = {};
                     bookings = [];
@@ -1410,29 +1426,34 @@
         }
 
         // ===== ИНИЦИАЛИЗАЦИЯ =====
-        // Если пользователь уже был залогинен — показываем админку
-        // Иначе — страница входа
-        console.log('🔐 Админ-панель загружена');
+        (function() {
+            console.log('🔐 Админ-панель загружена');
 
-        // Проверяем, есть ли сохраненная сессия
-        var savedSession = localStorage.getItem('pana_admin_session');
-        if (savedSession === 'true') {
-            // Пробуем войти автоматически
-            document.getElementById('passwordInput').value = ADMIN_PASSWORD;
-            login();
-        }
-
-        // Обработчик для кнопки "Войти" по Enter
-        document.getElementById('passwordInput').addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                login();
+            // Проверяем сохраненную сессию
+            var session = localStorage.getItem('pana_admin_session');
+            if (session === 'true') {
+                // Автоматический вход
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('adminPanel').classList.add('active');
+                isLoggedIn = true;
+                showToast('✅ Добро пожаловать!');
+                // Загружаем данные
+                loadFromCloud();
+                renderAdmin();
+            } else {
+                document.getElementById('loginPage').style.display = 'block';
+                document.getElementById('passwordInput').focus();
             }
-        });
 
-        // При загрузке страницы показываем лоадер
-        document.getElementById('loginLoading').textContent = '⏳ Подготовка...';
+            // Обработчик для кнопки "Войти" по Enter
+            document.getElementById('passwordInput').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    login();
+                }
+            });
 
-        console.log('✅ Админ-панель готова');
+            console.log('✅ Админ-панель готова');
+        })();
     </script>
 
 </body>
