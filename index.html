@@ -2624,39 +2624,44 @@
     try {
         console.log('🔄 Загрузка данных из Google Таблицы...');
         
-        // ИСПОЛЬЗУЕМ ПУБЛИЧНУЮ ССЫЛКУ
-        const url = 'https://spreadsheets.google.com/feeds/list/1QsZqEHLWD0JEb7LV3Pbqr1Ux7nSMExYv9GXDrpYR3B4/od6/public/values?alt=json';
+        // ===== НАСТРОЙКИ =====
+        const API_KEY = 'ВАШ_API_КЛЮЧ'; // ← ВСТАВЬТЕ СВОЙ КЛЮЧ
+        const SHEET_ID = '1QsZqEHLWD0JEb7LV3Pbqr1Ux7nSMExYv9GXDrpYR3B4';
+        const SHEET_NAME = 'Доступность';
+        
+        // Используем Google Sheets API v4
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_NAME}?key=${API_KEY}`;
         
         console.log('📡 Запрос к:', url);
         const response = await fetch(url);
         
-        console.log('📡 Статус:', response.status);
-        
         if (!response.ok) {
-            throw new Error(`Ошибка загрузки: ${response.status}`);
+            throw new Error(`Ошибка загрузки: ${response.status} - ${response.statusText}`);
         }
         
         const data = await response.json();
         console.log('✅ Данные загружены');
-        console.log('📊 Данные:', data);
         
-        const entries = data.feed.entry || [];
+        const rows = data.values || [];
+        if (rows.length < 2) {
+            throw new Error('Нет данных в таблице');
+        }
+        
+        // Первая строка — заголовки (даты)
+        const headers = rows[0];
+        console.log('📋 Заголовки:', headers);
+        
         const result = {};
         
-        for (let i = 0; i < entries.length; i++) {
-            const entry = entries[i];
-            const values = {};
-            for (let key in entry) {
-                if (key.startsWith('gsx$')) {
-                    const fieldName = key.replace('gsx$', '');
-                    values[fieldName] = entry[key].$t;
-                }
-            }
+        // Остальные строки — номера
+        for (let i = 1; i < rows.length; i++) {
+            const row = rows[i];
+            if (row.length < 2) continue;
             
-            // Пробуем найти название номера
-            let roomName = values['номер'] || values['id'] || values['название'] || '';
+            const roomName = row[0] || '';
             if (!roomName) continue;
             
+            // Находим ID номера
             let roomId = null;
             for (let r of ROOMS) {
                 if (roomName.toLowerCase().includes(r.id) || r.name.toLowerCase().includes(roomName.toLowerCase())) {
@@ -2666,14 +2671,18 @@
             }
             if (!roomId) continue;
             
-            for (let key in values) {
-                if (key !== 'номер' && key !== 'id' && key !== 'название') {
-                    const dateMatch = key.match(/(\d{2})\.(\d{2})\.(\d{4})/);
-                    if (dateMatch) {
-                        const dateStr = `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`;
-                        if (!result[roomId]) result[roomId] = {};
-                        result[roomId][dateStr] = parseInt(values[key]) || 0;
-                    }
+            result[roomId] = {};
+            
+            // Парсим даты (начиная с 1-й колонки)
+            for (let j = 1; j < headers.length && j < row.length; j++) {
+                const dateStr = headers[j] || '';
+                const value = parseInt(row[j]) || 0;
+                
+                // Преобразуем дату из формата ДД.ММ.ГГГГ в ГГГГ-ММ-ДД
+                const dateMatch = dateStr.match(/(\d{2})\.(\d{2})\.(\d{4})/);
+                if (dateMatch) {
+                    const isoDate = `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`;
+                    result[roomId][isoDate] = value;
                 }
             }
         }
@@ -2686,7 +2695,6 @@
         return null;
     }
 }
-
         // ===== ФУНКЦИИ ДОСТУПНОСТИ =====
         function realAvail(rid, date) {
             if (googleData && googleData[rid] && googleData[rid][date] !== undefined) {
