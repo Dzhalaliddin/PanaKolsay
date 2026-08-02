@@ -36,6 +36,55 @@
             --header-height: 60px;
         }
 
+        /* ===== КОНТРАСТНАЯ ВЕРСИЯ ===== */
+        body.high-contrast {
+            --dark: #000000;
+            --dark-light: #0a0a0a;
+            --glass: rgba(0, 0, 0, 0.85);
+            --glass-card: rgba(0, 0, 0, 0.9);
+            --glass-card-hover: rgba(0, 0, 0, 0.95);
+            --text-primary: #ffffff;
+            --text-secondary: #ffffff;
+            --text-muted: #dddddd;
+            --border-glass: rgba(255, 255, 255, 0.3);
+        }
+        body.high-contrast .bg-fixed::after {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        body.high-contrast .content-block {
+            background: rgba(0, 0, 0, 0.8);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        body.high-contrast .room-card {
+            background: rgba(0, 0, 0, 0.85);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        body.high-contrast .fact-item {
+            background: rgba(0, 0, 0, 0.7);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        body.high-contrast .filter-btn {
+            background: rgba(0, 0, 0, 0.7);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+        body.high-contrast .filter-btn.active {
+            background: var(--gold);
+            color: #000000;
+        }
+        body.high-contrast .form-group input,
+        body.high-contrast .form-group select {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        body.high-contrast .modal-content {
+            background: #000000;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        body.high-contrast .faq-item .faq-question {
+            border-bottom-color: rgba(255, 255, 255, 0.2);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -54,6 +103,7 @@
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
         }
 
         /* ===== ЗАГРУЗЧИК ===== */
@@ -105,9 +155,13 @@
             height: 100vh;
             z-index: 0;
             background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1920') center/cover no-repeat;
-            background-attachment: fixed;
             background-size: cover;
             background-position: center;
+        }
+        @media (min-width: 1024px) {
+            .bg-fixed {
+                background-attachment: fixed;
+            }
         }
         .bg-fixed::after {
             content: '';
@@ -121,9 +175,9 @@
                     rgba(26, 42, 39, 0.4) 50%,
                     rgba(26, 42, 39, 0.55) 100%);
             pointer-events: none;
+            transition: background 0.3s;
         }
 
-        /* ===== КОНТЕЙНЕР ===== */
         .main-container {
             position: relative;
             z-index: 1;
@@ -133,14 +187,15 @@
         }
 
         .content-block {
-            background: rgba(26, 42, 39, 0.35);
+            background: var(--glass);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-radius: var(--radius-lg);
             padding: 20px 16px;
             margin-bottom: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-glass);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, border-color 0.3s;
         }
 
         /* ===== ШАПКА ===== */
@@ -153,8 +208,12 @@
             background: rgba(26, 42, 39, 0.92);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border-glass);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s;
+        }
+        body.high-contrast .header-sticky {
+            background: rgba(0, 0, 0, 0.95);
         }
         .header-sticky .content-block {
             background: transparent !important;
@@ -194,7 +253,6 @@
             flex-wrap: wrap;
         }
 
-        /* ===== ЯЗЫКИ ===== */
         .lang-switch {
             display: flex;
             gap: 3px;
@@ -206,13 +264,13 @@
         .lang-btn {
             background: transparent;
             border: none;
-            color: rgba(255, 255, 255, 0.55);
+            color: var(--text-muted);
             padding: 4px 10px;
             border-radius: 30px;
             font-size: 0.65rem;
             font-weight: 600;
             cursor: pointer;
-            transition: 0.3s;
+            transition: var(--transition);
             text-transform: uppercase;
         }
         .lang-btn:hover {
@@ -227,21 +285,25 @@
         .btn-accessibility {
             padding: 4px 10px;
             border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-glass);
             background: rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.55);
+            color: var(--text-muted);
             cursor: pointer;
             font-size: 0.6rem;
             font-weight: 500;
-            transition: 0.3s;
+            transition: var(--transition);
             white-space: nowrap;
         }
         .btn-accessibility:hover {
             background: rgba(255, 255, 255, 0.1);
             color: #fff;
         }
+        .btn-accessibility.active-high-contrast {
+            background: var(--gold);
+            color: var(--dark);
+            border-color: var(--gold);
+        }
 
-        /* ===== БЫСТРЫЕ ФАКТЫ ===== */
         .quick-facts {
             display: flex;
             justify-content: center;
@@ -254,11 +316,12 @@
             padding: 4px 10px;
             background: rgba(255, 255, 255, 0.04);
             border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-glass);
             min-width: 60px;
             backdrop-filter: blur(5px);
             flex: 1;
             max-width: 100px;
+            transition: background 0.3s, border-color 0.3s;
         }
         .fact-item i {
             font-size: 0.8rem;
@@ -273,12 +336,11 @@
         }
         .fact-label {
             font-size: 0.5rem;
-            color: rgba(255, 255, 255, 0.55);
+            color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.3px;
         }
 
-        /* ===== ПОГОДА ===== */
         .weather-header {
             display: flex;
             align-items: center;
@@ -287,7 +349,7 @@
             padding: 4px 12px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-glass);
             margin: 4px 0 6px 0;
             flex-wrap: wrap;
             font-size: 0.7rem;
@@ -297,7 +359,6 @@
             font-size: 1rem;
         }
 
-        /* ===== КНОПКИ КОНТАКТОВ ===== */
         .contact-bar {
             display: flex;
             justify-content: center;
@@ -314,7 +375,7 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 0.65rem;
-            transition: 0.3s;
+            transition: var(--transition);
             border: none;
             cursor: pointer;
             white-space: nowrap;
@@ -376,7 +437,6 @@
             animation: none;
         }
 
-        /* ===== ФИЛЬТРЫ ===== */
         .filter-bar {
             display: flex;
             justify-content: center;
@@ -387,13 +447,13 @@
         .filter-btn {
             padding: 8px 18px;
             border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-glass);
             background: rgba(255, 255, 255, 0.04);
-            color: rgba(255, 255, 255, 0.55);
+            color: var(--text-muted);
             cursor: pointer;
             font-size: 0.85rem;
             font-weight: 500;
-            transition: 0.3s;
+            transition: var(--transition);
             backdrop-filter: blur(5px);
         }
         .filter-btn:hover {
@@ -407,7 +467,6 @@
             font-weight: 700;
         }
 
-        /* ===== СЕТКА НОМЕРОВ ===== */
         .rooms-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -415,19 +474,19 @@
         }
 
         .room-card {
-            background: rgba(26, 42, 39, 0.4);
+            background: var(--glass-card);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border-radius: var(--radius);
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: 0.3s;
+            border: 1px solid var(--border-glass);
+            transition: var(--transition);
             display: flex;
             flex-direction: column;
         }
         .room-card:hover {
             transform: translateY(-4px);
-            background: rgba(26, 42, 39, 0.6);
+            background: var(--glass-card-hover);
             border-color: rgba(255, 255, 255, 0.15);
             box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
         }
@@ -450,6 +509,8 @@
             object-fit: cover;
             transition: transform 0.5s;
             user-select: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
             display: block;
         }
         .room-card:hover .room-photos img {
@@ -489,7 +550,7 @@
         }
         .room-desc {
             font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.85);
+            color: var(--text-secondary);
             margin-bottom: 6px;
             line-height: 1.4;
         }
@@ -501,7 +562,7 @@
             display: inline-block;
             align-self: flex-start;
             background: rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.85);
+            color: var(--text-secondary);
         }
         .room-availability.free {
             color: #2ed573;
@@ -519,7 +580,7 @@
             padding: 0;
             font-size: 0.75rem;
             line-height: 1.6;
-            color: rgba(255, 255, 255, 0.85);
+            color: var(--text-secondary);
             flex: 1;
         }
         .room-features li {
@@ -546,7 +607,7 @@
             font-size: 0.75rem;
             text-decoration: none;
             border-bottom: 2px solid rgba(245, 197, 66, 0.15);
-            transition: 0.3s;
+            transition: var(--transition);
             align-self: flex-start;
         }
         .room-link:hover {
@@ -566,7 +627,7 @@
             font-weight: 700;
             cursor: pointer;
             font-size: 0.85rem;
-            transition: 0.3s;
+            transition: var(--transition);
             text-align: center;
         }
         .btn-book-room:hover {
@@ -580,7 +641,6 @@
             pointer-events: none;
         }
 
-        /* ===== ФОРМА ПРОВЕРКИ ===== */
         .quick-check-form {
             display: flex;
             gap: 8px;
@@ -594,7 +654,7 @@
         }
         .quick-check-form .form-group label {
             font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.55);
+            color: var(--text-muted);
             display: block;
             margin-bottom: 4px;
         }
@@ -604,11 +664,11 @@
             font-size: 0.8rem;
             width: 100%;
             border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-glass);
             background: rgba(255, 255, 255, 0.06);
             color: #fff;
             outline: none;
-            transition: 0.3s;
+            transition: var(--transition);
         }
         .quick-check-form .form-group input:focus,
         .quick-check-form .form-group select:focus {
@@ -620,10 +680,9 @@
             color: #fff;
         }
 
-        /* ===== СПИСОК ДОСТУПНОСТИ ===== */
         .avail-list-full {
             margin-top: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-glass);
             border-radius: var(--radius-sm);
             overflow: hidden;
         }
@@ -632,7 +691,7 @@
             grid-template-columns: 2fr 1fr 1fr 1fr;
             padding: 8px 12px;
             background: rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border-glass);
             font-weight: 600;
             font-size: 0.7rem;
             color: var(--gold);
@@ -647,7 +706,7 @@
             font-size: 0.75rem;
             align-items: center;
             transition: background 0.2s;
-            color: rgba(255, 255, 255, 0.85);
+            color: var(--text-secondary);
         }
         .avail-list-item-full:last-child {
             border-bottom: none;
@@ -661,7 +720,7 @@
         }
         .avail-list-item-full .room-cap-small {
             font-size: 0.6rem;
-            color: rgba(255, 255, 255, 0.55);
+            color: var(--text-muted);
         }
         .avail-status {
             font-weight: 600;
@@ -678,10 +737,9 @@
         }
         .avail-count {
             font-weight: 700;
-            color: rgba(255, 255, 255, 0.85);
+            color: var(--text-secondary);
         }
 
-        /* ===== МОДАЛКИ ===== */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -708,9 +766,10 @@
             max-width: 500px;
             width: 100%;
             margin: auto;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-glass);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             position: relative;
+            transition: background 0.3s, border-color 0.3s;
         }
         .modal-content.wide {
             max-width: 650px;
@@ -746,7 +805,6 @@
             outline: none !important;
         }
 
-        /* ===== ОСТАЛЬНЫЕ ЭЛЕМЕНТЫ МОДАЛКИ ===== */
         .modal-close {
             position: absolute;
             top: 12px;
@@ -756,7 +814,7 @@
             color: #fff;
             font-size: 1.5rem;
             cursor: pointer;
-            transition: 0.3s;
+            transition: var(--transition);
             z-index: 10;
             line-height: 1;
         }
@@ -778,7 +836,7 @@
         .form-group label {
             display: block;
             font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.55);
+            color: var(--text-muted);
             margin-bottom: 4px;
             font-weight: 500;
         }
@@ -787,12 +845,12 @@
             width: 100%;
             padding: 8px 12px;
             border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-glass);
             background: rgba(255, 255, 255, 0.06);
             color: #fff;
             font-size: 0.85rem;
             outline: none;
-            transition: 0.3s;
+            transition: var(--transition);
         }
         .form-group input::placeholder {
             color: rgba(255, 255, 255, 0.4);
@@ -823,18 +881,21 @@
             font-weight: 700;
             cursor: pointer;
             font-size: 0.9rem;
-            transition: 0.3s;
+            transition: var(--transition);
             margin-top: 6px;
         }
         .btn-submit:hover {
             background: var(--gold-light);
             transform: translateY(-1px);
         }
+        .btn-submit.loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
 
-        /* ===== ГРУППОВОЕ БРОНИРОВАНИЕ ===== */
         .group-booking-item {
             background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-glass);
             border-radius: var(--radius-sm);
             padding: 12px;
             margin-bottom: 8px;
@@ -847,7 +908,7 @@
             color: #fff;
         }
         .group-booking-item .room-dates {
-            color: rgba(255, 255, 255, 0.55);
+            color: var(--text-muted);
             font-size: 0.7rem;
         }
         .group-booking-item .remove-btn {
@@ -870,7 +931,7 @@
             font-weight: 700;
             color: var(--gold);
             padding: 12px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid var(--border-glass);
             margin-top: 8px;
         }
 
@@ -878,9 +939,9 @@
             display: inline-block;
             padding: 8px 16px;
             background: rgba(255, 255, 255, 0.06);
-            border: 1px dashed rgba(255, 255, 255, 0.1);
+            border: 1px dashed var(--border-glass);
             border-radius: 25px;
-            color: rgba(255, 255, 255, 0.55);
+            color: var(--text-muted);
             cursor: pointer;
             font-size: 0.75rem;
             transition: 0.3s;
@@ -891,10 +952,9 @@
             color: #fff;
         }
 
-        /* ===== СПИСОК ДОСТУПНОСТИ В МОДАЛКЕ ===== */
         .avail-list-box {
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-glass);
             border-radius: var(--radius-sm);
             padding: 12px;
             margin-top: 8px;
@@ -907,7 +967,7 @@
             padding: 4px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.85);
+            color: var(--text-secondary);
         }
         .avail-list-item:last-child {
             border-bottom: none;
@@ -921,11 +981,10 @@
             font-weight: 600;
         }
 
-        /* ===== КАРТА ===== */
         .map-container {
             border-radius: var(--radius);
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-glass);
         }
         .map-container iframe {
             width: 100%;
@@ -949,7 +1008,7 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 0.75rem;
-            transition: 0.3s;
+            transition: var(--transition);
             border: none;
             cursor: pointer;
             color: #fff;
@@ -971,14 +1030,13 @@
             background: #4285f4;
         }
 
-        /* ===== ВИДЕО ===== */
         .video-container {
             position: relative;
             padding-bottom: 56.25%;
             height: 0;
             border-radius: var(--radius);
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-glass);
         }
         .video-container iframe {
             position: absolute;
@@ -989,7 +1047,6 @@
             border: 0;
         }
 
-        /* ===== ПРАВИЛА ===== */
         .rules-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1007,12 +1064,11 @@
             font-size: 0.85rem;
         }
         .rule-item p {
-            color: rgba(255, 255, 255, 0.85);
+            color: var(--text-secondary);
             font-size: 0.75rem;
             line-height: 1.5;
         }
 
-        /* ===== FAQ ===== */
         .faq-item {
             margin-bottom: 10px;
             cursor: pointer;
@@ -1024,12 +1080,12 @@
             justify-content: space-between;
             align-items: center;
             padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border-glass);
             font-size: 0.85rem;
             transition: border-color 0.3s;
         }
         .faq-answer {
-            color: rgba(255, 255, 255, 0.85);
+            color: var(--text-secondary);
             font-size: 0.75rem;
             padding: 8px 0;
             display: none;
@@ -1042,7 +1098,6 @@
             color: var(--gold);
         }
 
-        /* ===== ОТЗЫВЫ ===== */
         .reviews-scroll {
             display: flex;
             gap: 12px;
@@ -1056,9 +1111,10 @@
             background: rgba(255, 255, 255, 0.03);
             padding: 16px;
             border-radius: var(--radius-sm);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-glass);
             scroll-snap-align: start;
             flex-shrink: 0;
+            transition: background 0.3s, border-color 0.3s;
         }
         .review-stars {
             color: var(--gold);
@@ -1067,16 +1123,126 @@
         }
         .review-text {
             font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.85);
+            color: var(--text-secondary);
             line-height: 1.5;
             margin-bottom: 6px;
         }
         .review-author {
             font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.55);
+            color: var(--text-muted);
         }
 
-        /* ===== ФОТО МОДАЛКА ===== */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            z-index: 99999;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s ease;
+            max-width: 90%;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        .toast-success {
+            background: var(--gold);
+            color: var(--dark);
+        }
+        .toast-error {
+            background: #ff4757;
+            color: #fff;
+        }
+        .toast-info {
+            background: #1a73e8;
+            color: #fff;
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        .voucher-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--gold);
+            border-radius: var(--radius);
+            padding: 16px;
+            margin-top: 12px;
+        }
+        .voucher-box h3 {
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        .voucher-box .voucher-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        .voucher-box .voucher-row:last-child {
+            border-bottom: none;
+        }
+        .voucher-box .voucher-label {
+            color: var(--text-muted);
+        }
+        .voucher-box .voucher-value {
+            color: #fff;
+            font-weight: 500;
+        }
+        .btn-download-voucher {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 20px;
+            background: var(--gold);
+            color: var(--dark);
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+        .btn-download-voucher:hover {
+            background: var(--gold-light);
+            transform: translateY(-1px);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 16px;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            border-top: 1px solid var(--border-glass);
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
         #photoModal {
             padding: 10px;
             align-items: center;
@@ -1125,7 +1291,7 @@
             padding: 10px 14px;
             border-radius: 50%;
             cursor: pointer;
-            transition: 0.3s;
+            transition: var(--transition);
             min-width: 40px;
             min-height: 40px;
             display: flex;
@@ -1149,121 +1315,6 @@
             z-index: 10001;
         }
 
-        /* ===== ВАУЧЕР ===== */
-        .voucher-box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid var(--gold);
-            border-radius: var(--radius);
-            padding: 16px;
-            margin-top: 12px;
-        }
-        .voucher-box h3 {
-            color: var(--gold);
-            margin-bottom: 10px;
-            font-size: 1rem;
-        }
-        .voucher-box .voucher-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 4px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.85);
-        }
-        .voucher-box .voucher-row:last-child {
-            border-bottom: none;
-        }
-        .voucher-box .voucher-label {
-            color: rgba(255, 255, 255, 0.55);
-        }
-        .voucher-box .voucher-value {
-            color: #fff;
-            font-weight: 500;
-        }
-        .btn-download-voucher {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 20px;
-            background: var(--gold);
-            color: var(--dark);
-            border: none;
-            border-radius: 25px;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: 0.3s;
-        }
-        .btn-download-voucher:hover {
-            background: var(--gold-light);
-            transform: translateY(-1px);
-        }
-
-        /* ===== TOAST ===== */
-        .toast {
-            position: fixed;
-            bottom: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 10px 20px;
-            border-radius: 12px;
-            font-weight: 600;
-            z-index: 99999;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.3s ease;
-            max-width: 90%;
-            text-align: center;
-            font-size: 0.85rem;
-        }
-        .toast-success {
-            background: var(--gold);
-            color: var(--dark);
-        }
-        .toast-error {
-            background: #ff4757;
-            color: #fff;
-        }
-        .toast-info {
-            background: #1a73e8;
-            color: #fff;
-        }
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
-        }
-
-        /* ===== ФУТЕР ===== */
-        .footer {
-            text-align: center;
-            padding: 16px;
-            color: rgba(255, 255, 255, 0.55);
-            font-size: 0.7rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 8px;
-            flex-wrap: wrap;
-        }
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.55);
-            text-decoration: none;
-            transition: 0.3s;
-            font-size: 0.75rem;
-            cursor: pointer;
-        }
-        .footer-links a:hover {
-            color: var(--gold);
-        }
-
-        /* ===== АДАПТИВ ===== */
         @media (max-width: 768px) {
             .filter-btn {
                 padding: 4px 10px;
@@ -1323,7 +1374,6 @@
             .contact-btn i {
                 font-size: 0.7rem;
             }
-
             .rooms-grid {
                 grid-template-columns: 1fr;
                 gap: 12px;
@@ -1347,7 +1397,6 @@
                 font-size: 0.8rem;
                 padding: 10px;
             }
-
             .quick-check-form {
                 flex-direction: column;
                 gap: 6px;
@@ -1356,14 +1405,12 @@
                 min-width: 100%;
                 width: 100%;
             }
-
             .avail-list-header,
             .avail-list-item-full {
                 grid-template-columns: 1.5fr 0.8fr 0.8fr 0.8fr;
                 font-size: 0.65rem;
                 padding: 6px 10px;
             }
-
             .modal-content {
                 padding: 16px 12px;
                 max-width: 100%;
@@ -1379,7 +1426,6 @@
             .modal-title {
                 font-size: 1rem;
             }
-
             .photo-container img {
                 max-width: 90vw;
                 max-height: 60vh;
@@ -1402,7 +1448,6 @@
                 padding: 3px 12px;
                 bottom: 16px;
             }
-
             .map-container iframe {
                 height: 220px;
             }
@@ -1414,12 +1459,10 @@
                 padding: 6px 12px;
                 min-width: 70px;
             }
-
             .rules-grid {
                 grid-template-columns: 1fr;
                 gap: 12px;
             }
-
             .reviews-scroll {
                 gap: 10px;
             }
@@ -1430,14 +1473,12 @@
             .review-text {
                 font-size: 0.75rem;
             }
-
             .footer-links {
                 gap: 10px;
             }
             .footer-links a {
                 font-size: 0.65rem;
             }
-
             .group-booking-item {
                 grid-template-columns: 1fr;
                 gap: 6px;
@@ -1464,7 +1505,6 @@
             .header-sticky .content-block {
                 padding: 4px 0 !important;
             }
-
             .logo-title {
                 font-size: 1rem;
             }
@@ -1506,7 +1546,6 @@
                 font-size: 0.5rem;
                 padding: 2px 6px;
             }
-
             .room-photos {
                 height: 150px;
             }
@@ -1526,14 +1565,12 @@
                 font-size: 0.75rem;
                 padding: 8px;
             }
-
             .avail-list-header,
             .avail-list-item-full {
                 grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr;
                 font-size: 0.55rem;
                 padding: 4px 8px;
             }
-
             .form-group input,
             .form-group select {
                 padding: 6px 10px;
@@ -1543,7 +1580,6 @@
                 font-size: 0.65rem;
                 padding: 3px 0;
             }
-
             .modal-content {
                 padding: 12px 10px;
             }
@@ -1554,7 +1590,6 @@
                 font-size: 0.8rem;
                 padding: 8px;
             }
-
             .map-container iframe {
                 height: 180px;
             }
@@ -1563,7 +1598,6 @@
                 padding: 5px 10px;
                 min-width: 60px;
             }
-
             .review-card {
                 min-width: 160px;
                 padding: 10px;
@@ -1574,7 +1608,6 @@
             .review-stars {
                 font-size: 0.7rem;
             }
-
             .footer-links a {
                 font-size: 0.6rem;
             }
@@ -1803,14 +1836,14 @@
         // ============ EMAIL (JIVO) ============
         const JIVO_EMAIL = 'ida59f5i7fdmjivosite@jivo-mail.com';
 
-        // ============ TELEGRAM (дублирование в группу) ============
+        // ============ TELEGRAM ============
         const TELEGRAM_BOT_TOKEN = '1156354193:AAE3gQefzxsmuWSfIIzTOCW1-j6x1YoTNxs';
         const TELEGRAM_CHAT_ID = '-5423943839';
 
         // ============ АДМИН-ПАРОЛЬ ============
         const ADMIN_PASSWORD = 'Pana2026!';
 
-        // ============ НОМЕРА ============
+        // ============ НОМЕРА (КОРОТКАЯ ВЕРСИЯ ДЛЯ АДМИНКИ) ============
         const ROOMS = [{
             id: 'a01-stone',
             nameRu: 'Каменный домик A01',
@@ -2563,6 +2596,7 @@
         let weatherData = { temp: 0, wind: 0, code: 0, date: '' };
         let weatherLoaded = false;
         let selectedRooms = [];
+        let dataLoaded = false;
 
         // ============ ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ============
         function t(key) { return L[curLang][key] || key; }
@@ -2594,9 +2628,115 @@
             isHighContrast = !isHighContrast;
             document.body.classList.toggle('high-contrast', isHighContrast);
             var btn = document.getElementById('btnA11y');
+            btn.classList.toggle('active-high-contrast', isHighContrast);
             btn.textContent = isHighContrast ? '🌙 Обычная версия' : t('a11yBtn');
             localStorage.setItem('pana_high_contrast', isHighContrast ? '1' : '0');
             showToast(isHighContrast ? '🔆 Включена контрастная версия' : '🌙 Обычная версия', 'info');
+        }
+
+        // ===== ОБЛАКО (СОХРАНЕНИЕ И ЗАГРУЗКА) =====
+        async function saveToCloud() {
+            try {
+                var d = { avails: avails, bookings: bookings, ts: new Date().toISOString() };
+                await fetch(BIN_URL, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY },
+                    body: JSON.stringify(d)
+                });
+                // Сохраняем локальную копию
+                localStorage.setItem('pkb_backup', JSON.stringify(d));
+                console.log('✅ Сохранено в облако и локально');
+                return true;
+            } catch (e) {
+                console.warn('⚠️ Ошибка сохранения в облако:', e);
+                // Сохраняем локально
+                var d = { avails: avails, bookings: bookings, ts: new Date().toISOString() };
+                localStorage.setItem('pkb_backup', JSON.stringify(d));
+                return false;
+            }
+        }
+
+        async function loadFromCloud() {
+            try {
+                // Пытаемся загрузить из облака
+                var r = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
+                if (r.ok) {
+                    var j = await r.json();
+                    if (j.record && j.record.avails) {
+                        avails = j.record.avails || {};
+                        bookings = j.record.bookings || [];
+                        // Сохраняем в localStorage как резервную копию
+                        localStorage.setItem('pkb_backup', JSON.stringify({ avails: avails, bookings: bookings }));
+                        console.log('✅ Загружено из облака');
+                        return true;
+                    }
+                }
+                // Если облако не ответило или данных нет - загружаем из localStorage
+                var s = localStorage.getItem('pkb_backup');
+                if (s) {
+                    var j = JSON.parse(s);
+                    avails = j.avails || {};
+                    bookings = j.bookings || [];
+                    console.log('✅ Загружено из localStorage (резерв)');
+                    return true;
+                }
+                // Если ничего нет - инициализируем пустыми данными
+                avails = {};
+                bookings = [];
+                console.log('ℹ️ Данные не найдены, инициализация пустыми');
+                return false;
+            } catch (e) {
+                console.warn('⚠️ Ошибка загрузки из облака:', e);
+                // Пробуем localStorage
+                var s = localStorage.getItem('pkb_backup');
+                if (s) {
+                    var j = JSON.parse(s);
+                    avails = j.avails || {};
+                    bookings = j.bookings || [];
+                    console.log('✅ Загружено из localStorage');
+                    return true;
+                }
+                avails = {};
+                bookings = [];
+                return false;
+            }
+        }
+
+        function getAvail(rid, date) {
+            if (!avails || !avails[rid] || avails[rid][date] === undefined) {
+                var room = ROOMS.find(function(r) { return r.id === rid; });
+                return room ? room.total : 0;
+            }
+            return avails[rid][date];
+        }
+
+        function setAvail(rid, date, n) {
+            if (!avails[rid]) avails[rid] = {};
+            var room = ROOMS.find(function(r) { return r.id === rid; });
+            var max = room ? room.total : 0;
+            avails[rid][date] = Math.max(0, Math.min(n, max));
+        }
+
+        function bookedCount(rid, date) {
+            var count = 0;
+            bookings.forEach(function(b) {
+                var rids = b.rid ? b.rid.split(',') : [];
+                if (rids.indexOf(rid) !== -1 && b.date === date && b.st === 'ok') count++;
+            });
+            return count;
+        }
+
+        function realAvail(rid, date) {
+            var base = getAvail(rid, date);
+            var booked = bookedCount(rid, date);
+            return Math.max(0, base - booked);
+        }
+
+        function isPastDate(date) {
+            var today = new Date();
+            today.setHours(0, 0, 0, 0);
+            var checkDate = new Date(date);
+            return checkDate < today;
         }
 
         // ===== EMAIL (JIVO) =====
@@ -2729,73 +2869,6 @@
                     '</div></div>';
             }
             container.innerHTML = html;
-        }
-
-        // ===== ОБЛАКО =====
-        async function saveToCloud() {
-            var d = { avails: avails, bookings: bookings, ts: new Date().toISOString() };
-            try {
-                await fetch(BIN_URL, { method: 'PUT', headers: { 'Content-Type': 'application/json',
-                        'X-Master-Key': API_KEY }, body: JSON.stringify(d) });
-            } catch (e) { localStorage.setItem('pkb_backup', JSON.stringify(d)); }
-        }
-
-        async function loadFromCloud() {
-            try {
-                var r = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
-                if (r.ok) {
-                    var j = await r.json();
-                    avails = j.record.avails || {};
-                    bookings = j.record.bookings || [];
-                } else {
-                    var s = localStorage.getItem('pkb_backup');
-                    if (s) { var j = JSON.parse(s);
-                        avails = j.avails || {};
-                        bookings = j.bookings || []; }
-                }
-            } catch (e) {
-                var s = localStorage.getItem('pkb_backup');
-                if (s) { var j = JSON.parse(s);
-                    avails = j.avails || {};
-                    bookings = j.bookings || []; }
-            }
-        }
-
-        function getAvail(rid, date) {
-            if (!avails || !avails[rid] || avails[rid][date] === undefined) {
-                var room = ROOMS.find(function(r) { return r.id === rid; });
-                return room ? room.total : 0;
-            }
-            return avails[rid][date];
-        }
-
-        function setAvail(rid, date, n) {
-            if (!avails[rid]) avails[rid] = {};
-            var room = ROOMS.find(function(r) { return r.id === rid; });
-            var max = room ? room.total : 0;
-            avails[rid][date] = Math.max(0, Math.min(n, max));
-        }
-
-        function bookedCount(rid, date) {
-            var count = 0;
-            bookings.forEach(function(b) {
-                var rids = b.rid ? b.rid.split(',') : [];
-                if (rids.indexOf(rid) !== -1 && b.date === date && b.st === 'ok') count++;
-            });
-            return count;
-        }
-
-        function realAvail(rid, date) {
-            var base = getAvail(rid, date);
-            var booked = bookedCount(rid, date);
-            return Math.max(0, base - booked);
-        }
-
-        function isPastDate(date) {
-            var today = new Date();
-            today.setHours(0, 0, 0, 0);
-            var checkDate = new Date(date);
-            return checkDate < today;
         }
 
         // ===== ОБНОВЛЕНИЕ ДОСТУПНОСТИ В КАРТОЧКАХ =====
@@ -3433,10 +3506,7 @@
             document.getElementById('photoCounter').textContent = (photoIdx + 1) + '/' + photoSet.length;
         }
 
-        var touchStartX = 0,
-            touchStartY = 0,
-            isSwiping = false;
-
+        // ===== ОБРАБОТЧИКИ СОБЫТИЙ =====
         document.addEventListener('touchstart', function(e) {
             if (isPhotoModalOpen) {
                 var touch = e.changedTouches[0];
@@ -3639,27 +3709,38 @@
         // ===== ИНИЦИАЛИЗАЦИЯ =====
         (async function() {
             try {
+                // Загружаем настройки контрастности
                 if (localStorage.getItem('pana_high_contrast') === '1') {
                     isHighContrast = true;
                     document.body.classList.add('high-contrast');
                     document.getElementById('btnA11y').textContent = '🌙 Обычная версия';
+                    document.getElementById('btnA11y').classList.add('active-high-contrast');
                 }
 
+                // ===== ЗАГРУЗКА ДАННЫХ =====
                 await loadFromCloud();
+                dataLoaded = true;
 
+                // ===== УСТАНАВЛИВАЕМ СЕГОДНЯШНЮЮ ДАТУ =====
                 var today = new Date().toISOString().split('T')[0];
                 document.getElementById('quickCheckIn').value = today;
                 document.getElementById('quickCheckIn').setAttribute('min', today);
 
+                // ===== ЗАГРУЗКА ПОГОДЫ =====
                 await fetchWeather();
+
+                // ===== ОТЗЫВЫ =====
                 renderReviews();
 
+                // ===== ЯЗЫК =====
                 switchLanguage('ru');
 
+                // ===== СКРЫВАЕМ ЗАГРУЗЧИК =====
                 setTimeout(function() {
                     document.getElementById('loader').classList.add('hidden');
                 }, 500);
 
+                // ===== АВТОСОХРАНЕНИЕ =====
                 setInterval(saveToCloud, 300000);
                 setInterval(fetchWeather, 600000);
                 window.addEventListener('beforeunload', function() { saveToCloud(); });
