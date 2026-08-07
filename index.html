@@ -13,8 +13,9 @@
     <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🏔%3C/text%3E%3C/svg%3E">
     <title>PANA KOLSAY | Отель на озере Кольсай</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
-        /* ===== ВСЕ СТИЛИ ===== */
+        /* ===== ВСЕ СТИЛИ (как в предыдущей версии) ===== */
         :root {
             --gold: #f5c542;
             --gold-light: #ffe28a;
@@ -1826,6 +1827,10 @@
         const SHEET_NAME_AVAIL = 'Доступность';
         const SHEET_NAME_BOOKINGS = 'Бронирования';
 
+        // ============ TELEGRAM ============
+        const TELEGRAM_BOT_TOKEN = '1156354193:AAE3gQefzxsmuWSfIIzTOCW1-j6x1YoTNxs';
+        const TELEGRAM_CHAT_ID = '-5423943839';
+
         // ============ НОМЕРА ============
         const ROOMS = [{
             id: 'a01-stone',
@@ -2583,6 +2588,7 @@
         let touchStartX = 0,
             touchStartY = 0,
             isSwiping = false;
+        let autoUpdateInterval = null;
 
         // ============ ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ============
         function t(key) { return L[curLang][key] || key; }
@@ -2620,12 +2626,66 @@
             showToast(isHighContrast ? '🔆 Включена контрастная версия' : '🌙 Обычная версия', 'info');
         }
 
+        // ===== TELEGRAM =====
+        async function sendTelegramMessage(text) {
+            try {
+                const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: text,
+                        parse_mode: 'HTML'
+                    })
+                });
+                const data = await response.json();
+                if (!data.ok) {
+                    console.error('❌ Ошибка отправки в Telegram:', data);
+                } else {
+                    console.log('✅ Сообщение отправлено в Telegram');
+                }
+                return data;
+            } catch (e) {
+                console.error('❌ Ошибка отправки в Telegram:', e);
+            }
+        }
+
+        function formatBookingMessage(booking) {
+            const lang = curLang;
+            const roomName = booking.rname || 'Неизвестно';
+            const dateObj = new Date(booking.date);
+            const dateStr = dateObj.toLocaleDateString(lang === 'ru' ? 'ru' : lang === 'en' ? 'en' : 'kk', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+
+            let msg = '🏨 <b>НОВАЯ БРОНЬ!</b>\n';
+            msg += '═'.repeat(20) + '\n';
+            msg += `🆔 <b>ID:</b> ${booking.id}\n`;
+            msg += `📅 <b>Дата заезда:</b> ${dateStr}\n`;
+            msg += `🌙 <b>Ночей:</b> ${booking.nights}\n`;
+            msg += `👥 <b>Гостей:</b> ${booking.guests}\n`;
+            msg += `🛏️ <b>Номер:</b> ${roomName}\n`;
+            msg += `👤 <b>Гость:</b> ${booking.gname}\n`;
+            msg += `📞 <b>Телефон:</b> ${booking.phone}\n`;
+            if (booking.comm) {
+                msg += `📝 <b>Комментарий:</b> ${booking.comm}\n`;
+            }
+            msg += '═'.repeat(20) + '\n';
+            msg += `💰 <b>Сумма:</b> ${booking.total.toLocaleString()} ₸\n`;
+            msg += `🕐 <b>Время брони:</b> ${new Date().toLocaleString(lang === 'ru' ? 'ru' : lang === 'en' ? 'en' : 'kk')}\n`;
+            msg += '\n#НоваяБронь #PANA_KOLSAY';
+
+            return msg;
+        }
+
         // ===== ЗАГРУЗКА ИЗ GOOGLE ТАБЛИЦЫ =====
         async function loadFromGoogleSheet() {
             try {
                 console.log('🔄 Загрузка данных из Google Таблицы...');
                 const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_NAME_AVAIL}?key=${API_KEY}`;
-                console.log('📡 Запрос к:', url);
                 const response = await fetch(url);
                 if (!response.ok) {
                     throw new Error(`Ошибка загрузки: ${response.status}`);
@@ -2638,8 +2698,6 @@
                 }
                 const rows = data.values;
                 const headers = rows[0] || [];
-                console.log('📋 Заголовки (первые 5):', headers.slice(0, 5));
-                console.log('📋 Всего строк в таблице:', rows.length);
                 const result = {};
                 const nameMapping = {
                     'standard room': 'standard',
@@ -3223,6 +3281,10 @@
 
             bookings.push(bookingData);
 
+            // ===== ОТПРАВКА В TELEGRAM =====
+            const msg = formatBookingMessage(bookingData);
+            await sendTelegramMessage(msg);
+
             // ===== ЗАПИСЬ В GOOGLE ТАБЛИЦУ =====
             await saveBookingToSheet(bookingData);
 
@@ -3600,9 +3662,7 @@
             container.innerHTML = html;
         }
 
-        // ===== АВТООБНОВЛЕНИЕ КАЖДЫЕ 60 СЕКУНД =====
-        let autoUpdateInterval = null;
-
+        // ===== АВТООБНОВЛЕНИЕ =====
         async function autoUpdateData() {
             console.log('🔄 Автообновление данных (60 сек)...');
             const newData = await loadFromGoogleSheet();
@@ -3620,7 +3680,6 @@
         // ===== ИНИЦИАЛИЗАЦИЯ =====
         (async function() {
             try {
-                // Контрастная версия
                 if (localStorage.getItem('pana_high_contrast') === '1') {
                     isHighContrast = true;
                     document.body.classList.add('high-contrast');
@@ -3628,7 +3687,6 @@
                     document.getElementById('btnA11y').classList.add('active-high-contrast');
                 }
 
-                // ===== ЗАГРУЗКА ДАННЫХ ИЗ GOOGLE ТАБЛИЦЫ =====
                 googleData = await loadFromGoogleSheet();
                 if (googleData && Object.keys(googleData).length > 0) {
                     console.log('✅ Данные загружены из Google Таблицы');
@@ -3636,33 +3694,23 @@
                     console.warn('⚠️ Данные из Google Таблицы не загружены');
                 }
 
-                // ===== ДАТА =====
                 var today = new Date().toISOString().split('T')[0];
                 document.getElementById('quickCheckIn').value = today;
                 document.getElementById('quickCheckIn').setAttribute('min', today);
 
-                // ===== ПОГОДА =====
                 await fetchWeather();
-
-                // ===== ОТЗЫВЫ =====
                 renderReviews();
-
-                // ===== ЯЗЫК =====
                 switchLanguage('ru');
 
-                // ===== СКРЫВАЕМ ЗАГРУЗЧИК =====
                 setTimeout(function() {
                     document.getElementById('loader').classList.add('hidden');
                 }, 500);
 
-                // ===== АВТООБНОВЛЕНИЕ КАЖДЫЕ 60 СЕКУНД =====
                 if (autoUpdateInterval) clearInterval(autoUpdateInterval);
                 autoUpdateInterval = setInterval(autoUpdateData, 60000);
 
-                // ===== ПОГОДА ОБНОВЛЯЕТСЯ =====
                 setInterval(fetchWeather, 600000);
 
-                // ===== ОБНОВЛЕНИЕ ПРИ ВОЗВРАТЕ НА ВКЛАДКУ =====
                 document.addEventListener('visibilitychange', function() {
                     if (!document.hidden) {
                         console.log('🔄 Обновление данных при возврате на вкладку...');
