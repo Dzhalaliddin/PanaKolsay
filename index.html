@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="description" content="PANA KOLSAY - отель на берегу озера Кольсай. Бронирование номеров с видом на горы и озеро." />
-    <meta name="keywords" content="Кольсай, отель, озера Кольсай, Алматы, бронирование, отдых, горы, Казахстан, PANA KOLSAY" />
+    <meta name="description" content="PANA KOLSAY - отель на берегу озера Кольсай. Номера с видом на горы и озеро." />
+    <meta name="keywords" content="Кольсай, отель, озера Кольсай, Алматы, отдых, горы, Казахстан, PANA KOLSAY" />
     <meta property="og:title" content="PANA KOLSAY - Отель на озере Кольсай" />
-    <meta property="og:description" content="Забронируйте номер с видом на озеро Кольсай. Лучшие цены 2026." />
+    <meta property="og:description" content="Уютные номера с видом на озеро Кольсай." />
     <meta property="og:image" content="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200" />
     <meta name="theme-color" content="#1a2a27" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🏔%3C/text%3E%3C/svg%3E">
     <title>PANA KOLSAY | Отель на озере Кольсай</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
-        /* ===== ВСЕ СТИЛИ (как в предыдущей версии) ===== */
+        /* ===== ВСЕ СТИЛИ ===== */
         :root {
             --gold: #f5c542;
             --gold-light: #ffe28a;
@@ -408,29 +407,6 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 30px rgba(26, 115, 232, 0.45);
         }
-        .btn-book {
-            background: var(--gold);
-            color: var(--dark);
-            font-weight: 700;
-            box-shadow: 0 4px 20px rgba(245, 197, 66, 0.3);
-            animation: pulse 2.5s infinite;
-        }
-        @keyframes pulse {
-            0%,
-            100% {
-                box-shadow: 0 4px 15px rgba(245, 197, 66, 0.3);
-                transform: scale(1);
-            }
-            50% {
-                box-shadow: 0 8px 30px rgba(245, 197, 66, 0.6);
-                transform: scale(1.03);
-            }
-        }
-        .btn-book:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(245, 197, 66, 0.5);
-            animation: none;
-        }
 
         .filter-bar {
             display: flex;
@@ -549,25 +525,6 @@
             margin-bottom: 6px;
             line-height: 1.4;
         }
-        .room-availability {
-            font-size: 0.75rem;
-            margin-bottom: 6px;
-            padding: 4px 10px;
-            border-radius: 10px;
-            display: inline-block;
-            align-self: flex-start;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-secondary);
-        }
-        .room-availability.free {
-            color: #2ed573;
-        }
-        .room-availability.busy {
-            color: #ff4757;
-        }
-        .room-availability.past {
-            color: rgba(255, 255, 255, 0.3);
-        }
 
         .room-features {
             list-style: none;
@@ -608,32 +565,6 @@
         .room-link:hover {
             border-bottom-color: var(--gold);
             color: var(--gold-light);
-        }
-
-        .btn-book-room {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-top: 8px;
-            background: var(--gold);
-            color: var(--dark);
-            border: none;
-            border-radius: 25px;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: var(--transition);
-            text-align: center;
-        }
-        .btn-book-room:hover {
-            background: var(--gold-light);
-            transform: translateY(-1px);
-        }
-        .btn-book-room.disabled {
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.3);
-            cursor: not-allowed;
-            pointer-events: none;
         }
 
         .quick-check-form {
@@ -683,7 +614,7 @@
         }
         .avail-list-header {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
+            grid-template-columns: 2fr 1fr 1fr;
             padding: 8px 12px;
             background: rgba(255, 255, 255, 0.05);
             border-bottom: 1px solid var(--border-glass);
@@ -695,7 +626,7 @@
         }
         .avail-list-item-full {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
+            grid-template-columns: 2fr 1fr 1fr;
             padding: 8px 12px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             font-size: 0.75rem;
@@ -735,269 +666,19 @@
             color: var(--text-secondary);
         }
 
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 10000;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 40px 16px;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        .modal-overlay.active {
+        /* ===== МАП КНОПКИ ===== */
+        .map-btn-group {
             display: flex;
-        }
-
-        .modal-content {
-            background: #1a2a27;
-            border-radius: var(--radius-lg);
-            padding: 20px 16px;
-            max-width: 500px;
-            width: 100%;
-            margin: auto;
-            border: 1px solid var(--border-glass);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            position: relative;
-            transition: background 0.3s, border-color 0.3s;
-        }
-        .modal-content.wide {
-            max-width: 650px;
-        }
-
-        .modal-content select {
-            background: #1a2a27 !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.15) !important;
-            padding: 8px 12px !important;
-            border-radius: 10px !important;
-            font-size: 0.85rem !important;
-            width: 100% !important;
-            appearance: auto !important;
-            -webkit-appearance: auto !important;
-        }
-        .modal-content select option {
-            background: #1a2a27 !important;
-            color: #ffffff !important;
-            padding: 6px 12px !important;
-        }
-        .modal-content select option:checked {
-            background: #2a3a37 !important;
-            color: #f5c542 !important;
-        }
-        .modal-content select option:hover {
-            background: #2a3a37 !important;
-            color: #f5c542 !important;
-        }
-        .modal-content select:focus {
-            border-color: var(--gold) !important;
-            outline: none !important;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 12px;
-            right: 16px;
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: var(--transition);
-            z-index: 10;
-            line-height: 1;
-        }
-        .modal-close:hover {
-            color: var(--gold);
-            transform: scale(1.1);
-        }
-        .modal-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            padding-right: 30px;
-            color: #fff;
-        }
-
-        .form-group {
-            margin-bottom: 12px;
-        }
-        .form-group label {
-            display: block;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 4px;
-            font-weight: 500;
-        }
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 8px 12px;
-            border-radius: 10px;
-            border: 1px solid var(--border-glass);
-            background: rgba(255, 255, 255, 0.06);
-            color: #fff;
-            font-size: 0.85rem;
-            outline: none;
-            transition: var(--transition);
-        }
-        .form-group input::placeholder {
-            color: rgba(255, 255, 255, 0.4);
-        }
-        .form-group input:focus,
-        .form-group select:focus {
-            border-color: var(--gold);
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .form-group select option {
-            background: #1a2a27;
-            color: #fff;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 10px;
-            background: var(--gold);
-            color: var(--dark);
-            border: none;
-            border-radius: 25px;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: var(--transition);
-            margin-top: 6px;
-        }
-        .btn-submit:hover {
-            background: var(--gold-light);
-            transform: translateY(-1px);
-        }
-        .btn-submit.loading {
-            opacity: 0.6;
-            pointer-events: none;
-        }
-
-        .group-booking-item {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-glass);
-            border-radius: var(--radius-sm);
-            padding: 12px;
-            margin-bottom: 8px;
-            display: grid;
-            grid-template-columns: 1fr auto;
             gap: 8px;
-            align-items: center;
-        }
-        .group-booking-item .room-name-display {
-            color: #fff;
-        }
-        .group-booking-item .room-dates {
-            color: var(--text-muted);
-            font-size: 0.7rem;
-        }
-        .group-booking-item .remove-btn {
-            background: rgba(255, 71, 87, 0.2);
-            border: 1px solid rgba(255, 71, 87, 0.3);
-            color: #ff4757;
-            padding: 4px 10px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.7rem;
-            transition: 0.3s;
-        }
-        .group-booking-item .remove-btn:hover {
-            background: rgba(255, 71, 87, 0.3);
-        }
-
-        .group-total {
-            text-align: center;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--gold);
-            padding: 12px;
-            border-top: 1px solid var(--border-glass);
-            margin-top: 8px;
-        }
-
-        .btn-add-room {
-            display: inline-block;
-            padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px dashed var(--border-glass);
-            border-radius: 25px;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 0.75rem;
-            transition: 0.3s;
-            margin-top: 8px;
-        }
-        .btn-add-room:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-        }
-
-        .avail-list-box {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-glass);
-            border-radius: var(--radius-sm);
-            padding: 12px;
-            margin-top: 8px;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        .avail-list-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 4px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-        .avail-list-item:last-child {
-            border-bottom: none;
-        }
-        .avail-free {
-            color: #2ed573;
-            font-weight: 600;
-        }
-        .avail-busy {
-            color: #ff4757;
-            font-weight: 600;
-        }
-
-        .map-container {
-            border-radius: var(--radius);
-            overflow: hidden;
-            border: 1px solid var(--border-glass);
-        }
-        .map-container iframe {
-            width: 100%;
-            height: 350px;
-            border: 0;
-            border-radius: 12px;
-        }
-        .map-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 12px;
             flex-wrap: wrap;
             justify-content: center;
+            margin-top: 12px;
         }
         .map-btn {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 8px 16px;
+            padding: 8px 18px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
@@ -1008,20 +689,33 @@
             color: #fff;
             flex: 1;
             justify-content: center;
-            min-width: 100px;
+            min-width: 80px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
         }
         .map-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
         }
         .map-btn-2gis {
-            background: #ff6b00;
+            background: #1e8c3c;
+            color: #fff;
+        }
+        .map-btn-2gis i {
+            color: #fff;
         }
         .map-btn-yandex {
             background: #fc3f1d;
+            color: #fff;
+        }
+        .map-btn-yandex i {
+            color: #fff;
         }
         .map-btn-google {
             background: #4285f4;
+            color: #fff;
+        }
+        .map-btn-google i {
+            color: #fff;
         }
 
         .video-container {
@@ -1126,92 +820,6 @@
             color: var(--text-muted);
         }
 
-        .toast {
-            position: fixed;
-            bottom: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 10px 20px;
-            border-radius: 12px;
-            font-weight: 600;
-            z-index: 99999;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.3s ease;
-            max-width: 90%;
-            text-align: center;
-            font-size: 0.85rem;
-        }
-        .toast-success {
-            background: var(--gold);
-            color: var(--dark);
-        }
-        .toast-error {
-            background: #ff4757;
-            color: #fff;
-        }
-        .toast-info {
-            background: #1a73e8;
-            color: #fff;
-        }
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
-        }
-
-        .voucher-box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid var(--gold);
-            border-radius: var(--radius);
-            padding: 16px;
-            margin-top: 12px;
-        }
-        .voucher-box h3 {
-            color: var(--gold);
-            margin-bottom: 10px;
-            font-size: 1rem;
-        }
-        .voucher-box .voucher-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 4px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-        }
-        .voucher-box .voucher-row:last-child {
-            border-bottom: none;
-        }
-        .voucher-box .voucher-label {
-            color: var(--text-muted);
-        }
-        .voucher-box .voucher-value {
-            color: #fff;
-            font-weight: 500;
-        }
-        .btn-download-voucher {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 20px;
-            background: var(--gold);
-            color: var(--dark);
-            border: none;
-            border-radius: 25px;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: var(--transition);
-        }
-        .btn-download-voucher:hover {
-            background: var(--gold-light);
-            transform: translateY(-1px);
-        }
-
         .footer {
             text-align: center;
             padding: 16px;
@@ -1238,8 +846,20 @@
         }
 
         #photoModal {
-            padding: 10px;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 10000;
+            justify-content: center;
             align-items: center;
+            padding: 40px 16px;
+        }
+        #photoModal.active {
+            display: flex;
         }
         #photoModal .modal-close {
             position: fixed;
@@ -1387,10 +1007,6 @@
             .room-features {
                 font-size: 0.7rem;
             }
-            .btn-book-room {
-                font-size: 0.8rem;
-                padding: 10px;
-            }
             .quick-check-form {
                 flex-direction: column;
                 gap: 6px;
@@ -1401,57 +1017,9 @@
             }
             .avail-list-header,
             .avail-list-item-full {
-                grid-template-columns: 1.5fr 0.8fr 0.8fr 0.8fr;
+                grid-template-columns: 1.5fr 0.8fr 0.8fr;
                 font-size: 0.65rem;
                 padding: 6px 10px;
-            }
-            .modal-content {
-                padding: 16px 12px;
-                max-width: 100%;
-                margin: 10px;
-            }
-            .modal-content.wide {
-                max-width: 100%;
-            }
-            .form-row {
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
-            .modal-title {
-                font-size: 1rem;
-            }
-            .photo-container img {
-                max-width: 90vw;
-                max-height: 60vh;
-            }
-            .photo-nav-btn {
-                font-size: 1.2rem;
-                padding: 8px 12px;
-                min-width: 36px;
-                min-height: 36px;
-            }
-            #photoModal .modal-close {
-                width: 40px;
-                height: 40px;
-                font-size: 1.6rem;
-                top: 10px;
-                right: 10px;
-            }
-            #photoCounter {
-                font-size: 0.7rem;
-                padding: 3px 12px;
-                bottom: 16px;
-            }
-            .map-container iframe {
-                height: 220px;
-            }
-            .map-buttons {
-                gap: 6px;
-            }
-            .map-btn {
-                font-size: 0.65rem;
-                padding: 6px 12px;
-                min-width: 70px;
             }
             .rules-grid {
                 grid-template-columns: 1fr;
@@ -1473,9 +1041,10 @@
             .footer-links a {
                 font-size: 0.65rem;
             }
-            .group-booking-item {
-                grid-template-columns: 1fr;
-                gap: 6px;
+            .map-btn {
+                font-size: 0.65rem;
+                padding: 6px 14px;
+                min-width: 70px;
             }
         }
 
@@ -1555,42 +1124,11 @@
             .room-features {
                 font-size: 0.65rem;
             }
-            .btn-book-room {
-                font-size: 0.75rem;
-                padding: 8px;
-            }
             .avail-list-header,
             .avail-list-item-full {
-                grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr;
+                grid-template-columns: 1fr 0.5fr 0.5fr;
                 font-size: 0.55rem;
                 padding: 4px 8px;
-            }
-            .form-group input,
-            .form-group select {
-                padding: 6px 10px;
-                font-size: 0.8rem;
-            }
-            .avail-list-item {
-                font-size: 0.65rem;
-                padding: 3px 0;
-            }
-            .modal-content {
-                padding: 12px 10px;
-            }
-            .modal-title {
-                font-size: 0.9rem;
-            }
-            .btn-submit {
-                font-size: 0.8rem;
-                padding: 8px;
-            }
-            .map-container iframe {
-                height: 180px;
-            }
-            .map-btn {
-                font-size: 0.55rem;
-                padding: 5px 10px;
-                min-width: 60px;
             }
             .review-card {
                 min-width: 160px;
@@ -1608,22 +1146,10 @@
             .footer p {
                 font-size: 0.6rem;
             }
-            .voucher-box {
-                padding: 12px;
-            }
-            .voucher-box .voucher-row {
-                font-size: 0.7rem;
-            }
-            .btn-download-voucher {
-                font-size: 0.75rem;
-                padding: 6px 14px;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .filter-btn {
-                padding: 10px 24px;
-                font-size: 0.95rem;
+            .map-btn {
+                font-size: 0.55rem;
+                padding: 5px 10px;
+                min-width: 60px;
             }
         }
     </style>
@@ -1671,7 +1197,6 @@
                     <a href="https://wa.me/77018615121" target="_blank" class="contact-btn btn-whatsapp"><i class="fab fa-whatsapp"></i> <span id="btnWaText">WhatsApp</span></a>
                     <a href="https://instagram.com/pana_hotels" target="_blank" class="contact-btn btn-instagram"><i class="fab fa-instagram"></i> <span id="btnIgText">Instagram</span></a>
                     <a href="tel:+77008368964" class="contact-btn btn-phone"><i class="fas fa-phone"></i> <span id="btnPhText">Позвонить</span></a>
-                    <a href="#" class="contact-btn btn-book" onclick="openBookingModal()"><i class="fas fa-calendar-check"></i> <span id="btnBookText">Забронировать</span></a>
                 </div>
             </div>
         </div>
@@ -1699,7 +1224,7 @@
             <div class="quick-check-form" id="quickCheckForm">
                 <div class="form-group">
                     <label id="lblCheckIn">📅 Дата заезда</label>
-                    <input type="date" id="quickCheckIn" onchange="updateQuickAvail(); updateRoomAvailability();">
+                    <input type="date" id="quickCheckIn" onchange="updateQuickAvail();">
                 </div>
                 <div class="form-group">
                     <label id="lblGuests">👥 Гости</label>
@@ -1716,16 +1241,13 @@
             </div>
 
             <div id="quickAvailResult" style="margin-top:12px;"></div>
-            <button class="btn-submit" id="btnOpenBookForm" style="display:none; margin-top:10px;" onclick="openBookingModal()">📝 Забронировать подходящий номер</button>
         </div>
 
-        <!-- ===== КАРТА ===== -->
+        <!-- ===== КАРТА (КНОПКИ) ===== -->
         <div class="content-block" id="mapBlock">
             <h2 style="font-weight:300; margin-bottom:12px; font-size:1.2rem;" id="mapTitle">📍 Как добраться</h2>
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!4v1745860598743!6m8!1m7!1sCIHM0ogKEICAgIC_gICCdg!2m2!1d42.995647!2d78.326559!3f85.8!4f0!5f0.7820865974627469" width="100%" height="350" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-            <div class="map-buttons">
+            <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:12px;" id="mapInfo"><i class="fas fa-map-marker-alt"></i> Озеро Кольсай Нижнее | Из Алматы: ~4 часа (300 км)</p>
+            <div class="map-btn-group">
                 <a href="https://go.2gis.com/k4fIM" target="_blank" class="map-btn map-btn-2gis"><i class="fas fa-map"></i> 2GIS</a>
                 <a href="https://yandex.kz/maps/ru/-/CTvwaRo5" target="_blank" class="map-btn map-btn-yandex"><i class="fas fa-map"></i> Яндекс</a>
                 <a href="https://www.google.com/maps/@42.995647,78.326559,3a,85.8y,135.91h,51.71t/data=!3m8!1e1!3m6!1sCIHM0ogKEICAgIC_gICCdg!2e10!3e11!6shttps:%2F%2Flh3.googleusercontent.com%2Fgpms-cs-s%2FAFP8RcO5B_MQCzvrrnqWdfO8aUFViM9sI_tg3_lQJey2yEd69AcRYpDmSB0A3u5BjNBjgXDCKhclEds-QdwSKqpekuZyOGtU2iQslWcp1MvgRK8_4K9SMp5947qMkU32SiMAoUz5DKna%3Dw900-h600-k-no-pi38.28553290897283-ya335.52992239260266-ro0-fo100!7i12000!8i6000?hl=ru&entry=ttu&g_ep=EgoyMDI2MDcyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="map-btn map-btn-google"><i class="fas fa-map"></i> Google</a>
@@ -1793,21 +1315,12 @@
             <div class="footer-links">
                 <a href="#" onclick="toggleAccessibility()" id="footerA11y">♿ Версия для слабовидящих</a>
                 <a href="tel:+77008368964">📞 +7 700 836 8964</a>
-                <a href="#" onclick="connectOperator()" id="operatorLink">👩‍💼 Оператор</a>
             </div>
             <p id="footerCopy">© 2026 PANA KOLSAY · Озеро Кольсай, Казахстан</p>
         </div>
     </div>
 
-    <!-- ===== МОДАЛКИ ===== -->
-    <div class="modal-overlay" id="bookingModal">
-        <div class="modal-content wide">
-            <button class="modal-close" onclick="closeModal('bookingModal')">&times;</button>
-            <div class="modal-title" id="bookModTitle">📅 Забронировать номер</div>
-            <div id="bookingModalContent"></div>
-        </div>
-    </div>
-
+    <!-- ===== МОДАЛКА ФОТО ===== -->
     <div class="modal-overlay" id="photoModal">
         <button class="modal-close" onclick="closePhotoModal()">&times;</button>
         <div class="photo-container">
@@ -1818,18 +1331,11 @@
         <div id="photoCounter"></div>
     </div>
 
-    <script src="//code.jivo.ru/widget/sfanjIPwr0" async></script>
-
     <script>
         // ============ НАСТРОЙКИ ============
         const API_KEY = 'AIzaSyBYks7NJgliBsZzOMjfm2UOTznOZSAKp8U';
         const SHEET_ID = '1QsZqEHLWD0JEb7LV3Pbqr1Ux7nSMExYv9GXDrpYR3B4';
         const SHEET_NAME_AVAIL = 'Доступность';
-        const SHEET_NAME_BOOKINGS = 'Бронирования';
-
-        // ============ TELEGRAM ============
-        const TELEGRAM_BOT_TOKEN = '1156354193:AAE3gQefzxsmuWSfIIzTOCW1-j6x1YoTNxs';
-        const TELEGRAM_CHAT_ID = '-5423943839';
 
         // ============ НОМЕРА ============
         const ROOMS = [{
@@ -2159,7 +1665,6 @@
                 btnWa: 'WhatsApp',
                 btnIg: 'Instagram',
                 btnPh: 'Позвонить',
-                btnBook: 'Забронировать',
                 roomsTitle: '🛏️ Наши номера',
                 filtAll: 'Все',
                 filtStd: 'Стандарт',
@@ -2221,17 +1726,7 @@
                     'John D., UK',
                     'Sarah P., USA'
                 ],
-                footerAdmin: '🔧 Админ-панель',
                 footerA11y: '♿ Версия для слабовидящих',
-                bookModTitle: '📅 Забронировать номер',
-                bookSelRoom: '🏨 Выберите номер',
-                bookDate: '📅 Дата заезда',
-                bookGuests: '👥 Количество гостей',
-                bookNights: '🌙 Количество ночей',
-                bookName: '👤 Ф.И.О.',
-                bookPhone: '📞 Телефон',
-                bookComment: '📝 Комментарий',
-                bookSubmit: '✅ Подтвердить бронирование',
                 free: 'Свободно',
                 busy: 'Занято',
                 noFree: 'Нет мест',
@@ -2240,27 +1735,16 @@
                 guest1: 'гость',
                 guest2: 'гостя',
                 guest5: 'гостей',
-                extraBed: 'доп. место',
-                extraBeds: 'доп. места',
-                needExtra: '⚠️ Требуются доп. места',
-                tooMany: '❌ Слишком много гостей',
-                totalLabel: 'Итого за',
-                bookedOk: '✅ Бронирование подтверждено!',
-                noRooms: 'Нет свободных номеров на выбранную дату',
-                fillNamePhone: 'Пожалуйста, заполните Ф.И.О. и телефон',
-                maxCap: 'Максимальная вместимость',
-                voucherTitle: '🎫 Ваучер на бронирование',
-                voucherRoom: 'Номер',
-                voucherDate: 'Дата заезда',
-                voucherNights: 'Ночей',
-                voucherGuests: 'Гостей',
-                voucherTotal: 'Итого к оплате',
-                voucherRules: 'Условия отмены',
-                voucherRulesText: 'При отмене менее чем за 7 дней — удерживается 1 ночь. При отмене за 7+ дней — полный возврат.',
-                voucherTransfer: '🚐 Трансфер с парковки бесплатный в течение 40 минут',
-                voucherBreakfast: '🍳 Шведский стол в ресторане Тары в 300 м',
-                voucherCheckIn: '🕐 Заезд с 15:00, выезд до 12:00',
-                downloadVoucher: '📄 Скачать ваучер',
+                roomsAvailable: 'доступно',
+                roomName: 'Номер',
+                capacity: 'Вместимость',
+                availability: 'Доступность',
+                status: 'Статус',
+                available: 'Свободно',
+                notAvailable: 'Нет мест',
+                of: 'из',
+                details: 'Подробнее',
+                location: 'Озеро Кольсай, Казахстан',
                 weather: 'Погода',
                 weatherNow: 'Сейчас погода в Кольсае',
                 weatherTemp: '°C',
@@ -2268,26 +1752,6 @@
                 weatherSpeed: 'км/ч',
                 past: 'Прошедшая дата',
                 nights: 'ночей',
-                operator: '👩‍💼 Оператор',
-                loading: 'Загрузка...',
-                adminPassword: 'Введите пароль:',
-                adminWrong: 'Неверный пароль',
-                roomName: 'Номер',
-                capacity: 'Вместимость',
-                availability: 'Доступность',
-                status: 'Статус',
-                roomsAvailable: 'доступно',
-                totalRooms: 'всего',
-                addRoom: '➕ Добавить номер',
-                removeRoom: '✕ Удалить',
-                selectRoomFirst: '🏨 Сначала выберите номер',
-                available: 'Свободно',
-                notAvailable: 'Нет мест',
-                of: 'из',
-                details: 'Подробнее',
-                operatorText: 'Оператор',
-                location: 'Озеро Кольсай, Казахстан',
-                sendToEmail: '📧 Отправка на почту...'
             },
             en: {
                 langName: 'EN',
@@ -2299,7 +1763,6 @@
                 btnWa: 'WhatsApp',
                 btnIg: 'Instagram',
                 btnPh: 'Call us',
-                btnBook: 'Book now',
                 roomsTitle: '🛏️ Our Rooms',
                 filtAll: 'All',
                 filtStd: 'Standard',
@@ -2361,17 +1824,7 @@
                     'John D., UK',
                     'Sarah P., USA'
                 ],
-                footerAdmin: '🔧 Admin Panel',
                 footerA11y: '♿ Accessibility',
-                bookModTitle: '📅 Book a Room',
-                bookSelRoom: '🏨 Select Room',
-                bookDate: '📅 Check-in Date',
-                bookGuests: '👥 Number of Guests',
-                bookNights: '🌙 Number of Nights',
-                bookName: '👤 Full Name',
-                bookPhone: '📞 Phone',
-                bookComment: '📝 Comment',
-                bookSubmit: '✅ Confirm Booking',
                 free: 'Free',
                 busy: 'Busy',
                 noFree: 'No availability',
@@ -2380,27 +1833,16 @@
                 guest1: 'guest',
                 guest2: 'guests',
                 guest5: 'guests',
-                extraBed: 'extra bed',
-                extraBeds: 'extra beds',
-                needExtra: '⚠️ Extra beds needed',
-                tooMany: '❌ Too many guests',
-                totalLabel: 'Total for',
-                bookedOk: '✅ Booking confirmed!',
-                noRooms: 'No rooms available for selected date',
-                fillNamePhone: 'Please fill in name and phone',
-                maxCap: 'Maximum capacity',
-                voucherTitle: '🎫 Booking Voucher',
-                voucherRoom: 'Room',
-                voucherDate: 'Check-in date',
-                voucherNights: 'Nights',
-                voucherGuests: 'Guests',
-                voucherTotal: 'Total amount',
-                voucherRules: 'Cancellation policy',
-                voucherRulesText: 'Less than 7 days — 1 night charged. 7+ days — full refund.',
-                voucherTransfer: '🚐 Free transfer from parking within 40 minutes',
-                voucherBreakfast: '🍳 Buffet at Tary restaurant, 300m away',
-                voucherCheckIn: '🕐 Check-in 15:00, Check-out 12:00',
-                downloadVoucher: '📄 Download voucher',
+                roomsAvailable: 'available',
+                roomName: 'Room',
+                capacity: 'Capacity',
+                availability: 'Availability',
+                status: 'Status',
+                available: 'Available',
+                notAvailable: 'Not available',
+                of: 'of',
+                details: 'Details',
+                location: 'Kolsay Lake, Kazakhstan',
                 weather: 'Weather',
                 weatherNow: 'Current weather in Kolsay',
                 weatherTemp: '°C',
@@ -2408,26 +1850,6 @@
                 weatherSpeed: 'km/h',
                 past: 'Past date',
                 nights: 'nights',
-                operator: '👩‍💼 Operator',
-                loading: 'Loading...',
-                adminPassword: 'Enter password:',
-                adminWrong: 'Wrong password',
-                roomName: 'Room',
-                capacity: 'Capacity',
-                availability: 'Availability',
-                status: 'Status',
-                roomsAvailable: 'available',
-                totalRooms: 'total',
-                addRoom: '➕ Add room',
-                removeRoom: '✕ Remove',
-                selectRoomFirst: '🏨 Select room first',
-                available: 'Available',
-                notAvailable: 'Not available',
-                of: 'of',
-                details: 'Details',
-                operatorText: 'Operator',
-                location: 'Kolsay Lake, Kazakhstan',
-                sendToEmail: '📧 Sending to email...'
             },
             kz: {
                 langName: 'KZ',
@@ -2439,7 +1861,6 @@
                 btnWa: 'WhatsApp',
                 btnIg: 'Instagram',
                 btnPh: 'Қоңырау шалу',
-                btnBook: 'Брондау',
                 roomsTitle: '🛏️ Біздің нөмірлер',
                 filtAll: 'Барлығы',
                 filtStd: 'Стандарт',
@@ -2501,17 +1922,7 @@
                     'John D., UK',
                     'Sarah P., USA'
                 ],
-                footerAdmin: '🔧 Әкімші панелі',
                 footerA11y: '♿ Нашар көретіндерге',
-                bookModTitle: '📅 Нөмірді брондау',
-                bookSelRoom: '🏨 Нөмірді таңдау',
-                bookDate: '📅 Келу күні',
-                bookGuests: '👥 Қонақтар саны',
-                bookNights: '🌙 Түндер саны',
-                bookName: '👤 Аты-жөні',
-                bookPhone: '📞 Телефон',
-                bookComment: '📝 Түсініктеме',
-                bookSubmit: '✅ Брондауды растау',
                 free: 'Бос',
                 busy: 'Бос емес',
                 noFree: 'Орын жоқ',
@@ -2520,27 +1931,16 @@
                 guest1: 'қонақ',
                 guest2: 'қонақ',
                 guest5: 'қонақ',
-                extraBed: 'қосымша орын',
-                extraBeds: 'қосымша орын',
-                needExtra: '⚠️ Қосымша орын қажет',
-                tooMany: '❌ Тым көп қонақ',
-                totalLabel: 'Барлығы',
-                bookedOk: '✅ Брондау расталды!',
-                noRooms: 'Таңдалған күнге бос нөмір жоқ',
-                fillNamePhone: 'Аты-жөні мен телефонды толтырыңыз',
-                maxCap: 'Максималды сыйымдылық',
-                voucherTitle: '🎫 Брондау ваучері',
-                voucherRoom: 'Нөмір',
-                voucherDate: 'Келу күні',
-                voucherNights: 'Түндер',
-                voucherGuests: 'Қонақтар',
-                voucherTotal: 'Төленетін сома',
-                voucherRules: 'Бас тарту шарттары',
-                voucherRulesText: '7 күннен кем — 1 түн ұсталады. 7+ күн — толық қайтару.',
-                voucherTransfer: '🚐 Тұрақтан трансфер тегін, 40 минут',
-                voucherBreakfast: '🍳 Tary мейрамханасында швед үстелі, 300 м',
-                voucherCheckIn: '🕐 Келу 15:00, кету 12:00',
-                downloadVoucher: '📄 Ваучерді жүктеу',
+                roomsAvailable: 'бос',
+                roomName: 'Нөмір',
+                capacity: 'Сыйымдылық',
+                availability: 'Қолжетімділік',
+                status: 'Күйі',
+                available: 'Бос',
+                notAvailable: 'Орын жоқ',
+                of: 'ішінен',
+                details: 'Толығырақ',
+                location: 'Көлсай көлі, Қазақстан',
                 weather: 'Ауа райы',
                 weatherNow: 'Қазір Көлсайдағы ауа райы',
                 weatherTemp: '°C',
@@ -2548,42 +1948,19 @@
                 weatherSpeed: 'км/сағ',
                 past: 'Өткен күн',
                 nights: 'түн',
-                operator: '👩‍💼 Оператор',
-                loading: 'Жүктелуде...',
-                adminPassword: 'Құпия сөзді енгізіңіз:',
-                adminWrong: 'Құпия сөз қате',
-                roomName: 'Нөмір',
-                capacity: 'Сыйымдылық',
-                availability: 'Қолжетімділік',
-                status: 'Күйі',
-                roomsAvailable: 'бос',
-                totalRooms: 'барлығы',
-                addRoom: '➕ Нөмір қосу',
-                removeRoom: '✕ Жою',
-                selectRoomFirst: '🏨 Алдымен нөмірді таңдаңыз',
-                available: 'Бос',
-                notAvailable: 'Орын жоқ',
-                of: 'ішінен',
-                details: 'Толығырақ',
-                operatorText: 'Оператор',
-                location: 'Көлсай көлі, Қазақстан',
-                sendToEmail: '📧 Поштаға жіберу...'
             }
         };
 
         // ============ ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ============
         let curLang = 'ru';
         let avails = {};
-        let bookings = [];
         let curFilter = 'all';
         let photoSet = [],
             photoIdx = 0;
         let isHighContrast = false;
         let isPhotoModalOpen = false;
-        let jivoLoaded = false;
         let weatherData = { temp: 0, wind: 0, code: 0, date: '' };
         let weatherLoaded = false;
-        let selectedRooms = [];
         let googleData = null;
         let touchStartX = 0,
             touchStartY = 0,
@@ -2626,66 +2003,12 @@
             showToast(isHighContrast ? '🔆 Включена контрастная версия' : '🌙 Обычная версия', 'info');
         }
 
-        // ===== TELEGRAM =====
-        async function sendTelegramMessage(text) {
-            try {
-                const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        chat_id: TELEGRAM_CHAT_ID,
-                        text: text,
-                        parse_mode: 'HTML'
-                    })
-                });
-                const data = await response.json();
-                if (!data.ok) {
-                    console.error('❌ Ошибка отправки в Telegram:', data);
-                } else {
-                    console.log('✅ Сообщение отправлено в Telegram');
-                }
-                return data;
-            } catch (e) {
-                console.error('❌ Ошибка отправки в Telegram:', e);
-            }
-        }
-
-        function formatBookingMessage(booking) {
-            const lang = curLang;
-            const roomName = booking.rname || 'Неизвестно';
-            const dateObj = new Date(booking.date);
-            const dateStr = dateObj.toLocaleDateString(lang === 'ru' ? 'ru' : lang === 'en' ? 'en' : 'kk', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric'
-            });
-
-            let msg = '🏨 <b>НОВАЯ БРОНЬ!</b>\n';
-            msg += '═'.repeat(20) + '\n';
-            msg += `🆔 <b>ID:</b> ${booking.id}\n`;
-            msg += `📅 <b>Дата заезда:</b> ${dateStr}\n`;
-            msg += `🌙 <b>Ночей:</b> ${booking.nights}\n`;
-            msg += `👥 <b>Гостей:</b> ${booking.guests}\n`;
-            msg += `🛏️ <b>Номер:</b> ${roomName}\n`;
-            msg += `👤 <b>Гость:</b> ${booking.gname}\n`;
-            msg += `📞 <b>Телефон:</b> ${booking.phone}\n`;
-            if (booking.comm) {
-                msg += `📝 <b>Комментарий:</b> ${booking.comm}\n`;
-            }
-            msg += '═'.repeat(20) + '\n';
-            msg += `💰 <b>Сумма:</b> ${booking.total.toLocaleString()} ₸\n`;
-            msg += `🕐 <b>Время брони:</b> ${new Date().toLocaleString(lang === 'ru' ? 'ru' : lang === 'en' ? 'en' : 'kk')}\n`;
-            msg += '\n#НоваяБронь #PANA_KOLSAY';
-
-            return msg;
-        }
-
         // ===== ЗАГРУЗКА ИЗ GOOGLE ТАБЛИЦЫ =====
         async function loadFromGoogleSheet() {
             try {
                 console.log('🔄 Загрузка данных из Google Таблицы...');
-                const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_NAME_AVAIL}?key=${API_KEY}`;
+                const url =
+                    `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_NAME_AVAIL}?key=${API_KEY}`;
                 const response = await fetch(url);
                 if (!response.ok) {
                     throw new Error(`Ошибка загрузки: ${response.status}`);
@@ -2751,38 +2074,6 @@
             }
         }
 
-        // ===== ЗАПИСЬ БРОНИ В GOOGLE ТАБЛИЦУ =====
-        async function saveBookingToSheet(bookingData) {
-            try {
-                const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_NAME_BOOKINGS}:append?valueInputOption=USER_ENTERED&key=${API_KEY}`;
-                const values = [
-                    [
-                        bookingData.id,
-                        bookingData.rid,
-                        bookingData.date,
-                        bookingData.nights,
-                        bookingData.gname,
-                        bookingData.phone,
-                        bookingData.total,
-                        'Активно'
-                    ]
-                ];
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ values: values })
-                });
-                if (!response.ok) {
-                    throw new Error(`Ошибка записи: ${response.status}`);
-                }
-                console.log('✅ Бронь записана в Google Таблицу');
-                return true;
-            } catch (error) {
-                console.error('❌ Ошибка записи брони:', error);
-                return false;
-            }
-        }
-
         // ===== ФУНКЦИИ ДОСТУПНОСТИ =====
         function realAvail(rid, date) {
             if (googleData && googleData[rid] && googleData[rid][date] !== undefined) {
@@ -2792,20 +2083,7 @@
                 var room = ROOMS.find(function(r) { return r.id === rid; });
                 return room ? room.total : 0;
             }
-            var base = avails[rid] && avails[rid][date] !== undefined ? avails[rid][date] : 0;
-            var booked = bookedCount(rid, date);
-            return Math.max(0, base - booked);
-        }
-
-        function bookedCount(rid, date) {
-            var count = 0;
-            bookings.forEach(function(b) {
-                var rids = b.rid ? b.rid.split(',') : [];
-                if (rids.indexOf(rid) !== -1 && b.date === date && b.st === 'ok') {
-                    count++;
-                }
-            });
-            return count;
+            return Math.max(0, avails[rid][date] || 0);
         }
 
         function isPastDate(date) {
@@ -2813,45 +2091,6 @@
             today.setHours(0, 0, 0, 0);
             var checkDate = new Date(date);
             return checkDate < today;
-        }
-
-        // ===== ОБНОВЛЕНИЕ ДОСТУПНОСТИ В КАРТОЧКАХ =====
-        function updateRoomAvailability() {
-            var date = document.getElementById('quickCheckIn').value;
-            if (!date) return;
-            var cards = document.querySelectorAll('.room-card');
-            cards.forEach(function(card) {
-                var rid = card.getAttribute('data-room-id');
-                if (!rid) return;
-                var total = 0;
-                var room = ROOMS.find(function(r) { return r.id === rid; });
-                if (room) total = room.total;
-                var avail = realAvail(rid, date);
-                var isPast = isPastDate(date);
-                var availEl = card.querySelector('.room-availability');
-                if (availEl) {
-                    if (isPast) {
-                        availEl.textContent = '🔒 ' + t('past');
-                        availEl.className = 'room-availability past';
-                    } else if (avail <= 0) {
-                        availEl.textContent = t('notAvailable') + ' 0/' + total;
-                        availEl.className = 'room-availability busy';
-                    } else {
-                        availEl.textContent = t('available') + ' ' + avail + '/' + total;
-                        availEl.className = 'room-availability free';
-                    }
-                }
-                var btn = card.querySelector('.btn-book-room');
-                if (btn) {
-                    if (isPast || avail <= 0) {
-                        btn.classList.add('disabled');
-                        btn.textContent = isPast ? '🔒 ' + t('past') : t('notAvailable');
-                    } else {
-                        btn.classList.remove('disabled');
-                        btn.textContent = t('btnBook');
-                    }
-                }
-            });
         }
 
         // ===== НОМЕРА =====
@@ -2875,8 +2114,6 @@
                     at = t('available') + ' ' + avail + '/' + total;
                     statusClass = 'free';
                 }
-                var btnDisabled = (isPast || avail <= 0) ? 'disabled' : '';
-                var btnText = (isPast || avail <= 0) ? at : t('btnBook');
                 var nameDisplay = rName(room);
                 var emojiMap = {
                     'a01-stone': '🏔️',
@@ -2905,8 +2142,6 @@
                     '</div><div class="room-availability ' + statusClass + '">' + at + '</div><ul class="room-features">' +
                     rFeat(room).map(function(f) { return '<li>' + f + '</li>'; }).join('') +
                     '</ul>' + linkHtml + '</div>' +
-                    '<button class="btn-book-room ' + btnDisabled + '" onclick="openBookingModal(\'' + room.id +
-                    '\')">' + btnText + '</button>' +
                     '</div>';
             }).join('');
         }
@@ -2917,27 +2152,22 @@
             var guests = parseInt(document.getElementById('quickGuests').value) || 2;
             var nights = parseInt(document.getElementById('quickNights').value) || 1;
             var resDiv = document.getElementById('quickAvailResult');
-            var btnDiv = document.getElementById('btnOpenBookForm');
             if (!date) {
                 resDiv.innerHTML = '<div style="text-align:center;color:rgba(255,255,255,0.3);padding:10px;">📅 ' + t(
                     'selectDate') + '</div>';
-                btnDiv.style.display = 'none';
                 return;
             }
             if (isPastDate(date)) {
                 resDiv.innerHTML = '<div style="text-align:center;color:rgba(255,255,255,0.3);padding:10px;">🔒 ' + t(
                     'past') + '</div>';
-                btnDiv.style.display = 'none';
                 return;
             }
             var html = '<div class="avail-list-full"><div class="avail-list-header">' +
                 '<span>' + t('roomName') + '</span>' +
                 '<span>' + t('capacity') + '</span>' +
-                '<span>' + t('availability') + '</span>' +
                 '<span>' + t('status') + '</span>' +
                 '</div>';
             var anyAvail = false;
-            var availRooms = [];
             ROOMS.forEach(function(room) {
                 var allAvailable = true;
                 var d = new Date(date);
@@ -2960,421 +2190,17 @@
                     anyAvail = true;
                     statusClass = 'free';
                     statusText = '✅ ' + t('free') + ' ' + freeNow + '/' + total;
-                    availRooms.push({ room: room, free: freeNow });
                 }
                 var capText = room.cap + (room.extra > 0 ? '+' + room.extra : '');
                 html += '<div class="avail-list-item-full" data-room-id="' + room.id + '" data-available="' + (allAvailable ?
                     'true' : 'false') + '">' +
                     '<span class="room-name-small">' + rName(room) + '</span>' +
                     '<span class="room-cap-small">' + capText + ' чел.</span>' +
-                    '<span class="avail-count">' + freeNow + '/' + total + '</span>' +
                     '<span class="avail-status ' + statusClass + '">' + statusText + '</span>' +
                     '</div>';
             });
             html += '</div>';
-            if (anyAvail && availRooms.length > 0) {
-                btnDiv.style.display = 'block';
-                var count = availRooms.length;
-                btnDiv.textContent = '📝 ' + t('btnBook') + ' (' + count + ' ' + t('roomsAvailable') + ')';
-                btnDiv.setAttribute('data-rooms-count', count);
-            } else {
-                btnDiv.style.display = 'none';
-            }
             resDiv.innerHTML = html;
-            updateRoomAvailability();
-        }
-
-        // ===== МОДАЛКА БРОНИРОВАНИЯ =====
-        function openBookingModal(rid) {
-            rid = rid || null;
-            var today = new Date().toISOString().split('T')[0];
-            var modal = document.getElementById('bookingModal');
-            var content = document.getElementById('bookingModalContent');
-            if (!rid) {
-                selectedRooms = [];
-            } else {
-                var dateVal = document.getElementById('quickCheckIn').value || today;
-                var nightsVal = parseInt(document.getElementById('quickNights').value) || 1;
-                selectedRooms.push({
-                    rid: rid,
-                    date: dateVal,
-                    nights: nightsVal
-                });
-            }
-            var guestsValue = parseInt(document.getElementById('quickGuests').value) || 2;
-            var roomOptions = ROOMS.map(function(r) {
-                return '<option value="' + r.id + '">' + rName(r) + ' — ' + r.price.toLocaleString() + ' ₸</option>';
-            }).join('');
-            content.innerHTML = '' +
-                '<div class="form-row">' +
-                '<div class="form-group"><label>' + t('bookGuests') +
-                '</label><select id="bGuests" onchange="updateBookingForm()">' + [1, 2, 3, 4, 5, 6].map(function(n) {
-                    return '<option value="' + n + '" ' + (n === guestsValue ? 'selected' : '') + '>' + n + ' ' +
-                        guestWord(n) + '</option>';
-                }).join('') + '</select></div>' +
-                '<div class="form-group"><label>' + t('bookName') +
-                '</label><input type="text" id="bName" placeholder="Иванов Иван"></div>' +
-                '</div>' +
-                '<div class="form-row">' +
-                '<div class="form-group"><label>' + t('bookPhone') +
-                '</label><input type="tel" id="bPhone" placeholder="+7 700 123 4567"></div>' +
-                '<div class="form-group"><label>' + t('bookComment') +
-                '</label><input type="text" id="bComm" placeholder="..."></div>' +
-                '</div>' +
-                '<div style="margin-top:12px;">' +
-                '<div id="selectedRoomsList"></div>' +
-                '<div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;">' +
-                '<select id="addRoomSelect" style="flex:1; padding:8px; border-radius:10px; border:1px solid rgba(255,255,255,0.15); background:#1a2a27; color:#fff; font-size:0.8rem;">' +
-                roomOptions +
-                '</select>' +
-                '<input type="date" id="addRoomDate" value="' + today + '" style="padding:8px; border-radius:10px; border:1px solid rgba(255,255,255,0.15); background:#1a2a27; color:#fff; font-size:0.8rem;">' +
-                '<select id="addRoomNights" style="padding:8px; border-radius:10px; border:1px solid rgba(255,255,255,0.15); background:#1a2a27; color:#fff; font-size:0.8rem;">' +
-                [1, 2, 3, 4, 5, 6, 7].map(function(n) {
-                    return '<option value="' + n + '" ' + (n === 1 ? 'selected' : '') + '>' + n +
-                        '</option>';
-                }).join('') +
-                '</select>' +
-                '<button class="btn-add-room" onclick="addRoomToGroup()">' + t('addRoom') + '</button>' +
-                '</div>' +
-                '</div>' +
-                '<div id="bAvailInfo" class="avail-list-box" style="max-height:160px; margin-bottom:10px; display:none;"></div>' +
-                '<div id="bTotal" class="group-total">' + t('totalLabel') + ' 0 ₸</div>' +
-                '<button class="btn-submit" onclick="submitGroupBooking()">' + t('bookSubmit') + '</button>';
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            setTimeout(function() {
-                var addDate = document.getElementById('addRoomDate');
-                if (addDate) addDate.value = today;
-            }, 100);
-            updateSelectedRoomsList();
-            updateBookingForm();
-        }
-
-        function addRoomToGroup() {
-            var select = document.getElementById('addRoomSelect');
-            var dateInput = document.getElementById('addRoomDate');
-            var nightsSelect = document.getElementById('addRoomNights');
-            if (!select || !dateInput || !nightsSelect) return;
-            var rid = select.value;
-            var date = dateInput.value;
-            var nights = parseInt(nightsSelect.value) || 1;
-            if (!rid) {
-                showToast(t('selectRoomFirst'), 'info');
-                return;
-            }
-            if (!date) {
-                showToast('📅 ' + t('selectDate'), 'error');
-                return;
-            }
-            if (isPastDate(date)) {
-                showToast('🔒 ' + t('past'), 'error');
-                return;
-            }
-            var allAvailable = true;
-            var d = new Date(date);
-            for (var i = 0; i < nights; i++) {
-                var dateStr = d.toISOString().split('T')[0];
-                if (realAvail(rid, dateStr) <= 0) {
-                    allAvailable = false;
-                    break;
-                }
-                d.setDate(d.getDate() + 1);
-            }
-            if (!allAvailable) {
-                showToast('❌ Номер недоступен на выбранные даты', 'error');
-                return;
-            }
-            selectedRooms.push({
-                rid: rid,
-                date: date,
-                nights: nights
-            });
-            updateSelectedRoomsList();
-            updateBookingForm();
-            showToast('✅ ' + rName(ROOMS.find(function(r) { return r.id === rid; })) + ' добавлен', 'success');
-            var nextDate = new Date(date);
-            nextDate.setDate(nextDate.getDate() + nights);
-            dateInput.value = nextDate.toISOString().split('T')[0];
-        }
-
-        function removeRoomFromGroup(index) {
-            if (index >= 0 && index < selectedRooms.length) {
-                selectedRooms.splice(index, 1);
-                updateSelectedRoomsList();
-                updateBookingForm();
-                showToast('🗑️ Номер удален', 'info');
-            }
-        }
-
-        function updateSelectedRoomsList() {
-            var container = document.getElementById('selectedRoomsList');
-            if (!container) return;
-            if (selectedRooms.length === 0) {
-                container.innerHTML = '<p style="color:rgba(255,255,255,0.3);font-size:0.8rem;padding:8px;">' + t(
-                    'bookSelRoom') + '</p>';
-                return;
-            }
-            var html = '';
-            selectedRooms.forEach(function(item, index) {
-                var room = ROOMS.find(function(r) { return r.id === item.rid; });
-                if (room) {
-                    var dateObj = new Date(item.date);
-                    var dateStr = dateObj.toLocaleDateString(curLang === 'ru' ? 'ru' : curLang === 'en' ? 'en' :
-                        'kk', { day: 'numeric', month: 'short' });
-                    html += '<div class="group-booking-item">' +
-                        '<div><span class="room-name-display">' + rName(room) + '</span>' +
-                        ' <span class="room-dates">📅 ' + dateStr + ' · 🌙 ' + item.nights + ' ' + t('nights') +
-                        '</span></div>' +
-                        '<button class="remove-btn" onclick="removeRoomFromGroup(' + index + ')">' + t(
-                            'removeRoom') + '</button>' +
-                        '</div>';
-                }
-            });
-            container.innerHTML = html;
-        }
-
-        function updateBookingForm() {
-            var guests = parseInt(document.getElementById('bGuests')?.value || 2);
-            var totDiv = document.getElementById('bTotal');
-            var infoDiv = document.getElementById('bAvailInfo');
-            var totalPrice = 0;
-            var allAvailable = true;
-            var availabilityHtml = '<strong>📊 ' + t('free') + ':</strong><br>';
-            if (selectedRooms.length === 0) {
-                if (totDiv) totDiv.textContent = '⚠️ ' + t('bookSelRoom');
-                if (infoDiv) infoDiv.style.display = 'none';
-                return;
-            }
-            selectedRooms.forEach(function(item) {
-                var room = ROOMS.find(function(r) { return r.id === item.rid; });
-                if (!room) return;
-                var available = true;
-                var d = new Date(item.date);
-                for (var i = 0; i < item.nights; i++) {
-                    var dateStr = d.toISOString().split('T')[0];
-                    if (realAvail(item.rid, dateStr) <= 0) {
-                        available = false;
-                        break;
-                    }
-                    d.setDate(d.getDate() + 1);
-                }
-                var dateObj = new Date(item.date);
-                var dateStr = dateObj.toLocaleDateString(curLang === 'ru' ? 'ru' : curLang === 'en' ? 'en' : 'kk', {
-                    day: 'numeric',
-                    month: 'short'
-                });
-                if (available) {
-                    totalPrice += room.price * item.nights;
-                    availabilityHtml += '<div class="avail-list-item"><span>✅ ' + rName(room) + ' (' + dateStr +
-                        ', ' + item.nights + ' ' + t('nights') + ')</span> <span class="avail-free">' + t(
-                        'free') + '</span></div>';
-                } else {
-                    allAvailable = false;
-                    availabilityHtml += '<div class="avail-list-item"><span>❌ ' + rName(room) + ' (' + dateStr +
-                        ', ' + item.nights + ' ' + t('nights') + ')</span> <span class="avail-busy">' + t(
-                        'busy') + '</span></div>';
-                }
-            });
-            if (infoDiv) {
-                infoDiv.innerHTML = availabilityHtml;
-                infoDiv.style.display = 'block';
-            }
-            if (totDiv) {
-                if (selectedRooms.length === 0) {
-                    totDiv.textContent = '⚠️ ' + t('bookSelRoom');
-                } else if (!allAvailable) {
-                    totDiv.textContent = '❌ ' + t('noRooms');
-                } else {
-                    totDiv.textContent = t('totalLabel') + ' ' + totalPrice.toLocaleString() + ' ₸ (' + selectedRooms
-                        .length + ' ' + t('roomsAvailable') + ')';
-                }
-            }
-        }
-
-        function validatePhone(phone) {
-            var digits = phone.replace(/\D/g, '');
-            return digits.length >= 10;
-        }
-
-        async function submitGroupBooking() {
-            var guests = parseInt(document.getElementById('bGuests').value);
-            var name = document.getElementById('bName').value.trim();
-            var phone = document.getElementById('bPhone').value.trim();
-            var comm = document.getElementById('bComm').value.trim();
-
-            if (!name) { showToast('👤 ' + t('bookName') + ' обязательно', 'error'); return; }
-            if (!validatePhone(phone)) {
-                showToast('📞 ' + t('bookPhone') + ' должен содержать минимум 10 цифр', 'error');
-                return;
-            }
-            if (selectedRooms.length === 0) {
-                showToast('⚠️ ' + t('bookSelRoom'), 'error');
-                return;
-            }
-
-            var allAvailable = true;
-            var totalPrice = 0;
-            var roomNames = [];
-
-            for (var idx = 0; idx < selectedRooms.length; idx++) {
-                var item = selectedRooms[idx];
-                var room = ROOMS.find(function(r) { return r.id === item.rid; });
-                if (!room) continue;
-
-                var available = true;
-                var d = new Date(item.date);
-                for (var i = 0; i < item.nights; i++) {
-                    var dateStr = d.toISOString().split('T')[0];
-                    if (realAvail(item.rid, dateStr) <= 0) {
-                        available = false;
-                        break;
-                    }
-                    d.setDate(d.getDate() + 1);
-                }
-
-                if (!available) {
-                    allAvailable = false;
-                    showToast('❌ ' + rName(room) + ' ' + t('noRooms'), 'error');
-                    return;
-                }
-
-                totalPrice += room.price * item.nights;
-                var dateObj = new Date(item.date);
-                roomNames.push(rName(room) + ' (' + dateObj.toLocaleDateString() + ', ' + item.nights + ' ' + t(
-                    'nights') + ')');
-            }
-
-            if (!allAvailable) return;
-
-            var bookingId = 'BK' + Date.now().toString(36).toUpperCase();
-
-            var bookingData = {
-                id: bookingId,
-                rid: selectedRooms.map(function(item) { return item.rid; }).join(','),
-                rname: roomNames.join(' + '),
-                date: selectedRooms[0].date,
-                gname: name,
-                phone: phone,
-                guests: guests,
-                extra: 0,
-                nights: selectedRooms.reduce(function(sum, item) { return sum + item.nights; }, 0),
-                total: totalPrice,
-                comm: comm,
-                st: 'ok',
-                at: new Date().toISOString(),
-                rooms: selectedRooms
-            };
-
-            for (var idx = 0; idx < selectedRooms.length; idx++) {
-                var item = selectedRooms[idx];
-                var d = new Date(item.date);
-                for (var i = 0; i < item.nights; i++) {
-                    var dateStr = d.toISOString().split('T')[0];
-                    if (avails[item.rid] && avails[item.rid][dateStr] !== undefined) {
-                        avails[item.rid][dateStr] = Math.max(0, avails[item.rid][dateStr] - 1);
-                    } else if (googleData && googleData[item.rid] && googleData[item.rid][dateStr] !== undefined) {
-                        googleData[item.rid][dateStr] = Math.max(0, googleData[item.rid][dateStr] - 1);
-                    }
-                    d.setDate(d.getDate() + 1);
-                }
-            }
-
-            bookings.push(bookingData);
-
-            // ===== ОТПРАВКА В TELEGRAM =====
-            const msg = formatBookingMessage(bookingData);
-            await sendTelegramMessage(msg);
-
-            // ===== ЗАПИСЬ В GOOGLE ТАБЛИЦУ =====
-            await saveBookingToSheet(bookingData);
-
-            closeModal('bookingModal');
-            renderRooms();
-            updateQuickAvail();
-            showVoucher(bookingId);
-        }
-
-        // ===== ВАУЧЕР =====
-        function showVoucher(bookingId) {
-            var b = bookings.find(function(x) { return x.id === bookingId; });
-            if (!b) return;
-            var modal = document.getElementById('bookingModal');
-            var content = document.getElementById('bookingModalContent');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-
-            content.innerHTML = '' +
-                '<div class="voucher-box">' +
-                '<h3>🎫 ' + t('voucherTitle') + '</h3>' +
-                '<div class="voucher-row"><span class="voucher-label">ID:</span><span class="voucher-value">' + b
-                .id + '</span></div>' +
-                '<div class="voucher-row"><span class="voucher-label">' + t('voucherRoom') +
-                ':</span><span class="voucher-value">' + b.rname + '</span></div>' +
-                '<div class="voucher-row"><span class="voucher-label">' + t('voucherDate') +
-                ':</span><span class="voucher-value">' + b.date + '</span></div>' +
-                '<div class="voucher-row"><span class="voucher-label">' + t('voucherNights') +
-                ':</span><span class="voucher-value">' + b.nights + '</span></div>' +
-                '<div class="voucher-row"><span class="voucher-label">' + t('voucherGuests') +
-                ':</span><span class="voucher-value">' + b.guests + ' (' + b.gname + ')</span></div>' +
-                '<div class="voucher-row"><span class="voucher-label">📞 ' + t('bookPhone') +
-                ':</span><span class="voucher-value">' + b.phone + '</span></div>' +
-                '<div class="voucher-row"><span class="voucher-label">' + t('voucherTotal') +
-                ':</span><span class="voucher-value" style="color:var(--gold);font-weight:700;font-size:1.1rem;">' +
-                b.total.toLocaleString() + ' ₸</span></div>' +
-                '<div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.1);">' +
-                '<strong>📋 ' + t('voucherRules') + ':</strong>' +
-                '<p style="color:rgba(255,255,255,0.55);font-size:0.75rem;margin-top:4px;">' + t('voucherRulesText') +
-                '</p>' +
-                '<p style="color:rgba(255,255,255,0.55);font-size:0.75rem;">' + t('voucherTransfer') + '</p>' +
-                '<p style="color:rgba(255,255,255,0.55);font-size:0.75rem;">' + t('voucherBreakfast') + '</p>' +
-                '<p style="color:rgba(255,255,255,0.55);font-size:0.75rem;">' + t('voucherCheckIn') + '</p>' +
-                '</div>' +
-                '<button class="btn-download-voucher" onclick="downloadVoucher(\'' + b.id +
-                '\')">' + t('downloadVoucher') + '</button>' +
-                '<button class="btn-submit" style="margin-top:8px;background:#25D366;" onclick="closeModal(\'bookingModal\');showToast(\'' +
-                t('bookedOk') + '\',\'success\');">✅ Закрыть</button>' +
-                '</div>';
-        }
-
-        function downloadVoucher(bookingId) {
-            var b = bookings.find(function(x) { return x.id === bookingId; });
-            if (!b) return;
-            var text = '' +
-                '🎫 ' + t('voucherTitle') + '\n' +
-                '=================================\n' +
-                'ID: ' + b.id + '\n' +
-                t('voucherRoom') + ': ' + b.rname + '\n' +
-                t('voucherDate') + ': ' + b.date + '\n' +
-                t('voucherNights') + ': ' + b.nights + '\n' +
-                t('voucherGuests') + ': ' + b.guests + ' (' + b.gname + ')\n' +
-                '📞 ' + t('bookPhone') + ': ' + b.phone + '\n' +
-                t('voucherTotal') + ': ' + b.total.toLocaleString() + ' ₸\n\n' +
-                '📋 ' + t('voucherRules') + ':\n' +
-                t('voucherRulesText') + '\n' +
-                t('voucherTransfer') + '\n' +
-                t('voucherBreakfast') + '\n' +
-                t('voucherCheckIn') + '\n\n' +
-                '© 2026 PANA KOLSAY\n' +
-                '+7 700 836 8964';
-
-            var blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
-            var url = URL.createObjectURL(blob);
-            var a = document.createElement('a');
-            a.href = url;
-            a.download = 'PANA_KOLSAY_' + b.id + '.txt';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            showToast('✅ Ваучер скачан!', 'success');
-        }
-
-        function closeModal(id) {
-            document.getElementById(id).classList.remove('active');
-            document.body.style.overflow = '';
-            if (id === 'photoModal') {
-                isPhotoModalOpen = false;
-            }
         }
 
         // ===== ФОТО =====
@@ -3391,7 +2217,7 @@
         }
 
         function closePhotoModal() {
-            closeModal('photoModal');
+            document.getElementById('photoModal').classList.remove('active');
             document.body.style.overflow = '';
             isPhotoModalOpen = false;
         }
@@ -3461,34 +2287,6 @@
             }
         });
 
-        // ===== JIVO =====
-        function connectOperator() {
-            if (!jivoLoaded) {
-                var script = document.createElement('script');
-                script.src = '//code.jivo.ru/widget/sfanjIPwr0';
-                script.async = true;
-                script.onload = function() {
-                    jivoLoaded = true;
-                    if (typeof jivo_api !== 'undefined') {
-                        jivo_api.open();
-                    }
-                };
-                document.head.appendChild(script);
-                setTimeout(function() {
-                    if (!jivoLoaded) {
-                        window.open('https://wa.me/77018615121', '_blank');
-                    }
-                }, 3000);
-            } else {
-                if (typeof jivo_api !== 'undefined') {
-                    jivo_api.open();
-                } else {
-                    window.open('https://wa.me/77018615121', '_blank');
-                }
-            }
-            showToast('👩‍💼 ' + t('operator'), 'info');
-        }
-
         // ===== ЯЗЫКИ =====
         function switchLanguage(lang) {
             curLang = lang;
@@ -3503,7 +2301,6 @@
             document.getElementById('btnWaText').textContent = t('btnWa');
             document.getElementById('btnIgText').textContent = t('btnIg');
             document.getElementById('btnPhText').textContent = t('btnPh');
-            document.getElementById('btnBookText').textContent = t('btnBook');
 
             document.getElementById('roomsTitle').textContent = t('roomsTitle');
             document.getElementById('bookingFormTitle').textContent = t('bookingFormTitle');
@@ -3551,7 +2348,6 @@
             document.getElementById('reviewsTitle').textContent = t('reviewsTitle');
             document.getElementById('footerA11y').textContent = t('footerA11y');
 
-            document.getElementById('operatorLink').textContent = '👩‍💼 ' + t('operator');
             document.getElementById('footerCopy').textContent = '© 2026 PANA KOLSAY · ' + t('location');
 
             document.getElementById('filtAll').textContent = t('filtAll');
@@ -3565,15 +2361,6 @@
 
             document.querySelectorAll('.lang-btn').forEach(function(b) { b.textContent = L[b.dataset.lang].langName; });
 
-            var btnBook = document.getElementById('btnOpenBookForm');
-            if (btnBook && btnBook.style.display !== 'none') {
-                var count = btnBook.getAttribute('data-rooms-count') || '';
-                btnBook.textContent = '📝 ' + t('btnBook') + (count ? ' (' + count + ' ' + t('roomsAvailable') + ')' : '');
-            }
-
-            var bookModTitle = document.getElementById('bookModTitle');
-            if (bookModTitle) bookModTitle.textContent = t('bookModTitle');
-
             if (weatherLoaded) {
                 updateWeatherDisplay();
             }
@@ -3581,18 +2368,6 @@
             renderReviews();
             renderRooms();
             updateQuickAvail();
-            updateRoomAvailability();
-
-            if (document.getElementById('bookingModal').classList.contains('active')) {
-                var modalContent = document.getElementById('bookingModalContent');
-                if (modalContent) {
-                    var currentSelected = selectedRooms.slice();
-                    openBookingModal(null);
-                    selectedRooms = currentSelected;
-                    updateSelectedRoomsList();
-                    updateBookingForm();
-                }
-            }
         }
 
         document.getElementById('langSwitch').addEventListener('click', function(e) {
@@ -3670,7 +2445,6 @@
                 googleData = newData;
                 renderRooms();
                 updateQuickAvail();
-                updateRoomAvailability();
                 console.log('✅ Данные обновлены автоматически');
             } else {
                 console.warn('⚠️ Новые данные не загружены');
