@@ -525,6 +525,27 @@
             margin-bottom: 6px;
             line-height: 1.4;
         }
+        .room-availability {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: inline-block;
+            align-self: flex-start;
+            margin-bottom: 6px;
+        }
+        .room-availability.free {
+            background: rgba(46, 213, 115, 0.2);
+            color: #2ed573;
+        }
+        .room-availability.busy {
+            background: rgba(255, 71, 87, 0.2);
+            color: #ff4757;
+        }
+        .room-availability.past {
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.3);
+        }
 
         .room-features {
             list-style: none;
@@ -661,12 +682,7 @@
         .avail-status.past {
             color: rgba(255, 255, 255, 0.2);
         }
-        .avail-count {
-            font-weight: 700;
-            color: var(--text-secondary);
-        }
 
-        /* ===== МАП КНОПКИ ===== */
         .map-btn-group {
             display: flex;
             gap: 8px;
@@ -700,21 +716,12 @@
             background: #1e8c3c;
             color: #fff;
         }
-        .map-btn-2gis i {
-            color: #fff;
-        }
         .map-btn-yandex {
             background: #fc3f1d;
             color: #fff;
         }
-        .map-btn-yandex i {
-            color: #fff;
-        }
         .map-btn-google {
             background: #4285f4;
-            color: #fff;
-        }
-        .map-btn-google i {
             color: #fff;
         }
 
@@ -1337,7 +1344,7 @@
         const SHEET_ID = '1QsZqEHLWD0JEb7LV3Pbqr1Ux7nSMExYv9GXDrpYR3B4';
         const SHEET_NAME_AVAIL = 'Доступность';
 
-        // ============ НОМЕРА ============
+        // ============ НОМЕРА (ОБНОВЛЕННЫЕ ФОТО) ============
         const ROOMS = [{
             id: 'a01-stone',
             nameRu: 'Каменный домик A01',
@@ -1348,8 +1355,15 @@
             extra: 2,
             cat: 'luxury',
             total: 1,
-            photos: ['https://lh3.googleusercontent.com/d/1wezgXvtZeBW3WwgIF-zPka9Zl-fEU0Oi=w1200',
-                'https://lh3.googleusercontent.com/d/1vzIOcC_g2iG0vrYJTKTk9-vbTyPCSv18=w1200'
+            photos: [
+                'https://lh3.googleusercontent.com/d/1wezgXvtZeBW3WwgIF-zPka9Zl-fEU0Oi=w1200',
+                'https://lh3.googleusercontent.com/d/1vzIOcC_g2iG0vrYJTKTk9-vbTyPCSv18=w1200',
+                'https://lh3.googleusercontent.com/d/1f8ZWkDdWgvdl7uR5vomMWvU06Lx9mLm5=w1200',
+                'https://lh3.googleusercontent.com/d/1_ObexbdML2tF_STnjluUpRTlLQuhIL5C=w1200',
+                'https://lh3.googleusercontent.com/d/1KygzolG1U9IAMJ9lbdEn5hKUjCZLHh8O=w1200',
+                'https://lh3.googleusercontent.com/d/15tzQYt2oc_wSXdX38_mfv4AdX9isWfgY=w1200',
+                'https://lh3.googleusercontent.com/d/15h0f66RhzQhbREFlLVFF6JcBqx8elzx1=w1200',
+                'https://lh3.googleusercontent.com/d/13AUSt50qPhlZKnb2kMgXbhWdr7juLP3v=w1200'
             ],
             descRu: 'Каменный домик А01. Заезд 14:00, выезд 12:00. Макс. 2 взрослых + 2 детей. 37 м².',
             descEn: 'Stone house A01. Check-in 14:00, check-out 12:00. Max 2 adults + 2 children. 37 m².',
@@ -1374,8 +1388,12 @@
             extra: 2,
             cat: 'luxury',
             total: 1,
-            photos: ['https://lh3.googleusercontent.com/d/1wZki3IlnTcrB2InnikQDFzfXjcCtuxwO=w1200',
-                'https://lh3.googleusercontent.com/d/1XlSE1OTY0JRVUJEbK5U5och4Ghr_1M8h=w1200'
+            photos: [
+                'https://lh3.googleusercontent.com/d/1wZki3IlnTcrB2InnikQDFzfXjcCtuxwO=w1200',
+                'https://lh3.googleusercontent.com/d/1XlSE1OTY0JRVUJEbK5U5och4Ghr_1M8h=w1200',
+                'https://lh3.googleusercontent.com/d/1EFlrQz5CSXxndXZPKcW_Zf-S9MirgcCj=w1200',
+                'https://lh3.googleusercontent.com/d/18ZCrRyFdQVAeCQhfx1t3i0nPy35-t5BK=w1200',
+                'https://lh3.googleusercontent.com/d/1CeZ7TrxhdXj-q70GHlxh1bQdl9_QzqbN=w1200'
             ],
             descRu: 'Деревянный домик А02. Заезд 14:00, выезд 12:00. Макс. 2 взрослых + 2 детей. 37 м².',
             descEn: 'Wooden house A02. Check-in 14:00, check-out 12:00. Max 2 adults + 2 children. 37 m².',
@@ -1400,8 +1418,10 @@
             extra: 1,
             cat: 'standard',
             total: 2,
-            photos: ['https://lh3.googleusercontent.com/d/1dZ2jSYbGk3xdYl50Ruho6z5fVSewkUWq=w800',
-                'https://lh3.googleusercontent.com/d/1DCtw5GRUWdlB1Uy2358mz4TbdQPo-t9x=w800'
+            photos: [
+                'https://lh3.googleusercontent.com/d/1dZ2jSYbGk3xdYl50Ruho6z5fVSewkUWq=w800',
+                'https://lh3.googleusercontent.com/d/1DCtw5GRUWdlB1Uy2358mz4TbdQPo-t9x=w800',
+                'https://lh3.googleusercontent.com/d/1q-qFUrLE4QI3UFttPmBMkZDGHzdhGBNP=w800'
             ],
             descRu: 'Стандартный номер без вида для 2-х персон. Заезд 15:00, выезд 12:00.',
             descEn: 'Standard room without view for 2 persons. Check-in 15:00, check-out 12:00.',
@@ -1429,8 +1449,13 @@
             extra: 1,
             cat: 'mountain',
             total: 2,
-            photos: ['https://lh3.googleusercontent.com/d/1cqdfwaYNZtCEVWexRbqcd-9fe1o5WUpC=w1200',
-                'https://lh3.googleusercontent.com/d/1aXjg2ecY0lTRfKS9ADyf6DAgmweCd474=w1200'
+            photos: [
+                'https://lh3.googleusercontent.com/d/1cqdfwaYNZtCEVWexRbqcd-9fe1o5WUpC=w1200',
+                'https://lh3.googleusercontent.com/d/1aXjg2ecY0lTRfKS9ADyf6DAgmweCd474=w1200',
+                'https://lh3.googleusercontent.com/d/1GYC1cSoNt6xjSlX-pVCpP20YUAAV5Xab=w1200',
+                'https://lh3.googleusercontent.com/d/1FBcAb8Z4OxFRNqqheSx2r66cYIARtS0L=w1200',
+                'https://lh3.googleusercontent.com/d/1AU0Ng5iSodubOTU5bvEmgme3shgoFBy_=w1200',
+                'https://lh3.googleusercontent.com/d/155Yv5jQUtyCr901feqT8Ff8lLGzM4jgk=w1200'
             ],
             descRu: 'Стандартный номер с видом на горы для 2-х персон. Заезд 15:00, выезд 12:00.',
             descEn: 'Standard room with mountain view for 2 persons. Check-in 15:00, check-out 12:00.',
@@ -1458,8 +1483,12 @@
             extra: 1,
             cat: 'lake',
             total: 7,
-            photos: ['https://lh3.googleusercontent.com/d/1ptwAdkxgwMnuKiwTCGMLNsncTZ4SCD32=w800',
-                'https://lh3.googleusercontent.com/d/1YVkMTwwWAkDK1lSwfDPQ6qMKpZFhzqWE=w800'
+            photos: [
+                'https://lh3.googleusercontent.com/d/1ptwAdkxgwMnuKiwTCGMLNsncTZ4SCD32=w800',
+                'https://lh3.googleusercontent.com/d/1YVkMTwwWAkDK1lSwfDPQ6qMKpZFhzqWE=w800',
+                'https://lh3.googleusercontent.com/d/1QJXqdXxFtRLP14FUs2DhuGQ0bKY-1Kfv=w800',
+                'https://lh3.googleusercontent.com/d/17IFYYDNzYpuHALFJM4EN3qbs1Iw1R_Uz=w800',
+                'https://lh3.googleusercontent.com/d/1jz8nmjgpfaCVIfM1ETd_Q0RFkNyo4RTd=w800'
             ],
             descRu: 'Стандартный номер с видом на озеро Кольсай для 2-х персон. Double кровать.',
             descEn: 'Standard room with Kolsay Lake view for 2 persons. Double bed.',
@@ -1487,8 +1516,10 @@
             extra: 1,
             cat: 'triple',
             total: 2,
-            photos: ['https://lh3.googleusercontent.com/d/1mGehFtdQ7win_x-V758s0u0RIf6B9sEc=w800',
-                'https://lh3.googleusercontent.com/d/12LpF2YVubLYGZoNG0kmKVFSYmePofzU1=w800'
+            photos: [
+                'https://lh3.googleusercontent.com/d/1mGehFtdQ7win_x-V758s0u0RIf6B9sEc=w800',
+                'https://lh3.googleusercontent.com/d/12LpF2YVubLYGZoNG0kmKVFSYmePofzU1=w800',
+                'https://lh3.googleusercontent.com/d/1ECZ_yh3Q0CFRVz10ATjMJ4_XIEZHP7_k=w800'
             ],
             descRu: 'Стандартный номер с видом на озеро Кольсай для 3-х персон.',
             descEn: 'Standard room with Kolsay Lake view for 3 persons.',
@@ -1516,8 +1547,10 @@
             extra: 1,
             cat: 'deluxe',
             total: 1,
-            photos: ['https://lh3.googleusercontent.com/d/1NAY7HBLgs9nQC1P509-ezDdbgtz2wpHl=w800',
-                'https://lh3.googleusercontent.com/d/1YVkMTwwWAkDK1lSwfDPQ6qMKpZFhzqWE=w800'
+            photos: [
+                'https://lh3.googleusercontent.com/d/1NAY7HBLgs9nQC1P509-ezDdbgtz2wpHl=w800',
+                'https://lh3.googleusercontent.com/d/1YVkMTwwWAkDK1lSwfDPQ6qMKpZFhzqWE=w800',
+                'https://lh3.googleusercontent.com/d/17IFYYDNzYpuHALFJM4EN3qbs1Iw1R_Uz=w800'
             ],
             descRu: 'Deluxe для 4-х персон. Заезд 15:00, выезд 12:00.',
             descEn: 'Deluxe for 4 persons. Check-in 15:00, check-out 12:00.',
@@ -1545,8 +1578,13 @@
             extra: 1,
             cat: 'deluxe',
             total: 2,
-            photos: ['https://lh3.googleusercontent.com/d/1Gc8NNcyvv1g4htILGRcn_HShvY3RflZP=w800',
-                'https://lh3.googleusercontent.com/d/1xc3RAvBFUoyL0e8KCX_7HzwLjeQEIpqk=w800'
+            photos: [
+                'https://lh3.googleusercontent.com/d/1Gc8NNcyvv1g4htILGRcn_HShvY3RflZP=w800',
+                'https://lh3.googleusercontent.com/d/1xc3RAvBFUoyL0e8KCX_7HzwLjeQEIpqk=w800',
+                'https://lh3.googleusercontent.com/d/1G3SHvM1cwbI1JOWcs1baNjBO5iLmbhuQ=w800',
+                'https://lh3.googleusercontent.com/d/1lPeEFDuLl9XLu4iVHOkH8G666NlZEhd2=w800',
+                'https://lh3.googleusercontent.com/d/1ZKWIfLg24g_pqM8nt-2vWEZ182JjddHh=w800',
+                'https://lh3.googleusercontent.com/d/18ceO9BtMbuwsaEiClpNo-JJHu23B-CCg=w800'
             ],
             descRu: 'Deluxe+ для 4-х персон. Заезд 15:00, выезд 12:00.',
             descEn: 'Deluxe+ for 4 persons. Check-in 15:00, check-out 12:00.',
@@ -1574,8 +1612,16 @@
             extra: 1,
             cat: 'deluxe',
             total: 1,
-            photos: ['https://lh3.googleusercontent.com/d/1rTsaISNCU9DkBxkkesAqc6vvA1Q4QLYE=w1200',
-                'https://lh3.googleusercontent.com/d/1hasi_mV_no9fsPYedP6UzXq1qY8blBTP=w1200'
+            photos: [
+                'https://lh3.googleusercontent.com/d/1rTsaISNCU9DkBxkkesAqc6vvA1Q4QLYE=w1200',
+                'https://lh3.googleusercontent.com/d/1hasi_mV_no9fsPYedP6UzXq1qY8blBTP=w1200',
+                'https://lh3.googleusercontent.com/d/1dbTcXtqdtyTFKOiTBZPmbzD2whBS490e=w1200',
+                'https://lh3.googleusercontent.com/d/1dKk5auk6JGujBWQzL5Ei1e8hxEpL_90c=w1200',
+                'https://lh3.googleusercontent.com/d/1bvINlVx52CJac5lWeA9EAaJlIyRRFElK=w1200',
+                'https://lh3.googleusercontent.com/d/1OuKCMvmh4jBxDCsb9FUXWAgJeBqlMDNY=w1200',
+                'https://lh3.googleusercontent.com/d/1JxsiFLf6XnV7o60ZtZeLRTsiIrJr-QAd=w1200',
+                'https://lh3.googleusercontent.com/d/1IzUCQbJ3HQVMf5HX6NGh6n6Dw9XoB1JC=w1200',
+                'https://lh3.googleusercontent.com/d/1AizBjkxhIWMh-oGFyOIqqMjBUy6HowUz=w1200'
             ],
             descRu: 'Premier Deluxe для 4-х персон. Заезд 15:00, выезд 12:00.',
             descEn: 'Premier Deluxe for 4 persons. Check-in 15:00, check-out 12:00.',
@@ -1603,8 +1649,15 @@
             extra: 1,
             cat: 'luxury',
             total: 1,
-            photos: ['https://lh3.googleusercontent.com/d/1t3XTXwNULnuAoMnQB2CnaDNtQtfJim7j=w800',
-                'https://lh3.googleusercontent.com/d/1Ja_ofE8s06EF0cAeSyejN5TWbNacXRtd=w800'
+            photos: [
+                'https://lh3.googleusercontent.com/d/1t3XTXwNULnuAoMnQB2CnaDNtQtfJim7j=w800',
+                'https://lh3.googleusercontent.com/d/1Ja_ofE8s06EF0cAeSyejN5TWbNacXRtd=w800',
+                'https://lh3.googleusercontent.com/d/1ZfjjJvBu2BiPDKn4HCkc1S2y_RdE5Zc_=w800',
+                'https://lh3.googleusercontent.com/d/16_RnacJTEGPOsRyifsN2xAH0nJrmK42F=w800',
+                'https://lh3.googleusercontent.com/d/1CAlKXvEIYB0CDBzurK57nc_tl9-x74Ja=w800',
+                'https://lh3.googleusercontent.com/d/1Be-HrdFy6Drr57btDOQICtIUnk_BE_iP=w800',
+                'https://lh3.googleusercontent.com/d/1R77a-99OQqk4vmOv1K_oi1AEy0PEm-Ht=w800',
+                'https://lh3.googleusercontent.com/d/1D8CeJDOcOfDRtfsXHvavHdHlEqggmwyg=w800'
             ],
             descRu: 'Suite Room для 4-х персон. Заезд 15:00, выезд 12:00.',
             descEn: 'Suite Room for 4 persons. Check-in 15:00, check-out 12:00.',
@@ -1632,8 +1685,12 @@
             extra: 1,
             cat: 'glamping',
             total: 2,
-            photos: ['https://lh3.googleusercontent.com/d/1kFa_4oV5uLJ31flTUK_mMo2DpFS3jVli=w800',
-                'https://lh3.googleusercontent.com/d/1mjvD9ZbNlUaqRpiiyRTYBDmP63WNwvet=w800'
+            photos: [
+                'https://lh3.googleusercontent.com/d/1kFa_4oV5uLJ31flTUK_mMo2DpFS3jVli=w800',
+                'https://lh3.googleusercontent.com/d/1mjvD9ZbNlUaqRpiiyRTYBDmP63WNwvet=w800',
+                'https://lh3.googleusercontent.com/d/1s2tK4ggOsLGD1b1h00EODzipUGNtWDht=w800',
+                'https://lh3.googleusercontent.com/d/12bDHoDRGhpx6NjE4nhb26_SZCx2SC-fX=w800',
+                'https://lh3.googleusercontent.com/d/1WqHSnpMwtpBnt_47DjuXkclDiCY9BNxG=w800'
             ],
             descRu: 'Новый глэмпинг 2022 для 4-х гостей. Заезд 15:00, выезд 12:00.',
             descEn: 'New glamping 2022 for 4 guests. Check-in 15:00, check-out 12:00.',
@@ -2093,27 +2150,31 @@
             return checkDate < today;
         }
 
-        // ===== НОМЕРА =====
+        // ===== НОМЕРА (С ОТОБРАЖЕНИЕМ ДОСТУПНОСТИ) =====
         function renderRooms() {
             var grid = document.getElementById('roomsGrid');
             var today = new Date().toISOString().split('T')[0];
             var selectedDate = document.getElementById('quickCheckIn').value || today;
+            var guests = parseInt(document.getElementById('quickGuests').value) || 2;
+
             grid.innerHTML = ROOMS.map(function(room) {
                 var total = room.total;
                 var hid = curFilter !== 'all' && room.cat !== curFilter ? 'hidden' : '';
                 var avail = realAvail(room.id, selectedDate);
                 var isPast = isPastDate(selectedDate);
-                var at, statusClass;
+
+                var statusClass, statusText;
                 if (isPast) {
-                    at = '🔒 ' + t('past');
                     statusClass = 'past';
+                    statusText = '🔒 ' + t('past');
                 } else if (avail <= 0) {
-                    at = t('notAvailable') + ' 0/' + total;
                     statusClass = 'busy';
+                    statusText = '❌ ' + t('notAvailable') + ' 0/' + total;
                 } else {
-                    at = t('available') + ' ' + avail + '/' + total;
                     statusClass = 'free';
+                    statusText = '✅ ' + t('available') + ' ' + avail + '/' + total;
                 }
+
                 var nameDisplay = rName(room);
                 var emojiMap = {
                     'a01-stone': '🏔️',
@@ -2132,6 +2193,11 @@
                 var linkText = t('details');
                 var linkHtml = room.link && room.link !== '#' ? '<a href="' + room.link +
                     '" target="_blank" class="room-link">🔍 ' + linkText + '</a>' : '';
+
+                // Проверяем, может ли номер вместить указанное количество гостей
+                var maxGuests = room.cap + room.extra;
+                var fitsGuests = guests <= maxGuests;
+
                 return '<div class="room-card ' + hid + '" data-cat="' + room.cat + '" data-room-id="' + room.id + '">' +
                     '<div class="room-photos" onclick="openPhotoModal(\'' + room.id + '\',0)"><img src="' + room.photos[0] +
                     '" alt="' + nameDisplay + '" loading="lazy" draggable="false" onerror="this.src=\'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a2a27%22/%3E%3Ctext fill=%22%23f5c542%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3E📷%3C/text%3E%3C/svg%3E\'"><span class="photo-count">📷 ' +
@@ -2139,36 +2205,48 @@
                     '<div class="room-info"><div class="room-name">' + emoji + ' ' + nameDisplay +
                     '</div><div class="room-price">' + room.price.toLocaleString() + ' ₸</div><div class="room-desc">' +
                     rDesc(room) +
-                    '</div><div class="room-availability ' + statusClass + '">' + at + '</div><ul class="room-features">' +
+                    '</div><div class="room-availability ' + statusClass + '">' + statusText +
+                    (fitsGuests ? '' : ' 👤 Макс ' + maxGuests + ' чел.') +
+                    '</div><ul class="room-features">' +
                     rFeat(room).map(function(f) { return '<li>' + f + '</li>'; }).join('') +
                     '</ul>' + linkHtml + '</div>' +
                     '</div>';
             }).join('');
         }
 
-        // ===== БЫСТРАЯ ПРОВЕРКА =====
+        // ===== БЫСТРАЯ ПРОВЕРКА (С ФИЛЬТРАЦИЕЙ ПО ВМЕСТИМОСТИ) =====
         function updateQuickAvail() {
             var date = document.getElementById('quickCheckIn').value;
             var guests = parseInt(document.getElementById('quickGuests').value) || 2;
             var nights = parseInt(document.getElementById('quickNights').value) || 1;
             var resDiv = document.getElementById('quickAvailResult');
+
             if (!date) {
                 resDiv.innerHTML = '<div style="text-align:center;color:rgba(255,255,255,0.3);padding:10px;">📅 ' + t(
                     'selectDate') + '</div>';
                 return;
             }
+
             if (isPastDate(date)) {
                 resDiv.innerHTML = '<div style="text-align:center;color:rgba(255,255,255,0.3);padding:10px;">🔒 ' + t(
                     'past') + '</div>';
                 return;
             }
+
             var html = '<div class="avail-list-full"><div class="avail-list-header">' +
                 '<span>' + t('roomName') + '</span>' +
                 '<span>' + t('capacity') + '</span>' +
                 '<span>' + t('status') + '</span>' +
                 '</div>';
+
             var anyAvail = false;
+
             ROOMS.forEach(function(room) {
+                var maxGuests = room.cap + room.extra;
+
+                // Проверяем, может ли номер вместить гостей
+                if (guests > maxGuests) return;
+
                 var allAvailable = true;
                 var d = new Date(date);
                 for (var i = 0; i < nights; i++) {
@@ -2179,10 +2257,12 @@
                     }
                     d.setDate(d.getDate() + 1);
                 }
+
                 var firstDate = new Date(date).toISOString().split('T')[0];
                 var freeNow = realAvail(room.id, firstDate);
                 var total = room.total;
                 var statusClass, statusText;
+
                 if (!allAvailable) {
                     statusClass = 'busy';
                     statusText = '❌ ' + t('busy');
@@ -2191,7 +2271,9 @@
                     statusClass = 'free';
                     statusText = '✅ ' + t('free') + ' ' + freeNow + '/' + total;
                 }
+
                 var capText = room.cap + (room.extra > 0 ? '+' + room.extra : '');
+
                 html += '<div class="avail-list-item-full" data-room-id="' + room.id + '" data-available="' + (allAvailable ?
                     'true' : 'false') + '">' +
                     '<span class="room-name-small">' + rName(room) + '</span>' +
@@ -2199,8 +2281,18 @@
                     '<span class="avail-status ' + statusClass + '">' + statusText + '</span>' +
                     '</div>';
             });
+
+            if (!anyAvail && guests > 0) {
+                html += '<div class="avail-list-item-full" style="grid-template-columns:1fr;text-align:center;color:#ffa502;padding:16px;">' +
+                    '⚠️ Нет номеров, вмещающих ' + guests + ' ' + guestWord(guests) +
+                    ' на все выбранные ночи</div>';
+            }
+
             html += '</div>';
             resDiv.innerHTML = html;
+
+            // Обновляем карточки номеров, чтобы в них тоже отображалась доступность с учётом гостей
+            renderRooms();
         }
 
         // ===== ФОТО =====
