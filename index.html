@@ -1,2567 +1,931 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="description" content="PANA KOLSAY - отель на берегу озера Кольсай. Номера с видом на горы и озеро." />
-    <meta name="keywords" content="Кольсай, отель, озера Кольсай, Алматы, отдых, горы, Казахстан, PANA KOLSAY" />
-    <meta property="og:title" content="PANA KOLSAY - Отель на озере Кольсай" />
-    <meta property="og:description" content="Уютные номера с видом на озеро Кольсай." />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200" />
-    <meta name="theme-color" content="#1a2a27" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🏔%3C/text%3E%3C/svg%3E">
-    <title>PANA KOLSAY | Отель на озере Кольсай</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <style>
-        /* ===== ВСЕ СТИЛИ ===== */
-        :root {
-            --gold: #f5c542;
-            --gold-light: #ffe28a;
-            --gold-dark: #c49a1d;
-            --dark: #1a2a27;
-            --dark-light: #2a3a37;
-            --glass: rgba(26, 42, 39, 0.35);
-            --glass-hover: rgba(26, 42, 39, 0.5);
-            --glass-card: rgba(26, 42, 39, 0.4);
-            --glass-card-hover: rgba(26, 42, 39, 0.6);
-            --border-glass: rgba(255, 255, 255, 0.1);
-            --text-primary: #ffffff;
-            --text-secondary: rgba(255, 255, 255, 0.85);
-            --text-muted: rgba(255, 255, 255, 0.55);
-            --radius: 16px;
-            --radius-sm: 10px;
-            --radius-lg: 24px;
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --header-height: 60px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PANA KOLSAY | Отель на озере Кольсай</title>
+<meta name="description" content="PANA KOLSAY — отель на берегу озера Кольсай. Номера с видом на горы и озеро, глэмпинг, каменный и деревянный домики. Бронирование онлайн.">
+<meta name="keywords" content="Кольсай, отель, озеро Кольсай, Алматы, отдых, горы, Казахстан, PANA KOLSAY">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PANA KOLSAY — отель на озере Кольсай">
+<meta property="og:description" content="Уютные номера с видом на озеро и горы. Новогодние каникулы в Кольсае.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200">
+<meta name="theme-color" content="#0b1626">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E❄️%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Hotel","name":"PANA KOLSAY","description":"Отель на берегу озера Кольсай, Казахстан","telephone":"+77008368964","url":"https://instagram.com/pana_hotels","priceRange":"49 900 – 249 900 KZT","address":{"@type":"PostalAddress","addressLocality":"Озеро Кольсай","addressCountry":"KZ"},"geo":{"@type":"GeoCoordinates","latitude":42.995647,"longitude":78.326559},"checkinTime":"15:00","checkoutTime":"12:00","amenityFeature":[{"@type":"LocationFeatureSpecification","name":"Wi-Fi","value":true},{"@type":"LocationFeatureSpecification","name":"Бесплатный завтрак","value":true}]}
+</script>
+<style>
+:root{
+  --night:#0a1424; --deep:#0f2038; --navy:#16304f; --ice:#cfe8ff; --frost:#eef7ff;
+  --gold:#e8c36a; --gold-d:#c79a2e; --red:#e5574f; --green:#4ade80; --amber:#fbbf24;
+  --text:#f3f8ff; --text2:rgba(235,245,255,.82); --muted:rgba(200,222,245,.6);
+  --glass:rgba(16,34,58,.55); --glass2:rgba(22,46,76,.7); --line:rgba(190,225,255,.16);
+  --r:20px; --r-sm:12px; --ease:.3s cubic-bezier(.4,0,.2,1);
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'Manrope','Segoe UI',system-ui,sans-serif;
+}
+body.hc{--night:#000;--deep:#000;--navy:#0a0a0a;--glass:#000;--glass2:#000;--line:rgba(255,255,255,.55);--text:#fff;--text2:#fff;--muted:#e8e8e8}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--sans);color:var(--text);background:var(--night);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font-family:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+section[id]{scroll-margin-top:84px}
+#snow{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.wrap{position:relative;z-index:2;max-width:1220px;margin:0 auto;padding:0 20px}
 
-        body.high-contrast {
-            --dark: #000000;
-            --dark-light: #0a0a0a;
-            --glass: rgba(0, 0, 0, 0.85);
-            --glass-card: rgba(0, 0, 0, 0.9);
-            --glass-card-hover: rgba(0, 0, 0, 0.95);
-            --text-primary: #ffffff;
-            --text-secondary: #ffffff;
-            --text-muted: #dddddd;
-            --border-glass: rgba(255, 255, 255, 0.3);
-        }
-        body.high-contrast .bg-fixed::after {
-            background: rgba(0, 0, 0, 0.7);
-        }
-        body.high-contrast .content-block {
-            background: rgba(0, 0, 0, 0.8);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-        body.high-contrast .room-card {
-            background: rgba(0, 0, 0, 0.85);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-        body.high-contrast .fact-item {
-            background: rgba(0, 0, 0, 0.7);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-        body.high-contrast .filter-btn {
-            background: rgba(0, 0, 0, 0.7);
-            border-color: rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-        }
-        body.high-contrast .filter-btn.active {
-            background: var(--gold);
-            color: #000000;
-        }
-        body.high-contrast .form-group input,
-        body.high-contrast .form-group select {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-        }
-        body.high-contrast .modal-content {
-            background: #000000;
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-        body.high-contrast .faq-item .faq-question {
-            border-bottom-color: rgba(255, 255, 255, 0.2);
-        }
+/* NAV */
+.nav{position:sticky;top:0;z-index:50;background:rgba(10,20,36,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+body.hc .nav{background:#000}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;height:66px}
+.logo{font-family:var(--serif);font-size:1.7rem;font-weight:600;letter-spacing:.14em;text-decoration:none;white-space:nowrap}
+.logo b{color:var(--gold);font-weight:700}
+.logo i{color:var(--ice);font-size:1.1rem;margin-right:6px}
+.menu{display:flex;gap:26px}
+.menu a{text-decoration:none;font-size:.88rem;font-weight:600;color:var(--text2);transition:color var(--ease)}
+.menu a:hover{color:var(--gold)}
+.tools{display:flex;align-items:center;gap:8px}
+.seg{display:flex;background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:40px;padding:3px}
+.seg button{background:none;border:0;color:var(--muted);font-size:.72rem;font-weight:700;padding:5px 11px;border-radius:30px;cursor:pointer;transition:var(--ease)}
+.seg button:hover{color:#fff}
+.seg button.on{background:var(--gold);color:#1a1405}
+.ibtn{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.07);color:var(--text2);cursor:pointer;font-size:.8rem;font-weight:700;transition:var(--ease)}
+.ibtn:hover{background:rgba(255,255,255,.16);color:#fff}
+.ibtn[aria-pressed=true]{background:var(--gold);color:#1a1405;border-color:var(--gold)}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            color: var(--text-primary);
-            min-height: 100vh;
-            background: var(--dark);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-            transition: background 0.3s, color 0.3s;
-            overflow-x: hidden;
-        }
+/* HERO */
+.hero{position:relative;min-height:min(92vh,820px);display:flex;align-items:center;padding:70px 0 130px;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1920') center/cover no-repeat}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:
+  radial-gradient(ellipse at 70% 10%,rgba(160,210,255,.28),transparent 55%),
+  linear-gradient(180deg,rgba(8,20,40,.55) 0%,rgba(10,26,50,.62) 45%,var(--night) 100%)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:40px;background:rgba(232,195,106,.14);border:1px solid rgba(232,195,106,.45);color:var(--gold);font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.6rem,7vw,5.4rem);line-height:1.02;margin:20px 0 16px;text-shadow:0 6px 40px rgba(0,0,0,.45)}
+.hero h1 em{font-style:italic;color:var(--ice)}
+.hero p.lead{max-width:560px;font-size:1.12rem;color:var(--text2);margin-bottom:28px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 26px;border-radius:50px;border:1px solid transparent;font-weight:700;font-size:.92rem;text-decoration:none;cursor:pointer;transition:var(--ease)}
+.btn-gold{background:linear-gradient(135deg,#f3d584,var(--gold) 55%,var(--gold-d));color:#1a1405;box-shadow:0 8px 26px rgba(232,195,106,.3)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(232,195,106,.5)}
+.btn-ghost{background:rgba(255,255,255,.08);border-color:var(--line);color:#fff;backdrop-filter:blur(8px)}
+.btn-ghost:hover{background:rgba(255,255,255,.18)}
+.btn-wa{background:#25d366;color:#05220f}
+.btn-wa:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(37,211,102,.4)}
+.btn[disabled],.btn.off{opacity:.5;cursor:not-allowed;pointer-events:none}
+.facts{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
+.fact{display:flex;align-items:center;gap:12px;padding:12px 18px;border-radius:16px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(10px)}
+.fact i{color:var(--gold);font-size:1.15rem}
+.fact b{display:block;font-size:1rem;line-height:1.1}
+.fact span{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.weather{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:9px 16px;border-radius:40px;background:var(--glass);border:1px solid var(--line);font-size:.84rem;backdrop-filter:blur(10px)}
 
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--dark);
-            z-index: 99999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            transition: opacity 0.5s;
-        }
-        #loader.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        .loader-spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid var(--gold);
-            border-top-color: transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        .loader-text {
-            color: var(--gold);
-            margin-top: 16px;
-            font-weight: 300;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-        }
+/* HOLIDAY BANNER */
+.holiday{display:none;margin:-70px 0 26px;padding:18px 24px;border-radius:var(--r);background:linear-gradient(120deg,rgba(229,87,79,.9),rgba(160,35,50,.92));border:1px solid rgba(255,255,255,.25);box-shadow:0 14px 40px rgba(160,35,50,.35);align-items:center;gap:16px;flex-wrap:wrap}
+.holiday.show{display:flex}
+.holiday .big{font-size:2rem}
+.holiday b{font-family:var(--serif);font-size:1.5rem;display:block;line-height:1.1}
+.holiday span{font-size:.9rem;opacity:.92}
+.holiday .btn{margin-left:auto;background:#fff;color:#8c1f2a}
 
-        .bg-fixed {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: 0;
-            background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1920') center/cover no-repeat;
-            background-size: cover;
-            background-position: center;
-        }
-        @media (min-width: 1024px) {
-            .bg-fixed {
-                background-attachment: fixed;
-            }
-        }
-        .bg-fixed::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg,
-                    rgba(26, 42, 39, 0.3) 0%,
-                    rgba(26, 42, 39, 0.4) 50%,
-                    rgba(26, 42, 39, 0.55) 100%);
-            pointer-events: none;
-            transition: background 0.3s;
-        }
+/* SEARCH */
+.search{margin-top:-72px;position:relative;z-index:5;padding:22px;border-radius:24px;background:var(--glass2);border:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 24px 60px rgba(0,0,0,.4)}
+.holiday.show + .search{margin-top:0}
+.search form{display:grid;grid-template-columns:1.3fr 1fr 1fr auto;gap:14px;align-items:end}
+.fld label{display:block;font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.fld input,.fld select{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.08);color:#fff;font:inherit;font-size:.95rem;color-scheme:dark}
+.fld input:focus,.fld select:focus{border-color:var(--gold);outline:none}
+.fld select option{background:#10243d;color:#fff}
+.search .btn{height:48px}
+.search-note{margin-top:12px;font-size:.8rem;color:var(--muted)}
 
-        .main-container {
-            position: relative;
-            z-index: 1;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 16px;
-        }
+/* SECTIONS */
+.sec{padding:76px 0 8px}
+.sec-head{text-align:center;margin-bottom:34px}
+.sec-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,4.4vw,3rem);line-height:1.1}
+.sec-head .flake{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:10px;color:var(--gold);font-size:.9rem}
+.sec-head .flake::before,.sec-head .flake::after{content:"";width:70px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.sec-head .flake::after{transform:scaleX(-1)}
+.sec-head p{max-width:560px;margin:10px auto 0;color:var(--muted)}
 
-        .content-block {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: var(--radius-lg);
-            padding: 20px 16px;
-            margin-bottom: 16px;
-            border: 1px solid var(--border-glass);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            transition: background 0.3s, border-color 0.3s;
-        }
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:28px}
+.chip{padding:9px 20px;border-radius:40px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--text2);font-size:.86rem;font-weight:600;cursor:pointer;transition:var(--ease)}
+.chip:hover{background:rgba(255,255,255,.12);color:#fff}
+.chip.on{background:var(--gold);border-color:var(--gold);color:#1a1405}
 
-        .header-sticky {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            margin: 0 -16px;
-            padding: 0 16px;
-            background: rgba(26, 42, 39, 0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-glass);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-            transition: background 0.3s;
-        }
-        body.high-contrast .header-sticky {
-            background: rgba(0, 0, 0, 0.95);
-        }
-        .header-sticky .content-block {
-            background: transparent !important;
-            backdrop-filter: none !important;
-            border: none !important;
-            box-shadow: none !important;
-            padding: 8px 0 !important;
-            margin-bottom: 0 !important;
-            border-radius: 0 !important;
-        }
+/* ROOM CARDS */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:22px}
+.card{position:relative;display:flex;flex-direction:column;border-radius:var(--r);overflow:hidden;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(8px);transition:var(--ease)}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;z-index:3;background:linear-gradient(90deg,transparent,var(--ice),transparent);opacity:.7}
+.card:hover{transform:translateY(-6px);border-color:rgba(190,225,255,.35);box-shadow:0 22px 50px rgba(0,0,0,.45)}
+.card.dim{opacity:.62}
+.ph{position:relative;aspect-ratio:4/3;overflow:hidden;cursor:zoom-in;background:var(--navy);border:0;padding:0;width:100%;display:block}
+.ph img{width:100%;height:100%;object-fit:cover;transition:transform .7s}
+.card:hover .ph img{transform:scale(1.07)}
+.ph::after{content:"";position:absolute;inset:auto 0 0 0;height:50%;background:linear-gradient(0deg,rgba(8,18,34,.75),transparent);pointer-events:none}
+.badge{position:absolute;z-index:2;font-size:.72rem;font-weight:700;padding:5px 12px;border-radius:30px;backdrop-filter:blur(8px)}
+.badge.cat{top:12px;left:12px;background:rgba(10,20,36,.65);border:1px solid var(--line);color:var(--ice)}
+.badge.hol{top:12px;right:12px;background:var(--red);color:#fff}
+.badge.cnt{bottom:12px;right:12px;background:rgba(10,20,36,.65);color:#fff}
+.body{display:flex;flex-direction:column;flex:1;padding:18px 18px 20px}
+.body h3{font-family:var(--serif);font-size:1.55rem;font-weight:600;line-height:1.15}
+.body p.d{margin:6px 0 12px;font-size:.84rem;color:var(--muted)}
+.status{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;font-size:.76rem;font-weight:700;padding:5px 12px;border-radius:8px;margin-bottom:12px}
+.status.free{background:rgba(74,222,128,.15);color:var(--green)}
+.status.busy{background:rgba(229,87,79,.18);color:#ff8a82}
+.status.unk{background:rgba(251,191,36,.15);color:var(--amber)}
+.status.big{background:rgba(255,255,255,.08);color:var(--muted)}
+.feats{list-style:none;display:grid;gap:7px;margin-bottom:16px;font-size:.82rem;color:var(--text2)}
+.feats li{display:flex;gap:10px;align-items:flex-start}
+.feats i{color:var(--gold);width:16px;text-align:center;margin-top:3px;font-size:.78rem}
+.buy{margin-top:auto;padding-top:14px;border-top:1px dashed var(--line)}
+.price{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px}
+.price b{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--gold);line-height:1}
+.price s{font-size:.9rem;color:var(--muted)}
+.price small{font-size:.8rem;color:var(--muted)}
+.total{font-size:.8rem;color:var(--text2);margin:4px 0 12px}
+.total.hol{color:#ff9d96}
+.acts{display:flex;gap:8px}
+.acts .btn{flex:1;padding:12px 14px;font-size:.84rem}
+.acts .btn-ghost{flex:0 0 auto}
+.empty{grid-column:1/-1;text-align:center;padding:40px;color:var(--muted);border:1px dashed var(--line);border-radius:var(--r)}
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        .logo-title {
-            font-size: 1.4rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-        }
-        .logo-title span {
-            font-weight: 700;
-            color: var(--gold);
-        }
+/* TWO COL */
+.two{display:grid;grid-template-columns:1fr 1.2fr;gap:22px}
+.panel{padding:28px;border-radius:var(--r);background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(10px)}
+.panel h3{font-family:var(--serif);font-size:1.7rem;margin-bottom:10px}
+.panel p{color:var(--text2);font-size:.92rem}
+.maps{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.maps .btn{flex:1;min-width:110px;color:#fff;padding:12px 16px}
+.m2gis{background:#1e8c3c}.myan{background:#d92f12}.mgoo{background:#3b78e7}
+.route{display:grid;gap:12px;margin-top:20px}
+.route div{display:flex;gap:12px;font-size:.88rem;color:var(--text2)}
+.route i{color:var(--gold);width:18px;text-align:center;margin-top:3px}
+.video{position:relative;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#000}
+.video iframe,.video button{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video button{cursor:pointer;background:linear-gradient(rgba(10,20,36,.35),rgba(10,20,36,.5)),url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=900') center/cover;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;font-weight:700}
+.video button i{font-size:3.2rem;color:var(--gold)}
 
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
+/* INFO */
+.info{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.rule{padding:12px 0 12px 16px;border-left:2px solid var(--gold);margin-bottom:14px}
+.rule b{display:block;color:var(--gold);font-size:.92rem;margin-bottom:2px}
+.rule p{font-size:.85rem}
+details{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;padding:14px 0;font-weight:700;font-size:.95rem;list-style:none;display:flex;justify-content:space-between;gap:10px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"\f078";font-family:"Font Awesome 6 Free";font-weight:900;font-size:.7rem;color:var(--gold);transition:var(--ease)}
+details[open] summary{color:var(--gold)}
+details[open] summary::after{transform:rotate(180deg)}
+details p{padding:0 0 14px;font-size:.87rem;color:var(--text2)}
 
-        .lang-switch {
-            display: flex;
-            gap: 3px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 40px;
-            padding: 3px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
-        .lang-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            padding: 4px 10px;
-            border-radius: 30px;
-            font-size: 0.65rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            text-transform: uppercase;
-        }
-        .lang-btn:hover {
-            color: #fff;
-            background: rgba(255, 255, 255, 0.08);
-        }
-        .lang-btn.active {
-            background: var(--gold);
-            color: var(--dark);
-        }
+/* REVIEWS */
+.reviews{display:flex;gap:16px;overflow-x:auto;padding:6px 2px 18px;scroll-snap-type:x mandatory}
+.rev{flex:0 0 min(320px,82%);scroll-snap-align:start;padding:22px;border-radius:var(--r);background:var(--glass);border:1px solid var(--line)}
+.rev .st{color:var(--gold);letter-spacing:2px;margin-bottom:8px}
+.rev p{font-size:.92rem;color:var(--text2);margin-bottom:12px}
+.rev small{color:var(--muted)}
 
-        .btn-accessibility {
-            padding: 4px 10px;
-            border-radius: 30px;
-            border: 1px solid var(--border-glass);
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 0.6rem;
-            font-weight: 500;
-            transition: var(--transition);
-            white-space: nowrap;
-        }
-        .btn-accessibility:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-        }
-        .btn-accessibility.active-high-contrast {
-            background: var(--gold);
-            color: var(--dark);
-            border-color: var(--gold);
-        }
+/* FOOTER */
+footer{position:relative;z-index:2;margin-top:70px;padding:50px 0 100px;border-top:1px solid var(--line);background:linear-gradient(180deg,transparent,rgba(6,14,28,.85))}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+.foot h4{font-family:var(--serif);font-size:1.25rem;margin-bottom:12px;color:var(--gold)}
+.foot a,.foot p{display:block;color:var(--text2);text-decoration:none;font-size:.88rem;margin-bottom:8px}
+.foot a:hover{color:var(--gold)}
+.copy{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);text-align:center;font-size:.76rem;color:var(--muted)}
+.fab{position:fixed;right:18px;bottom:18px;z-index:60;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.9rem;text-decoration:none;box-shadow:0 10px 30px rgba(37,211,102,.5);transition:var(--ease)}
+.fab:hover{transform:scale(1.08)}
 
-        .quick-facts {
-            display: flex;
-            justify-content: center;
-            gap: 6px;
-            flex-wrap: wrap;
-            margin: 6px 0 4px 0;
-        }
-        .fact-item {
-            text-align: center;
-            padding: 4px 10px;
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 8px;
-            border: 1px solid var(--border-glass);
-            min-width: 60px;
-            backdrop-filter: blur(5px);
-            transition: background 0.3s, border-color 0.3s;
-            flex: 1;
-            max-width: 100px;
-        }
-        .fact-item i {
-            font-size: 0.8rem;
-            color: var(--gold);
-            margin-bottom: 2px;
-            display: block;
-        }
-        .fact-value {
-            font-weight: 700;
-            font-size: 0.75rem;
-            color: #fff;
-        }
-        .fact-label {
-            font-size: 0.5rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
+/* MODAL */
+#modal{position:fixed;inset:0;z-index:100;background:rgba(4,10,20,.94);display:none;align-items:center;justify-content:center;padding:20px}
+#modal.on{display:flex}
+#modal img{max-width:88vw;max-height:78vh;border-radius:12px;object-fit:contain;background:#000}
+.mb{position:fixed;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.1);color:#fff;font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:101;transition:var(--ease)}
+.mb:hover{background:rgba(255,255,255,.25)}
+#mClose{top:16px;right:16px}#mPrev{left:14px;top:50%}#mNext{right:14px;top:50%}
+#mCount{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.6);padding:5px 16px;border-radius:20px;font-size:.82rem;z-index:101}
+#mTitle{position:fixed;top:24px;left:50%;transform:translateX(-50%);font-family:var(--serif);font-size:1.3rem;z-index:101}
 
-        .weather-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 4px 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            border: 1px solid var(--border-glass);
-            margin: 4px 0 6px 0;
-            flex-wrap: wrap;
-            font-size: 0.7rem;
-        }
-        .weather-header i {
-            color: var(--gold);
-            font-size: 1rem;
-        }
-
-        .contact-bar {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 4px;
-            margin: 6px 0 0 0;
-        }
-        .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 6px 12px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.65rem;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            white-space: nowrap;
-            flex: 1;
-            justify-content: center;
-            min-width: 60px;
-        }
-        .contact-btn i {
-            font-size: 0.8rem;
-        }
-        .btn-whatsapp {
-            background: #25D366;
-            color: #fff;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.25);
-        }
-        .btn-whatsapp:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.45);
-        }
-        .btn-instagram {
-            background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            color: #fff;
-            box-shadow: 0 4px 20px rgba(225, 48, 108, 0.25);
-        }
-        .btn-instagram:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(225, 48, 108, 0.45);
-        }
-        .btn-phone {
-            background: #1a73e8;
-            color: #fff;
-            box-shadow: 0 4px 20px rgba(26, 115, 232, 0.25);
-        }
-        .btn-phone:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(26, 115, 232, 0.45);
-        }
-
-        .filter-bar {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 16px;
-        }
-        .filter-btn {
-            padding: 8px 18px;
-            border-radius: 30px;
-            border: 1px solid var(--border-glass);
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: var(--transition);
-            backdrop-filter: blur(5px);
-        }
-        .filter-btn:hover {
-            background: rgba(255, 255, 255, 0.08);
-            color: #fff;
-        }
-        .filter-btn.active {
-            background: var(--gold);
-            color: var(--dark);
-            border-color: var(--gold);
-            font-weight: 700;
-        }
-
-        .rooms-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 16px;
-        }
-
-        .room-card {
-            background: var(--glass-card);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-radius: var(--radius);
-            overflow: hidden;
-            border: 1px solid var(--border-glass);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-        }
-        .room-card:hover {
-            transform: translateY(-4px);
-            background: var(--glass-card-hover);
-            border-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
-        }
-        .room-card.hidden {
-            display: none;
-        }
-
-        .room-photos {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-            cursor: pointer;
-            background: var(--dark);
-            flex-shrink: 0;
-        }
-        .room-photos img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-            user-select: none;
-            -webkit-user-select: none;
-            -webkit-touch-callout: none;
-            display: block;
-        }
-        .room-card:hover .room-photos img {
-            transform: scale(1.05);
-        }
-        .photo-count {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            backdrop-filter: blur(5px);
-            pointer-events: none;
-        }
-
-        .room-info {
-            padding: 14px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        .room-name {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 4px;
-            color: #fff;
-        }
-        .room-price {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--gold);
-            margin: 4px 0;
-            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-        }
-        .room-desc {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-bottom: 6px;
-            line-height: 1.4;
-        }
-        .room-availability {
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 6px;
-            display: inline-block;
-            align-self: flex-start;
-            margin-bottom: 6px;
-        }
-        .room-availability.free {
-            background: rgba(46, 213, 115, 0.2);
-            color: #2ed573;
-        }
-        .room-availability.busy {
-            background: rgba(255, 71, 87, 0.2);
-            color: #ff4757;
-        }
-        .room-availability.past {
-            background: rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .room-features {
-            list-style: none;
-            margin: 4px 0;
-            padding: 0;
-            font-size: 0.75rem;
-            line-height: 1.6;
-            color: var(--text-secondary);
-            flex: 1;
-        }
-        .room-features li {
-            padding: 2px 0;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.04);
-            display: flex;
-            align-items: baseline;
-        }
-        .room-features li:last-child {
-            border-bottom: none;
-        }
-        .room-features li::before {
-            content: "•";
-            color: var(--gold);
-            font-weight: 700;
-            margin-right: 8px;
-        }
-
-        .room-link {
-            display: inline-block;
-            margin-top: 4px;
-            color: var(--gold);
-            font-weight: 500;
-            font-size: 0.75rem;
-            text-decoration: none;
-            border-bottom: 2px solid rgba(245, 197, 66, 0.15);
-            transition: var(--transition);
-            align-self: flex-start;
-        }
-        .room-link:hover {
-            border-bottom-color: var(--gold);
-            color: var(--gold-light);
-        }
-
-        .quick-check-form {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            align-items: flex-end;
-        }
-        .quick-check-form .form-group {
-            flex: 1;
-            min-width: 100px;
-            margin-bottom: 0;
-        }
-        .quick-check-form .form-group label {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            display: block;
-            margin-bottom: 4px;
-        }
-        .quick-check-form .form-group input,
-        .quick-check-form .form-group select {
-            padding: 6px 10px;
-            font-size: 0.8rem;
-            width: 100%;
-            border-radius: 10px;
-            border: 1px solid var(--border-glass);
-            background: rgba(255, 255, 255, 0.06);
-            color: #fff;
-            outline: none;
-            transition: var(--transition);
-        }
-        .quick-check-form .form-group input:focus,
-        .quick-check-form .form-group select:focus {
-            border-color: var(--gold);
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .quick-check-form .form-group select option {
-            background: #1a2a27;
-            color: #fff;
-        }
-
-        .avail-list-full {
-            margin-top: 12px;
-            border: 1px solid var(--border-glass);
-            border-radius: var(--radius-sm);
-            overflow: hidden;
-        }
-        .avail-list-header {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            padding: 8px 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid var(--border-glass);
-            font-weight: 600;
-            font-size: 0.7rem;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .avail-list-item-full {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            padding: 8px 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            font-size: 0.75rem;
-            align-items: center;
-            transition: background 0.2s;
-            color: var(--text-secondary);
-        }
-        .avail-list-item-full:last-child {
-            border-bottom: none;
-        }
-        .avail-list-item-full:hover {
-            background: rgba(255, 255, 255, 0.03);
-        }
-        .avail-list-item-full .room-name-small {
-            font-weight: 500;
-            color: #fff;
-        }
-        .avail-list-item-full .room-cap-small {
-            font-size: 0.6rem;
-            color: var(--text-muted);
-        }
-        .avail-status {
-            font-weight: 600;
-            font-size: 0.7rem;
-        }
-        .avail-status.free {
-            color: #2ed573;
-        }
-        .avail-status.busy {
-            color: #ff4757;
-        }
-        .avail-status.past {
-            color: rgba(255, 255, 255, 0.2);
-        }
-
-        .map-btn-group {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 12px;
-        }
-        .map-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 18px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.75rem;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            color: #fff;
-            flex: 1;
-            justify-content: center;
-            min-width: 80px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
-        }
-        .map-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
-        }
-        .map-btn-2gis {
-            background: #1e8c3c;
-            color: #fff;
-        }
-        .map-btn-yandex {
-            background: #fc3f1d;
-            color: #fff;
-        }
-        .map-btn-google {
-            background: #4285f4;
-            color: #fff;
-        }
-
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            border-radius: var(--radius);
-            overflow: hidden;
-            border: 1px solid var(--border-glass);
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        .rules-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-        .rule-item {
-            margin-bottom: 10px;
-            padding-left: 8px;
-            border-left: 2px solid var(--gold);
-        }
-        .rule-item strong {
-            color: var(--gold-light);
-            display: block;
-            margin-bottom: 2px;
-            font-size: 0.85rem;
-        }
-        .rule-item p {
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-            line-height: 1.5;
-        }
-
-        .faq-item {
-            margin-bottom: 10px;
-            cursor: pointer;
-        }
-        .faq-question {
-            font-weight: 600;
-            color: #fff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px solid var(--border-glass);
-            font-size: 0.85rem;
-            transition: border-color 0.3s;
-        }
-        .faq-answer {
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-            padding: 8px 0;
-            display: none;
-            line-height: 1.5;
-        }
-        .faq-item.active .faq-answer {
-            display: block;
-        }
-        .faq-item.active .faq-question {
-            color: var(--gold);
-        }
-
-        .reviews-scroll {
-            display: flex;
-            gap: 12px;
-            overflow-x: auto;
-            padding: 8px 0;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-        }
-        .review-card {
-            min-width: 250px;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 16px;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border-glass);
-            scroll-snap-align: start;
-            flex-shrink: 0;
-            transition: background 0.3s, border-color 0.3s;
-        }
-        .review-stars {
-            color: var(--gold);
-            margin-bottom: 6px;
-            font-size: 0.9rem;
-        }
-        .review-text {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-            margin-bottom: 6px;
-        }
-        .review-author {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-        }
-
-        .footer {
-            text-align: center;
-            padding: 16px;
-            color: var(--text-muted);
-            font-size: 0.7rem;
-            border-top: 1px solid var(--border-glass);
-        }
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 8px;
-            flex-wrap: wrap;
-        }
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: var(--transition);
-            font-size: 0.75rem;
-            cursor: pointer;
-        }
-        .footer-links a:hover {
-            color: var(--gold);
-        }
-
-        #photoModal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 16px;
-        }
-        #photoModal.active {
-            display: flex;
-        }
-        #photoModal .modal-close {
-            position: fixed;
-            top: 12px;
-            right: 16px;
-            font-size: 2rem;
-            z-index: 10001;
-            background: rgba(0, 0, 0, 0.6);
-            border-radius: 50%;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
-        #photoModal .modal-close:hover {
-            background: rgba(0, 0, 0, 0.8);
-        }
-        .photo-container {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            position: relative;
-            width: 100%;
-            justify-content: center;
-            padding: 0 4px;
-        }
-        .photo-container img {
-            max-width: 85vw;
-            max-height: 70vh;
-            border-radius: 8px;
-            object-fit: contain;
-            background: #000;
-        }
-        .photo-nav-btn {
-            background: rgba(0, 0, 0, 0.5);
-            border: none;
-            color: #fff;
-            font-size: 1.5rem;
-            padding: 10px 14px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: var(--transition);
-            min-width: 40px;
-            min-height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .photo-nav-btn:hover {
-            background: rgba(0, 0, 0, 0.7);
-        }
-        #photoCounter {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #fff;
-            font-size: 0.8rem;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 4px 14px;
-            border-radius: 15px;
-            z-index: 10001;
-        }
-
-        @media (max-width: 768px) {
-            .filter-btn {
-                padding: 4px 10px;
-                font-size: 0.6rem;
-            }
-            .main-container {
-                padding: 10px;
-            }
-            .header-sticky {
-                margin: 0 -10px;
-                padding: 0 10px;
-            }
-            .header-sticky .content-block {
-                padding: 6px 0 !important;
-            }
-            .logo-title {
-                font-size: 1.2rem;
-            }
-            .lang-btn {
-                font-size: 0.55rem;
-                padding: 3px 8px;
-            }
-            .btn-accessibility {
-                font-size: 0.55rem;
-                padding: 3px 8px;
-            }
-            .quick-facts {
-                gap: 4px;
-            }
-            .fact-item {
-                padding: 4px 8px;
-                min-width: 50px;
-                max-width: 80px;
-            }
-            .fact-item i {
-                font-size: 0.7rem;
-            }
-            .fact-value {
-                font-size: 0.65rem;
-            }
-            .fact-label {
-                font-size: 0.45rem;
-            }
-            .weather-header {
-                font-size: 0.6rem;
-                padding: 4px 10px;
-                gap: 6px;
-            }
-            .weather-header i {
-                font-size: 0.85rem;
-            }
-            .contact-btn {
-                padding: 6px 10px;
-                font-size: 0.6rem;
-                min-width: 50px;
-            }
-            .contact-btn i {
-                font-size: 0.7rem;
-            }
-            .rooms-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-            .room-photos {
-                height: 180px;
-            }
-            .room-name {
-                font-size: 0.95rem;
-            }
-            .room-price {
-                font-size: 1.1rem;
-            }
-            .room-desc {
-                font-size: 0.75rem;
-            }
-            .room-features {
-                font-size: 0.7rem;
-            }
-            .quick-check-form {
-                flex-direction: column;
-                gap: 6px;
-            }
-            .quick-check-form .form-group {
-                min-width: 100%;
-                width: 100%;
-            }
-            .avail-list-header,
-            .avail-list-item-full {
-                grid-template-columns: 1.5fr 0.8fr 0.8fr;
-                font-size: 0.65rem;
-                padding: 6px 10px;
-            }
-            .rules-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-            .reviews-scroll {
-                gap: 10px;
-            }
-            .review-card {
-                min-width: 200px;
-                padding: 12px;
-            }
-            .review-text {
-                font-size: 0.75rem;
-            }
-            .footer-links {
-                gap: 10px;
-            }
-            .footer-links a {
-                font-size: 0.65rem;
-            }
-            .map-btn {
-                font-size: 0.65rem;
-                padding: 6px 14px;
-                min-width: 70px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .filter-btn {
-                padding: 3px 8px;
-                font-size: 0.55rem;
-            }
-            .main-container {
-                padding: 6px;
-            }
-            .content-block {
-                padding: 12px 10px;
-                border-radius: 12px;
-                margin-bottom: 10px;
-            }
-            .header-sticky {
-                margin: 0 -6px;
-                padding: 0 6px;
-            }
-            .header-sticky .content-block {
-                padding: 4px 0 !important;
-            }
-            .logo-title {
-                font-size: 1rem;
-            }
-            .fact-item {
-                padding: 3px 6px;
-                min-width: 40px;
-                max-width: 65px;
-            }
-            .fact-item i {
-                font-size: 0.6rem;
-            }
-            .fact-value {
-                font-size: 0.55rem;
-            }
-            .fact-label {
-                font-size: 0.4rem;
-            }
-            .contact-btn {
-                padding: 5px 8px;
-                font-size: 0.55rem;
-                min-width: 40px;
-            }
-            .contact-btn i {
-                font-size: 0.6rem;
-            }
-            .weather-header {
-                font-size: 0.55rem;
-                padding: 3px 8px;
-                gap: 4px;
-            }
-            .weather-header i {
-                font-size: 0.7rem;
-            }
-            .lang-btn {
-                font-size: 0.5rem;
-                padding: 2px 6px;
-            }
-            .btn-accessibility {
-                font-size: 0.5rem;
-                padding: 2px 6px;
-            }
-            .room-photos {
-                height: 150px;
-            }
-            .room-name {
-                font-size: 0.85rem;
-            }
-            .room-price {
-                font-size: 1rem;
-            }
-            .room-desc {
-                font-size: 0.7rem;
-            }
-            .room-features {
-                font-size: 0.65rem;
-            }
-            .avail-list-header,
-            .avail-list-item-full {
-                grid-template-columns: 1fr 0.5fr 0.5fr;
-                font-size: 0.55rem;
-                padding: 4px 8px;
-            }
-            .review-card {
-                min-width: 160px;
-                padding: 10px;
-            }
-            .review-text {
-                font-size: 0.65rem;
-            }
-            .review-stars {
-                font-size: 0.7rem;
-            }
-            .footer-links a {
-                font-size: 0.6rem;
-            }
-            .footer p {
-                font-size: 0.6rem;
-            }
-            .map-btn {
-                font-size: 0.55rem;
-                padding: 5px 10px;
-                min-width: 60px;
-            }
-        }
-    </style>
+@media(max-width:960px){
+  .menu{display:none}
+  .search form{grid-template-columns:1fr 1fr}
+  .search form .fld:first-child{grid-column:1/-1}
+  .search .btn{grid-column:1/-1;width:100%}
+  .two,.info,.foot{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .wrap{padding:0 14px}
+  .nav .wrap{height:58px}
+  .logo{font-size:1.25rem;letter-spacing:.08em}
+  .tools{gap:5px}
+  .seg button{padding:4px 8px;font-size:.66rem}
+  .ibtn{width:30px;height:30px}
+  .hero{padding:44px 0 110px}
+  .facts .fact{flex:1 1 calc(50% - 8px);padding:10px 12px}
+  .grid{grid-template-columns:1fr}
+  .holiday .btn{margin-left:0;width:100%}
+  #mPrev,#mNext{top:auto;bottom:16px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
 </head>
 <body>
+<canvas id="snow" aria-hidden="true"></canvas>
 
-    <!-- ===== ЗАГРУЗЧИК ===== -->
-    <div id="loader">
-        <div class="loader-spinner"></div>
-        <div class="loader-text">🏔 PANA KOLSAY</div>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="PANA KOLSAY"><i class="fa-regular fa-snowflake"></i>PANA <b>KOLSAY</b></a>
+    <nav class="menu" aria-label="Меню">
+      <a href="#rooms" data-i="nRooms">Номера</a>
+      <a href="#route" data-i="nRoute">Как добраться</a>
+      <a href="#info" data-i="nInfo">Информация</a>
+      <a href="#reviews" data-i="nReviews">Отзывы</a>
+    </nav>
+    <div class="tools">
+      <div class="seg" id="langSeg" role="group" aria-label="Язык">
+        <button data-lang="ru" class="on">RU</button><button data-lang="en">EN</button><button data-lang="kz">KZ</button>
+      </div>
+      <button class="ibtn" id="fsBtn" aria-label="Увеличить шрифт" title="A+">A+</button>
+      <button class="ibtn" id="hcBtn" aria-pressed="false" aria-label="Контрастная версия" title="Контраст"><i class="fa-solid fa-circle-half-stroke"></i></button>
+      <button class="ibtn" id="snowBtn" aria-pressed="true" aria-label="Снег" title="Снег"><i class="fa-regular fa-snowflake"></i></button>
     </div>
+  </div>
+</header>
 
-    <div class="bg-fixed"></div>
-
-    <div class="main-container">
-
-        <!-- ===== ШАПКА ===== -->
-        <div class="header-sticky">
-            <div class="content-block" id="headerBlock">
-                <div class="header">
-                    <div class="logo-title">🏔️ PANA <span>KOLSAY</span></div>
-                    <div class="header-right">
-                        <div class="lang-switch" id="langSwitch">
-                            <button class="lang-btn active" data-lang="ru">RU</button>
-                            <button class="lang-btn" data-lang="en">EN</button>
-                            <button class="lang-btn" data-lang="kz">KZ</button>
-                        </div>
-                        <button class="btn-accessibility" onclick="toggleAccessibility()" id="btnA11y">♿ Версия для слабовидящих</button>
-                    </div>
-                </div>
-
-                <div class="quick-facts">
-                    <div class="fact-item"><i class="fas fa-water"></i><div class="fact-value">700 м</div><div class="fact-label" id="factLake">до озера</div></div>
-                    <div class="fact-item"><i class="fas fa-mountain"></i><div class="fact-value">1800 м</div><div class="fact-label" id="factHeight">высота</div></div>
-                    <div class="fact-item"><i class="fas fa-car"></i><div class="fact-value">~4 ч</div><div class="fact-label" id="factDrive">от Алматы</div></div>
-                    <div class="fact-item"><i class="fas fa-wifi"></i><div class="fact-value">Wi-Fi</div><div class="fact-label" id="factWifi">бесплатно</div></div>
-                </div>
-
-                <div class="weather-header" id="weatherMini">
-                    <i class="fas fa-cloud-sun"></i>
-                    <span id="weatherMiniText">Загрузка погоды...</span>
-                </div>
-
-                <div class="contact-bar">
-                    <a href="https://wa.me/77018615121" target="_blank" class="contact-btn btn-whatsapp"><i class="fab fa-whatsapp"></i> <span id="btnWaText">WhatsApp</span></a>
-                    <a href="https://instagram.com/pana_hotels" target="_blank" class="contact-btn btn-instagram"><i class="fab fa-instagram"></i> <span id="btnIgText">Instagram</span></a>
-                    <a href="tel:+77008368964" class="contact-btn btn-phone"><i class="fas fa-phone"></i> <span id="btnPhText">Позвонить</span></a>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== НОМЕРА (КАТАЛОГ) ===== -->
-        <div class="content-block" id="roomsBlock">
-            <h2 style="font-weight:300; margin-bottom:12px; font-size:1.2rem;" id="roomsTitle">🛏️ Наши номера</h2>
-            <div class="filter-bar" id="filterBar">
-                <button class="filter-btn active" data-filter="all" id="filtAll">Все</button>
-                <button class="filter-btn" data-filter="standard" id="filtStd">Стандарт</button>
-                <button class="filter-btn" data-filter="mountain" id="filtMnt">Горы</button>
-                <button class="filter-btn" data-filter="lake" id="filtLake">Озеро</button>
-                <button class="filter-btn" data-filter="triple" id="filtTrp">Трипл</button>
-                <button class="filter-btn" data-filter="deluxe" id="filtDlx">Deluxe</button>
-                <button class="filter-btn" data-filter="luxury" id="filtLux">Люкс</button>
-                <button class="filter-btn" data-filter="glamping" id="filtGlp">Глэмпинг</button>
-            </div>
-            <div class="rooms-grid" id="roomsGrid"></div>
-        </div>
-
-        <!-- ===== БЛОК ДОСТУПНОСТИ ===== -->
-        <div class="content-block" id="bookingFormBlock">
-            <h2 style="font-weight:300; margin-bottom:12px; font-size:1.2rem;" id="bookingFormTitle">📅 Проверить доступность</h2>
-
-            <div class="quick-check-form" id="quickCheckForm">
-                <div class="form-group">
-                    <label id="lblCheckIn">📅 Дата заезда</label>
-                    <input type="date" id="quickCheckIn" onchange="updateQuickAvail();">
-                </div>
-                <div class="form-group">
-                    <label id="lblGuests">👥 Гости</label>
-                    <select id="quickGuests" onchange="updateQuickAvail()">
-                        <option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label id="lblNights">🌙 Ночей</label>
-                    <select id="quickNights" onchange="updateQuickAvail()">
-                        <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
-                    </select>
-                </div>
-            </div>
-
-            <div id="quickAvailResult" style="margin-top:12px;"></div>
-        </div>
-
-        <!-- ===== КАРТА (КНОПКИ) ===== -->
-        <div class="content-block" id="mapBlock">
-            <h2 style="font-weight:300; margin-bottom:12px; font-size:1.2rem;" id="mapTitle">📍 Как добраться</h2>
-            <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:12px;" id="mapInfo"><i class="fas fa-map-marker-alt"></i> Озеро Кольсай Нижнее | Из Алматы: ~4 часа (300 км)</p>
-            <div class="map-btn-group">
-                <a href="https://go.2gis.com/k4fIM" target="_blank" class="map-btn map-btn-2gis"><i class="fas fa-map"></i> 2GIS</a>
-                <a href="https://yandex.kz/maps/ru/-/CTvwaRo5" target="_blank" class="map-btn map-btn-yandex"><i class="fas fa-map"></i> Яндекс</a>
-                <a href="https://www.google.com/maps/@42.995647,78.326559,3a,85.8y,135.91h,51.71t/data=!3m8!1e1!3m6!1sCIHM0ogKEICAgIC_gICCdg!2e10!3e11!6shttps:%2F%2Flh3.googleusercontent.com%2Fgpms-cs-s%2FAFP8RcO5B_MQCzvrrnqWdfO8aUFViM9sI_tg3_lQJey2yEd69AcRYpDmSB0A3u5BjNBjgXDCKhclEds-QdwSKqpekuZyOGtU2iQslWcp1MvgRK8_4K9SMp5947qMkU32SiMAoUz5DKna%3Dw900-h600-k-no-pi38.28553290897283-ya335.52992239260266-ro0-fo100!7i12000!8i6000?hl=ru&entry=ttu&g_ep=EgoyMDI2MDcyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="map-btn map-btn-google"><i class="fas fa-map"></i> Google</a>
-            </div>
-        </div>
-
-        <!-- ===== ВИДЕО ===== -->
-        <div class="content-block" id="videoBlock">
-            <h2 style="font-weight:300; margin-bottom:12px; font-size:1.2rem;" id="videoTitle">🎥 Видеообзор</h2>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/HocYEEFwN3c?start=129" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </div>
-
-        <!-- ===== ПРАВИЛА И FAQ ===== -->
-        <div class="content-block" id="rulesBlock">
-            <h2 style="font-weight:300; margin-bottom:12px; font-size:1.2rem;" id="rulesTitle">📋 Важная информация</h2>
-            <div class="rules-grid">
-                <div>
-                    <h3 style="color:var(--gold); font-size:1rem; margin-bottom:10px;" id="rulesSubTitle"><i class="fas fa-file-contract"></i> Условия</h3>
-                    <div class="rule-item"><strong id="rule1Title">1. Предоплата</strong><p id="rule1Text">Для гарантии брони требуется 100% предоплата.</p></div>
-                    <div class="rule-item"><strong id="rule2Title">2. Отмена</strong><p id="rule2Text">• Менее 7 дней — 1 сутки<br>• Более 7 дней — полный возврат</p></div>
-                    <div class="rule-item"><strong id="rule3Title">3. Неявка</strong><p id="rule3Text">Удерживаются 1 сутки, остальные ночи аннулируются.</p></div>
-                    <div class="rule-item"><strong id="rule4Title">4. Изменение дат</strong><p id="rule4Text">При наличии мест и согласовании за 7+ дней.</p></div>
-                    <div class="rule-item"><strong id="rule5Title">📝 Для брони</strong><p id="rule5Text">Напишите ФИО гостя. Мы пришлём ссылку на оплату.</p></div>
-                </div>
-                <div>
-                    <h3 style="color:var(--gold); font-size:1rem; margin-bottom:10px;" id="faqTitle"><i class="fas fa-question-circle"></i> Вопросы</h3>
-                    <div class="faq-item" onclick="this.classList.toggle('active')">
-                        <div class="faq-question" id="faq1Q">🕐 Заезд и выезд? <i class="fas fa-chevron-down"></i></div>
-                        <div class="faq-answer" id="faq1A">Заезд с 15:00, выезд до 12:00.</div>
-                    </div>
-                    <div class="faq-item" onclick="this.classList.toggle('active')">
-                        <div class="faq-question" id="faq2Q">🍳 Питание? <i class="fas fa-chevron-down"></i></div>
-                        <div class="faq-answer" id="faq2A">Шведский стол в ресторане Тары в 300 м.</div>
-                    </div>
-                    <div class="faq-item" onclick="this.classList.toggle('active')">
-                        <div class="faq-question" id="faq3Q">🚗 Парковка? <i class="fas fa-chevron-down"></i></div>
-                        <div class="faq-answer" id="faq3A">Бесплатная и трансфер от парковки в течение 40 минут.</div>
-                    </div>
-                    <div class="faq-item" onclick="this.classList.toggle('active')">
-                        <div class="faq-question" id="faq4Q">👶 С детьми? <i class="fas fa-chevron-down"></i></div>
-                        <div class="faq-answer" id="faq4A">До 7 лет бесплатно. Доп. место 15 000 ₸.</div>
-                    </div>
-                    <div class="faq-item" onclick="this.classList.toggle('active')">
-                        <div class="faq-question" id="faq5Q">🐕 Питомцы? <i class="fas fa-chevron-down"></i></div>
-                        <div class="faq-answer" id="faq5A">Вход с питомцами запрещен.</div>
-                    </div>
-                    <div class="faq-item" onclick="this.classList.toggle('active')">
-                        <div class="faq-question" id="faq6Q">💳 Оплата? <i class="fas fa-chevron-down"></i></div>
-                        <div class="faq-answer" id="faq6A">По ссылке удаленный счет на карту через Kaspi. 100% предоплата.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== ОТЗЫВЫ ===== -->
-        <div class="content-block" id="reviewsBlock">
-            <h2 style="font-weight:300; margin-bottom:12px; font-size:1.2rem;" id="reviewsTitle">💬 Отзывы гостей</h2>
-            <div class="reviews-scroll" id="reviewsScroll"></div>
-        </div>
-
-        <!-- ===== ФУТЕР ===== -->
-        <div class="footer">
-            <div class="footer-links">
-                <a href="#" onclick="toggleAccessibility()" id="footerA11y">♿ Версия для слабовидящих</a>
-                <a href="tel:+77008368964">📞 +7 700 836 8964</a>
-            </div>
-            <p id="footerCopy">© 2026 PANA KOLSAY · Озеро Кольсай, Казахстан</p>
-        </div>
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow"><i class="fa-regular fa-snowflake"></i><span data-i="eyebrow">Зима в горах · Кольсай</span></span>
+    <h1><span data-i="h1a">Тишина озера,</span><br><em data-i="h1b">тепло гор</em></h1>
+    <p class="lead" data-i="lead">Уютный отель на берегу озера Кольсай. Завтрак, трансфер от парковки и вид на заснеженные вершины — всё включено в проживание.</p>
+    <div class="cta">
+      <a class="btn btn-gold" href="#search"><i class="fa-solid fa-calendar-check"></i><span data-i="ctaBook">Выбрать даты</span></a>
+      <a class="btn btn-ghost" href="#rooms"><span data-i="ctaRooms">Смотреть номера</span></a>
     </div>
-
-    <!-- ===== МОДАЛКА ФОТО ===== -->
-    <div class="modal-overlay" id="photoModal">
-        <button class="modal-close" onclick="closePhotoModal()">&times;</button>
-        <div class="photo-container">
-            <button class="photo-nav-btn" onclick="navigatePhoto(-1)" id="photoPrev">❮</button>
-            <img id="modalPhoto" src="" alt="" draggable="false">
-            <button class="photo-nav-btn" onclick="navigatePhoto(1)" id="photoNext">❯</button>
-        </div>
-        <div id="photoCounter"></div>
+    <div class="facts">
+      <div class="fact"><i class="fa-solid fa-water"></i><div><b>700 м</b><span data-i="fLake">до озера</span></div></div>
+      <div class="fact"><i class="fa-solid fa-mountain"></i><div><b>1800 м</b><span data-i="fAlt">высота</span></div></div>
+      <div class="fact"><i class="fa-solid fa-car"></i><div><b>~4 ч</b><span data-i="fDrive">от Алматы</span></div></div>
+      <div class="fact"><i class="fa-solid fa-wifi"></i><div><b>Wi-Fi</b><span data-i="fWifi">бесплатно</span></div></div>
     </div>
-
-    <script>
-        // ============ НАСТРОЙКИ ============
-        const API_KEY = 'AIzaSyBYks7NJgliBsZzOMjfm2UOTznOZSAKp8U';
-        const SHEET_ID = '1QsZqEHLWD0JEb7LV3Pbqr1Ux7nSMExYv9GXDrpYR3B4';
-        const SHEET_NAME_AVAIL = 'Доступность';
-
-        // ============ НОМЕРА (ОБНОВЛЕННЫЕ ФОТО) ============
-       // ============ НОМЕРА (ОБНОВЛЕННЫЕ ФОТО) ============
-const ROOMS = [{
-    id: 'a01-stone',
-    nameRu: 'Каменный домик A01',
-    nameEn: 'Stone House A01',
-    nameKz: 'Тас үй A01',
-    price: 249900,
-    cap: 2,
-    extra: 2,
-    cat: 'luxury',
-    total: 1,
-    photos: [
-        'https://lh3.googleusercontent.com/d/1wezgXvtZeBW3WwgIF-zPka9Zl-fEU0Oi=w1200',
-        'https://lh3.googleusercontent.com/d/1vzIOcC_g2iG0vrYJTKTk9-vbTyPCSv18=w1200',
-        'https://lh3.googleusercontent.com/d/1f8ZWkDdWgvdl7uR5vomMWvU06Lx9mLm5=w1200',
-        'https://lh3.googleusercontent.com/d/1_ObexbdML2tF_STnjluUpRTlLQuhIL5C=w1200',
-        'https://lh3.googleusercontent.com/d/1KygzolG1U9IAMJ9lbdEn5hKUjCZLHh8O=w1200',
-        'https://lh3.googleusercontent.com/d/15tzQYt2oc_wSXdX38_mfv4AdX9isWfgY=w1200',
-        'https://lh3.googleusercontent.com/d/15h0f66RhzQhbREFlLVFF6JcBqx8elzx1=w1200',
-        'https://lh3.googleusercontent.com/d/13AUSt50qPhlZKnb2kMgXbhWdr7juLP3v=w1200'
-    ],
-    descRu: 'Каменный домик А01. Заезд 14:00, выезд 12:00. Макс. 2 взрослых + 2 детей. 37 м².',
-    descEn: 'Stone house A01. Check-in 14:00, check-out 12:00. Max 2 adults + 2 children. 37 m².',
-    descKz: 'Тас үй А01. Келу 14:00, кету 12:00. Макс. 2 ересек + 2 бала. 37 м².',
-    featRu: ['🕒 Заезд 14:00 — выезд 12:00', '👥 2 взрослых + 2 детей', '➕ Доп. место: 15 000 ₸',
-        '🍳 Бесплатный завтрак на 2-х', '🚐 Бесплатный трансфер с парковки', '🍽️ Рядом этно-кафе Тары'
-    ],
-    featEn: ['🕒 Check-in 14:00 — Check-out 12:00', '👥 2 adults + 2 children', '➕ Extra bed: 15,000 ₸',
-        '🍳 Free breakfast for 2', '🚐 Free transfer from parking', '🍽️ Tary ethnic cafe nearby'
-    ],
-    featKz: ['🕒 Келу 14:00 — кету 12:00', '👥 2 ересек + 2 бала', '➕ Қосымша орын: 15 000 ₸',
-        '🍳 2 адамға тегін таңғы ас', '🚐 Тұрақтан тегін трансфер', '🍽️ Tary этно-кафе жанында'
-    ],
-    link: 'https://www.instagram.com/reel/DKjjbJjNWve/'
-}, {
-    id: 'a02-wood',
-    nameRu: 'Деревянный домик A02',
-    nameEn: 'Wooden House A02',
-    nameKz: 'Ағаш үй A02',
-    price: 199900,
-    cap: 2,
-    extra: 2,
-    cat: 'luxury',
-    total: 1,
-    photos: [
-        'https://lh3.googleusercontent.com/d/1wZki3IlnTcrB2InnikQDFzfXjcCtuxwO=w1200',
-        'https://lh3.googleusercontent.com/d/1XlSE1OTY0JRVUJEbK5U5och4Ghr_1M8h=w1200',
-        'https://lh3.googleusercontent.com/d/1EFlrQz5CSXxndXZPKcW_Zf-S9MirgcCj=w1200',
-        'https://lh3.googleusercontent.com/d/18ZCrRyFdQVAeCQhfx1t3i0nPy35-t5BK=w1200',
-        'https://lh3.googleusercontent.com/d/1CeZ7TrxhdXj-q70GHlxh1bQdl9_QzqbN=w1200'
-    ],
-    descRu: 'Деревянный домик А02. Заезд 14:00, выезд 12:00. Макс. 2 взрослых + 2 детей. 37 м².',
-    descEn: 'Wooden house A02. Check-in 14:00, check-out 12:00. Max 2 adults + 2 children. 37 m².',
-    descKz: 'Ағаш үй А02. Келу 14:00, кету 12:00. Макс. 2 ересек + 2 бала. 37 м².',
-    featRu: ['🕒 Заезд 14:00 — выезд 12:00', '👥 2 взрослых + 2 детей', '➕ Доп. место: 15 000 ₸',
-        '🍳 Бесплатный завтрак на 2-х', '🚐 Бесплатный трансфер с парковки', '🍽️ Рядом этно-кафе Тары'
-    ],
-    featEn: ['🕒 Check-in 14:00 — Check-out 12:00', '👥 2 adults + 2 children', '➕ Extra bed: 15,000 ₸',
-        '🍳 Free breakfast for 2', '🚐 Free transfer from parking', '🍽️ Tary ethnic cafe nearby'
-    ],
-    featKz: ['🕒 Келу 14:00 — кету 12:00', '👥 2 ересек + 2 бала', '➕ Қосымша орын: 15 000 ₸',
-        '🍳 2 адамға тегін таңғы ас', '🚐 Тұрақтан тегін трансфер', '🍽️ Tary этно-кафе жанында'
-    ],
-    link: 'https://www.instagram.com/p/DHXcKsAt6Zg/'
-}, {
-    id: 'standard',
-    nameRu: 'Standard Room',
-    nameEn: 'Standard Room',
-    nameKz: 'Standard Room',
-    price: 54900,
-    cap: 2,
-    extra: 1,
-    cat: 'standard',
-    total: 2,
-    photos: [
-        'https://lh3.googleusercontent.com/d/12dfrIVuYs9pu3vUREH3UvHkbUkHmmdf5=w800',
-        'https://lh3.googleusercontent.com/d/1kxQO07wGNx5huoR-5XAj5VsZzXmy-yo8=w800',
-        'https://lh3.googleusercontent.com/d/1PH4Nd1MVbSXJaG3gnwwkfrtqX2VWP41h=w800',
-        'https://lh3.googleusercontent.com/d/198UTw1PEkE7V7lfdIq3pvWFpdd-KUaUM=w800',
-        'https://lh3.googleusercontent.com/d/1BGDn_5gZVe5V_dWh2rL-ZA0ziM2EvrnO=w800',
-        'https://lh3.googleusercontent.com/d/1VZgclPeAxELHLMATBVrX5lUBeLVCJsWi=w800'
-    ],
-    descRu: 'Стандартный номер без вида для 2-х персон. Заезд 15:00, выезд 12:00.',
-    descEn: 'Standard room without view for 2 persons. Check-in 15:00, check-out 12:00.',
-    descKz: 'Көрініссіз стандартты бөлме 2 адамға. Келу 15:00, кету 12:00.',
-    featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 2 взрослых + 1 ребенок', '➕ Доп. место: 15 000 ₸',
-        '🍳 Бесплатный завтрак на 2-х', '🚐 Бесплатный трансфер с парковки', '👶 Дети до 5 лет — бесплатно',
-        '🍽️ Рядом этно-кафе Тары'
-    ],
-    featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 2 adults + 1 child', '➕ Extra bed: 15,000 ₸',
-        '🍳 Free breakfast for 2', '🚐 Free transfer from parking', '👶 Children under 5 — free',
-        '🍽️ Tary ethnic cafe nearby'
-    ],
-    featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 2 ересек + 1 бала', '➕ Қосымша орын: 15 000 ₸',
-        '🍳 2 адамға тегін таңғы ас', '🚐 Тұрақтан тегін трансфер', '👶 5 жасқа дейін — тегін',
-        '🍽️ Tary этно-кафе жанында'
-    ],
-    link: 'https://drive.google.com/file/d/1pEewgVeg3V_29HTFnOVYeNvZUxa5rAl8/view'
-}, {
-    id: 'mountain',
-    nameRu: 'Superior Mountain View',
-    nameEn: 'Superior Mountain View',
-    nameKz: 'Тау көрінісі',
-    price: 59900,
-    cap: 2,
-    extra: 1,
-    cat: 'mountain',
-    total: 2,
-    photos: [
-        'https://lh3.googleusercontent.com/d/1cqdfwaYNZtCEVWexRbqcd-9fe1o5WUpC=w1200',
-        'https://lh3.googleusercontent.com/d/1aXjg2ecY0lTRfKS9ADyf6DAgmweCd474=w1200',
-        'https://lh3.googleusercontent.com/d/1GYC1cSoNt6xjSlX-pVCpP20YUAAV5Xab=w1200',
-        'https://lh3.googleusercontent.com/d/1FBcAb8Z4OxFRNqqheSx2r66cYIARtS0L=w1200',
-        'https://lh3.googleusercontent.com/d/1AU0Ng5iSodubOTU5bvEmgme3shgoFBy_=w1200',
-        'https://lh3.googleusercontent.com/d/155Yv5jQUtyCr901feqT8Ff8lLGzM4jgk=w1200'
-    ],
-    descRu: 'Стандартный номер с видом на горы для 2-х персон. Заезд 15:00, выезд 12:00.',
-    descEn: 'Standard room with mountain view for 2 persons. Check-in 15:00, check-out 12:00.',
-    descKz: 'Тау көрінісі бар стандартты бөлме 2 адамға. Келу 15:00, кету 12:00.',
-    featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 2 взрослых + 1 ребенок', '➕ Доп. место: 15 000 ₸',
-        '🍳 Бесплатный завтрак на 2-х', '🚐 Бесплатный трансфер с парковки', '👶 Дети до 5 лет — бесплатно',
-        '🍽️ Рядом этно-кафе Тары'
-    ],
-    featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 2 adults + 1 child', '➕ Extra bed: 15,000 ₸',
-        '🍳 Free breakfast for 2', '🚐 Free transfer from parking', '👶 Children under 5 — free',
-        '🍽️ Tary ethnic cafe nearby'
-    ],
-    featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 2 ересек + 1 бала', '➕ Қосымша орын: 15 000 ₸',
-        '🍳 2 адамға тегін таңғы ас', '🚐 Тұрақтан тегін трансфер', '👶 5 жасқа дейін — тегін',
-        '🍽️ Tary этно-кафе жанында'
-    ],
-    link: 'https://drive.google.com/file/d/1dn9vFQlvhLWgdE7B19tSL-WKpmsPepqn/view'
-}, {
-    id: 'lake-double',
-    nameRu: 'Superior Lake View Double',
-    nameEn: 'Superior Lake View Double',
-    nameKz: 'Көл көрінісі Double',
-    price: 64900,
-    cap: 2,
-    extra: 1,
-    cat: 'lake',
-    total: 8,
-    photos: [
-        'https://lh3.googleusercontent.com/d/1R6jtwrAWzM39LsQj05WkZsxBS7QghyyB=w800',
-        'https://lh3.googleusercontent.com/d/1DzUwx1pxs12MkSr7hMFofveC9K6TET9W=w800',
-        'https://lh3.googleusercontent.com/d/1hV-nhoX-vTB29UjE31exEUIzs79DsH6w=w800',
-        'https://lh3.googleusercontent.com/d/1zDK7a9jwrNkAtPuswBbwq3vhTQoewphp=w800',
-        'https://lh3.googleusercontent.com/d/1QQOwOCHld53gWSIbPEND8wQ0WQOhSWMF=w800',
-        'https://lh3.googleusercontent.com/d/1Kcu6EMJgiLEvSaicWIoR1ZKsAR_UheEc=w800',
-        'https://lh3.googleusercontent.com/d/1yXp7jwKqqZYR5F2F1CJh4Au6OjI42j2L=w800',
-        'https://lh3.googleusercontent.com/d/1GbAFuDFbnsM5_P2Sc5kG7Hy4s-ziHmlH=w800',
-        'https://lh3.googleusercontent.com/d/1USmFZhAPMdVE8PYvf-UywYj__Cy1JO3_=w800'
-    ],
-    descRu: 'Стандартный номер с видом на озеро Кольсай для 2-х персон. Double кровать.',
-    descEn: 'Standard room with Kolsay Lake view for 2 persons. Double bed.',
-    descKz: 'Көлсай көлінің көрінісі бар стандартты бөлме 2 адамға. Double кереует.',
-    featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 2 взрослых + 1 ребенок', '➕ Доп. место: 15 000 ₸',
-        '🍳 Бесплатный завтрак на 2-х', '🚐 Бесплатный трансфер с парковки', '👶 Дети до 5 лет — бесплатно',
-        '🍽️ Рядом этно-кафе Тары'
-    ],
-    featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 2 adults + 1 child', '➕ Extra bed: 15,000 ₸',
-        '🍳 Free breakfast for 2', '🚐 Free transfer from parking', '👶 Children under 5 — free',
-        '🍽️ Tary ethnic cafe nearby'
-    ],
-    featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 2 ересек + 1 бала', '➕ Қосымша орын: 15 000 ₸',
-        '🍳 2 адамға тегін таңғы ас', '🚐 Тұрақтан тегін трансфер', '👶 5 жасқа дейін — тегін',
-        '🍽️ Tary этно-кафе жанында'
-    ],
-    link: 'https://drive.google.com/file/d/1m-1D7gTtylwBGhNm1u2QV1jXgN_M3xhr/view'
-}, {
-    id: 'triple',
-    nameRu: 'Superior Lake View Triple',
-    nameEn: 'Superior Lake View Triple',
-    nameKz: 'Көл көрінісі Triple',
-    price: 74900,
-    cap: 3,
-    extra: 1,
-    cat: 'triple',
-    total: 2,
-    photos: [
-        'https://lh3.googleusercontent.com/d/1kcBqX8Vf5nb8_cXrVZU5JeEgkA94_BJ-=w800',
-        'https://lh3.googleusercontent.com/d/1OwFvu1PbZJOvOF9qwFXhMeMvXmPZDHZh=w800',
-        'https://lh3.googleusercontent.com/d/1-8hZ7Bgf5q4zUsGEiE6AlkESmjQdOWo4=w800',
-        'https://lh3.googleusercontent.com/d/1--drzveAlqOfXVmJOmraY3k2VJfskcyH=w800',
-        'https://lh3.googleusercontent.com/d/1BQJWHN4Xp754EIoW_pUSJ5POHhrnkAOf=w800',
-        'https://lh3.googleusercontent.com/d/1OTT4TJWnctTsCZFQJcM0EmmDT1LI6NEB=w800',
-        'https://lh3.googleusercontent.com/d/10fn9VqSkz2D0Tn2vfiXV-65C1SgrgUVM=w800',
-        'https://lh3.googleusercontent.com/d/1DgG_Xg_TNMDJY2hN41FINONY05llNCXf=w800'
-    ],
-    descRu: 'Стандартный номер с видом на озеро Кольсай для 3-х персон.',
-    descEn: 'Standard room with Kolsay Lake view for 3 persons.',
-    descKz: 'Көлсай көлінің көрінісі бар стандартты бөлме 3 адамға.',
-    featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 3 взрослых + 1 ребенок', '➕ Доп. место: 15 000 ₸',
-        '🍳 Бесплатный завтрак на 2-х', '🚐 Бесплатный трансфер с парковки', '👶 Дети до 5 лет — бесплатно',
-        '🍽️ Рядом этно-кафе Тары'
-    ],
-    featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 3 adults + 1 child', '➕ Extra bed: 15,000 ₸',
-        '🍳 Free breakfast for 2', '🚐 Free transfer from parking', '👶 Children under 5 — free',
-        '🍽️ Tary ethnic cafe nearby'
-    ],
-    featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 3 ересек + 1 бала', '➕ Қосымша орын: 15 000 ₸',
-        '🍳 2 адамға тегін таңғы ас', '🚐 Тұрақтан тегін трансфер', '👶 5 жасқа дейін — тегін',
-        '🍽️ Tary этно-кафе жанында'
-    ],
-    link: 'https://drive.google.com/file/d/1Lh4d_lGjFiZsbBHbkRjpGY9g_yvUAx8z/view'
-}, {
-    id: 'deluxe',
-    nameRu: 'Deluxe',
-    nameEn: 'Deluxe',
-    nameKz: 'Deluxe',
-    price: 79900,
-    cap: 4,
-    extra: 1,
-    cat: 'deluxe',
-    total: 1,
-    photos: [
-        'https://lh3.googleusercontent.com/d/1NAY7HBLgs9nQC1P509-ezDdbgtz2wpHl=w800',
-        'https://lh3.googleusercontent.com/d/1YVkMTwwWAkDK1lSwfDPQ6qMKpZFhzqWE=w800',
-        'https://lh3.googleusercontent.com/d/17IFYYDNzYpuHALFJM4EN3qbs1Iw1R_Uz=w800'
-    ],
-    descRu: 'Deluxe для 4-х персон. Заезд 15:00, выезд 12:00.',
-    descEn: 'Deluxe for 4 persons. Check-in 15:00, check-out 12:00.',
-    descKz: '4 адамға арналған Deluxe. Келу 15:00, кету 12:00.',
-    featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 4 взрослых + 1 ребенок', '➕ Доп. место: 15 000 ₸',
-        '🍳 Бесплатный завтрак на 4-х', '🚐 Бесплатный трансфер с парковки', '👶 Дети до 5 лет — бесплатно',
-        '🍽️ Рядом этно-кафе Тары'
-    ],
-    featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 4 adults + 1 child', '➕ Extra bed: 15,000 ₸',
-        '🍳 Free breakfast for 4', '🚐 Free transfer from parking', '👶 Children under 5 — free',
-        '🍽️ Tary ethnic cafe nearby'
-    ],
-    featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 4 ересек + 1 бала', '➕ Қосымша орын: 15 000 ₸',
-        '🍳 4 адамға тегін таңғы ас', '🚐 Тұрақтан тегін трансфер', '👶 5 жасқа дейін — тегін',
-        '🍽️ Tary этно-кафе жанында'
-    ],
-    link: 'https://drive.google.com/file/d/1bsCXUoVPz10hAwtW2hnomwOnUOZ7bJ6-/view'
-}, {
-    id: 'deluxe-plus',
-    nameRu: 'Deluxe+',
-    nameEn: 'Deluxe+',
-    nameKz: 'Deluxe+',
-    price: 104900,
-    cap: 4,
-    extra: 1,
-    cat: 'deluxe',
-    total: 2,
-    photos: [
-        'https://lh3.googleusercontent.com/d/1Gc8NNcyvv1g4htILGRcn_HShvY3RflZP=w800',
-        'https://lh3.googleusercontent.com/d/1xc3RAvBFUoyL0e8KCX_7HzwLjeQEIpqk=w800',
-        'https://lh3.googleusercontent.com/d/1G3SHvM1cwbI1JOWcs1baNjBO5iLmbhuQ=w800',
-        'https://lh3.googleusercontent.com/d/1lPeEFDuLl9XLu4iVHOkH8G666NlZEhd2=w800',
-        'https://lh3.googleusercontent.com/d/1ZKWIfLg24g_pqM8nt-2vWEZ182JjddHh=w800',
-        'https://lh3.googleusercontent.com/d/18ceO9BtMbuwsaEiClpNo-JJHu23B-CCg=w800'
-    ],
-    descRu: 'Deluxe+ для 4-х персон. Заезд 15:00, выезд 12:00.',
-    descEn: 'Deluxe+ for 4 persons. Check-in 15:00, check-out 12:00.',
-    descKz: '4 адамға арналған Deluxe+. Келу 15:00, кету 12:00.',
-    featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 4 взрослых + 1 ребенок', '➕ Доп. место: 15 000 ₸',
-        '🍳 Бесплатный завтрак на 4-х', '🚐 Бесплатный трансфер с парковки', '👶 Дети до 5 лет — бесплатно',
-        '🍽️ Рядом этно-кафе Тары'
-    ],
-    featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 4 adults + 1 child', '➕ Extra bed: 15,000 ₸',
-        '🍳 Free breakfast for 4', '🚐 Free transfer from parking', '👶 Children under 5 — free',
-        '🍽️ Tary ethnic cafe nearby'
-    ],
-    featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 4 ересек + 1 бала', '➕ Қосымша орын: 15 000 ₸',
-        '🍳 4 адамға тегін таңғы ас', '🚐 Тұрақтан тегін трансфер', '👶 5 жасқа дейін — тегін',
-        '🍽️ Tary этно-кафе жанында'
-    ],
-    link: 'https://drive.google.com/file/d/1xUdZq5Vi13i2bNG3Oy1LtAg7157K6asr/view'
-}, {
-    id: 'premier-deluxe',
-    nameRu: 'Premier Deluxe',
-    nameEn: 'Premier Deluxe',
-    nameKz: 'Premier Deluxe',
-    price: 124900,
-    cap: 4,
-    extra: 1,
-    cat: 'deluxe',
-    total: 1,
-    photos: [
-        'https://lh3.googleusercontent.com/d/12zdB3N7456trAs7dRbYzn-LuNLTBvGp0=w1200',
-        'https://lh3.googleusercontent.com/d/1NaQK_qIuh6JQKaR7ATlVYQr0gMp80jTL=w1200',
-        'https://lh3.googleusercontent.com/d/1xoLxABe614rhSL7rcAx1SJkeMvuseAtz=w1200',
-        'https://lh3.googleusercontent.com/d/19dT1UJlWRs00Wlon9xYVxDGYzgENInPe=w1200',
-        'https://lh3.googleusercontent.com/d/1Ekhk1-fDu4_40_sRUc2Yu7HcxONNV_d-=w1200',
-        'https://lh3.googleusercontent.com/d/1hie3FpdIJdBuixia6wgk9qgahnDAMiUM=w1200',
-        'https://lh3.googleusercontent.com/d/1crVT1nvJjH_5A3QWhtPu5d8eSrNrP0yp=w1200',
-        'https://lh3.googleusercontent.com/d/1omQJF0Z4t9ky3xOBHkN_w9CL91cUPeJU=w1200',
-        'https://lh3.googleusercontent.com/d/1g5Te7UDkov6nuCf2Z6OTdxD2YOlkdd2c=w1200'
-    ],
-    descRu: 'Premier Deluxe для 4-х персон. Заезд 15:00, выезд 12:00.',
-    descEn: 'Premier Deluxe for 4 persons. Check-in 15:00, check-out 12:00.',
-    descKz: '4 адамға арналған Premier Deluxe. Келу 15:00, кету 12:00.',
-    featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 4 взрослых + 1 ребенок', '➕ Доп. место: 15 000 ₸',
-        '🍳 Бесплатный завтрак на 4-х', '🚐 Бесплатный трансфер с парковки', '👶 Дети до 5 лет — бесплатно',
-        '🍽️ Рядом этно-кафе Тары'
-    ],
-    featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 4 adults + 1 child', '➕ Extra bed: 15,000 ₸',
-        '🍳 Free breakfast for 4', '🚐 Free transfer from parking', '👶 Children under 5 — free',
-        '🍽️ Tary ethnic cafe nearby'
-    ],
-    featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 4 ересек + 1 бала', '➕ Қосымша орын: 15 000 ₸',
-        '🍳 4 адамға тегін таңғы ас', '🚐 Тұрақтан тегін трансфер', '👶 5 жасқа дейін — тегін',
-        '🍽️ Tary этно-кафе жанында'
-    ],
-    link: 'https://drive.google.com/file/d/1t8ylE9wOguBWlzH1DFVL7eEqUDOtXWw7/view'
-}, {
-    id: 'glamping-new',
-    nameRu: 'Glamping Domes + (New 2022)',
-    nameEn: 'Glamping Domes + (New 2022)',
-    nameKz: 'Glamping Domes + (New 2022)',
-    price: 119900,
-    cap: 4,
-    extra: 1,
-    cat: 'glamping',
-    total: 2,
-    photos: [
-        'https://lh3.googleusercontent.com/d/1kFa_4oV5uLJ31flTUK_mMo2DpFS3jVli=w800',
-        'https://lh3.googleusercontent.com/d/1mjvD9ZbNlUaqRpiiyRTYBDmP63WNwvet=w800',
-        'https://lh3.googleusercontent.com/d/1s2tK4ggOsLGD1b1h00EODzipUGNtWDht=w800',
-        'https://lh3.googleusercontent.com/d/12bDHoDRGhpx6NjE4nhb26_SZCx2SC-fX=w800',
-        'https://lh3.googleusercontent.com/d/1WqHSnpMwtpBnt_47DjuXkclDiCY9BNxG=w800'
-    ],
-    descRu: 'Новый глэмпинг 2022 для 4-х гостей. Заезд 15:00, выезд 12:00.',
-    descEn: 'New glamping 2022 for 4 guests. Check-in 15:00, check-out 12:00.',
-    descKz: 'Жаңа глэмпинг 2022 4 қонаққа. Келу 15:00, кету 12:00.',
-    featRu: ['🕒 Заезд 15:00 — выезд 12:00', '👥 4 взрослых + 1 ребенок', '➕ Доп. место: 15 000 ₸',
-        '🍳 Бесплатный завтрак на 4-х', '🚐 Бесплатный трансфер с парковки', '👶 Дети до 5 лет — бесплатно',
-        '🍽️ Рядом этно-кафе Тары'
-    ],
-    featEn: ['🕒 Check-in 15:00 — Check-out 12:00', '👥 4 adults + 1 child', '➕ Extra bed: 15,000 ₸',
-        '🍳 Free breakfast for 4', '🚐 Free transfer from parking', '👶 Children under 5 — free',
-        '🍽️ Tary ethnic cafe nearby'
-    ],
-    featKz: ['🕒 Келу 15:00 — кету 12:00', '👥 4 ересек + 1 бала', '➕ Қосымша орын: 15 000 ₸',
-        '🍳 4 адамға тегін таңғы ас', '🚐 Тұрақтан тегін трансфер', '👶 5 жасқа дейін — тегін',
-        '🍽️ Tary этно-кафе жанында'
-    ],
-    link: 'https://drive.google.com/file/d/10fC3o_LMPEA1hKapxvmKXfYC7qY2AqK7/view'
-}];
-
-        // ============ ПЕРЕВОДЫ ============
-        const L = {
-            ru: {
-                langName: 'RU',
-                a11yBtn: '♿ Версия для слабовидящих',
-                factLake: 'до озера',
-                factHeight: 'высота',
-                factDrive: 'от Алматы',
-                factWifi: 'бесплатно',
-                btnWa: 'WhatsApp',
-                btnIg: 'Instagram',
-                btnPh: 'Позвонить',
-                roomsTitle: '🛏️ Наши номера',
-                filtAll: 'Все',
-                filtStd: 'Стандарт',
-                filtMnt: 'Горы',
-                filtLake: 'Озеро',
-                filtTrp: 'Трипл',
-                filtDlx: 'Deluxe',
-                filtLux: 'Люкс',
-                filtGlp: 'Глэмпинг',
-                bookingFormTitle: '📅 Проверить доступность',
-                lblCheckIn: '📅 Дата заезда',
-                lblGuests: '👥 Гости',
-                lblNights: '🌙 Ночей',
-                mapTitle: '📍 Как добраться',
-                mapInfo: 'Озеро Кольсай Нижнее | Из Алматы: ~4 часа (300 км)',
-                map2gis: '2GIS',
-                mapYandex: 'Яндекс',
-                mapGoogle: 'Google',
-                videoTitle: '🎥 Видеообзор',
-                rulesTitle: '📋 Важная информация',
-                rulesSubTitle: 'Условия',
-                rule1Title: '1. Предоплата',
-                rule1Text: 'Для гарантии брони требуется 100% предоплата.',
-                rule2Title: '2. Отмена',
-                rule2Text: '• Менее 7 дней — 1 сутки<br>• Более 7 дней — полный возврат',
-                rule3Title: '3. Неявка',
-                rule3Text: 'Удерживаются 1 сутки, остальные ночи аннулируются.',
-                rule4Title: '4. Изменение дат',
-                rule4Text: 'При наличии мест и согласовании за 7+ дней.',
-                rule5Title: '📝 Для брони',
-                rule5Text: 'Напишите ФИО гостя. Мы пришлём ссылку на оплату.',
-                faqTitle: 'Вопросы',
-                faq1Q: '🕐 Заезд и выезд?',
-                faq1A: 'Заезд с 15:00, выезд до 12:00.',
-                faq2Q: '🍳 Питание?',
-                faq2A: 'Шведский стол в ресторане Тары в 300 м.',
-                faq3Q: '🚗 Парковка?',
-                faq3A: 'Бесплатная и трансфер от парковки в течение 40 минут.',
-                faq4Q: '👶 С детьми?',
-                faq4A: 'До 7 лет бесплатно. Доп. место 15 000 ₸.',
-                faq5Q: '🐕 Питомцы?',
-                faq5A: 'Вход с питомцами запрещен.',
-                faq6Q: '💳 Оплата?',
-                faq6A: 'По ссылке удаленный счет на карту через Kaspi. 100% предоплата.',
-                reviewsTitle: '💬 Отзывы гостей',
-                reviews: [
-                    'Потрясающий вид на озеро! Отличный сервис и вкусные завтраки!',
-                    'Идеальное место для отдыха. Чистый воздух, красивая природа!',
-                    'Көлдің керемет көрінісі! Табиғаттың ортасында тамаша демалу.',
-                    'Қызметкерлер өте мейірімді, бөлмелер таза және жайлы.',
-                    'Amazing place! The lake view is breathtaking!',
-                    'Perfect getaway. Clean rooms, friendly staff.'
-                ],
-                reviewAuthors: [
-                    'Анна М., Алматы',
-                    'Алексей К., Астана',
-                    'Айжан С., Алматы',
-                    'Ерлан Т., Шымкент',
-                    'John D., UK',
-                    'Sarah P., USA'
-                ],
-                footerA11y: '♿ Версия для слабовидящих',
-                free: 'Свободно',
-                busy: 'Занято',
-                noFree: 'Нет мест',
-                selectDate: 'Выберите дату',
-                perNight: '/ ночь',
-                guest1: 'гость',
-                guest2: 'гостя',
-                guest5: 'гостей',
-                roomsAvailable: 'доступно',
-                roomName: 'Номер',
-                capacity: 'Вместимость',
-                availability: 'Доступность',
-                status: 'Статус',
-                available: 'Свободно',
-                notAvailable: 'Нет мест',
-                of: 'из',
-                details: 'Подробнее',
-                location: 'Озеро Кольсай, Казахстан',
-                weather: 'Погода',
-                weatherNow: 'Сейчас погода в Кольсае',
-                weatherTemp: '°C',
-                weatherWind: 'Ветер',
-                weatherSpeed: 'км/ч',
-                past: 'Прошедшая дата',
-                nights: 'ночей',
-            },
-            en: {
-                langName: 'EN',
-                a11yBtn: '♿ Accessibility',
-                factLake: 'to lake',
-                factHeight: 'altitude',
-                factDrive: 'from Almaty',
-                factWifi: 'free',
-                btnWa: 'WhatsApp',
-                btnIg: 'Instagram',
-                btnPh: 'Call us',
-                roomsTitle: '🛏️ Our Rooms',
-                filtAll: 'All',
-                filtStd: 'Standard',
-                filtMnt: 'Mountain',
-                filtLake: 'Lake',
-                filtTrp: 'Triple',
-                filtDlx: 'Deluxe',
-                filtLux: 'Luxury',
-                filtGlp: 'Glamping',
-                bookingFormTitle: '📅 Check Availability',
-                lblCheckIn: '📅 Check-in',
-                lblGuests: '👥 Guests',
-                lblNights: '🌙 Nights',
-                mapTitle: '📍 How to get',
-                mapInfo: 'Lower Kolsay Lake | From Almaty: ~4 hours (300 km)',
-                map2gis: '2GIS',
-                mapYandex: 'Yandex',
-                mapGoogle: 'Google',
-                videoTitle: '🎥 Video Tour',
-                rulesTitle: '📋 Important Info',
-                rulesSubTitle: 'Terms',
-                rule1Title: '1. Prepayment',
-                rule1Text: '100% prepayment required.',
-                rule2Title: '2. Cancellation',
-                rule2Text: '• Less than 7 days — 1 night<br>• More than 7 days — full refund',
-                rule3Title: '3. No-show',
-                rule3Text: '1 night charged, remaining nights cancelled.',
-                rule4Title: '4. Date change',
-                rule4Text: 'Possible with availability, 7+ days before.',
-                rule5Title: '📝 To book',
-                rule5Text: 'Provide guest full name. We will send payment link.',
-                faqTitle: 'FAQ',
-                faq1Q: '🕐 Check-in / Check-out?',
-                faq1A: 'Check-in 15:00, check-out 12:00.',
-                faq2Q: '🍳 Food?',
-                faq2A: 'Buffet at Tary restaurant, 300m away.',
-                faq3Q: '🚗 Parking?',
-                faq3A: 'Free parking and transfer from parking within 40 minutes.',
-                faq4Q: '👶 Children?',
-                faq4A: 'Under 7 free. Extra bed: 15,000 ₸.',
-                faq5Q: '🐕 Pets?',
-                faq5A: 'Pets are not allowed.',
-                faq6Q: '💳 Payment?',
-                faq6A: 'Remote invoice via Kaspi. 100% prepayment.',
-                reviewsTitle: '💬 Guest Reviews',
-                reviews: [
-                    'Amazing lake view! Great service and delicious breakfast!',
-                    'Perfect place to escape the city. Clean air, beautiful nature!',
-                    'Көлдің керемет көрінісі! Табиғаттың ортасында тамаша демалу.',
-                    'Қызметкерлер өте мейірімді, бөлмелер таза және жайлы.',
-                    'Absolutely stunning location! Highly recommend.',
-                    'Wonderful experience. Will definitely come back.'
-                ],
-                reviewAuthors: [
-                    'Anna M., Almaty',
-                    'Alex K., Astana',
-                    'Aizhan S., Almaty',
-                    'Yerlan T., Shymkent',
-                    'John D., UK',
-                    'Sarah P., USA'
-                ],
-                footerA11y: '♿ Accessibility',
-                free: 'Free',
-                busy: 'Busy',
-                noFree: 'No availability',
-                selectDate: 'Select date',
-                perNight: '/ night',
-                guest1: 'guest',
-                guest2: 'guests',
-                guest5: 'guests',
-                roomsAvailable: 'available',
-                roomName: 'Room',
-                capacity: 'Capacity',
-                availability: 'Availability',
-                status: 'Status',
-                available: 'Available',
-                notAvailable: 'Not available',
-                of: 'of',
-                details: 'Details',
-                location: 'Kolsay Lake, Kazakhstan',
-                weather: 'Weather',
-                weatherNow: 'Current weather in Kolsay',
-                weatherTemp: '°C',
-                weatherWind: 'Wind',
-                weatherSpeed: 'km/h',
-                past: 'Past date',
-                nights: 'nights',
-            },
-            kz: {
-                langName: 'KZ',
-                a11yBtn: '♿ Нашар көретіндерге',
-                factLake: 'көлге дейін',
-                factHeight: 'биіктік',
-                factDrive: 'Алматыдан',
-                factWifi: 'тегін',
-                btnWa: 'WhatsApp',
-                btnIg: 'Instagram',
-                btnPh: 'Қоңырау шалу',
-                roomsTitle: '🛏️ Біздің нөмірлер',
-                filtAll: 'Барлығы',
-                filtStd: 'Стандарт',
-                filtMnt: 'Тау',
-                filtLake: 'Көл',
-                filtTrp: 'Трипл',
-                filtDlx: 'Deluxe',
-                filtLux: 'Люкс',
-                filtGlp: 'Глэмпинг',
-                bookingFormTitle: '📅 Қолжетімділікті тексеру',
-                lblCheckIn: '📅 Келу күні',
-                lblGuests: '👥 Қонақтар',
-                lblNights: '🌙 Түндер',
-                mapTitle: '📍 Қалай жетуге болады',
-                mapInfo: 'Көлсай көлі (Төменгі) | Алматыдан: ~4 сағат (300 км)',
-                map2gis: '2GIS',
-                mapYandex: 'Яндекс',
-                mapGoogle: 'Google',
-                videoTitle: '🎥 Бейне шолу',
-                rulesTitle: '📋 Маңызды ақпарат',
-                rulesSubTitle: 'Шарттар',
-                rule1Title: '1. Алдын ала төлем',
-                rule1Text: '100% алдын ала төлем қажет.',
-                rule2Title: '2. Бас тарту',
-                rule2Text: '• 7 күннен кем — 1 түн<br>• 7+ күн — толық қайтару',
-                rule3Title: '3. Келмеу',
-                rule3Text: '1 түн ұсталады, қалған түндер жойылады.',
-                rule4Title: '4. Күнді өзгерту',
-                rule4Text: 'Бос орын болса, келуден 7+ күн бұрын.',
-                rule5Title: '📝 Брондау үшін',
-                rule5Text: 'Бір қонақтың аты-жөнін жазыңыз. Төлем сілтемесін жібереміз.',
-                faqTitle: 'Сұрақтар',
-                faq1Q: '🕐 Келу және кету?',
-                faq1A: 'Келу 15:00-ден, кету 12:00-ге дейін.',
-                faq2Q: '🍳 Тамақ?',
-                faq2A: 'Tary мейрамханасында швед үстелі, 300 м.',
-                faq3Q: '🚗 Тұрақ?',
-                faq3A: 'Тегін тұрақ және тұрақтан 40 минут ішінде трансфер.',
-                faq4Q: '👶 Балалар?',
-                faq4A: '7 жасқа дейін тегін. Қосымша орын: 15 000 ₸.',
-                faq5Q: '🐕 Үй жануарлары?',
-                faq5A: 'Кіруге тыйым салынады.',
-                faq6Q: '💳 Төлем?',
-                faq6A: 'Kaspi арқылы шот. 100% алдын ала.',
-                reviewsTitle: '💬 Қонақтардың пікірлері',
-                reviews: [
-                    'Потрясающий вид на озеро! Отличный сервис и вкусные завтраки!',
-                    'Идеальное место для отдыха. Чистый воздух, красивая природа!',
-                    'Көлдің керемет көрінісі! Табиғаттың ортасында тамаша демалу.',
-                    'Қызметкерлер өте мейірімді, бөлмелер таза және жайлы.',
-                    'Amazing place! The lake view is breathtaking!',
-                    'Perfect getaway. Clean rooms, friendly staff.'
-                ],
-                reviewAuthors: [
-                    'Анна М., Алматы',
-                    'Алексей К., Астана',
-                    'Айжан С., Алматы',
-                    'Ерлан Т., Шымкент',
-                    'John D., UK',
-                    'Sarah P., USA'
-                ],
-                footerA11y: '♿ Нашар көретіндерге',
-                free: 'Бос',
-                busy: 'Бос емес',
-                noFree: 'Орын жоқ',
-                selectDate: 'Күнді таңдаңыз',
-                perNight: '/ түн',
-                guest1: 'қонақ',
-                guest2: 'қонақ',
-                guest5: 'қонақ',
-                roomsAvailable: 'бос',
-                roomName: 'Нөмір',
-                capacity: 'Сыйымдылық',
-                availability: 'Қолжетімділік',
-                status: 'Күйі',
-                available: 'Бос',
-                notAvailable: 'Орын жоқ',
-                of: 'ішінен',
-                details: 'Толығырақ',
-                location: 'Көлсай көлі, Қазақстан',
-                weather: 'Ауа райы',
-                weatherNow: 'Қазір Көлсайдағы ауа райы',
-                weatherTemp: '°C',
-                weatherWind: 'Жел',
-                weatherSpeed: 'км/сағ',
-                past: 'Өткен күн',
-                nights: 'түн',
-            }
-        };
-
-        // ============ ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ============
-        let curLang = 'ru';
-        let avails = {};
-        let curFilter = 'all';
-        let photoSet = [],
-            photoIdx = 0;
-        let isHighContrast = false;
-        let isPhotoModalOpen = false;
-        let weatherData = { temp: 0, wind: 0, code: 0, date: '' };
-        let weatherLoaded = false;
-        let googleData = null;
-        let touchStartX = 0,
-            touchStartY = 0,
-            isSwiping = false;
-        let autoUpdateInterval = null;
-
-        // ============ ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ============
-        function t(key) { return L[curLang][key] || key; }
-
-        function rName(room) { return room['name' + (curLang === 'ru' ? 'Ru' : curLang === 'en' ? 'En' : 'Kz')]; }
-
-        function rDesc(room) { return room['desc' + (curLang === 'ru' ? 'Ru' : curLang === 'en' ? 'En' : 'Kz')]; }
-
-        function rFeat(room) { return room['feat' + (curLang === 'ru' ? 'Ru' : curLang === 'en' ? 'En' : 'Kz')]; }
-
-        function guestWord(n) { return n === 1 ? t('guest1') : n <= 4 ? t('guest2') : t('guest5'); }
-
-        function showToast(message, type) {
-            type = type || 'success';
-            var existing = document.querySelector('.toast');
-            if (existing) existing.remove();
-            var toast = document.createElement('div');
-            toast.className = 'toast toast-' + type;
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            setTimeout(function() {
-                toast.style.opacity = '0';
-                toast.style.transition = 'opacity 0.3s';
-                setTimeout(function() { toast.remove(); }, 300);
-            }, 3000);
-        }
-
-        function toggleAccessibility() {
-            isHighContrast = !isHighContrast;
-            document.body.classList.toggle('high-contrast', isHighContrast);
-            var btn = document.getElementById('btnA11y');
-            btn.classList.toggle('active-high-contrast', isHighContrast);
-            btn.textContent = isHighContrast ? '🌙 Обычная версия' : t('a11yBtn');
-            localStorage.setItem('pana_high_contrast', isHighContrast ? '1' : '0');
-            showToast(isHighContrast ? '🔆 Включена контрастная версия' : '🌙 Обычная версия', 'info');
-        }
-
-        // ===== ЗАГРУЗКА ИЗ GOOGLE ТАБЛИЦЫ =====
-        async function loadFromGoogleSheet() {
-            try {
-                console.log('🔄 Загрузка данных из Google Таблицы...');
-                const url =
-                    `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_NAME_AVAIL}?key=${API_KEY}`;
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`Ошибка загрузки: ${response.status}`);
-                }
-                const data = await response.json();
-                console.log('✅ Данные загружены');
-                if (!data.values || data.values.length < 2) {
-                    console.warn('⚠️ Нет данных в таблице');
-                    return null;
-                }
-                const rows = data.values;
-                const headers = rows[0] || [];
-                const result = {};
-                const nameMapping = {
-                    'standard room': 'standard',
-                    'superior mountain view': 'mountain',
-                    'superior lake view double': 'lake-double',
-                    'superior lake view triple': 'triple',
-                    'deluxe': 'deluxe',
-                    'deluxe+': 'deluxe-plus',
-                    'premier deluxe': 'premier-deluxe',
-                    'glamping domes +': 'glamping-new',
-                    'каменный домик a01': 'a01-stone',
-                    'деревянный домик a02': 'a02-wood'
-                };
-                for (let i = 1; i < rows.length; i++) {
-                    const row = rows[i];
-                    if (!row || row.length === 0) continue;
-                    let firstCell = row[0];
-                    if (firstCell === undefined || firstCell === null || typeof firstCell === 'number') continue;
-                    let roomName;
-                    try {
-                        roomName = String(firstCell).trim().toLowerCase();
-                    } catch (e) { continue; }
-                    if (!roomName) continue;
-                    let roomId = nameMapping[roomName];
-                    if (!roomId) {
-                        for (let key in nameMapping) {
-                            if (roomName.includes(key) || key.includes(roomName)) {
-                                roomId = nameMapping[key];
-                                break;
-                            }
-                        }
-                    }
-                    if (!roomId) continue;
-                    result[roomId] = {};
-                    for (let j = 1; j < headers.length && j < row.length; j++) {
-                        const dateStr = headers[j] || '';
-                        const value = parseInt(row[j]) || 0;
-                        const dateMatch = dateStr.match(/(\d{2})\.(\d{2})\.(\d{4})/);
-                        if (dateMatch) {
-                            const isoDate = `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`;
-                            result[roomId][isoDate] = value;
-                        }
-                    }
-                }
-                console.log('📊 Распарсенные данные (номеров):', Object.keys(result).length);
-                return result;
-            } catch (error) {
-                console.error('❌ Ошибка загрузки из Google Таблицы:', error);
-                return null;
-            }
-        }
-
-        // ===== ФУНКЦИИ ДОСТУПНОСТИ =====
-        function realAvail(rid, date) {
-            if (googleData && googleData[rid] && googleData[rid][date] !== undefined) {
-                return Math.max(0, googleData[rid][date]);
-            }
-            if (!avails || !avails[rid] || avails[rid][date] === undefined) {
-                var room = ROOMS.find(function(r) { return r.id === rid; });
-                return room ? room.total : 0;
-            }
-            return Math.max(0, avails[rid][date] || 0);
-        }
-
-        function isPastDate(date) {
-            var today = new Date();
-            today.setHours(0, 0, 0, 0);
-            var checkDate = new Date(date);
-            return checkDate < today;
-        }
-
-        // ===== НОМЕРА (С ОТОБРАЖЕНИЕМ ДОСТУПНОСТИ) =====
-        function renderRooms() {
-            var grid = document.getElementById('roomsGrid');
-            var today = new Date().toISOString().split('T')[0];
-            var selectedDate = document.getElementById('quickCheckIn').value || today;
-            var guests = parseInt(document.getElementById('quickGuests').value) || 2;
-
-            grid.innerHTML = ROOMS.map(function(room) {
-                var total = room.total;
-                var hid = curFilter !== 'all' && room.cat !== curFilter ? 'hidden' : '';
-                var avail = realAvail(room.id, selectedDate);
-                var isPast = isPastDate(selectedDate);
-
-                var statusClass, statusText;
-                if (isPast) {
-                    statusClass = 'past';
-                    statusText = '🔒 ' + t('past');
-                } else if (avail <= 0) {
-                    statusClass = 'busy';
-                    statusText = '❌ ' + t('notAvailable') + ' 0/' + total;
-                } else {
-                    statusClass = 'free';
-                    statusText = '✅ ' + t('available') + ' ' + avail + '/' + total;
-                }
-
-                var nameDisplay = rName(room);
-                var emojiMap = {
-                    'a01-stone': '🏔️',
-                    'a02-wood': '🪵',
-                    'standard': '🏨',
-                    'mountain': '⛰️',
-                    'lake-double': '🌅',
-                    'triple': '🌅',
-                    'deluxe': '🏨',
-                    'deluxe-plus': '🏡',
-                    'premier-deluxe': '🏡',
-                    'glamping-new': '🏕️'
-                };
-                var emoji = emojiMap[room.id] || '🏨';
-                var linkText = t('details');
-                var linkHtml = room.link && room.link !== '#' ? '<a href="' + room.link +
-                    '" target="_blank" class="room-link">🔍 ' + linkText + '</a>' : '';
-
-                var maxGuests = room.cap + room.extra;
-                var fitsGuests = guests <= maxGuests;
-
-                return '<div class="room-card ' + hid + '" data-cat="' + room.cat + '" data-room-id="' + room.id + '">' +
-                    '<div class="room-photos" onclick="openPhotoModal(\'' + room.id + '\',0)"><img src="' + room.photos[0] +
-                    '" alt="' + nameDisplay + '" loading="lazy" draggable="false" onerror="this.src=\'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a2a27%22/%3E%3Ctext fill=%22%23f5c542%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3E📷%3C/text%3E%3C/svg%3E\'"><span class="photo-count">📷 ' +
-                    room.photos.length + '</span></div>' +
-                    '<div class="room-info"><div class="room-name">' + emoji + ' ' + nameDisplay +
-                    '</div><div class="room-price">' + room.price.toLocaleString() + ' ₸</div><div class="room-desc">' +
-                    rDesc(room) +
-                    '</div><div class="room-availability ' + statusClass + '">' + statusText +
-                    (fitsGuests ? '' : ' 👤 Макс ' + maxGuests + ' чел.') +
-                    '</div><ul class="room-features">' +
-                    rFeat(room).map(function(f) { return '<li>' + f + '</li>'; }).join('') +
-                    '</ul>' + linkHtml + '</div>' +
-                    '</div>';
-            }).join('');
-        }
-
-        // ===== БЫСТРАЯ ПРОВЕРКА (С ФИЛЬТРАЦИЕЙ ПО ВМЕСТИМОСТИ) =====
-        function updateQuickAvail() {
-            var date = document.getElementById('quickCheckIn').value;
-            var guests = parseInt(document.getElementById('quickGuests').value) || 2;
-            var nights = parseInt(document.getElementById('quickNights').value) || 1;
-            var resDiv = document.getElementById('quickAvailResult');
-
-            if (!date) {
-                resDiv.innerHTML = '<div style="text-align:center;color:rgba(255,255,255,0.3);padding:10px;">📅 ' + t(
-                    'selectDate') + '</div>';
-                return;
-            }
-
-            if (isPastDate(date)) {
-                resDiv.innerHTML = '<div style="text-align:center;color:rgba(255,255,255,0.3);padding:10px;">🔒 ' + t(
-                    'past') + '</div>';
-                return;
-            }
-
-            var html = '<div class="avail-list-full"><div class="avail-list-header">' +
-                '<span>' + t('roomName') + '</span>' +
-                '<span>' + t('capacity') + '</span>' +
-                '<span>' + t('status') + '</span>' +
-                '</div>';
-
-            var anyAvail = false;
-
-            ROOMS.forEach(function(room) {
-                var maxGuests = room.cap + room.extra;
-
-                if (guests > maxGuests) return;
-
-                var allAvailable = true;
-                var d = new Date(date);
-                for (var i = 0; i < nights; i++) {
-                    var dateStr = d.toISOString().split('T')[0];
-                    if (realAvail(room.id, dateStr) <= 0) {
-                        allAvailable = false;
-                        break;
-                    }
-                    d.setDate(d.getDate() + 1);
-                }
-
-                var firstDate = new Date(date).toISOString().split('T')[0];
-                var freeNow = realAvail(room.id, firstDate);
-                var total = room.total;
-                var statusClass, statusText;
-
-                if (!allAvailable) {
-                    statusClass = 'busy';
-                    statusText = '❌ ' + t('busy');
-                } else {
-                    anyAvail = true;
-                    statusClass = 'free';
-                    statusText = '✅ ' + t('free') + ' ' + freeNow + '/' + total;
-                }
-
-                var capText = room.cap + (room.extra > 0 ? '+' + room.extra : '');
-
-                html += '<div class="avail-list-item-full" data-room-id="' + room.id + '" data-available="' + (allAvailable ?
-                    'true' : 'false') + '">' +
-                    '<span class="room-name-small">' + rName(room) + '</span>' +
-                    '<span class="room-cap-small">' + capText + ' чел.</span>' +
-                    '<span class="avail-status ' + statusClass + '">' + statusText + '</span>' +
-                    '</div>';
-            });
-
-            if (!anyAvail && guests > 0) {
-                html += '<div class="avail-list-item-full" style="grid-template-columns:1fr;text-align:center;color:#ffa502;padding:16px;">' +
-                    '⚠️ Нет номеров, вмещающих ' + guests + ' ' + guestWord(guests) +
-                    ' на все выбранные ночи</div>';
-            }
-
-            html += '</div>';
-            resDiv.innerHTML = html;
-
-            renderRooms();
-        }
-
-        // ===== ФОТО =====
-        function openPhotoModal(rid, idx) {
-            var r = ROOMS.find(function(room) { return room.id === rid; });
-            if (!r) return;
-            photoSet = r.photos;
-            photoIdx = idx;
-            document.getElementById('modalPhoto').src = photoSet[idx];
-            document.getElementById('photoCounter').textContent = (idx + 1) + '/' + photoSet.length;
-            document.getElementById('photoModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-            isPhotoModalOpen = true;
-        }
-
-        function closePhotoModal() {
-            document.getElementById('photoModal').classList.remove('active');
-            document.body.style.overflow = '';
-            isPhotoModalOpen = false;
-        }
-
-        function navigatePhoto(d) {
-            photoIdx = (photoIdx + d + photoSet.length) % photoSet.length;
-            document.getElementById('modalPhoto').src = photoSet[photoIdx];
-            document.getElementById('photoCounter').textContent = (photoIdx + 1) + '/' + photoSet.length;
-        }
-
-        // ===== ОБРАБОТЧИКИ =====
-        document.addEventListener('touchstart', function(e) {
-            if (isPhotoModalOpen) {
-                var touch = e.changedTouches[0];
-                touchStartX = touch.screenX;
-                touchStartY = touch.screenY;
-                isSwiping = true;
-            }
-        }, { passive: true });
-
-        document.addEventListener('touchmove', function(e) {
-            if (isPhotoModalOpen && isSwiping) {
-                var touch = e.changedTouches[0];
-                var diffX = touchStartX - touch.screenX;
-                var diffY = touchStartY - touch.screenY;
-                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 20) {
-                    e.preventDefault();
-                }
-            }
-        }, { passive: false });
-
-        document.addEventListener('touchend', function(e) {
-            if (isPhotoModalOpen && isSwiping) {
-                var touch = e.changedTouches[0];
-                var diffX = touchStartX - touch.screenX;
-                var diffY = touchStartY - touch.screenY;
-                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
-                    navigatePhoto(diffX > 0 ? 1 : -1);
-                }
-                isSwiping = false;
-            }
-        }, { passive: true });
-
-        document.addEventListener('keydown', function(e) {
-            if (isPhotoModalOpen) {
-                if (e.key === 'ArrowRight') navigatePhoto(1);
-                if (e.key === 'ArrowLeft') navigatePhoto(-1);
-                if (e.key === 'Escape') {
-                    closePhotoModal();
-                }
-            }
-        });
-
-        document.getElementById('photoModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closePhotoModal();
-            }
-        });
-
-        // ===== ФИЛЬТРЫ =====
-        document.getElementById('filterBar').addEventListener('click', function(e) {
-            if (e.target.classList.contains('filter-btn')) {
-                this.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
-                e.target.classList.add('active');
-                curFilter = e.target.dataset.filter;
-                renderRooms();
-            }
-        });
-
-        // ===== ЯЗЫКИ =====
-        function switchLanguage(lang) {
-            curLang = lang;
-            document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
-            document.querySelector('.lang-btn[data-lang="' + lang + '"]').classList.add('active');
-
-            document.getElementById('btnA11y').textContent = isHighContrast ? '🌙 Обычная версия' : t('a11yBtn');
-            document.getElementById('factLake').textContent = t('factLake');
-            document.getElementById('factHeight').textContent = t('factHeight');
-            document.getElementById('factDrive').textContent = t('factDrive');
-            document.getElementById('factWifi').textContent = t('factWifi');
-            document.getElementById('btnWaText').textContent = t('btnWa');
-            document.getElementById('btnIgText').textContent = t('btnIg');
-            document.getElementById('btnPhText').textContent = t('btnPh');
-
-            document.getElementById('roomsTitle').textContent = t('roomsTitle');
-            document.getElementById('bookingFormTitle').textContent = t('bookingFormTitle');
-            document.getElementById('lblCheckIn').textContent = t('lblCheckIn');
-            document.getElementById('lblGuests').textContent = t('lblGuests');
-            document.getElementById('lblNights').textContent = t('lblNights');
-            document.getElementById('mapTitle').textContent = t('mapTitle');
-
-            var mapInfoEl = document.getElementById('mapInfo');
-            if (mapInfoEl) {
-                mapInfoEl.innerHTML = '<i class="fas fa-map-marker-alt"></i> ' + t('mapInfo');
-            }
-
-            document.querySelector('.map-btn-2gis').innerHTML = '<i class="fas fa-map"></i> ' + t('map2gis');
-            document.querySelector('.map-btn-yandex').innerHTML = '<i class="fas fa-map"></i> ' + t('mapYandex');
-            document.querySelector('.map-btn-google').innerHTML = '<i class="fas fa-map"></i> ' + t('mapGoogle');
-            document.getElementById('videoTitle').textContent = t('videoTitle');
-            document.getElementById('rulesTitle').textContent = t('rulesTitle');
-            document.getElementById('rulesSubTitle').innerHTML =
-                '<i class="fas fa-file-contract"></i> ' + t('rulesSubTitle');
-            document.getElementById('rule1Title').textContent = t('rule1Title');
-            document.getElementById('rule1Text').textContent = t('rule1Text');
-            document.getElementById('rule2Title').textContent = t('rule2Title');
-            document.getElementById('rule2Text').innerHTML = t('rule2Text');
-            document.getElementById('rule3Title').textContent = t('rule3Title');
-            document.getElementById('rule3Text').textContent = t('rule3Text');
-            document.getElementById('rule4Title').textContent = t('rule4Title');
-            document.getElementById('rule4Text').textContent = t('rule4Text');
-            document.getElementById('rule5Title').textContent = t('rule5Title');
-            document.getElementById('rule5Text').textContent = t('rule5Text');
-            document.getElementById('faqTitle').innerHTML =
-                '<i class="fas fa-question-circle"></i> ' + t('faqTitle');
-            document.getElementById('faq1Q').innerHTML = t('faq1Q') + ' <i class="fas fa-chevron-down"></i>';
-            document.getElementById('faq1A').textContent = t('faq1A');
-            document.getElementById('faq2Q').innerHTML = t('faq2Q') + ' <i class="fas fa-chevron-down"></i>';
-            document.getElementById('faq2A').textContent = t('faq2A');
-            document.getElementById('faq3Q').innerHTML = t('faq3Q') + ' <i class="fas fa-chevron-down"></i>';
-            document.getElementById('faq3A').textContent = t('faq3A');
-            document.getElementById('faq4Q').innerHTML = t('faq4Q') + ' <i class="fas fa-chevron-down"></i>';
-            document.getElementById('faq4A').textContent = t('faq4A');
-            document.getElementById('faq5Q').innerHTML = t('faq5Q') + ' <i class="fas fa-chevron-down"></i>';
-            document.getElementById('faq5A').textContent = t('faq5A');
-            document.getElementById('faq6Q').innerHTML = t('faq6Q') + ' <i class="fas fa-chevron-down"></i>';
-            document.getElementById('faq6A').textContent = t('faq6A');
-            document.getElementById('reviewsTitle').textContent = t('reviewsTitle');
-            document.getElementById('footerA11y').textContent = t('footerA11y');
-
-            document.getElementById('footerCopy').textContent = '© 2026 PANA KOLSAY · ' + t('location');
-
-            document.getElementById('filtAll').textContent = t('filtAll');
-            document.getElementById('filtStd').textContent = t('filtStd');
-            document.getElementById('filtMnt').textContent = t('filtMnt');
-            document.getElementById('filtLake').textContent = t('filtLake');
-            document.getElementById('filtTrp').textContent = t('filtTrp');
-            document.getElementById('filtDlx').textContent = t('filtDlx');
-            document.getElementById('filtLux').textContent = t('filtLux');
-            document.getElementById('filtGlp').textContent = t('filtGlp');
-
-            document.querySelectorAll('.lang-btn').forEach(function(b) { b.textContent = L[b.dataset.lang].langName; });
-
-            if (weatherLoaded) {
-                updateWeatherDisplay();
-            }
-
-            renderReviews();
-            renderRooms();
-            updateQuickAvail();
-        }
-
-        document.getElementById('langSwitch').addEventListener('click', function(e) {
-            if (e.target.classList.contains('lang-btn')) {
-                switchLanguage(e.target.dataset.lang);
-            }
-        });
-
-        // ===== ПОГОДА =====
-        async function fetchWeather() {
-            try {
-                var r = await fetch(
-                    'https://api.open-meteo.com/v1/forecast?latitude=42.935&longitude=78.346&current_weather=true&timezone=Asia/Almaty'
-                );
-                if (!r.ok) throw new Error();
-                var d = await r.json();
-                var w = d.current_weather;
-                weatherData = {
-                    temp: Math.round(w.temperature),
-                    wind: Math.round(w.windspeed),
-                    code: w.weathercode,
-                    date: new Date().toISOString().split('T')[0]
-                };
-                weatherLoaded = true;
-                updateWeatherDisplay();
-            } catch (e) {
-                weatherData = { temp: 18, wind: 10, code: 0, date: new Date().toISOString().split('T')[0] };
-                weatherLoaded = true;
-                updateWeatherDisplay();
-            }
-        }
-
-        function getWeatherEmoji(code) {
-            if (code === undefined || code === null) return '🌤️';
-            if (code <= 1) return '☀️';
-            if (code <= 3) return '⛅';
-            if (code <= 20) return '🌧️';
-            if (code <= 30) return '❄️';
-            return '🌤️';
-        }
-
-        function updateWeatherDisplay() {
-            var emoji = getWeatherEmoji(weatherData.code);
-            var temp = weatherData.temp;
-            var wind = weatherData.wind;
-            var lang = curLang;
-            var dateStr = new Date().toLocaleDateString(lang === 'ru' ? 'ru' : lang === 'en' ? 'en' : 'kk', { day: 'numeric',
-                month: 'long' });
-
-            document.getElementById('weatherMiniText').innerHTML =
-                emoji + ' ' + t('weatherNow') + ': <span style="font-weight:700;">' + temp + t('weatherTemp') +
-                '</span> · ' + t('weatherWind') + ' ' + wind + ' ' + t('weatherSpeed') + ' · ' + dateStr;
-        }
-
-        // ===== ОТЗЫВЫ =====
-        function renderReviews() {
-            var container = document.getElementById('reviewsScroll');
-            var reviews = t('reviews');
-            var authors = t('reviewAuthors');
-            var html = '';
-            for (var i = 0; i < reviews.length; i++) {
-                var stars = i < 4 ? '⭐⭐⭐⭐⭐' : i < 5 ? '⭐⭐⭐⭐⭐' : '⭐⭐⭐⭐';
-                html += '<div class="review-card"><div class="review-stars">' + stars +
-                    '</div><div class="review-text">"' + reviews[i] + '"</div><div class="review-author">— ' + authors[i] +
-                    '</div></div>';
-            }
-            container.innerHTML = html;
-        }
-
-        // ===== АВТООБНОВЛЕНИЕ =====
-        async function autoUpdateData() {
-            console.log('🔄 Автообновление данных (60 сек)...');
-            const newData = await loadFromGoogleSheet();
-            if (newData && Object.keys(newData).length > 0) {
-                googleData = newData;
-                renderRooms();
-                updateQuickAvail();
-                console.log('✅ Данные обновлены автоматически');
-            } else {
-                console.warn('⚠️ Новые данные не загружены');
-            }
-        }
-
-        // ===== ИНИЦИАЛИЗАЦИЯ =====
-        (async function() {
-            try {
-                if (localStorage.getItem('pana_high_contrast') === '1') {
-                    isHighContrast = true;
-                    document.body.classList.add('high-contrast');
-                    document.getElementById('btnA11y').textContent = '🌙 Обычная версия';
-                    document.getElementById('btnA11y').classList.add('active-high-contrast');
-                }
-
-                googleData = await loadFromGoogleSheet();
-                if (googleData && Object.keys(googleData).length > 0) {
-                    console.log('✅ Данные загружены из Google Таблицы');
-                } else {
-                    console.warn('⚠️ Данные из Google Таблицы не загружены');
-                }
-
-                var today = new Date().toISOString().split('T')[0];
-                document.getElementById('quickCheckIn').value = today;
-                document.getElementById('quickCheckIn').setAttribute('min', today);
-
-                await fetchWeather();
-                renderReviews();
-                switchLanguage('ru');
-
-                setTimeout(function() {
-                    document.getElementById('loader').classList.add('hidden');
-                }, 500);
-
-                if (autoUpdateInterval) clearInterval(autoUpdateInterval);
-                autoUpdateInterval = setInterval(autoUpdateData, 60000);
-
-                setInterval(fetchWeather, 600000);
-
-                document.addEventListener('visibilitychange', function() {
-                    if (!document.hidden) {
-                        console.log('🔄 Обновление данных при возврате на вкладку...');
-                        autoUpdateData();
-                    }
-                });
-
-            } catch (error) {
-                console.error('Ошибка инициализации:', error);
-                document.getElementById('loader').classList.add('hidden');
-            }
-        })();
-    </script>
-
+    <div class="weather" id="weather"><i class="fa-solid fa-cloud-sun"></i><span id="weatherTxt">…</span></div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="holiday" id="holiday" role="note">
+    <span class="big">🎄</span>
+    <div><b data-i="holTitle">Новогодние каникулы в Кольсае</b><span id="holText"></span></div>
+    <a class="btn" href="#search" data-i="holBtn">Забронировать</a>
+  </div>
+
+  <section class="search" id="search" aria-label="Поиск">
+    <form id="searchForm" onsubmit="return false">
+      <div class="fld"><label for="inDate" data-i="lDate">Дата заезда</label><input type="date" id="inDate"></div>
+      <div class="fld"><label for="inNights" data-i="lNights">Ночей</label><select id="inNights"></select></div>
+      <div class="fld"><label for="inGuests" data-i="lGuests">Гости</label><select id="inGuests"></select></div>
+      <a class="btn btn-gold" href="#rooms"><i class="fa-solid fa-magnifying-glass"></i><span data-i="lFind">Показать номера</span></a>
+    </form>
+    <p class="search-note" id="searchNote"></p>
+  </section>
+
+  <section class="sec" id="rooms">
+    <div class="sec-head">
+      <h2 data-i="tRooms">Наши номера</h2>
+      <div class="flake"><i class="fa-regular fa-snowflake"></i></div>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Фильтр"></div>
+    <div class="grid" id="grid" aria-live="polite"></div>
+  </section>
+
+  <section class="sec" id="route">
+    <div class="sec-head"><h2 data-i="tRoute">Как добраться</h2><div class="flake"><i class="fa-regular fa-snowflake"></i></div></div>
+    <div class="two">
+      <div class="panel">
+        <h3 data-i="rTitle">Озеро Кольсай Нижнее</h3>
+        <p data-i="rText">Отель находится недалеко от нижнего озера. Дорога из Алматы занимает около 4 часов.</p>
+        <div class="route">
+          <div><i class="fa-solid fa-road"></i><span data-i="rDist">Из Алматы: ~300 км, около 4 часов</span></div>
+          <div><i class="fa-solid fa-square-parking"></i><span data-i="rPark">Бесплатная парковка и трансфер до отеля</span></div>
+          <div><i class="fa-solid fa-snowflake"></i><span data-i="rWinter">Зимой берите зимнюю резину и цепи — дорога может быть заснежена</span></div>
+        </div>
+        <div class="maps">
+          <a class="btn m2gis" target="_blank" rel="noopener" href="https://go.2gis.com/k4fIM"><i class="fa-solid fa-map"></i>2GIS</a>
+          <a class="btn myan" target="_blank" rel="noopener" href="https://yandex.kz/maps/ru/-/CTvwaRo5"><i class="fa-solid fa-map"></i><span data-i="yandex">Яндекс</span></a>
+          <a class="btn mgoo" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=42.995647,78.326559"><i class="fa-solid fa-map"></i>Google</a>
+        </div>
+      </div>
+      <div class="video" id="video">
+        <button id="videoBtn" aria-label="Смотреть видео"><i class="fa-solid fa-circle-play"></i><span data-i="vPlay">Смотреть видеообзор</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="info">
+    <div class="sec-head"><h2 data-i="tInfo">Важная информация</h2><div class="flake"><i class="fa-regular fa-snowflake"></i></div></div>
+    <div class="info">
+      <div class="panel">
+        <h3 data-i="tTerms">Условия бронирования</h3>
+        <div class="rule"><b data-i="r1t">Предоплата</b><p data-i="r1">Для гарантии брони требуется 100% предоплата.</p></div>
+        <div class="rule"><b data-i="r2t">Отмена</b><p data-i="r2">Менее чем за 7 дней — удерживаются 1 сутки. Более чем за 7 дней — полный возврат.</p></div>
+        <div class="rule"><b data-i="r3t">Неявка</b><p data-i="r3">Удерживаются 1 сутки, остальные ночи аннулируются.</p></div>
+        <div class="rule"><b data-i="r4t">Изменение дат</b><p data-i="r4">При наличии мест и согласовании за 7+ дней.</p></div>
+        <div class="rule"><b data-i="r5t">Как забронировать</b><p data-i="r5">Напишите нам в WhatsApp ФИО гостя — мы пришлём ссылку на оплату.</p></div>
+      </div>
+      <div class="panel">
+        <h3 data-i="tFaq">Вопросы и ответы</h3>
+        <details><summary data-i="q1">Заезд и выезд?</summary><p data-i="a1">Заезд с 15:00 (в домиках A01 и A02 — с 14:00), выезд до 12:00.</p></details>
+        <details><summary data-i="q2">Питание?</summary><p data-i="a2">Завтрак входит в стоимость. Шведский стол — в этно-кафе Тары в 300 м от отеля.</p></details>
+        <details><summary data-i="q3">Парковка и трансфер?</summary><p data-i="a3">Парковка бесплатная. От парковки до отеля — бесплатный трансфер.</p></details>
+        <details><summary data-i="q4">Можно с детьми?</summary><p data-i="a4">Дети до 5 лет — бесплатно (в домиках A01 и A02 — по условиям брони). Дополнительное место — 15 000 ₸.</p></details>
+        <details><summary data-i="q5">Можно с питомцами?</summary><p data-i="a5">К сожалению, проживание с животными запрещено.</p></details>
+        <details><summary data-i="q6">Как оплатить?</summary><p data-i="a6">Мы выставим счёт через Kaspi по ссылке. Предоплата — 100%.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="reviews">
+    <div class="sec-head"><h2 data-i="tReviews">Отзывы гостей</h2><div class="flake"><i class="fa-regular fa-snowflake"></i></div></div>
+    <div class="reviews" id="revBox"></div>
+  </section>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="logo" href="#top" style="display:inline-block;margin-bottom:12px"><i class="fa-regular fa-snowflake"></i>PANA <b>KOLSAY</b></a>
+        <p data-i="fAbout">Отель на берегу озера Кольсай, Казахстан. Тишина, горы и настоящий казахстанский гостеприимный приём.</p>
+      </div>
+      <div>
+        <h4 data-i="fContacts">Контакты</h4>
+        <a href="tel:+77008368964"><i class="fa-solid fa-phone"></i> +7 700 836 8964</a>
+        <a href="https://wa.me/77018615121" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+        <a href="https://instagram.com/pana_hotels" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> @pana_hotels</a>
+      </div>
+      <div>
+        <h4 data-i="fNav">Разделы</h4>
+        <a href="#rooms" data-i="nRooms">Номера</a>
+        <a href="#route" data-i="nRoute">Как добраться</a>
+        <a href="#info" data-i="nInfo">Информация</a>
+      </div>
+    </div>
+    <p class="copy"><span id="year"></span> PANA KOLSAY · <span data-i="fLoc">Озеро Кольсай, Казахстан</span></p>
+  </div>
+</footer>
+
+<a class="fab" id="fab" href="https://wa.me/77018615121" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+
+<div id="modal" role="dialog" aria-modal="true" aria-label="Фото">
+  <button class="mb" id="mClose" aria-label="Закрыть">&times;</button>
+  <button class="mb" id="mPrev" aria-label="Назад">&#10094;</button>
+  <img id="mImg" src="" alt="" draggable="false">
+  <button class="mb" id="mNext" aria-label="Вперёд">&#10095;</button>
+  <div id="mTitle"></div><div id="mCount"></div>
+</div>
+
+<script>
+/* ================= НАСТРОЙКИ ================= */
+const CFG = {
+  API_KEY: 'AIzaSyBYks7NJgliBsZzOMjfm2UOTznOZSAKp8U', // ограничьте ключ по домену в Google Cloud Console
+  SHEET_ID: '1QsZqEHLWD0JEb7LV3Pbqr1Ux7nSMExYv9GXDrpYR3B4',
+  SHEET_AVAIL: 'Доступность',
+  SHEET_ROOMS: 'Номера',
+  WA: '77018615121',
+  REFRESH_MS: 5 * 60 * 1000
+};
+const IMG = id => 'https://lh3.googleusercontent.com/d/' + id + '=w';
+
+/* ================= НОМЕРА ================= */
+/* цена/количество здесь — запасные значения, основные берутся из листа «Номера» */
+const ROOMS = [
+ {id:'a01-stone',cat:'luxury',price:249900,cap:2,extra:2,total:1,ci:'14:00',bf:2,kids:false,
+  name:{ru:'Каменный домик A01',en:'Stone House A01',kz:'Тас үй A01'},
+  d:{ru:'Каменный домик, 37 м².',en:'Stone house, 37 m².',kz:'Тас үй, 37 м².'},
+  link:'https://www.instagram.com/reel/DKjjbJjNWve/',
+  ph:['1wezgXvtZeBW3WwgIF-zPka9Zl-fEU0Oi','1vzIOcC_g2iG0vrYJTKTk9-vbTyPCSv18','1f8ZWkDdWgvdl7uR5vomMWvU06Lx9mLm5','1_ObexbdML2tF_STnjluUpRTlLQuhIL5C','1KygzolG1U9IAMJ9lbdEn5hKUjCZLHh8O','15tzQYt2oc_wSXdX38_mfv4AdX9isWfgY','15h0f66RhzQhbREFlLVFF6JcBqx8elzx1','13AUSt50qPhlZKnb2kMgXbhWdr7juLP3v']},
+ {id:'a02-wood',cat:'luxury',price:199900,cap:2,extra:2,total:1,ci:'14:00',bf:2,kids:false,
+  name:{ru:'Деревянный домик A02',en:'Wooden House A02',kz:'Ағаш үй A02'},
+  d:{ru:'Деревянный домик, 37 м².',en:'Wooden house, 37 m².',kz:'Ағаш үй, 37 м².'},
+  link:'https://www.instagram.com/p/DHXcKsAt6Zg/',
+  ph:['1wZki3IlnTcrB2InnikQDFzfXjcCtuxwO','1XlSE1OTY0JRVUJEbK5U5och4Ghr_1M8h','1EFlrQz5CSXxndXZPKcW_Zf-S9MirgcCj','18ZCrRyFdQVAeCQhfx1t3i0nPy35-t5BK','1CeZ7TrxhdXj-q70GHlxh1bQdl9_QzqbN']},
+ {id:'standard',cat:'standard',price:54900,cap:2,extra:1,total:2,ci:'15:00',bf:2,kids:true,
+  name:{ru:'Standard Room',en:'Standard Room',kz:'Standard Room'},
+  d:{ru:'Стандартный номер без вида для 2 гостей.',en:'Standard room without a view for 2 guests.',kz:'Көрініссіз стандартты бөлме, 2 қонаққа.'},
+  link:'https://drive.google.com/file/d/1pEewgVeg3V_29HTFnOVYeNvZUxa5rAl8/view',
+  ph:['12dfrIVuYs9pu3vUREH3UvHkbUkHmmdf5','1kxQO07wGNx5huoR-5XAj5VsZzXmy-yo8','1PH4Nd1MVbSXJaG3gnwwkfrtqX2WVP41h','198UTw1PEkE7V7lfdIq3pvWFpdd-KUaUM','1BGDn_5gZVe5V_dWh2rL-ZA0ziM2EvrnO','1VZgclPeAxELHLMATBVrX5lUBeLVCJsWi']},
+ {id:'mountain',cat:'mountain',price:59900,cap:2,extra:1,total:2,ci:'15:00',bf:2,kids:true,
+  name:{ru:'Superior Mountain View',en:'Superior Mountain View',kz:'Тау көрінісі'},
+  d:{ru:'Номер с видом на горы для 2 гостей.',en:'Room with a mountain view for 2 guests.',kz:'Тау көрінісі бар бөлме, 2 қонаққа.'},
+  link:'https://drive.google.com/file/d/1dn9vFQlvhLWgdE7B19tSL-WKpmsPepqn/view',
+  ph:['1cqdfwaYNZtCEVWexRbqcd-9fe1o5WUpC','1aXjg2ecY0lTRfKS9ADyf6DAgmweCd474','1GYC1cSoNt6xjSlX-pVCpP20YUAAV5Xab','1FBcAb8Z4OxFRNqqheSx2r66cYIARtS0L','1AU0Ng5iSodubOTU5bvEmgme3shgoFBy_','155Yv5jQUtyCr901feqT8Ff8lLGzM4jgk']},
+ {id:'lake-double',cat:'lake',price:64900,cap:2,extra:1,total:8,ci:'15:00',bf:2,kids:true,
+  name:{ru:'Superior Lake View Double',en:'Superior Lake View Double',kz:'Көл көрінісі Double'},
+  d:{ru:'Номер с видом на озеро Кольсай, двуспальная кровать.',en:'Room with a Kolsay Lake view, double bed.',kz:'Көлсай көлінің көрінісі бар бөлме, екі кісілік төсек.'},
+  link:'https://drive.google.com/file/d/1m-1D7gTtylwBGhNm1u2QV1jXgN_M3xhr/view',
+  ph:['1R6jtwrAWzM39LsQj05WkZsxBS7QghyyB','1DzUwx1pxs12MkSr7hMFofveC9K6TET9W','1hV-nhoX-vTB29UjE31exEUIzs79DsH6w','1zDK7a9jwrNkAtPuswBbwq3vhTQoewphp','1QQOwOCHld53gWSIbPEND8wQ0WQOhSWMF','1Kcu6EMJgiLEvSaicWIoR1ZKsAR_UheEc','1yXp7jwKqqZYR5F2F1CJh4Au6OjI42j2L','1GbAFuDFbnsM5_P2Sc5kG7Hy4s-ziHmlH','1USmFZhAPMdVE8PYvf-UywYj__Cy1JO3_']},
+ {id:'triple',cat:'triple',price:74900,cap:3,extra:1,total:2,ci:'15:00',bf:2,kids:true,
+  name:{ru:'Superior Lake View Triple',en:'Superior Lake View Triple',kz:'Көл көрінісі Triple'},
+  d:{ru:'Номер с видом на озеро Кольсай для 3 гостей.',en:'Room with a Kolsay Lake view for 3 guests.',kz:'Көлсай көлінің көрінісі бар бөлме, 3 қонаққа.'},
+  link:'https://drive.google.com/file/d/1Lh4d_lGjFiZsbBHbkRjpGY9g_yvUAx8z/view',
+  ph:['1kcBqX8Vf5nb8_cXrVZU5JeEgkA94_BJ-','1OwFvu1PbZJOvOF9qwFXhMeMvXmPZDHZh','1-8hZ7Bgf5q4zUsGEiE6AlkESmjQdOWo4','1--drzveAlqOfXVmJOmraY3k2VJfskcyH','1BQJWHN4Xp754EIoW_pUSJ5POHhrnkAOf','1OTT4TJWnctTsCZFQJcM0EmmDT1LI6NEB','10fn9VqSkz2D0Tn2vfiXV-65C1SgrgUVM','1DgG_Xg_TNMDJY2hN41FINONY05llNCXf']},
+ {id:'deluxe',cat:'deluxe',price:79900,cap:4,extra:1,total:1,ci:'15:00',bf:4,kids:true,
+  name:{ru:'Deluxe',en:'Deluxe',kz:'Deluxe'},
+  d:{ru:'Просторный Deluxe для 4 гостей.',en:'Spacious Deluxe for 4 guests.',kz:'4 қонаққа арналған кең Deluxe.'},
+  link:'https://drive.google.com/file/d/1bsCXUoVPz10hAwtW2hnomwOnUOZ7bJ6-/view',
+  ph:['1NAY7HBLgs9nQC1P509-ezDdbgtz2wpHl','1YVkMTwwWAkDK1lSwfDPQ6qMKpZFhzqWE','17IFYYDNzYpuHALFJM4EN3qbs1Iw1R_Uz']},
+ {id:'deluxe-plus',cat:'deluxe',price:104900,cap:4,extra:1,total:2,ci:'15:00',bf:4,kids:true,
+  name:{ru:'Deluxe+',en:'Deluxe+',kz:'Deluxe+'},
+  d:{ru:'Улучшенный Deluxe+ для 4 гостей.',en:'Upgraded Deluxe+ for 4 guests.',kz:'4 қонаққа арналған жетілдірілген Deluxe+.'},
+  link:'https://drive.google.com/file/d/1xUdZq5Vi13i2bNG3Oy1LtAg7157K6asr/view',
+  ph:['1Gc8NNcyvv1g4htILGRcn_HShvY3RflZP','1xc3RAvBFUoyL0e8KCX_7HzwLjeQEIpqk','1G3SHvM1cwbI1JOWcs1baNjBO5iLmbhuQ','1lPeEFDuLl9XLu4iVHOkH8G666NlZEhd2','1ZKWIfLg24g_pqM8nt-2vWEZ182JjddHh','18ceO9BtMbuwsaEiClpNo-JJHu23B-CCg']},
+ {id:'premier-deluxe',cat:'deluxe',price:124900,cap:4,extra:1,total:1,ci:'15:00',bf:4,kids:true,
+  name:{ru:'Premier Deluxe',en:'Premier Deluxe',kz:'Premier Deluxe'},
+  d:{ru:'Premier Deluxe для 4 гостей.',en:'Premier Deluxe for 4 guests.',kz:'4 қонаққа арналған Premier Deluxe.'},
+  link:'https://drive.google.com/file/d/1t8ylE9wOguBWlzH1DFVL7eEqUDOtXWw7/view',
+  ph:['12zdB3N7456trAs7dRbYzn-LuNLTBvGp0','1NaQK_qIuh6JQKaR7ATlVYQr0gMp80jTL','1xoLxABe614rhSL7rcAx1SJkeMvuseAtz','19dT1UJlWRs00Wlon9xYVxDGYzgENInPe','1Ekhk1-fDu4_40_sRUc2Yu7HcxONNV_d-','1hie3FpdIJdBuixia6wgk9qgahnDAMiUM','1crVT1nvJjH_5A3QWhtPu5d8eSrNrP0yp','1omQJF0Z4t9ky3xOBHkN_w9CL91cUPeJU','1g5Te7UDkov6nuCf2Z6OTdxD2YOlkdd2c']},
+ {id:'glamping-new',cat:'glamping',price:119900,cap:4,extra:1,total:2,ci:'15:00',bf:4,kids:true,
+  name:{ru:'Glamping Domes +',en:'Glamping Domes +',kz:'Glamping Domes +'},
+  d:{ru:'Новый глэмпинг (2022) для 4 гостей.',en:'New glamping dome (2022) for 4 guests.',kz:'4 қонаққа арналған жаңа глэмпинг (2022).'},
+  link:'https://drive.google.com/file/d/10fC3o_LMPEA1hKapxvmKXfYC7qY2AqK7/view',
+  ph:['1kFa_4oV5uLJ31flTUK_mMo2DpFS3jVli','1mjvD9ZbNlUaqRpiiyRTYBDmP63WNwvet','1s2tK4ggOsLGD1b1h00EODzipUGNtWDht','12bDHoDRGhpx6NjE4nhb26_SZCx2SC-fX','1WqHSnpMwtpBnt_47DjuXkclDiCY9BNxG']}
+];
+
+/* ================= ПЕРЕВОДЫ ================= */
+const L = {
+ru:{nRooms:'Номера',nRoute:'Как добраться',nInfo:'Информация',nReviews:'Отзывы',
+ eyebrow:'Зима в горах · Кольсай',h1a:'Тишина озера,',h1b:'тепло гор',
+ lead:'Уютный отель на берегу озера Кольсай. Завтрак, трансфер от парковки и вид на заснеженные вершины — всё включено в проживание.',
+ ctaBook:'Выбрать даты',ctaRooms:'Смотреть номера',fLake:'до озера',fAlt:'высота',fDrive:'от Алматы',fWifi:'бесплатно',
+ holTitle:'Новогодние каникулы в Кольсае',holBtn:'Забронировать',holPeriod:'Новогодние цены действуют с {a} по {b}',
+ lDate:'Дата заезда',lNights:'Ночей',lGuests:'Гости',lFind:'Показать номера',
+ tRooms:'Наши номера',all:'Все',
+ cat:{standard:'Стандарт',mountain:'Горы',lake:'Озеро',triple:'Трипл',deluxe:'Deluxe',luxury:'Домики',glamping:'Глэмпинг'},
+ free:'Свободно',left:'осталось {n}',busy:'Нет мест на эти даты',unk:'Уточняйте наличие',big:'Вмещает до {n} гостей',past:'Выберите будущую дату',
+ night:'за ночь',total:'{n} ноч. · итого {s}',holNight:'Новогодняя цена',holTotal:'{n} ноч. · итого {s} (новогодние цены)',
+ book:'Забронировать',ask:'Уточнить наличие',none:'Нет мест',more:'Фото',details:'Подробнее',
+ noRooms:'В этой категории пока нет доступных номеров.',
+ ft:{ci:'Заезд {t} · выезд 12:00',guests:'{a} + {k}',extra:'Доп. место: 15 000 ₸',bf:'Бесплатный завтрак на {n}',tr:'Бесплатный трансфер с парковки',kids:'Дети до 5 лет — бесплатно',cafe:'Рядом этно-кафе Тары'},
+ adult:['взрослый','взрослых','взрослых'],child:['ребёнок','ребёнка','детей'],
+ guestsN:['гость','гостя','гостей'],
+ note:'Цены указаны за номер в сутки. Итоговая стоимость считается по ночам, с учётом новогодних цен.',
+ tRoute:'Как добраться',rTitle:'Озеро Кольсай Нижнее',rText:'Отель находится недалеко от нижнего озера. Дорога из Алматы занимает около 4 часов.',
+ rDist:'Из Алматы: ~300 км, около 4 часов',rPark:'Бесплатная парковка и трансфер до отеля',rWinter:'Зимой берите зимнюю резину и цепи — дорога может быть заснежена',yandex:'Яндекс',vPlay:'Смотреть видеообзор',
+ tInfo:'Важная информация',tTerms:'Условия бронирования',
+ r1t:'Предоплата',r1:'Для гарантии брони требуется 100% предоплата.',r2t:'Отмена',r2:'Менее чем за 7 дней — удерживаются 1 сутки. Более чем за 7 дней — полный возврат.',
+ r3t:'Неявка',r3:'Удерживаются 1 сутки, остальные ночи аннулируются.',r4t:'Изменение дат',r4:'При наличии мест и согласовании за 7+ дней.',
+ r5t:'Как забронировать',r5:'Напишите нам в WhatsApp ФИО гостя — мы пришлём ссылку на оплату.',
+ tFaq:'Вопросы и ответы',q1:'Заезд и выезд?',a1:'Заезд с 15:00 (в домиках A01 и A02 — с 14:00), выезд до 12:00.',
+ q2:'Питание?',a2:'Завтрак входит в стоимость. Шведский стол — в этно-кафе Тары в 300 м от отеля.',
+ q3:'Парковка и трансфер?',a3:'Парковка бесплатная. От парковки до отеля — бесплатный трансфер.',
+ q4:'Можно с детьми?',a4:'Дети до 5 лет — бесплатно (в домиках A01 и A02 — по условиям брони). Дополнительное место — 15 000 ₸.',
+ q5:'Можно с питомцами?',a5:'К сожалению, проживание с животными запрещено.',q6:'Как оплатить?',a6:'Мы выставим счёт через Kaspi по ссылке. Предоплата — 100%.',
+ tReviews:'Отзывы гостей',
+ reviews:[['Потрясающий вид на озеро! Отличный сервис и вкусные завтраки.','Анна М., Алматы'],['Идеальное место, чтобы отдохнуть от города. Чистый воздух и красивая природа.','Алексей К., Астана'],['Персонал очень приветливый, номера чистые и уютные.','Айжан С., Алматы'],['Вернёмся зимой обязательно — там невероятно красиво.','Ерлан Т., Шымкент']],
+ fAbout:'Отель на берегу озера Кольсай, Казахстан. Тишина, горы и настоящее казахстанское гостеприимство.',fContacts:'Контакты',fNav:'Разделы',fLoc:'Озеро Кольсай, Казахстан',
+ wNow:'Кольсай сейчас',wind:'ветер',kmh:'км/ч',fsAria:'Увеличить шрифт',
+ wa:'Здравствуйте! Хочу забронировать: {room}, заезд {date}, {n} ноч., гостей: {g}. Стоимость: {s}.',waAsk:'Здравствуйте! Подскажите наличие: {room}, заезд {date}, {n} ноч., гостей: {g}.'},
+en:{nRooms:'Rooms',nRoute:'Getting here',nInfo:'Information',nReviews:'Reviews',
+ eyebrow:'Winter in the mountains · Kolsay',h1a:'Quiet lake,',h1b:'warm mountains',
+ lead:'A cosy hotel on the shore of Kolsay Lake. Breakfast, parking transfer and views of snow-covered peaks are included in your stay.',
+ ctaBook:'Choose dates',ctaRooms:'View rooms',fLake:'to the lake',fAlt:'altitude',fDrive:'from Almaty',fWifi:'free',
+ holTitle:'New Year holidays in Kolsay',holBtn:'Book now',holPeriod:'New Year prices apply from {a} to {b}',
+ lDate:'Check-in',lNights:'Nights',lGuests:'Guests',lFind:'Show rooms',
+ tRooms:'Our rooms',all:'All',
+ cat:{standard:'Standard',mountain:'Mountain',lake:'Lake',triple:'Triple',deluxe:'Deluxe',luxury:'Houses',glamping:'Glamping'},
+ free:'Available',left:'{n} left',busy:'Not available for these dates',unk:'Please check availability',big:'Fits up to {n} guests',past:'Choose a future date',
+ night:'per night',total:'{n} nights · total {s}',holNight:'New Year price',holTotal:'{n} nights · total {s} (New Year prices)',
+ book:'Book now',ask:'Check availability',none:'Sold out',more:'Photos',details:'Details',
+ noRooms:'No rooms available in this category yet.',
+ ft:{ci:'Check-in {t} · check-out 12:00',guests:'{a} + {k}',extra:'Extra bed: 15,000 ₸',bf:'Free breakfast for {n}',tr:'Free transfer from the parking',kids:'Children under 5 stay free',cafe:'Tary ethnic café nearby'},
+ adult:['adult','adults','adults'],child:['child','children','children'],
+ guestsN:['guest','guests','guests'],
+ note:'Prices are per room per night. The total is calculated night by night, including New Year prices.',
+ tRoute:'Getting here',rTitle:'Lower Kolsay Lake',rText:'The hotel is close to the lower lake. The drive from Almaty takes about 4 hours.',
+ rDist:'From Almaty: ~300 km, about 4 hours',rPark:'Free parking and transfer to the hotel',rWinter:'In winter bring winter tyres and chains — the road may be snowy',yandex:'Yandex',vPlay:'Watch the video tour',
+ tInfo:'Important information',tTerms:'Booking terms',
+ r1t:'Prepayment',r1:'100% prepayment is required to guarantee your booking.',r2t:'Cancellation',r2:'Less than 7 days before arrival — 1 night is charged. More than 7 days — full refund.',
+ r3t:'No-show',r3:'1 night is charged, the remaining nights are cancelled.',r4t:'Changing dates',r4:'Subject to availability, requested 7+ days in advance.',
+ r5t:'How to book',r5:'Message us on WhatsApp with the guest’s full name — we will send a payment link.',
+ tFaq:'FAQ',q1:'Check-in and check-out?',a1:'Check-in from 15:00 (14:00 in houses A01 and A02), check-out by 12:00.',
+ q2:'Meals?',a2:'Breakfast is included. Buffet at the Tary ethnic café, 300 m from the hotel.',
+ q3:'Parking and transfer?',a3:'Parking is free. A free transfer runs from the parking to the hotel.',
+ q4:'Travelling with children?',a4:'Children under 5 stay free (houses A01 and A02 — per booking terms). Extra bed: 15,000 ₸.',
+ q5:'Pets?',a5:'Unfortunately, pets are not allowed.',q6:'How to pay?',a6:'We send a Kaspi invoice link. 100% prepayment.',
+ tReviews:'Guest reviews',
+ reviews:[['Amazing lake view! Great service and delicious breakfast.','Anna M., Almaty'],['The perfect place to escape the city. Clean air and beautiful nature.','Alex K., Astana'],['Friendly staff, clean and cosy rooms.','Aizhan S., Almaty'],['We will definitely come back in winter — it is incredibly beautiful.','Yerlan T., Shymkent']],
+ fAbout:'A hotel on the shore of Kolsay Lake, Kazakhstan. Quiet, mountains and genuine Kazakh hospitality.',fContacts:'Contacts',fNav:'Sections',fLoc:'Kolsay Lake, Kazakhstan',
+ wNow:'Kolsay now',wind:'wind',kmh:'km/h',fsAria:'Increase font size',
+ wa:'Hello! I would like to book: {room}, check-in {date}, {n} night(s), guests: {g}. Price: {s}.',waAsk:'Hello! Is {room} available? Check-in {date}, {n} night(s), guests: {g}.'},
+kz:{nRooms:'Бөлмелер',nRoute:'Қалай жетуге болады',nInfo:'Ақпарат',nReviews:'Пікірлер',
+ eyebrow:'Таудағы қыс · Көлсай',h1a:'Көлдің тыныштығы,',h1b:'таудың жылуы',
+ lead:'Көлсай көлінің жағасындағы жайлы қонақ үй. Таңғы ас, тұрақтан трансфер және қарлы шыңдардың көрінісі тұру құнына кіреді.',
+ ctaBook:'Күнді таңдау',ctaRooms:'Бөлмелерді көру',fLake:'көлге дейін',fAlt:'биіктік',fDrive:'Алматыдан',fWifi:'тегін',
+ holTitle:'Көлсайдағы Жаңа жыл демалысы',holBtn:'Брондау',holPeriod:'Жаңа жылдық бағалар {a} – {b} аралығында қолданылады',
+ lDate:'Келу күні',lNights:'Түн',lGuests:'Қонақтар',lFind:'Бөлмелерді көрсету',
+ tRooms:'Біздің бөлмелер',all:'Барлығы',
+ cat:{standard:'Стандарт',mountain:'Тау',lake:'Көл',triple:'Трипл',deluxe:'Deluxe',luxury:'Үйлер',glamping:'Глэмпинг'},
+ free:'Бос',left:'{n} қалды',busy:'Бұл күндерге орын жоқ',unk:'Бос орынды нақтылаңыз',big:'{n} қонаққа дейін сыяды',past:'Болашақ күнді таңдаңыз',
+ night:'түніне',total:'{n} түн · барлығы {s}',holNight:'Жаңа жылдық баға',holTotal:'{n} түн · барлығы {s} (жаңа жылдық баға)',
+ book:'Брондау',ask:'Нақтылау',none:'Орын жоқ',more:'Фото',details:'Толығырақ',
+ noRooms:'Бұл санатта әзірге бос бөлме жоқ.',
+ ft:{ci:'Келу {t} · кету 12:00',guests:'{a} + {k}',extra:'Қосымша орын: 15 000 ₸',bf:'{n} адамға тегін таңғы ас',tr:'Тұрақтан тегін трансфер',kids:'5 жасқа дейінгі балаларға тегін',cafe:'Жанында Tary этно-кафесі'},
+ adult:['ересек','ересек','ересек'],child:['бала','бала','бала'],
+ guestsN:['қонақ','қонақ','қонақ'],
+ note:'Бағалар бөлмеге түніне көрсетілген. Жалпы құн түн сайын, жаңа жылдық бағаларды ескере отырып есептеледі.',
+ tRoute:'Қалай жетуге болады',rTitle:'Көлсай көлі (Төменгі)',rText:'Қонақ үй төменгі көлге жақын орналасқан. Алматыдан жол шамамен 4 сағат.',
+ rDist:'Алматыдан: ~300 км, шамамен 4 сағат',rPark:'Тегін тұрақ және қонақ үйге дейін трансфер',rWinter:'Қыста қысқы шина мен тізбек алыңыз — жол қарлы болуы мүмкін',yandex:'Яндекс',vPlay:'Бейне шолуды көру',
+ tInfo:'Маңызды ақпарат',tTerms:'Брондау шарттары',
+ r1t:'Алдын ала төлем',r1:'Брондауды кепілдендіру үшін 100% алдын ала төлем қажет.',r2t:'Бас тарту',r2:'Келуге 7 күннен аз қалса — 1 түн ұсталады. 7 күннен көп болса — толық қайтарылады.',
+ r3t:'Келмеу',r3:'1 түн ұсталады, қалған түндер жойылады.',r4t:'Күнді өзгерту',r4:'Бос орын болса, 7+ күн бұрын келісіледі.',
+ r5t:'Қалай брондауға болады',r5:'WhatsApp-қа қонақтың аты-жөнін жазыңыз — төлем сілтемесін жібереміз.',
+ tFaq:'Сұрақ-жауап',q1:'Келу және кету?',a1:'Келу 15:00-ден (A01 және A02 үйлерінде — 14:00-ден), кету 12:00-ге дейін.',
+ q2:'Тамақ?',a2:'Таңғы ас бағаға кіреді. Швед үстелі — қонақ үйден 300 м жерде Tary этно-кафесінде.',
+ q3:'Тұрақ және трансфер?',a3:'Тұрақ тегін. Тұрақтан қонақ үйге дейін тегін трансфер бар.',
+ q4:'Балалармен болады ма?',a4:'5 жасқа дейінгі балаларға тегін (A01 және A02 үйлері — брондау шарттарына сай). Қосымша орын — 15 000 ₸.',
+ q5:'Үй жануарлары?',a5:'Өкінішке орай, үй жануарларымен тұруға тыйым салынады.',q6:'Қалай төлеуге болады?',a6:'Kaspi арқылы шот сілтемесін жібереміз. 100% алдын ала төлем.',
+ tReviews:'Қонақтардың пікірлері',
+ reviews:[['Көлдің көрінісі керемет! Тамаша қызмет және дәмді таңғы ас.','Анна М., Алматы'],['Қаладан демалуға таптырмас орын. Таза ауа және әдемі табиғат.','Алексей К., Астана'],['Қызметкерлер өте мейірімді, бөлмелер таза және жайлы.','Айжан С., Алматы'],['Қыста міндетті түрде қайта барамыз — өте әдемі.','Ерлан Т., Шымкент']],
+ fAbout:'Қазақстандағы Көлсай көлінің жағасындағы қонақ үй. Тыныштық, таулар және шынайы қонақжайлылық.',fContacts:'Байланыс',fNav:'Бөлімдер',fLoc:'Көлсай көлі, Қазақстан',
+ wNow:'Көлсайда қазір',wind:'жел',kmh:'км/сағ',fsAria:'Қаріпті үлкейту',
+ wa:'Сәлеметсіз бе! Брондағым келеді: {room}, келу {date}, {n} түн, қонақ: {g}. Құны: {s}.',waAsk:'Сәлеметсіз бе! Бос орын бар ма: {room}, келу {date}, {n} түн, қонақ: {g}.'}
+};
+
+/* ================= СОСТОЯНИЕ ================= */
+const S = {lang:'ru',filter:'all',date:'',nights:1,guests:2,cfg:{},avail:null,weather:null,fs:0,hc:false,snow:true};
+const $ = id => document.getElementById(id);
+const t = k => (L[S.lang][k] !== undefined ? L[S.lang][k] : L.ru[k]);
+const fmt = (s, o) => String(s).replace(/\{(\w+)\}/g, (_, k) => o[k]);
+const money = n => n.toLocaleString('ru-RU').replace(/\u00a0/g, ' ') + ' ₸';
+const lsGet = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
+
+/* даты по локальному времени (без сдвига UTC) */
+const toISO = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+const parseISO = s => { const p = s.split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); };
+const ruDate = d => String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + d.getFullYear();
+const isoRu = s => ruDate(parseISO(s));
+const parseRu = s => { const m = String(s || '').trim().match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/); return m ? new Date(+m[3], +m[2] - 1, +m[1]) : null; };
+const parseNum = v => { const n = parseInt(String(v || '').replace(/\D/g, ''), 10); return isNaN(n) ? 0 : n; };
+const todayISO = () => toISO(new Date());
+const plural = (n, f) => { if (S.lang !== 'ru') return n === 1 ? f[0] : f[1]; const a = n % 10, b = n % 100; return (a === 1 && b !== 11) ? f[0] : (a >= 2 && a <= 4 && (b < 10 || b >= 20)) ? f[1] : f[2]; };
+const photoUrl = (id, w) => IMG(id) + w;
+
+/* ================= ДАННЫЕ ИЗ GOOGLE ТАБЛИЦЫ ================= */
+async function fetchSheet(name) {
+  const url = 'https://sheets.googleapis.com/v4/spreadsheets/' + CFG.SHEET_ID + '/values/' + encodeURIComponent(name) + '?key=' + CFG.API_KEY;
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(name + ': ' + r.status);
+  return (await r.json()).values || [];
+}
+
+async function loadRooms() {
+  try {
+    const rows = await fetchSheet(CFG.SHEET_ROOMS);
+    const cfg = {};
+    rows.slice(1).forEach(row => {
+      const id = String(row[0] || '').trim();
+      if (!id) return;
+      const st = String(row[7] || '').trim().toLowerCase();
+      cfg[id] = {
+        sheetName: String(row[1] || '').trim(),
+        total: parseNum(row[2]),
+        price: parseNum(row[3]),
+        holidayPrice: parseNum(row[4]),
+        from: parseRu(row[5]),
+        to: parseRu(row[6]),
+        closed: st === 'закрыт' || st === 'closed' || st === 'жабық'
+      };
+    });
+    S.cfg = cfg;
+    return true;
+  } catch (e) { console.warn('Лист «Номера» не загружен:', e); return false; }
+}
+
+function nameToId(name) {
+  const n = String(name || '').trim().toLowerCase();
+  if (!n) return null;
+  for (const r of ROOMS) {
+    if (r.id.toLowerCase() === n) return r.id;
+    if (Object.values(r.name).some(v => v.toLowerCase() === n)) return r.id;
+    const c = S.cfg[r.id];
+    if (c && c.sheetName && c.sheetName.toLowerCase() === n) return r.id;
+  }
+  return null;
+}
+
+async function loadAvail() {
+  try {
+    const rows = await fetchSheet(CFG.SHEET_AVAIL);
+    if (rows.length < 2) return false;
+    const head = rows[0], res = {};
+    rows.slice(1).forEach(row => {
+      const id = nameToId(row[0]);
+      if (!id) return;
+      res[id] = res[id] || {};
+      for (let j = 1; j < head.length && j < row.length; j++) {
+        const m = String(head[j] || '').match(/(\d{2})\.(\d{2})\.(\d{4})/);
+        if (!m) continue;
+        const v = parseInt(row[j], 10);
+        if (isNaN(v)) continue;
+        res[id][m[3] + '-' + m[2] + '-' + m[1]] = v;
+      }
+    });
+    S.avail = res;
+    return true;
+  } catch (e) { console.warn('Лист «Доступность» не загружен:', e); return false; }
+}
+
+/* ================= ЦЕНЫ И ДОСТУПНОСТЬ ================= */
+const isClosed = r => !!(S.cfg[r.id] && S.cfg[r.id].closed);
+const basePrice = r => (S.cfg[r.id] && S.cfg[r.id].price) || r.price;
+const totalQty = r => (S.cfg[r.id] && S.cfg[r.id].total) || r.total;
+
+function nightPrice(r, iso) {
+  const c = S.cfg[r.id];
+  if (c && c.holidayPrice && c.from && c.to) {
+    const d = parseISO(iso);
+    if (d >= c.from && d <= c.to) return {price: c.holidayPrice, hol: true};
+  }
+  return {price: basePrice(r), hol: false};
+}
+
+function availOf(id, iso) {
+  if (!S.avail || !S.avail[id]) return null;
+  const v = S.avail[id][iso];
+  return v === undefined ? null : Math.max(0, v);
+}
+
+function stay(r) {
+  let total = 0, hol = false, unknown = false, zero = false, min = Infinity;
+  const d = parseISO(S.date);
+  for (let i = 0; i < S.nights; i++) {
+    const k = toISO(d), p = nightPrice(r, k);
+    total += p.price; hol = hol || p.hol;
+    const a = availOf(r.id, k);
+    if (a === null) unknown = true; else { min = Math.min(min, a); if (a <= 0) zero = true; }
+    d.setDate(d.getDate() + 1);
+  }
+  const first = nightPrice(r, S.date);
+  return {total, hol, first, min: zero ? 0 : (unknown ? null : min)};
+}
+
+function holidayPeriod() {
+  let a = null, b = null;
+  ROOMS.forEach(r => {
+    const c = S.cfg[r.id];
+    if (!c || c.closed || !c.holidayPrice || !c.from || !c.to) return;
+    if (!a || c.from < a) a = c.from;
+    if (!b || c.to > b) b = c.to;
+  });
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  return (a && b && b >= today) ? {a, b} : null;
+}
+
+/* ================= ОТРИСОВКА ================= */
+function featuresOf(r) {
+  const f = L[S.lang].ft, k = r.extra, a = r.cap;
+  const guests = fmt(f.guests, {a: a + ' ' + plural(a, t('adult')), k: k + ' ' + plural(k, t('child'))});
+  const list = [
+    ['fa-clock', fmt(f.ci, {t: r.ci})],
+    ['fa-user-group', guests],
+    ['fa-bed', f.extra],
+    ['fa-mug-hot', fmt(f.bf, {n: r.bf})],
+    ['fa-van-shuttle', f.tr]
+  ];
+  if (r.kids) list.push(['fa-child', f.kids]);
+  list.push(['fa-utensils', f.cafe]);
+  return list.map(x => '<li><i class="fa-solid ' + x[0] + '"></i><span>' + x[1] + '</span></li>').join('');
+}
+
+function waLink(r, info, state) {
+  const g = S.guests + ' ' + plural(S.guests, t('guestsN'));
+  const msg = state === 'free'
+    ? fmt(t('wa'), {room: r.name[S.lang], date: isoRu(S.date), n: S.nights, g: g, s: money(info.total)})
+    : fmt(t('waAsk'), {room: r.name[S.lang], date: isoRu(S.date), n: S.nights, g: g});
+  return 'https://wa.me/' + CFG.WA + '?text=' + encodeURIComponent(msg);
+}
+
+function card(r) {
+  const maxG = r.cap + r.extra;
+  const past = S.date < todayISO();
+  const info = stay(r);
+  let state, label;
+  if (past) { state = 'unk'; label = t('past'); }
+  else if (S.guests > maxG) { state = 'big'; label = fmt(t('big'), {n: maxG}); }
+  else if (info.min === null) { state = 'unk'; label = t('unk'); }
+  else if (info.min <= 0) { state = 'busy'; label = t('busy'); }
+  else { state = 'free'; label = t('free') + (info.min <= 2 ? ' · ' + fmt(t('left'), {n: info.min}) : ''); }
+
+  const icon = {free: 'fa-circle-check', busy: 'fa-circle-xmark', unk: 'fa-circle-question', big: 'fa-user-group'}[state];
+  const dim = (state === 'busy' || state === 'big') ? ' dim' : '';
+  const name = r.name[S.lang];
+
+  const priceHtml = info.first.hol
+    ? '<s>' + money(basePrice(r)) + '</s><b>' + money(info.first.price) + '</b><small>' + t('night') + '</small>'
+    : '<b>' + money(info.first.price) + '</b><small>' + t('night') + '</small>';
+  const totalTxt = S.nights > 1 || info.hol
+    ? '<div class="total' + (info.hol ? ' hol' : '') + '">' + (info.hol ? '🎄 ' : '') + fmt(info.hol ? t('holTotal') : t('total'), {n: S.nights, s: money(info.total)}) + '</div>'
+    : '<div class="total">&nbsp;</div>';
+
+  let btn;
+  if (state === 'free') btn = '<a class="btn btn-gold" target="_blank" rel="noopener" href="' + waLink(r, info, 'free') + '"><i class="fa-brands fa-whatsapp"></i>' + t('book') + '</a>';
+  else if (state === 'unk') btn = '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + waLink(r, info, 'ask') + '"><i class="fa-brands fa-whatsapp"></i>' + t('ask') + '</a>';
+  else btn = '<span class="btn btn-ghost off">' + t('none') + '</span>';
+  const more = r.link ? '<a class="btn btn-ghost" target="_blank" rel="noopener" href="' + r.link + '" aria-label="' + t('details') + ' — ' + name + '"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>' : '';
+
+  return '<article class="card' + dim + '">' +
+    '<button class="ph" data-open="' + r.id + '" aria-label="' + t('more') + ': ' + name + '">' +
+      '<img src="' + photoUrl(r.ph[0], 640) + '" alt="' + name + '" loading="lazy" decoding="async" draggable="false">' +
+      '<span class="badge cat">' + L[S.lang].cat[r.cat] + '</span>' +
+      (info.hol ? '<span class="badge hol">🎄 ' + t('holNight') + '</span>' : '') +
+      '<span class="badge cnt"><i class="fa-regular fa-images"></i> ' + r.ph.length + '</span>' +
+    '</button>' +
+    '<div class="body"><h3>' + name + '</h3><p class="d">' + r.d[S.lang] + '</p>' +
+      '<span class="status ' + state + '"><i class="fa-solid ' + icon + '"></i>' + label + '</span>' +
+      '<ul class="feats">' + featuresOf(r) + '</ul>' +
+      '<div class="buy"><div class="price">' + priceHtml + '</div>' + totalTxt + '<div class="acts">' + btn + more + '</div></div>' +
+    '</div></article>';
+}
+
+function renderChips(open) {
+  const cats = [];
+  open.forEach(r => { if (cats.indexOf(r.cat) < 0) cats.push(r.cat); });
+  if (S.filter !== 'all' && cats.indexOf(S.filter) < 0) S.filter = 'all';
+  $('chips').innerHTML = ['all'].concat(cats).map(c =>
+    '<button class="chip' + (S.filter === c ? ' on' : '') + '" data-f="' + c + '">' + (c === 'all' ? t('all') : L[S.lang].cat[c]) + '</button>').join('');
+}
+
+function render() {
+  const open = ROOMS.filter(r => !isClosed(r));
+  renderChips(open);
+  const list = open.filter(r => S.filter === 'all' || r.cat === S.filter);
+  $('grid').innerHTML = list.length ? list.map(card).join('') : '<div class="empty">' + t('noRooms') + '</div>';
+  $('searchNote').textContent = t('note');
+  renderHoliday();
+}
+
+function renderHoliday() {
+  const p = holidayPeriod(), el = $('holiday');
+  if (!p) { el.classList.remove('show'); return; }
+  $('holText').textContent = fmt(t('holPeriod'), {a: ruDate(p.a).slice(0, 5), b: ruDate(p.b).slice(0, 5)});
+  el.classList.add('show');
+}
+
+function renderReviews() {
+  $('revBox').innerHTML = t('reviews').map(r =>
+    '<article class="rev"><div class="st" aria-label="5/5">★★★★★</div><p>«' + r[0] + '»</p><small>— ' + r[1] + '</small></article>').join('');
+}
+
+function fillSelects() {
+  const n = $('inNights'), g = $('inGuests');
+  n.innerHTML = Array.from({length: 14}, (_, i) => '<option value="' + (i + 1) + '">' + (i + 1) + '</option>').join('');
+  g.innerHTML = Array.from({length: 6}, (_, i) => '<option value="' + (i + 1) + '">' + (i + 1) + '</option>').join('');
+  n.value = S.nights; g.value = S.guests;
+}
+
+function applyLang(lang) {
+  S.lang = lang;
+  document.documentElement.lang = lang === 'kz' ? 'kk' : lang;
+  lsSet('pk_lang', lang);
+  document.querySelectorAll('[data-i]').forEach(el => {
+    const v = L[lang][el.dataset.i];
+    if (typeof v === 'string') el.textContent = v;
+  });
+  document.querySelectorAll('#langSeg button').forEach(b => b.classList.toggle('on', b.dataset.lang === lang));
+  $('fsBtn').setAttribute('aria-label', t('fsAria'));
+  renderReviews(); render(); showWeather();
+}
+
+/* ================= ПОГОДА ================= */
+const wEmoji = c => c === 0 ? '☀️' : c <= 2 ? '🌤️' : c === 3 ? '☁️' : (c === 45 || c === 48) ? '🌫️' : c <= 67 ? '🌧️' : c <= 77 ? '❄️' : c <= 82 ? '🌦️' : c <= 86 ? '🌨️' : '⛈️';
+async function loadWeather() {
+  try {
+    const r = await fetch('https://api.open-meteo.com/v1/forecast?latitude=42.9956&longitude=78.3266&current_weather=true&timezone=auto');
+    if (!r.ok) throw 0;
+    const w = (await r.json()).current_weather;
+    S.weather = {temp: Math.round(w.temperature), wind: Math.round(w.windspeed), code: w.weathercode};
+  } catch (e) { S.weather = null; }
+  showWeather();
+}
+function showWeather() {
+  const el = $('weather');
+  if (!S.weather) { el.style.display = 'none'; return; }
+  el.style.display = 'inline-flex';
+  $('weatherTxt').innerHTML = wEmoji(S.weather.code) + ' ' + t('wNow') + ': <b>' + S.weather.temp + '°C</b> · ' + t('wind') + ' ' + S.weather.wind + ' ' + t('kmh');
+}
+
+/* ================= ГАЛЕРЕЯ ================= */
+let gal = {list: [], i: 0, name: ''}, galOpen = false, tx = 0, ty = 0;
+function openGallery(id, i) {
+  const r = ROOMS.find(x => x.id === id); if (!r) return;
+  gal = {list: r.ph, i: i || 0, name: r.name[S.lang]};
+  $('mTitle').textContent = gal.name;
+  showPhoto(); $('modal').classList.add('on'); document.body.style.overflow = 'hidden'; galOpen = true;
+  $('mClose').focus();
+}
+function showPhoto() {
+  $('mImg').src = photoUrl(gal.list[gal.i], 1600);
+  $('mImg').alt = gal.name + ' ' + (gal.i + 1);
+  $('mCount').textContent = (gal.i + 1) + ' / ' + gal.list.length;
+  const nx = gal.list[(gal.i + 1) % gal.list.length]; new Image().src = photoUrl(nx, 1600);
+}
+function navGallery(d) { gal.i = (gal.i + d + gal.list.length) % gal.list.length; showPhoto(); }
+function closeGallery() { $('modal').classList.remove('on'); document.body.style.overflow = ''; galOpen = false; }
+
+/* ================= СНЕГ ================= */
+const snow = (function () {
+  const c = $('snow'), ctx = c.getContext('2d'); let W, H, fl = [], raf = 0, run = false;
+  function size() { W = c.width = innerWidth; H = c.height = innerHeight; const n = Math.min(110, Math.round(W / 14)); while (fl.length < n) fl.push(mk(true)); fl.length = n; }
+  function mk(rand) { return {x: Math.random() * W, y: rand ? Math.random() * H : -10, r: Math.random() * 2.4 + .7, s: Math.random() * .9 + .35, p: Math.random() * 6.28, a: Math.random() * .5 + .35}; }
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+    fl.forEach(f => {
+      f.y += f.s; f.p += .012; f.x += Math.sin(f.p) * .45;
+      if (f.y > H + 8) Object.assign(f, mk(false));
+      ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, 6.28); ctx.fillStyle = 'rgba(255,255,255,' + f.a + ')'; ctx.fill();
+    });
+    raf = requestAnimationFrame(frame);
+  }
+  return {
+    start() { if (run || matchMedia('(prefers-reduced-motion:reduce)').matches) return; run = true; size(); frame(); },
+    stop() { run = false; cancelAnimationFrame(raf); ctx.clearRect(0, 0, W || 0, H || 0); },
+    resize() { if (run) size(); },
+    get on() { return run; }
+  };
+})();
+
+/* ================= СОБЫТИЯ ================= */
+document.addEventListener('click', e => {
+  const open = e.target.closest('[data-open]'); if (open) return openGallery(open.dataset.open, 0);
+  const f = e.target.closest('[data-f]'); if (f) { S.filter = f.dataset.f; render(); }
+});
+$('langSeg').addEventListener('click', e => { const b = e.target.closest('button[data-lang]'); if (b) applyLang(b.dataset.lang); });
+$('inDate').addEventListener('change', e => { S.date = e.target.value || todayISO(); render(); });
+$('inNights').addEventListener('change', e => { S.nights = +e.target.value; render(); });
+$('inGuests').addEventListener('change', e => { S.guests = +e.target.value; render(); });
+
+$('fsBtn').addEventListener('click', () => {
+  S.fs = (S.fs + 1) % 3; document.documentElement.style.fontSize = [16, 18, 20][S.fs] + 'px';
+  $('fsBtn').textContent = ['A+', 'A++', 'A'][S.fs]; lsSet('pk_fs', S.fs);
+});
+function setHC(v) { S.hc = v; document.body.classList.toggle('hc', v); $('hcBtn').setAttribute('aria-pressed', v); lsSet('pk_hc', v ? '1' : '0'); }
+$('hcBtn').addEventListener('click', () => setHC(!S.hc));
+function setSnow(v) { S.snow = v; $('snowBtn').setAttribute('aria-pressed', v); v ? snow.start() : snow.stop(); lsSet('pk_snow', v ? '1' : '0'); }
+$('snowBtn').addEventListener('click', () => setSnow(!S.snow));
+addEventListener('resize', () => snow.resize());
+document.addEventListener('visibilitychange', () => { if (document.hidden) { snow.stop(); } else { if (S.snow) snow.start(); refresh(); } });
+
+$('mClose').addEventListener('click', closeGallery);
+$('mPrev').addEventListener('click', () => navGallery(-1));
+$('mNext').addEventListener('click', () => navGallery(1));
+$('modal').addEventListener('click', e => { if (e.target === $('modal')) closeGallery(); });
+document.addEventListener('keydown', e => {
+  if (!galOpen) return;
+  if (e.key === 'Escape') closeGallery();
+  if (e.key === 'ArrowRight') navGallery(1);
+  if (e.key === 'ArrowLeft') navGallery(-1);
+});
+$('modal').addEventListener('touchstart', e => { tx = e.changedTouches[0].clientX; ty = e.changedTouches[0].clientY; }, {passive: true});
+$('modal').addEventListener('touchend', e => {
+  const dx = tx - e.changedTouches[0].clientX, dy = ty - e.changedTouches[0].clientY;
+  if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) navGallery(dx > 0 ? 1 : -1);
+}, {passive: true});
+
+$('videoBtn').addEventListener('click', () => {
+  $('video').innerHTML = '<iframe src="https://www.youtube.com/embed/HocYEEFwN3c?start=129&autoplay=1" title="PANA KOLSAY" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>';
+});
+
+/* ================= ОБНОВЛЕНИЕ ДАННЫХ ================= */
+async function refresh() {
+  await loadRooms();
+  await loadAvail();
+  render();
+}
+
+/* ================= СТАРТ ================= */
+(async function init() {
+  $('year').textContent = '© ' + new Date().getFullYear();
+  S.date = todayISO(); $('inDate').value = S.date; $('inDate').min = S.date;
+  fillSelects();
+  const fs = parseInt(lsGet('pk_fs'), 10);
+  if (fs > 0 && fs < 3) { S.fs = fs - 1; $('fsBtn').click(); }
+  if (lsGet('pk_hc') === '1') setHC(true);
+  const lang = lsGet('pk_lang');
+  applyLang(L[lang] ? lang : 'ru');
+  if (lsGet('pk_snow') === '0') { S.snow = false; $('snowBtn').setAttribute('aria-pressed', false); } else snow.start();
+  loadWeather();
+  await refresh();
+  setInterval(refresh, CFG.REFRESH_MS);
+  setInterval(loadWeather, 15 * 60 * 1000);
+})();
+</script>
 </body>
 </html>
