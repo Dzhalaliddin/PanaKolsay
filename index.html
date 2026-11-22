@@ -257,6 +257,7 @@ footer{position:relative;z-index:2;margin-top:70px;padding:50px 0 100px;border-t
   .grid{grid-template-columns:1fr}
   #mPrev,#mNext{top:auto;bottom:16px}
 }
+.xlink{color:var(--ice)!important}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -271,6 +272,7 @@ footer{position:relative;z-index:2;margin-top:70px;padding:50px 0 100px;border-t
       <a href="#route" data-i="nRoute">Как добраться</a>
       <a href="#info" data-i="nInfo">Информация</a>
       <a href="#reviews" data-i="nReviews">Отзывы</a>
+      <a href="ayusai.html" class="xlink">Pana Ayusai</a>
     </nav>
     <div class="tools">
       <div class="seg" id="langSeg" role="group" aria-label="Язык">
@@ -409,6 +411,7 @@ footer{position:relative;z-index:2;margin-top:70px;padding:50px 0 100px;border-t
         <a href="#rooms" data-i="nRooms">Номера</a>
         <a href="#route" data-i="nRoute">Как добраться</a>
         <a href="#info" data-i="nInfo">Информация</a>
+        <a href="ayusai.html">PANA AYUSAI →</a>
       </div>
     </div>
     <p class="copy"><span id="year"></span> PANA KOLSAY · <span data-i="fLoc">Озеро Кольсай, Казахстан</span></p>
@@ -607,7 +610,7 @@ const parseISO = s => { const p = s.split('-'); return new Date(+p[0], +p[1] - 1
 const ruDate = d => String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + d.getFullYear();
 const isoRu = s => ruDate(parseISO(s));
 const parseRu = s => { const m = String(s || '').trim().match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/); return m ? new Date(+m[3], +m[2] - 1, +m[1]) : null; };
-const parseNum = v => { const n = parseInt(String(v || '').replace(/\D/g, ''), 10); return isNaN(n) ? 0 : n; };
+const parseNum = v => { const n = parseInt(String(v || '').replace(/[\s\u00a0]/g, '').replace(/[.,]\d{1,2}$/, '').replace(/\D/g, ''), 10); return isNaN(n) ? 0 : n; };
 const todayISO = () => toISO(new Date());
 const plural = (n, f) => { if (S.lang !== 'ru') return n === 1 ? f[0] : f[1]; const a = n % 10, b = n % 100; return (a === 1 && b !== 11) ? f[0] : (a >= 2 && a <= 4 && (b < 10 || b >= 20)) ? f[1] : f[2]; };
 const photoUrl = (id, w) => IMG(id) + w;
