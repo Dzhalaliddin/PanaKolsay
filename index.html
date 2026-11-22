@@ -30,7 +30,7 @@
 }
 body.hc{--night:#000;--deep:#000;--navy:#0a0a0a;--glass:#000;--glass2:#000;--line:rgba(255,255,255,.55);--text:#fff;--text2:#fff;--muted:#e8e8e8}
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;font-size:16px}
+html{scroll-behavior:smooth;font-size:16px;overflow-x:hidden}
 body{font-family:var(--sans);color:var(--text);background:var(--night);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%}
 a{color:inherit}
@@ -89,17 +89,25 @@ body.hc .nav{background:#000}
 /* HOLIDAY BANNER */
 .holiday{display:none;margin:-70px 0 26px;padding:18px 24px;border-radius:var(--r);background:linear-gradient(120deg,rgba(229,87,79,.9),rgba(160,35,50,.92));border:1px solid rgba(255,255,255,.25);box-shadow:0 14px 40px rgba(160,35,50,.35);align-items:center;gap:16px;flex-wrap:wrap}
 .holiday.show{display:flex}
+.holiday{cursor:pointer;transition:var(--ease)}
+.holiday:hover{transform:translateY(-2px);box-shadow:0 18px 46px rgba(160,35,50,.5)}
+.holiday .go{margin-left:auto;padding:9px 18px;border-radius:30px;background:#fff;color:#8c1f2a;font-weight:700;font-size:.85rem;white-space:nowrap}
+@media(max-width:560px){.holiday .go{margin-left:0;width:100%;text-align:center}}
 .holiday .big{font-size:2rem}
 .holiday b{font-family:var(--serif);font-size:1.5rem;display:block;line-height:1.1}
 .holiday span{font-size:.9rem;opacity:.92}
-.holiday .btn{margin-left:auto;background:#fff;color:#8c1f2a}
 
 /* SEARCH */
 .search{margin-top:-72px;position:relative;z-index:5;padding:22px;border-radius:24px;background:var(--glass2);border:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 24px 60px rgba(0,0,0,.4)}
 .holiday.show + .search{margin-top:0}
-.search form{display:grid;grid-template-columns:1.3fr 1fr 1fr auto;gap:14px;align-items:end}
+.search form{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr) auto;gap:14px;align-items:end}
 .fld label{display:block;font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
-.fld input,.fld select{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.08);color:#fff;font:inherit;font-size:.95rem;color-scheme:dark}
+.fld{min-width:0}
+.fld input,.fld select{display:block;width:100%;min-width:0;max-width:100%;height:48px;padding:0 14px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.08);color:#fff;font:inherit;font-size:16px;color-scheme:dark;-webkit-appearance:none;appearance:none}
+.fld input[type=date]{text-align:left;line-height:46px}
+.fld input[type=date]::-webkit-date-and-time-value{text-align:left;margin:0;min-height:1.2em}
+.fld input[type=date]::-webkit-calendar-picker-indicator{opacity:.7}
+.fld select{background-image:linear-gradient(45deg,transparent 50%,#cfe8ff 50%),linear-gradient(135deg,#cfe8ff 50%,transparent 50%);background-position:calc(100% - 20px) 21px,calc(100% - 15px) 21px;background-size:5px 5px;background-repeat:no-repeat;padding-right:34px}
 .fld input:focus,.fld select:focus{border-color:var(--gold);outline:none}
 .fld select option{background:#10243d;color:#fff}
 .search .btn{height:48px}
@@ -214,24 +222,52 @@ footer{position:relative;z-index:2;margin-top:70px;padding:50px 0 100px;border-t
 
 @media(max-width:960px){
   .menu{display:none}
-  .search form{grid-template-columns:1fr 1fr}
+  .search form{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .search form .fld:first-child{grid-column:1/-1}
   .search .btn{grid-column:1/-1;width:100%}
   .two,.info,.foot{grid-template-columns:1fr}
 }
 @media(max-width:560px){
   .wrap{padding:0 14px}
-  .nav .wrap{height:58px}
-  .logo{font-size:1.25rem;letter-spacing:.08em}
-  .tools{gap:5px}
-  .seg button{padding:4px 8px;font-size:.66rem}
-  .ibtn{width:30px;height:30px}
+  .nav .wrap{height:58px;gap:6px}
+  .logo{font-size:1.02rem;letter-spacing:.04em}
+  .logo i{display:none}
+  .tools{gap:4px;min-width:0}
+  .seg button{padding:4px 7px;font-size:.64rem}
+  .ibtn{width:28px;height:28px;font-size:.72rem}
   .hero{padding:44px 0 110px}
   .facts .fact{flex:1 1 calc(50% - 8px);padding:10px 12px}
   .grid{grid-template-columns:1fr}
-  .holiday .btn{margin-left:0;width:100%}
   #mPrev,#mNext{top:auto;bottom:16px}
 }
+/* ASSISTANT */
+.fab.hide{display:none}
+.bot{position:fixed;right:18px;bottom:18px;z-index:70;width:min(410px,calc(100vw - 24px));height:min(660px,calc(100dvh - 36px));display:none;flex-direction:column;border-radius:22px;overflow:hidden;background:var(--deep);border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.bot.on{display:flex}
+.bot-h{display:flex;align-items:center;gap:12px;padding:14px 14px 14px 16px;background:linear-gradient(120deg,var(--navy),var(--deep));border-bottom:1px solid var(--line)}
+.bot-av{flex:0 0 40px;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(232,195,106,.16);border:1px solid rgba(232,195,106,.5);color:var(--gold)}
+.bot-h div:nth-child(2){flex:1;min-width:0}
+.bot-h b{display:block;font-family:var(--serif);font-size:1.2rem;line-height:1.1}
+.bot-h small{display:block;font-size:.7rem;color:var(--muted);line-height:1.3;margin-top:2px}
+.bot-msgs{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:14px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:90%;padding:10px 13px;border-radius:16px;font-size:.88rem;line-height:1.5;word-wrap:break-word}
+.msg p{margin:0 0 6px}.msg p:last-child{margin-bottom:0}
+.msg.bot{align-self:flex-start;background:rgba(255,255,255,.09);border-top-left-radius:4px}
+.msg.me{align-self:flex-end;background:var(--gold);color:#1a1405;border-top-right-radius:4px}
+.opt{margin:8px 0 4px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:rgba(0,0,0,.22)}
+.opt b{display:block;color:var(--gold);font-size:.9rem}
+.opt span{display:block;font-size:.8rem;color:var(--text2);margin-top:2px}
+.btn.mini{padding:8px 14px;font-size:.76rem;margin-top:8px}
+.bchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.bchip{padding:7px 12px;border-radius:30px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--text2);font-size:.78rem;cursor:pointer;transition:var(--ease)}
+.bchip:hover{background:rgba(255,255,255,.15);color:#fff}
+.bot-f{padding:10px 12px 12px;border-top:1px solid var(--line);background:rgba(8,16,30,.9)}
+.bot-f form{display:flex;gap:8px}
+.bot-f input{flex:1;min-width:0;height:44px;padding:0 16px;border-radius:24px;border:1px solid var(--line);background:rgba(255,255,255,.08);color:#fff;font:inherit;font-size:16px}
+.bot-f input:focus{outline:none;border-color:var(--gold)}
+.bot-send{flex:0 0 44px;width:44px;height:44px;border-radius:50%;border:0;background:var(--gold);color:#1a1405;cursor:pointer;font-size:1rem}
+.bot-op{display:flex;width:100%;margin-top:8px;padding:11px 14px;font-size:.82rem}
+@media(max-width:560px){.bot{right:0;left:0;bottom:0;width:100%;height:88dvh;border-radius:22px 22px 0 0}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -279,10 +315,10 @@ footer{position:relative;z-index:2;margin-top:70px;padding:50px 0 100px;border-t
 </section>
 
 <div class="wrap">
-  <div class="holiday" id="holiday" role="note">
+  <div class="holiday" id="holiday" role="button" tabindex="0">
     <span class="big">🎄</span>
     <div><b data-i="holTitle">Новогодние каникулы в Кольсае</b><span id="holText"></span></div>
-    <a class="btn" href="#search" data-i="holBtn">Забронировать</a>
+    <span class="go"><span data-i="holGo">Показать эти даты</span> →</span>
   </div>
 
   <section class="search" id="search" aria-label="Поиск">
@@ -367,7 +403,7 @@ footer{position:relative;z-index:2;margin-top:70px;padding:50px 0 100px;border-t
       <div>
         <h4 data-i="fContacts">Контакты</h4>
         <a href="tel:+77008368964"><i class="fa-solid fa-phone"></i> +7 700 836 8964</a>
-        <a href="https://wa.me/77018615121" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+        <a href="https://wa.me/77018615121" data-open-bot target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
         <a href="https://instagram.com/pana_hotels" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> @pana_hotels</a>
       </div>
       <div>
@@ -381,7 +417,23 @@ footer{position:relative;z-index:2;margin-top:70px;padding:50px 0 100px;border-t
   </div>
 </footer>
 
-<a class="fab" id="fab" href="https://wa.me/77018615121" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+<a class="fab" id="fab" data-open-bot href="https://wa.me/77018615121" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+
+<section class="bot" id="bot" role="dialog" aria-label="Помощник PANA KOLSAY">
+  <div class="bot-h">
+    <div class="bot-av"><i class="fa-regular fa-snowflake"></i></div>
+    <div><b id="botTitle">Помощник PANA KOLSAY</b><small id="botSub"></small></div>
+    <button class="ibtn" id="botClose" type="button" aria-label="Закрыть">&times;</button>
+  </div>
+  <div class="bot-msgs" id="botMsgs" aria-live="polite"></div>
+  <div class="bot-f">
+    <form id="botForm" autocomplete="off">
+      <input id="botIn" type="text" enterkeyhint="send" aria-label="Сообщение">
+      <button class="bot-send" type="submit" aria-label="Отправить"><i class="fa-solid fa-paper-plane"></i></button>
+    </form>
+    <a class="btn btn-wa bot-op" id="botWa" target="_blank" rel="noopener" href="https://wa.me/77018615121"><i class="fa-brands fa-whatsapp"></i><span id="botOp"></span></a>
+  </div>
+</section>
 
 <div id="modal" role="dialog" aria-modal="true" aria-label="Фото">
   <button class="mb" id="mClose" aria-label="Закрыть">&times;</button>
@@ -464,7 +516,7 @@ ru:{nRooms:'Номера',nRoute:'Как добраться',nInfo:'Информ
  eyebrow:'Зима в горах · Кольсай',h1a:'Тишина озера,',h1b:'тепло гор',
  lead:'Уютный отель на берегу озера Кольсай. Завтрак, трансфер от парковки и вид на заснеженные вершины — всё включено в проживание.',
  ctaBook:'Выбрать даты',ctaRooms:'Смотреть номера',fLake:'до озера',fAlt:'высота',fDrive:'от Алматы',fWifi:'бесплатно',
- holTitle:'Новогодние каникулы в Кольсае',holBtn:'Забронировать',holPeriod:'Новогодние цены действуют с {a} по {b}',
+ holTitle:'Новогодние каникулы в Кольсае',holBtn:'Забронировать',holGo:'Показать эти даты',holPeriod:'Новогодние цены действуют с {a} по {b}',
  lDate:'Дата заезда',lNights:'Ночей',lGuests:'Гости',lFind:'Показать номера',
  tRooms:'Наши номера',all:'Все',
  cat:{standard:'Стандарт',mountain:'Горы',lake:'Озеро',triple:'Трипл',deluxe:'Deluxe',luxury:'Домики',glamping:'Глэмпинг'},
@@ -496,7 +548,7 @@ en:{nRooms:'Rooms',nRoute:'Getting here',nInfo:'Information',nReviews:'Reviews',
  eyebrow:'Winter in the mountains · Kolsay',h1a:'Quiet lake,',h1b:'warm mountains',
  lead:'A cosy hotel on the shore of Kolsay Lake. Breakfast, parking transfer and views of snow-covered peaks are included in your stay.',
  ctaBook:'Choose dates',ctaRooms:'View rooms',fLake:'to the lake',fAlt:'altitude',fDrive:'from Almaty',fWifi:'free',
- holTitle:'New Year holidays in Kolsay',holBtn:'Book now',holPeriod:'New Year prices apply from {a} to {b}',
+ holTitle:'New Year holidays in Kolsay',holBtn:'Book now',holGo:'Show these dates',holPeriod:'New Year prices apply from {a} to {b}',
  lDate:'Check-in',lNights:'Nights',lGuests:'Guests',lFind:'Show rooms',
  tRooms:'Our rooms',all:'All',
  cat:{standard:'Standard',mountain:'Mountain',lake:'Lake',triple:'Triple',deluxe:'Deluxe',luxury:'Houses',glamping:'Glamping'},
@@ -528,7 +580,7 @@ kz:{nRooms:'Бөлмелер',nRoute:'Қалай жетуге болады',nInf
  eyebrow:'Таудағы қыс · Көлсай',h1a:'Көлдің тыныштығы,',h1b:'таудың жылуы',
  lead:'Көлсай көлінің жағасындағы жайлы қонақ үй. Таңғы ас, тұрақтан трансфер және қарлы шыңдардың көрінісі тұру құнына кіреді.',
  ctaBook:'Күнді таңдау',ctaRooms:'Бөлмелерді көру',fLake:'көлге дейін',fAlt:'биіктік',fDrive:'Алматыдан',fWifi:'тегін',
- holTitle:'Көлсайдағы Жаңа жыл демалысы',holBtn:'Брондау',holPeriod:'Жаңа жылдық бағалар {a} – {b} аралығында қолданылады',
+ holTitle:'Көлсайдағы Жаңа жыл демалысы',holBtn:'Брондау',holGo:'Осы күндерді көрсету',holPeriod:'Жаңа жылдық бағалар {a} – {b} аралығында қолданылады',
  lDate:'Келу күні',lNights:'Түн',lGuests:'Қонақтар',lFind:'Бөлмелерді көрсету',
  tRooms:'Біздің бөлмелер',all:'Барлығы',
  cat:{standard:'Стандарт',mountain:'Тау',lake:'Көл',triple:'Трипл',deluxe:'Deluxe',luxury:'Үйлер',glamping:'Глэмпинг'},
@@ -736,8 +788,8 @@ function card(r) {
     : '<div class="total">&nbsp;</div>';
 
   let btn;
-  if (state === 'free') btn = '<a class="btn btn-gold" target="_blank" rel="noopener" href="' + waLink(r, info, 'free') + '"><i class="fa-brands fa-whatsapp"></i>' + t('book') + '</a>';
-  else if (state === 'unk') btn = '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + waLink(r, info, 'ask') + '"><i class="fa-brands fa-whatsapp"></i>' + t('ask') + '</a>';
+  if (state === 'free') btn = '<a class="btn btn-gold" data-ask="' + r.id + '" target="_blank" rel="noopener" href="' + waLink(r, info, 'free') + '"><i class="fa-brands fa-whatsapp"></i>' + t('book') + '</a>';
+  else if (state === 'unk') btn = '<a class="btn btn-wa" data-ask="' + r.id + '" target="_blank" rel="noopener" href="' + waLink(r, info, 'ask') + '"><i class="fa-brands fa-whatsapp"></i>' + t('ask') + '</a>';
   else btn = '<span class="btn btn-ghost off">' + t('none') + '</span>';
   const more = r.link ? '<a class="btn btn-ghost" target="_blank" rel="noopener" href="' + r.link + '" aria-label="' + t('details') + ' — ' + name + '"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>' : '';
 
@@ -801,7 +853,7 @@ function applyLang(lang) {
   });
   document.querySelectorAll('#langSeg button').forEach(b => b.classList.toggle('on', b.dataset.lang === lang));
   $('fsBtn').setAttribute('aria-label', t('fsAria'));
-  renderReviews(); render(); showWeather();
+  renderReviews(); render(); showWeather(); BOT.texts();
 }
 
 /* ================= ПОГОДА ================= */
@@ -902,6 +954,444 @@ $('modal').addEventListener('touchend', e => {
 $('videoBtn').addEventListener('click', () => {
   $('video').innerHTML = '<iframe src="https://www.youtube.com/embed/HocYEEFwN3c?start=129&autoplay=1" title="PANA KOLSAY" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>';
 });
+
+/* ================= ПОМОЩНИК ================= */
+const B = {
+ru:{title:'Помощник PANA KOLSAY',sub:'Автоматический помощник: проверит наличие и цены. Бронь подтверждает оператор.',ph:'Даты, гости, тип номера…',op:'Продолжить с оператором в WhatsApp',
+ hi:'Здравствуйте! 👋 Я автоматический помощник отеля. Напишите даты, число гостей и какой номер нужен — проверю наличие по актуальному календарю. Например: «номер с видом на озеро с 25 по 28 декабря на 5 человек».',
+ chips:['Есть номер с видом на озеро?','Цены на Новый год','Можно с детьми?','Как добраться?'],
+ askDate:'Уточните, пожалуйста, даты заезда и число ночей. Например: «с 25 по 28 декабря».',
+ nodata:'Календарь сейчас недоступен, оператор проверит наличие вручную. Нажмите кнопку WhatsApp ниже.',
+ past:'Эта дата уже прошла. Укажите, пожалуйста, будущую дату.',
+ any:'любой номер',
+ check:'Проверяю: {what}, заезд {a}, {n} ноч. (выезд {b}){g}.',gs:', гостей: {g}',
+ nightsNote:'Если ночей больше одной, напишите сколько — пересчитаю.',
+ free:'✅ Свободно:',line:'{total} за {n} ноч.{hol}',hol:' · 🎄 новогодние цены',
+ extra:'Основных мест: {cap}, остальные гости — на доп. местах (15 000 ₸ за место).',
+ busy:'❌ На эти даты подходящих свободных номеров нет.',
+ partial:'{name}: с {a} свободно только {k} ноч. (до {b})',
+ near:'Ближайшие даты на {n} ноч.:',nearLine:'Заезд {a} · свободно до {k} ноч. подряд · {total} за {n} ноч.',
+ noNear:'Ближайших свободных дат в календаре не нашлось — оператор подскажет другие варианты.',
+ unk:'По части номеров в календаре нет данных на эти даты — это уточнит оператор.',
+ combo:'Для {g} гостей можно взять несколько номеров:',comboExtra:'С учётом доп. мест (15 000 ₸ за место).',
+ noFitSingle:'В одном номере столько гостей не разместить.',
+ widened:'Выбранный тип номера на эти даты недоступен, поэтому показываю другие варианты:',hint:'Выберите вариант и отправьте оператору — он подтвердит бронь и пришлёт ссылку на оплату.',
+ sendOp:'Отправить оператору',
+ waOpt:'Здравствуйте! Хочу забронировать: {what}, заезд {a}, {n} ноч., гостей: {g}. Стоимость по сайту: {s}.',
+ waBase:'Здравствуйте! У меня вопрос по бронированию.',waCtx:'Здравствуйте! Интересует заезд {a}, {n} ноч., гостей: {g}.',
+ priceTitle:'Цены за ночь (за номер):',priceHol:' · {a}–{b}: {h}',
+ fromCard:'Вы выбрали «{name}». Проверяю по календарю…',
+ fallback:'Я могу проверить наличие, посчитать стоимость и ответить по условиям проживания. Напишите даты и число гостей — или нажмите кнопку WhatsApp, чтобы написать оператору.',
+ opSay:'Хорошо. Нажмите кнопку WhatsApp ниже — я добавлю в сообщение ваши даты и гостей, и вас подключит оператор.'},
+en:{title:'PANA KOLSAY Assistant',sub:'Automated assistant: checks availability and prices. Bookings are confirmed by staff.',ph:'Dates, guests, room type…',op:'Continue with staff on WhatsApp',
+ hi:'Hello! 👋 I am the hotel’s automated assistant. Tell me the dates, number of guests and the room you want — I will check the live calendar. Example: “lake view room 25–28 December for 5 people”.',
+ chips:['Lake view room available?','New Year prices','Children allowed?','How to get there?'],
+ askDate:'Please tell me the check-in date and number of nights, e.g. “25–28 December”.',
+ nodata:'The calendar is unavailable right now, staff will check manually. Use the WhatsApp button below.',
+ past:'That date has already passed. Please choose a future date.',
+ any:'any room',
+ check:'Checking: {what}, check-in {a}, {n} night(s) (check-out {b}){g}.',gs:', guests: {g}',
+ nightsNote:'If you need more than one night, tell me how many and I will recalculate.',
+ free:'✅ Available:',line:'{total} for {n} night(s){hol}',hol:' · 🎄 New Year prices',
+ extra:'Standard beds: {cap}, other guests use extra beds (15,000 ₸ each).',
+ busy:'❌ No suitable rooms are free on these dates.',
+ partial:'{name}: from {a} only {k} night(s) free (until {b})',
+ near:'Nearest dates for {n} night(s):',nearLine:'Check-in {a} · free for up to {k} nights in a row · {total} for {n} night(s)',
+ noNear:'No free dates found nearby — staff will suggest other options.',
+ unk:'No calendar data for some rooms on these dates — staff will confirm.',
+ combo:'For {g} guests you can take several rooms:',comboExtra:'Includes extra beds (15,000 ₸ each).',
+ noFitSingle:'No single room fits that many guests.',
+ widened:'The room type you asked for is not available on these dates, so here are other options:',hint:'Pick an option and send it to staff — they will confirm the booking and send a payment link.',
+ sendOp:'Send to staff',
+ waOpt:'Hello! I would like to book: {what}, check-in {a}, {n} night(s), guests: {g}. Price on the site: {s}.',
+ waBase:'Hello! I have a question about booking.',waCtx:'Hello! I am interested in check-in {a}, {n} night(s), guests: {g}.',
+ priceTitle:'Price per night (per room):',priceHol:' · {a}–{b}: {h}',
+ fromCard:'You chose “{name}”. Checking the calendar…',
+ fallback:'I can check availability, calculate the price and answer questions about your stay. Send dates and number of guests — or use the WhatsApp button to write to staff.',
+ opSay:'Sure. Press the WhatsApp button below — I will add your dates and guests to the message and staff will take over.'},
+kz:{title:'PANA KOLSAY көмекшісі',sub:'Автоматты көмекші: бос орын мен бағаны тексереді. Броньды қызметкер растайды.',ph:'Күні, қонақ, бөлме түрі…',op:'WhatsApp-та қызметкермен жалғастыру',
+ hi:'Сәлеметсіз бе! 👋 Мен қонақ үйдің автоматты көмекшісімін. Күндерді, қонақ санын және бөлме түрін жазыңыз — өзекті күнтізбеден тексеремін. Мысалы: «көл көрінісі бар бөлме 25–28 желтоқсан 5 адамға».',
+ chips:['Көл көрінісі бар бөлме бар ма?','Жаңа жылдық бағалар','Балалармен болады ма?','Қалай жетуге болады?'],
+ askDate:'Келу күнін және неше түн болатынын жазыңыз. Мысалы: «25–28 желтоқсан».',
+ nodata:'Күнтізбе қазір қолжетімсіз, қызметкер қолмен тексереді. Төмендегі WhatsApp түймесін басыңыз.',
+ past:'Бұл күн өтіп кеткен. Болашақ күнді көрсетіңіз.',
+ any:'кез келген бөлме',
+ check:'Тексерудемін: {what}, келу {a}, {n} түн (кету {b}){g}.',gs:', қонақ: {g}',
+ nightsNote:'Бір түннен көп болса, санын жазыңыз — қайта есептеймін.',
+ free:'✅ Бос:',line:'{n} түнге {total}{hol}',hol:' · 🎄 жаңа жылдық баға',
+ extra:'Негізгі орын: {cap}, қалған қонақтар қосымша орында (әрқайсысы 15 000 ₸).',
+ busy:'❌ Бұл күндерге сәйкес бос бөлме жоқ.',
+ partial:'{name}: {a} бастап тек {k} түн бос ({b} дейін)',
+ near:'{n} түнге жақын күндер:',nearLine:'Келу {a} · қатарынан {k} түнге дейін бос · {n} түнге {total}',
+ noNear:'Жақын бос күндер табылмады — қызметкер басқа нұсқаларды ұсынады.',
+ unk:'Кейбір бөлмелерге бұл күндерге деректер жоқ — қызметкер нақтылайды.',
+ combo:'{g} қонаққа бірнеше бөлме алуға болады:',comboExtra:'Қосымша орындармен (әрқайсысы 15 000 ₸).',
+ noFitSingle:'Бір бөлмеге мұнша қонақ сыймайды.',
+ widened:'Сіз сұраған бөлме түрі бұл күндерге бос емес, сондықтан басқа нұсқаларды көрсетемін:',hint:'Нұсқаны таңдап, қызметкерге жіберіңіз — ол броньды растап, төлем сілтемесін жібереді.',
+ sendOp:'Қызметкерге жіберу',
+ waOpt:'Сәлеметсіз бе! Брондағым келеді: {what}, келу {a}, {n} түн, қонақ: {g}. Сайттағы құны: {s}.',
+ waBase:'Сәлеметсіз бе! Брондау бойынша сұрағым бар.',waCtx:'Сәлеметсіз бе! Келу {a}, {n} түн, қонақ: {g} қызықтырады.',
+ priceTitle:'Түнгі баға (бөлмеге):',priceHol:' · {a}–{b}: {h}',
+ fromCard:'Сіз «{name}» таңдадыңыз. Күнтізбені тексеремін…',
+ fallback:'Мен бос орынды тексеріп, құнын есептей аламын және тұру шарттары бойынша жауап беремін. Күндер мен қонақ санын жазыңыз — немесе WhatsApp түймесін басыңыз.',
+ opSay:'Жақсы. Төмендегі WhatsApp түймесін басыңыз — хабарламаға күндер мен қонақтарды қосамын, қызметкер қосылады.'}
+};
+
+const BOT = (function () {
+  const ctx = {guests: 0, date: '', nights: 0, cats: null, roomId: null};
+  let bl = 'ru', started = false;
+  const bt = (k, o) => fmt(B[bl][k] !== undefined ? B[bl][k] : B.ru[k], o || {});
+  const addD = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+  const addDays = (iso, n) => toISO(addD(parseISO(iso), n));
+  const dayDiff = (a, b) => Math.round((parseISO(a) - parseISO(b)) / 864e5);
+  const dm = iso => ruDate(parseISO(iso)).slice(0, 5);
+  const waHref = msg => 'https://wa.me/' + CFG.WA + '?text=' + encodeURIComponent(msg);
+
+  /* ---------- разбор текста ---------- */
+  const MRE = [['янв','jan','қаң'],['фев','feb','ақп'],['мар','mar','нау'],['апр','apr','сәу'],['ма[яй]','may','мам'],['июн','jun','мау'],['июл','jul','шіл'],['авг','aug','там'],['сен','sep','қыр'],['окт','oct','қаз'],['ноя','nov','қар'],['дек','dec','жел']]
+    .map(a => new RegExp('^(?:' + a.join('|') + ')'));
+  const monthOf = w => { for (let i = 0; i < 12; i++) if (MRE[i].test(w)) return i; return -1; };
+  function mkDate(d, m, y) {
+    const t0 = new Date(); t0.setHours(0, 0, 0, 0);
+    const year = y || t0.getFullYear();
+    let dt = new Date(year, m, d);
+    if (dt.getMonth() !== m || dt.getDate() !== d) return null;
+    if (!y && dt < t0) dt = new Date(year + 1, m, d);
+    return dt;
+  }
+  function faqKey(s, hasGuests) {
+    if (/отмен|возврат|refund|cancel|бас тарт/.test(s)) return 'cancel';
+    if (/оплат|предоплат|kaspi|каспи|payment|prepay|төлем/.test(s)) return 'pay';
+    if (/питом|собак|кошк|животн|\bpets?\b|\bdogs?\b/.test(s)) return 'pets';
+    if (/завтрак|питани|кормят|breakfast|meals?\b|food|таңғы|тамақ/.test(s)) return 'meals';
+    if (/парков|трансфер|parking|transfer|тұрақ/.test(s)) return 'park';
+    if (/во сколько|в котором часу|what time|check-?in time|check-?out time|сағат нешеде|время заезда|время выезда/.test(s)) return 'time';
+    if (/как добрат|добраться|как доехать|дорога|from almaty|how to get|directions|қалай жет/.test(s)) return 'route';
+    if (!hasGuests && /дет|ребен|child|kids?\b|бала/.test(s)) return 'kids';
+    return '';
+  }
+  function parse(raw, needGuests) {
+    const s = raw.toLowerCase().replace(/ё/g, 'е');
+    const o = {};
+    let m;
+    o.lang = /[әғқңөұүһі]/.test(s) ? 'kz' : /[а-я]/.test(s) ? 'ru' : /[a-z]/.test(s) ? 'en' : '';
+
+    // даты: «25 по 28 декабря» → две даты
+    const t = s.replace(/(\d{1,2})\s*(?:-|–|—|по|до|to|till|until)\s*(\d{1,2})\s+([a-zа-яәғқңөұүһі]{3,})/g,
+      (all, a, b, w) => monthOf(w) >= 0 ? a + ' ' + w + ' ' + b + ' ' + w : all);
+    const ds = [];
+    const re = /(\d{1,2})\.(\d{1,2})(?:\.(\d{2,4}))?|(\d{1,2})\s*(?:-?го|числа|st|nd|rd|th)?\s+([a-zа-яәғқңөұүһі]{3,})/g;
+    while ((m = re.exec(t))) {
+      let d = null;
+      if (m[1]) { let y = m[3] ? +m[3] : 0; if (y && y < 100) y += 2000; d = mkDate(+m[1], +m[2] - 1, y); }
+      else { const mo = monthOf(m[5]); if (mo >= 0) d = mkDate(+m[4], mo, 0); }
+      if (d) ds.push(d);
+    }
+    if (!ds.length) {
+      const t0 = new Date(); t0.setHours(0, 0, 0, 0);
+      if (/послезавтра/.test(s)) ds.push(addD(t0, 2));
+      else if (/завтра|tomorrow|ертең/.test(s)) ds.push(addD(t0, 1));
+      else if (/сегодня|today|бүгін/.test(s)) ds.push(t0);
+    }
+    if (ds.length) {
+      o.date = toISO(ds[0]);
+      if (ds.length >= 2) {
+        let e = ds[1];
+        if (e <= ds[0]) e = new Date(e.getFullYear() + 1, e.getMonth(), e.getDate());
+        const n = Math.round((e - ds[0]) / 864e5);
+        if (n >= 1 && n <= 30) o.nights = n;
+      }
+    }
+    if (!o.nights) {
+      if ((m = s.match(/(\d{1,2})\s*(?:ноч|night|түн)/))) o.nights = +m[1];
+      else if ((m = s.match(/(\d{1,2})\s*(?:дн|сут|day|күн)/))) o.nights = +m[1];
+      else if (/недел|week|апта/.test(s)) o.nights = 7;
+      else if (/на ночь|одну ночь|сутки|one night|бір түн/.test(s)) o.nights = 1;
+      if (o.nights > 30) o.nights = 30;
+    }
+
+    // гости
+    let g = 0, gf = false;
+    const gr = /(\d{1,2})\s*(?:чел|гост|взросл|персон|people|persons|person|guests|guest|adults|adult|pax|ppl|адам|қонақ|ересек)/g;
+    while ((m = gr.exec(s))) { g += +m[1]; gf = true; }
+    const cr = /(\d{1,2})\s*(?:дет|ребен|child|kid|бала)/g;
+    while ((m = cr.exec(s))) { g += +m[1]; gf = true; }
+    if (!gf) {
+      const W = [[/вдвоем|двое|for two|екеу/, 2], [/втроем|трое|for three|үшеу/, 3], [/вчетвером|четверо|for four|төртеу/, 4], [/впятером|пятеро|for five|бесеу/, 5], [/вшестером|шестеро|for six/, 6]];
+      for (const w of W) if (w[0].test(s)) { g = w[1]; gf = true; break; }
+    }
+    if (!gf && (m = s.match(/(?:нас будет|нас|семья из|компания из|we are|group of)\s*(\d{1,2})/))) { g = +m[1]; gf = true; }
+    if (!gf && needGuests && /^\s*\d{1,2}\s*$/.test(s)) { g = +s.trim(); gf = true; }
+    if (gf && g >= 1 && g <= 30) o.guests = g;
+
+    // тип номера
+    const cats = [];
+    if (/озер|lake|көл/.test(s)) cats.push('lake', 'triple');
+    if (/(?:^|[^а-я])гор(?:ы|у|ам|ах|н[а-я]*|ой)?(?:$|[^а-я])|mountain|(?:^|\s)тау/.test(s)) cats.push('mountain');
+    if (/стандарт|standard/.test(s)) cats.push('standard');
+    if (/делюкс|deluxe|премьер|premier/.test(s)) cats.push('deluxe');
+    if (/глэмп|глемп|glamp|купол|dome/.test(s)) cats.push('glamping');
+    if (/домик|каменн|деревян|stone|wooden|тас үй|ағаш/.test(s)) cats.push('luxury');
+    if (/трипл|triple|трехмест|тримест/.test(s) && cats.indexOf('triple') < 0) cats.push('triple');
+    if (cats.length) o.cats = cats;
+    else if (/любой|any room|any type|все варианты|не важно|кез келген/.test(s)) o.cats = [];
+
+    // намерения
+    o.op = /оператор|менеджер|живой человек|human|operator|manager|админ/.test(s);
+    o.greet = /^\s*(?:привет|здравств|добрый|салам|сәлем|hello|hi\b|hey)/.test(s);
+    o.price = /цен[аыуе]|стоим|прайс|тариф|price|cost|how much|rate|баға|қанша/.test(s);
+    o.ny = /новый год|нового года|новогод|new year|жаңа жыл/.test(s);
+    o.faq = faqKey(s, !!o.guests);
+    return o;
+  }
+
+  /* ---------- расчёты по календарю ---------- */
+  function qtyFree(r, iso, nights) {
+    let min = Infinity, unk = false;
+    for (let i = 0; i < nights; i++) {
+      const a = availOf(r.id, addDays(iso, i));
+      if (a === null) unk = true; else { if (a <= 0) return 0; min = Math.min(min, a); }
+    }
+    return unk ? null : min;
+  }
+  function run(r, iso, need) {
+    let n = 0;
+    while (n < 14) { const a = availOf(r.id, addDays(iso, n)); if (a === null || a < need) break; n++; }
+    return n;
+  }
+  function cost(r, iso, nights) {
+    let total = 0, hol = false;
+    for (let i = 0; i < nights; i++) { const p = nightPrice(r, addDays(iso, i)); total += p.price; hol = hol || p.hol; }
+    return {total: total, hol: hol};
+  }
+  function nearest(r, iso, nights, need) {
+    const t0 = todayISO();
+    for (let k = 1; k <= 60; k++) {
+      const fw = addDays(iso, k), qf = qtyFree(r, fw, nights);
+      if (qf !== null && qf >= need) return {iso: fw, run: run(r, fw, need)};
+      const bk = addDays(iso, -k);
+      if (bk >= t0) { const qb = qtyFree(r, bk, nights); if (qb !== null && qb >= need) return {iso: bk, run: run(r, bk, need)}; }
+    }
+    return null;
+  }
+  function buildCombos(pool, G, iso, nights) {
+    for (const useExtra of [false, true]) {
+      const cap = r => r.cap + (useExtra ? r.extra : 0);
+      const found = [];
+      (function rec(start, picked, sum) {
+        if (sum >= G) { if (picked.length >= 2) found.push(picked.slice()); return; }
+        if (picked.length >= 3) return;
+        for (let i = start; i < pool.length; i++) {
+          if (picked.filter(x => x === pool[i]).length >= pool[i].q) continue;
+          picked.push(pool[i]);
+          rec(i, picked, sum + cap(pool[i].r));
+          picked.pop();
+        }
+      })(0, [], 0);
+      const byPat = {};
+      found.forEach(cb => {
+        const sum = cb.reduce((a, x) => a + cap(x.r), 0);
+        if (cb.some(x => sum - cap(x.r) >= G)) return; // лишний номер
+        const pat = cb.map(x => cap(x.r)).sort((a, b) => b - a).join(' + ');
+        const total = cb.reduce((a, x) => a + cost(x.r, iso, nights).total, 0);
+        if (!byPat[pat] || byPat[pat].total > total) byPat[pat] = {pat: pat, total: total, names: cb.map(x => x.r.name[bl]).join(' + '), extra: useExtra};
+      });
+      const list = Object.keys(byPat).map(k => byPat[k]).sort((a, b) => a.total - b.total).slice(0, 3);
+      if (list.length) return list;
+    }
+    return [];
+  }
+
+  /* ---------- ответы ---------- */
+  const opt = (title, detail, msg) =>
+    '<div class="opt"><b>' + title + '</b><span>' + detail + '</span><a class="btn btn-wa mini" target="_blank" rel="noopener" href="' + waHref(msg) +
+    '"><i class="fa-brands fa-whatsapp"></i>' + bt('sendOp') + '</a></div>';
+  function whatLabel() {
+    if (ctx.roomId) { const r = ROOMS.find(x => x.id === ctx.roomId); return r ? r.name[bl] : ''; }
+    if (ctx.cats && ctx.cats.length) return ctx.cats.map(c => L[bl].cat[c]).join(' / ');
+    return bt('any');
+  }
+  function ctxMsg() {
+    return ctx.date ? bt('waCtx', {a: ruDate(parseISO(ctx.date)), n: ctx.nights || 1, g: ctx.guests || '—'}) : bt('waBase');
+  }
+  function availability() {
+    if (!S.avail) return {html: bt('nodata')};
+    const iso = ctx.date;
+    if (iso < todayISO()) return {html: bt('past')};
+    const nights = Math.max(1, Math.min(ctx.nights || 1, 30)), G = ctx.guests || 0;
+    const outISO = addDays(iso, nights);
+    const open = ROOMS.filter(r => !isClosed(r));
+    const cands = ctx.roomId ? open.filter(r => r.id === ctx.roomId)
+      : (ctx.cats && ctx.cats.length ? open.filter(r => ctx.cats.indexOf(r.cat) >= 0) : open);
+    const rows = cands.map(r => ({r: r, q: qtyFree(r, iso, nights)}));
+    const fit = rows.filter(x => !G || x.r.cap + x.r.extra >= G);
+    const free = fit.filter(x => x.q).map(x => ({r: x.r, q: x.q, c: cost(x.r, iso, nights)})).sort((a, b) => a.c.total - b.c.total);
+    const msgFor = (what, a, total) => bt('waOpt', {what: what, a: ruDate(parseISO(a)), n: nights, g: G || '—', s: money(total)});
+    const parts = [];
+    let wa = null, shown = false;
+
+    parts.push('<p>' + bt('check', {what: whatLabel(), a: dm(iso), n: nights, b: dm(outISO), g: G ? bt('gs', {g: G}) : ''}) + '</p>');
+    if (!ctx.nights) parts.push('<p>' + bt('nightsNote') + '</p>');
+
+    if (free.length) {
+      parts.push('<p><b>' + bt('free') + '</b></p>');
+      free.slice(0, 5).forEach(x => {
+        let d = bt('line', {total: money(x.c.total), n: nights, hol: x.c.hol ? bt('hol') : ''});
+        if (G > x.r.cap) d += '<br>' + bt('extra', {cap: x.r.cap});
+        const m = msgFor(x.r.name[bl], iso, x.c.total);
+        if (!wa) wa = m;
+        parts.push(opt(x.r.name[bl], d, m));
+        shown = true;
+      });
+    } else if (fit.length) {
+      parts.push('<p><b>' + bt('busy') + '</b></p>');
+      const part = [];
+      fit.forEach(x => {
+        if (x.q === 0) {
+          const k = run(x.r, iso, 1);
+          if (k >= 1 && k < nights) part.push(bt('partial', {name: x.r.name[bl], a: dm(iso), k: k, b: dm(addDays(iso, k))}));
+        }
+      });
+      if (part.length) parts.push('<p>' + part.join('<br>') + '</p>');
+      const alts = fit.filter(x => x.q === 0).map(x => ({r: x.r, n: nearest(x.r, iso, nights, 1)})).filter(x => x.n)
+        .sort((a, b) => Math.abs(dayDiff(a.n.iso, iso)) - Math.abs(dayDiff(b.n.iso, iso)));
+      if (alts.length) {
+        parts.push('<p><b>' + bt('near', {n: nights}) + '</b></p>');
+        alts.slice(0, 3).forEach(x => {
+          const c = cost(x.r, x.n.iso, nights);
+          const m = msgFor(x.r.name[bl], x.n.iso, c.total);
+          if (!wa) wa = m;
+          parts.push(opt(x.r.name[bl], bt('nearLine', {a: dm(x.n.iso), k: x.n.run, n: nights, total: money(c.total)}), m));
+          shown = true;
+        });
+      } else if (fit.some(x => x.q === 0)) parts.push('<p>' + bt('noNear') + '</p>');
+      if (fit.some(x => x.q === null)) parts.push('<p>' + bt('unk') + '</p>');
+    } else if (G && cands.length) {
+      parts.push('<p>' + bt('noFitSingle') + '</p>');
+    } else {
+      parts.push('<p>' + bt('noNear') + '</p>');
+    }
+
+    // несколько номеров для больших компаний
+    if (G >= 4 || (G && !fit.length)) {
+      const mk = list => list.filter(x => x.q).map(x => ({r: x.r, q: x.q}));
+      let combos = buildCombos(mk(rows), G, iso, nights);
+      let widened = false;
+      if (!combos.length && !ctx.roomId && ctx.cats && ctx.cats.length) {
+        combos = buildCombos(mk(open.map(r => ({r: r, q: qtyFree(r, iso, nights)}))), G, iso, nights);
+        widened = combos.length > 0;
+      }
+      if (widened) parts.push('<p>' + bt('widened') + '</p>');
+      if (combos.length) {
+        parts.push('<p><b>' + bt('combo', {g: G}) + '</b></p>');
+        combos.forEach(cb => {
+          const m = msgFor(cb.names, iso, cb.total);
+          if (!wa) wa = m;
+          parts.push(opt(cb.pat + ' — ' + cb.names, money(cb.total) + ' / ' + nights + (cb.extra ? '<br>' + bt('comboExtra') : ''), m));
+          shown = true;
+        });
+      }
+    }
+    if (shown) parts.push('<p>' + bt('hint') + '</p>');
+    return {html: parts.join(''), wa: wa};
+  }
+  function priceList() {
+    const list = ROOMS.filter(r => !isClosed(r) && (!ctx.cats || !ctx.cats.length || ctx.cats.indexOf(r.cat) >= 0))
+      .sort((a, b) => basePrice(a) - basePrice(b));
+    const t0 = new Date(); t0.setHours(0, 0, 0, 0);
+    return '<p><b>' + bt('priceTitle') + '</b></p><p>' + list.map(r => {
+      const c = S.cfg[r.id];
+      let l = r.name[bl] + ': ' + money(basePrice(r));
+      if (c && c.holidayPrice && c.from && c.to && c.to >= t0) l += bt('priceHol', {a: dm(toISO(c.from)), b: dm(toISO(c.to)), h: money(c.holidayPrice)});
+      return l;
+    }).join('<br>') + '</p>';
+  }
+  function faq(k) {
+    const x = L[bl];
+    const map = {cancel: [x.r2], pay: [x.r1, x.a6], pets: [x.a5], kids: [x.a4], meals: [x.a2], park: [x.a3], time: [x.a1], route: [x.rText, x.rDist, x.rPark, x.rWinter]};
+    return '<p>' + map[k].join('</p><p>') + '</p>';
+  }
+  function answer(text) {
+    const p = parse(text, !!ctx.date && !ctx.guests);
+    if (p.lang) bl = p.lang;
+    if (p.op) return {html: bt('opSay'), wa: ctxMsg()};
+    const hasQuery = !!(p.date || p.guests || p.nights || p.cats !== undefined);
+    if (p.faq && !(p.date || p.guests)) return {html: faq(p.faq), wa: null};
+    if (p.date) ctx.date = p.date;
+    if (p.nights) ctx.nights = p.nights;
+    if (p.guests) ctx.guests = p.guests;
+    if (p.cats !== undefined) ctx.cats = p.cats.length ? p.cats : null;
+    if (p.guests || p.cats !== undefined) ctx.roomId = null;
+    if ((p.price || p.ny) && !p.date) return {html: priceList() + '<p>' + bt('askDate') + '</p>', wa: null};
+    if (hasQuery) return ctx.date ? availability() : {html: '<p>' + bt('askDate') + '</p>', wa: null};
+    if (p.greet) return {html: bt('hi'), wa: null};
+    return {html: bt('fallback'), wa: null};
+  }
+
+  /* ---------- интерфейс ---------- */
+  const scroll = () => { const m = $('botMsgs'); m.scrollTop = m.scrollHeight; };
+  function add(role, html) {
+    const d = document.createElement('div'); d.className = 'msg ' + role; d.innerHTML = html;
+    $('botMsgs').appendChild(d); scroll(); return d;
+  }
+  const setWa = msg => { $('botWa').href = waHref(msg); };
+  function chips() {
+    const d = document.createElement('div'); d.className = 'bchips';
+    d.innerHTML = B[bl].chips.map(c => '<button type="button" class="bchip" data-q="1">' + c + '</button>').join('');
+    $('botMsgs').appendChild(d); scroll();
+  }
+  function send(text) {
+    text = String(text || '').trim();
+    if (!text) return;
+    const u = document.createElement('div'); u.className = 'msg me'; u.textContent = text; $('botMsgs').appendChild(u);
+    const b = add('bot', '…');
+    const res = answer(text);
+    setTimeout(() => { b.innerHTML = res.html; setWa(res.wa || ctxMsg()); scroll(); }, 380);
+  }
+  function texts() {
+    const x = B[S.lang] || B.ru;
+    $('botTitle').textContent = x.title; $('botSub').textContent = x.sub;
+    $('botIn').placeholder = x.ph; $('botOp').textContent = x.op;
+  }
+  function open(o) {
+    $('bot').classList.add('on'); $('fab').classList.add('hide');
+    texts();
+    if (!started) { started = true; bl = S.lang; add('bot', bt('hi')); chips(); setWa(bt('waBase')); }
+    if (o && o.roomId) {
+      bl = S.lang;
+      Object.assign(ctx, {roomId: o.roomId, cats: null, date: S.date, nights: S.nights, guests: S.guests});
+      const r = ROOMS.find(x => x.id === o.roomId);
+      add('bot', bt('fromCard', {name: r ? r.name[bl] : ''}));
+      const res = availability();
+      add('bot', res.html); setWa(res.wa || ctxMsg());
+    } else if (!matchMedia('(pointer:coarse)').matches) $('botIn').focus();
+  }
+  function close() { $('bot').classList.remove('on'); $('fab').classList.remove('hide'); }
+  return {open: open, close: close, send: send, texts: texts, answer: answer, parse: parse, ctx: ctx};
+})();
+
+document.addEventListener('click', e => {
+  const o = e.target.closest('[data-open-bot]'); if (o) { e.preventDefault(); BOT.open(); return; }
+  const a = e.target.closest('[data-ask]'); if (a) { e.preventDefault(); BOT.open({roomId: a.dataset.ask}); return; }
+  const c = e.target.closest('.bchip'); if (c) BOT.send(c.textContent);
+});
+$('botForm').addEventListener('submit', e => { e.preventDefault(); const i = $('botIn'); BOT.send(i.value); i.value = ''; });
+$('botClose').addEventListener('click', () => BOT.close());
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('bot').classList.contains('on') && !galOpen) BOT.close(); });
+
+/* ================= НОВОГОДНИЕ ДАТЫ ПО КЛИКУ ================= */
+function showHoliday() {
+  const p = holidayPeriod(); if (!p) return;
+  const t0 = new Date(); t0.setHours(0, 0, 0, 0);
+  const start = p.a > t0 ? p.a : t0;
+  const nights = Math.max(1, Math.min(14, Math.round((p.b - start) / 864e5) + 1));
+  S.date = toISO(start); S.nights = nights; S.filter = 'all';
+  $('inDate').value = S.date; $('inNights').value = nights;
+  render();
+  $('rooms').scrollIntoView({behavior: 'smooth', block: 'start'});
+}
+$('holiday').addEventListener('click', showHoliday);
+$('holiday').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showHoliday(); } });
 
 /* ================= ОБНОВЛЕНИЕ ДАННЫХ ================= */
 async function refresh() {
