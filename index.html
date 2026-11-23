@@ -614,6 +614,11 @@ const parseNum = v => { const n = parseInt(String(v || '').replace(/[\s\u00a0]/g
 const todayISO = () => toISO(new Date());
 const plural = (n, f) => { if (S.lang !== 'ru') return n === 1 ? f[0] : f[1]; const a = n % 10, b = n % 100; return (a === 1 && b !== 11) ? f[0] : (a >= 2 && a <= 4 && (b < 10 || b >= 20)) ? f[1] : f[2]; };
 const photoUrl = (id, w) => IMG(id) + w;
+const altUrl = (id, w) => 'https://drive.google.com/thumbnail?id=' + id + '&sz=w' + w;
+function imgFail(el, id, w) {
+  if (!el.dataset.f) { el.dataset.f = '1'; el.src = altUrl(id, w); }
+  else if (el.dataset.f === '1') { el.dataset.f = '2'; el.src = 'https://drive.google.com/uc?export=view&id=' + id; }
+}
 
 /* ================= ДАННЫЕ ИЗ GOOGLE ТАБЛИЦЫ ================= */
 async function fetchSheet(name) {
@@ -623,21 +628,46 @@ async function fetchSheet(name) {
   return (await r.json()).values || [];
 }
 
+function sheetCols(head) {
+  const norm = h => String(h || '').trim().toLowerCase().replace(/\s+/g, ' ');
+  const hs = head.map(norm);
+  const find = fn => hs.findIndex(fn);
+  const nov = h => h.indexOf('новогод') >= 0 || h.indexOf('праздн') >= 0;
+  return {
+    id: Math.max(0, find(h => h === 'id' || h.indexOf('код') === 0)),
+    name: find(h => h.indexOf('назван') === 0 || h === 'name'),
+    total: find(h => h === 'всего' || h.indexOf('колич') === 0 || h.indexOf('кол-во') === 0 || h === 'total'),
+    no: find(h => !nov(h) && (h.indexOf('без завтрака') >= 0 || h.indexOf('обычн') >= 0)),
+    bf: find(h => !nov(h) && h.indexOf('с завтраком') >= 0),
+    hNo: find(h => nov(h) && h.indexOf('без') >= 0),
+    hBf: find(h => nov(h) && h.indexOf('с завтраком') >= 0),
+    hOld: find(h => h.indexOf('праздничная') >= 0 && h.indexOf('завтрак') < 0),
+    from: find(h => h.indexOf('дата от') === 0 || h === 'from'),
+    to: find(h => h.indexOf('дата до') === 0 || h === 'to'),
+    st: find(h => h.indexOf('статус') === 0 || h === 'status')
+  };
+}
+
 async function loadRooms() {
   try {
     const rows = await fetchSheet(CFG.SHEET_ROOMS);
-    const cfg = {};
+    if (!rows.length) return false;
+    const C = sheetCols(rows[0]), cfg = {};
     rows.slice(1).forEach(row => {
-      const id = String(row[0] || '').trim();
+      const id = String(row[C.id] || '').trim();
       if (!id) return;
-      const st = String(row[7] || '').trim().toLowerCase();
+      const g = i => (i >= 0 ? row[i] : '');
+      const st = String(g(C.st) || '').trim().toLowerCase();
+      const no = parseNum(g(C.no)), bf = parseNum(g(C.bf));
       cfg[id] = {
-        sheetName: String(row[1] || '').trim(),
-        total: parseNum(row[2]),
-        price: parseNum(row[3]),
-        holidayPrice: parseNum(row[4]),
-        from: parseRu(row[5]),
-        to: parseRu(row[6]),
+        sheetName: String(g(C.name) || '').trim(),
+        total: parseNum(g(C.total)),
+        /* Кольсай: завтрак включён всегда. Обычная цена — «без завтрака» (колонка E),
+           праздничная — «Новогодняя…» (G/H); пока они пусты, берём F из старого макета */
+        price: no || bf,
+        holidayPrice: parseNum(g(C.hBf)) || parseNum(g(C.hNo)) || parseNum(g(C.hOld)) || (no ? bf : 0),
+        from: parseRu(g(C.from)),
+        to: parseRu(g(C.to)),
         closed: st === 'закрыт' || st === 'closed' || st === 'жабық'
       };
     });
@@ -768,7 +798,7 @@ function card(r) {
 
   return '<article class="card' + dim + '">' +
     '<button class="ph" data-open="' + r.id + '" aria-label="' + t('more') + ': ' + name + '">' +
-      '<img src="' + photoUrl(r.ph[0], 640) + '" alt="' + name + '" loading="lazy" decoding="async" draggable="false">' +
+      '<img referrerpolicy="no-referrer" onerror="imgFail(this,\'' + r.ph[0] + '\',640)" src="' + photoUrl(r.ph[0], 640) + '" alt="' + name + '" loading="lazy" decoding="async" draggable="false">' +
       '<span class="badge cat">' + L[S.lang].cat[r.cat] + '</span>' +
       (info.hol ? '<span class="badge hol">🎄 ' + t('holNight') + '</span>' : '') +
       '<span class="badge cnt"><i class="fa-regular fa-images"></i> ' + r.ph.length + '</span>' +
@@ -857,6 +887,7 @@ function openGallery(id, i) {
   $('mClose').focus();
 }
 function showPhoto() {
+  $('mImg').referrerPolicy = 'no-referrer'; $('mImg').dataset.f = ''; $('mImg').onerror = function () { imgFail(this, gal.list[gal.i], 1600); };
   $('mImg').src = photoUrl(gal.list[gal.i], 1600);
   $('mImg').alt = gal.name + ' ' + (gal.i + 1);
   $('mCount').textContent = (gal.i + 1) + ' / ' + gal.list.length;
